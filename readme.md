@@ -30,7 +30,7 @@ Languages
 - React/NextJS
 - Typescript
 
-State Management
+Global State Management
 
 - React Context API
 
