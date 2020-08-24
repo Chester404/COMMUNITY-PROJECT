@@ -1,0 +1,33 @@
+{
+	"name": "community-project",
+	"version": "1.0.0",
+	"description": "Covid-19 eCommerce and Business Connect",
+	"main": "index.js",
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://slerches@bitbucket.org/getinnotized_GH/cp-fe.git"
+	},
+	"keywords": [
+		"e-Commerce",
+		"Business",
+		"Connect"
+	],
+	"author": "getINNOtized and Amalitech",
+	"license": "ISC",
+	"homepage": "https://bitbucket.org/getinnotized_GH/cp-fe#readme",
+	"dependencies": {
+		"next": "9.5.2",
+		"react": "16.13.1",
+		"react-dom": "16.13.1"
+	},
+	"devDependencies": {
+		"@types/node": "^14.6.0",
+		"@types/react": "^16.9.46",
+		"typescript": "^4.0.2"
+	}
+}
