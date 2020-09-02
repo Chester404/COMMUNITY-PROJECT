@@ -36,6 +36,7 @@
       "static/chunks/framework.085e84bea8b122ad7b41.js",
       "static/chunks/pages/about-51e4d0a667125897f9ec.js"
     ],
+<<<<<<< HEAD
     "/auth/login": [
       "static/chunks/main-3fe60f76322cc6625e6f.js",
       "static/chunks/webpack-ccf5ab034a524403276a.js",
@@ -77,6 +78,17 @@
       "static/chunks/c4f4af797e43b1a081d214900f8c4e3f2789950f.e68a13ffc3e01fed6aa6.js",
       "static/chunks/9988b967086aa816b3484e6a4c66bc59ca3c083a.3cf59f03396c9ce0a63a.js",
       "static/chunks/pages/user/profilelist-51eac41a148739863e69.js"
+=======
+    "/auth/signup": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/auth/signup.js"
+    ],
+    "/jobs": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/jobs.js"
+>>>>>>> 2698ddad21c46ba9551f8e18ed97f4a805bd517f
     ]
   },
   "ampFirstPages": []

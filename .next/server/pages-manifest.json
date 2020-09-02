@@ -9,5 +9,10 @@
   "/user/profilelist": "pages/user/profilelist.html",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
+<<<<<<< HEAD
   "/404": "pages/404.html"
+=======
+  "/jobs": "pages/jobs.js",
+  "/auth/signup": "pages/auth/signup.js"
+>>>>>>> 2698ddad21c46ba9551f8e18ed97f4a805bd517f
 }
