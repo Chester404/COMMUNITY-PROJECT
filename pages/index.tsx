@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <>
       <Layout>
-        <button
+        {/* <button
           onClick={() =>
             dispatch({ type: "change", payload: "Peter and Denis" })
           }
@@ -19,7 +19,7 @@ export default function Home() {
         <Link href="/about">
           <a>Test Me</a>
         </Link>
-        <div>Home Page What {process.env.URL}</div>
+        <div>Home Page What {process.env.URL}</div> */}
       </Layout>
     </>
   );

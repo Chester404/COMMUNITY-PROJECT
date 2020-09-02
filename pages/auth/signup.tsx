@@ -104,11 +104,10 @@ const Signup = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     //   setLoading(true);
-    console.log("Status");
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.stopPropagation();
-    }
+    // const form = event.currentTarget;
+    // if (form.checkValidity() === false) {
+    //   event.stopPropagation();
+    // }
 
     if (email && password === confirmPassword) {
       setStatusColor("blue");
@@ -201,7 +200,7 @@ const Signup = () => {
       </div>{" "}
       <div className="row">
         <form style={{ width: "100%" }} onSubmit={handleSubmit}>
-          <div className="form-group col-12">
+          {/* <div className="form-group col-12">
             <label htmlFor="firstname">First Name</label>
             <input
               type="text"
@@ -222,8 +221,8 @@ const Signup = () => {
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
             />
-          </div>
-          <div className="form-group col-12">
+          </div> */}
+          {/* <div className="form-group col-12">
             <label htmlFor="phone_number">Phone Number</label>
             <input
               type="text"
@@ -233,7 +232,7 @@ const Signup = () => {
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
             />
-          </div>
+          </div> */}
           <div className="form-group col-12">
             <label htmlFor="email">Email address / Phone</label>
             <input
