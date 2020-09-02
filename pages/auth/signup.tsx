@@ -201,7 +201,7 @@ const Signup = () => {
       </div>{" "}
       <div className="row">
         <form style={{ width: "100%" }} onSubmit={handleSubmit}>
-          <div className="form-group col-12">
+          {/* <div className="form-group col-12">
             <label htmlFor="firstname">First Name</label>
             <input
               type="text"
@@ -233,7 +233,7 @@ const Signup = () => {
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
             />
-          </div>
+          </div> */}
           <div className="form-group col-12">
             <label htmlFor="email">Email address / Phone</label>
             <input
