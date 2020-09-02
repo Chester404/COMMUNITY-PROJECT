@@ -10,6 +10,14 @@ export class Auth {
     });
   }
 
+  async confirmaccount(integer_key: number) {
+    const rs = await axios.post("http://51.116.114.155:8080/auth/keyinput/", {
+      integer_key,
+    });
+
+    return rs;
+  }
+
   async login(authentication_property: string, password: string) {
     //authentication_property: email or phone number for login
     const rs = await axios.post("http://51.116.114.155:8080/auth/token", {
