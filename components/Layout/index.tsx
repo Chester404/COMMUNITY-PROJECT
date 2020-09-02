@@ -16,6 +16,9 @@ const verifyLogin = (
     if (router.pathname.includes("/marketplace")) {
       return { verified: false, path: "" };
     }
+    if (router.pathname === "/") {
+      return { verified: false, path: "" };
+    }
     // if (router.pathname.includes("/auth/verificationcode")) {
     // }
     // if (router.pathname.includes("/auth/verificationcode")) {

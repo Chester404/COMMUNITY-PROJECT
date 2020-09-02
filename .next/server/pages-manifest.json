@@ -1,18 +1,8 @@
 {
   "/_app": "pages/_app.js",
-  "/about": "pages/about.html",
-  "/auth/login": "pages/auth/login.html",
-  "/auth/signup": "pages/auth/signup.html",
-  "/": "pages/index.html",
-  "/jobs": "pages/jobs.html",
-  "/user/profile": "pages/user/profile.html",
-  "/user/profilelist": "pages/user/profilelist.html",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-<<<<<<< HEAD
-  "/404": "pages/404.html"
-=======
-  "/jobs": "pages/jobs.js",
+  "/": "pages/index.js",
+  "/auth/login": "pages/auth/login.js",
   "/auth/signup": "pages/auth/signup.js"
->>>>>>> 2698ddad21c46ba9551f8e18ed97f4a805bd517f
 }
