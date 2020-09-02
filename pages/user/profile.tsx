@@ -1,13 +1,17 @@
 import Layout from "../../components/Layout";
+import Head from "next/head";
 
 function Profile() {
   return (
     <Layout title={"Profile"}>
+      <Head>
+        <link rel="stylesheet" href="/css/profiles.css" />
+      </Head>
       <div className="container-fluid row profileContainer justify-content-center">
-        <div className="col-md-12 page-tittle">
-          <p>
+        <div className="col-md-12 page-tittle justify-content-left">
+          {/* <p> */}
             <h1>Edit Profile</h1>
-          </p>
+          {/* </p> */}
         </div>
 
         <div className="col-md-2">
@@ -57,9 +61,9 @@ function Profile() {
               <div className="col">
                 <label htmlFor="exampleInput">Phone Number</label>
                 <input
-                  type="text"
+                  type="number"
                   className="form-control"
-                  placeholder="+233 24 678 9560"
+                  placeholder="024 678 9560"
                 />
               </div>
             </div>
@@ -169,13 +173,17 @@ function Profile() {
           </div>
 
           <div className="row col-md-12 justify-content-center">
-            <div className="row col-md-6 mt-4 ">
-              <button type="submit" className="btn btn-primary mr-4 btnsave">
-                Save
-              </button>
-              <button type="submit" className="btn btn-primary btncancel">
-                Cancel
-              </button>
+            <div className="row col-md-12 mt-4  justify-content-center">
+              <div className="col-md-4 mr-2">
+                <button type="submit" className="btn btn-primary mr-4 btnsave">
+                  Save
+                </button>
+              </div>
+              <div className="col-md-4">
+                <button type="submit" className="btn btn-primary btncancel">
+                  Cancel
+                </button>
+              </div>
             </div>
           </div>
         </div>

@@ -15,7 +15,7 @@ const Header = ({ title = "Community Project" }) => {
         href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css"
       />
 
-      {/* <link rel="stylesheet" type="text/css" href="/styles.css" /> */}
+      {/* <link rel="stylesheet" type="text/css" href="styles.css" /> */}
     </Head>
   );
 };

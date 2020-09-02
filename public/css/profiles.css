@@ -13,7 +13,7 @@ body{
 .page-tittle{
     padding-top: 10px;
     padding-bottom: 10px;
-    padding-left: 200px;
+    padding-left: 120px;
     font-family: 'Open Sans', sans-serif;
     
 }
@@ -103,3 +103,48 @@ body{
     width: 5px;
     height: 5px;
 }
+.btn-secondary{
+    background:transparent !important;
+    border-color: white;
+    color: black;
+    
+}
+
+.dropdown .btn-secondary h6{
+    color: black;
+    
+} 
+
+.btn-secondary img:hover{
+    color: black;
+    
+} 
+.dropdown-item{
+    text-align:wrap-content;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* .dropdown_username{
+    float: right;
+}
+.dropdown_tel{
+    float: left;
+}
+.dropdown_contact{
+    float: right;
+}
+.dropdown_mail{
+    float: left;
+}
+.dropdown_email{
+    float: right;
+}
+.dropdown_address1{
+    float: left;
+}
+.dropdown_address2{
+    float: right;
+} */
