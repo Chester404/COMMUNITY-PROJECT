@@ -27,6 +27,8 @@ const Signup = () => {
   // const [promptBody, setPromptBody] = useState("");
   // const [linkTo, setLinkTo] = useState(null);
   // const [linkText, setLinkText] = useState(null);
+  const [statusColor, setStatusColor] = useState("blue");
+  const [status, setStatus] = useState("");
 
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
@@ -104,11 +106,13 @@ const Signup = () => {
     //   setLoading(true);
     console.log("Status");
     const form = event.currentTarget;
-    // if (form.checkValidity() === false) {
-    //   event.stopPropagation();
-    // }
+    if (form.checkValidity() === false) {
+      event.stopPropagation();
+    }
 
     if (email && password === confirmPassword) {
+      setStatusColor("blue");
+      setStatus("Please wait...");
       try {
         const result = await axios.post(
           "http://51.116.114.155:8080/auth/registration/",
@@ -126,6 +130,10 @@ const Signup = () => {
           console.log("RESULT:", result);
           if (result.status === 200 || result.statusText === "Created") {
             // go to landing page
+            setStatusColor("blue");
+            setStatus(
+              "A confirmation has been sent to your email. Please retrieve the code and confirm acount"
+            );
             //   setPromptBody(
             //     "A confirmation has been sent to your email. Please retrieve the code and confirm acount"
             //   );
@@ -143,9 +151,15 @@ const Signup = () => {
           // setLinkTo(null);
           // setShow(true);
           // setLoading(false);
+          setStatusColor("red");
+          setStatus("User with this email already exists");
         } else if (err.message === "Request failed with status code 404") {
           // bad endpoint
+          setStatusColor("red");
+          setStatus("An error occured");
         } else if (err.message === "Network Error") {
+          setStatusColor("red");
+          setStatus("Please check your network connection and try again.");
           // bad network connection
           // setPromptBody(
           //   "Please check your network connection and try again."
@@ -154,6 +168,9 @@ const Signup = () => {
           // setLoading(false);
         }
       }
+    } else {
+      setStatusColor("red");
+      setStatus("Password mismatch");
     }
   };
 
@@ -276,6 +293,14 @@ const Signup = () => {
             >
               Sign Up
             </button>
+          </div>
+          <div
+            style={{
+              textAlign: "center",
+              color: statusColor,
+            }}
+          >
+            &nbsp;{status}
           </div>
           <div
             style={{
