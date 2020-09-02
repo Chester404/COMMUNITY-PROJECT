@@ -1,6 +1,6 @@
 import BlogPost from "../../components/blog/BlogPost";
 import Layout from "../../components/Layout";
-import BreadCrumb from "../../components/blog/BreadCrumb";
+// import BreadCrumb from "../../components/blog/BreadCrumb";
 // import Pagination from "../../components/blog/Pagination";
 
 export default function Blog({ allPostsData }) {

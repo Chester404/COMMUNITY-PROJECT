@@ -1,7 +1,13 @@
 {
   "/_app": "pages/_app.js",
+  "/about": "pages/about.html",
+  "/auth/login": "pages/auth/login.html",
+  "/auth/signup": "pages/auth/signup.html",
+  "/": "pages/index.html",
+  "/jobs": "pages/jobs.html",
+  "/user/profile": "pages/user/profile.html",
+  "/user/profilelist": "pages/user/profilelist.html",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/auth/signup": "pages/auth/signup.js",
-  "/auth/login": "pages/auth/login.js"
+  "/404": "pages/404.html"
 }
