@@ -19,7 +19,7 @@ export default function Home() {
         <Link href="/about">
           <a>Test Me</a>
         </Link>
-        <div>Home Page {state.name}</div>
+        <div>Home Page What {process.env.URL}</div>
       </Layout>
     </>
   );

@@ -1,8 +1,162 @@
 import Head from "next/head";
 import Layout from "../../components/Layout";
 import Link from "next/link";
+import emailValidation from "../../utils/emailValidation";
+import phoneValidation from "../../utils/phoneValidation";
+import axios from "axios";
+import { useState } from "react";
 
 const Signup = () => {
+  let data: any;
+  const [validated, setValidated] = useState(false);
+  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [emailValidity, setEmailValidity] = useState("invalid");
+  const [phoneValidity, setPhoneValidity] = useState("invalid");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("mismatch");
+  const [passwordFieldValidity, setPasswordFieldValidity] = useState("invalid");
+  const [userType, setUserType] = useState("Organization");
+  const [isSent, setIsSent] = useState(false);
+  const [passwordShown, setPasswordShown] = useState(false);
+  const [show, setShow] = useState(false);
+  const [userName, setUserName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  // const [loading, setLoading] = useState(false);
+  // const [promptBody, setPromptBody] = useState("");
+  // const [linkTo, setLinkTo] = useState(null);
+  // const [linkText, setLinkText] = useState(null);
+
+  const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false);
+
+  // Toggle Password Visibility
+  const togglePasswordVisiblity = () => {
+    setPasswordShown(passwordShown ? false : true);
+  };
+
+  const loader = () => (
+    <span
+      className="spinner-border spinner-border-sm"
+      role="status"
+      aria-hidden="true"
+      style={{ width: "1.5rem", height: "1.5rem" }}
+    ></span>
+  );
+
+  // Email Phone Validation
+  const validateEmail = (e) => {
+    if (emailValidation(e.target.value)) {
+      setEmail(e.target.value);
+      setEmailValidity("valid");
+    } else {
+      setEmailValidity("invalid");
+    }
+  };
+
+  const validatePhone = (e) => {
+    if (phoneValidation(e.target.value)) {
+      setPhoneNumber(e.target.value);
+      setPhoneValidity("valid");
+    } else {
+      setPhoneValidity("invalid");
+    }
+  };
+
+  // Password Validation
+  const validatePassword = (e) => {
+    if (
+      e.target.value.match(/[a-z]/g) &&
+      e.target.value.match(/[A-Z]/g) &&
+      e.target.value.match(/[0-9]/g) &&
+      e.target.value.match(/[^a-zA-Z\d]/g) &&
+      e.target.value.length >= 8
+    ) {
+      // res = "TRUE";
+      setPassword(e.target.value);
+      setPasswordFieldValidity("valid");
+    }
+    // return true
+    // set field to invalid
+    else {
+      // console.log("invalid password")
+      setPasswordFieldValidity("invalid");
+    }
+  };
+
+  const confirmPasswordMatch = (e) => {
+    if (e.target.value === password) {
+      setConfirmPassword("match");
+      // data.first_name = firstName
+      // data.last_name = lastName
+      // data.email = email
+      // data.password = password
+      // data.phone_number = phoneNumber
+      // data.user_type = userType
+    } else {
+      setConfirmPassword("mismatch");
+    }
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    //   setLoading(true);
+    console.log("Status");
+    const form = event.currentTarget;
+    // if (form.checkValidity() === false) {
+    //   event.stopPropagation();
+    // }
+
+    if (email && password === confirmPassword) {
+      try {
+        const result = await axios.post(
+          "http://51.116.114.155:8080/auth/registration/",
+          {
+            email: email,
+            password: password,
+            first_name: firstName,
+            last_name: lastName,
+            phone_number: phoneNumber,
+          }
+        );
+
+        if (result) {
+          // setLoading(false);
+          console.log("RESULT:", result);
+          if (result.status === 200 || result.statusText === "Created") {
+            // go to landing page
+            //   setPromptBody(
+            //     "A confirmation has been sent to your email. Please retrieve the code and confirm acount"
+            //   );
+            //   setLinkTo("confirmaccount");
+            //   setLinkText("Confirm Account");
+            //   setShow(true);
+            //   setLoading(false);
+          }
+        }
+      } catch (err) {
+        console.log(err.message);
+        if (err.message === "Request failed with status code 400") {
+          // setPromptBody("User with this email already exists");
+          // setLinkText(null);
+          // setLinkTo(null);
+          // setShow(true);
+          // setLoading(false);
+        } else if (err.message === "Request failed with status code 404") {
+          // bad endpoint
+        } else if (err.message === "Network Error") {
+          // bad network connection
+          // setPromptBody(
+          //   "Please check your network connection and try again."
+          // );
+          // setShow(true);
+          // setLoading(false);
+        }
+      }
+    }
+  };
+
   return (
     <Layout>
       <Head>
@@ -29,35 +183,74 @@ const Signup = () => {
         </div>
       </div>{" "}
       <div className="row">
-        <form style={{ width: "100%" }}>
+        <form style={{ width: "100%" }} onSubmit={handleSubmit}>
+          <div className="form-group col-12">
+            <label htmlFor="firstname">First Name</label>
+            <input
+              type="text"
+              className="form-control cinput"
+              id="firstname"
+              placeholder="First Name"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+            />
+          </div>
+          <div className="form-group col-12">
+            <label htmlFor="lastname">Last Name</label>
+            <input
+              type="text"
+              className="form-control cinput"
+              id="lastname"
+              placeholder="Last Name"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+            />
+          </div>
+          <div className="form-group col-12">
+            <label htmlFor="phone_number">Phone Number</label>
+            <input
+              type="text"
+              className="form-control cinput"
+              id="phone_number"
+              placeholder="Phone Number"
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+            />
+          </div>
           <div className="form-group col-12">
             <label htmlFor="email">Email address / Phone</label>
             <input
               type="email"
               className="form-control cinput"
-              id="exampleInputEmail1"
+              id="email"
               aria-describedby="emailHelp"
               placeholder="Enter email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="form-group col-12">
-            <label htmlFor="exampleInputPassword1">Password</label>
+            <label htmlFor="password">Password</label>
             <input
               type="password"
               className="form-control cinput"
-              id="exampleInputPassword1"
+              id="password"
               placeholder="Password"
               data-toggle="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           <div className="form-group col-12">
-            <label htmlFor="exampleInputPassword1">Confirm Password</label>
+            <label htmlFor="confirm_password">Confirm Password</label>
             <input
               type="password"
               className="form-control cinput"
-              id="exampleInputPassword1"
+              id="confirm_password"
               placeholder="Password"
               data-toggle="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
             />
           </div>
           <div className="form-group col-12">
