@@ -49,7 +49,7 @@ const Login = () => {
 
         setTimeout(() => {
           // go to landing page
-          window.localStorage.setItem("cp-a", result.data);
+          window.localStorage.setItem("cp-a", JSON.stringify(result.data));
           router.push("/jobs");
           //   setPromptBody("Replace this prompt with landing page");
           //   setShow(true);
