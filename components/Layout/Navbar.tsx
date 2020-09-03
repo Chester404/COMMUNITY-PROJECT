@@ -1,6 +1,8 @@
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, createContext } from "react";
 import { useRouter } from "next/router";
+
+import { Store } from "../../contextStore";
 const navFontSize = {
   fontSize: "18px",
 };
@@ -128,9 +130,9 @@ const Navbar = (props) => {
                   <Link href="/user/profile">
                     <a className="dropdown-item">View Profile</a>
                   </Link>
-                  <a className="dropdown-item" href="#">
-                    Account Settings
-                  </a>
+                  <Link href="/admin">
+                    <a className="dropdown-item">Account Settings</a>
+                  </Link>
                   <a
                     className="dropdown-item"
                     onClick={() => {
