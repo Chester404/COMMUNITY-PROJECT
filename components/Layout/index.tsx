@@ -16,6 +16,12 @@ const verifyLogin = (
     if (router.pathname.includes("/marketplace")) {
       return { verified: false, path: "" };
     }
+    if (router.pathname === "/user/profile") {
+      return { verified: false, path: "" };
+    }
+    if (router.pathname === "/user/profilelist") {
+      return { verified: false, path: "" };
+    }
     if (router.pathname === "/") {
       return { verified: false, path: "" };
     }
