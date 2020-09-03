@@ -5,39 +5,36 @@ import { Auth } from "../../lib/endpoints";
 import { useState } from "react";
 
 function editprofile() {
-  // const [id,setId] = useState(""):
-  // const [first_name,setFirstName] =useState('');
-  // const [last_name,setLastName] =useState('');
-  // const [birthday,setBirthDay] =useState('');
-  // const [gender,setGender] =useState('');
-  // const [first_name,setFirstName] =useState('');
-  // const [first_name,setFirstName] =useState('');
-  // const [first_name,setFirstName] =useState('');
-  // "first_name": "Alhaji",
-  // "last_name": "Taibu",
-  // "birthday": "2020-08-03",
-  // "gender": "m",
-  // "street_address": "NB78",
-  // "region": "ba",
-  // "gps_location": "sadj jsdiaios",
-  // "privacy_level": "",
-  // "image": "http://127.0.0.1:8000/accounts/signed_in_user/Accounts/static/images/Clash_of_Kings_Screenshot_2020.04.16_05.56.21.jpg",
-  // "user": 1
+  const [id,setId] = useState(""):
+  const [first_name,setFirstName] =useState('');
+  const [last_name,setLastName] =useState('');
+  const [birthday,setBirthDay] =useState('');
+  const [gender,setGender] =useState('');
+  const [reg_dat,setRegDate] = useState('')
+  const [street_address,setStreetAddress] =useState('');
+  const [phone_number,setPhoneNumber] =useState('');
+  const [region,setRegion] =useState('');
+  const [gps_location,setGpsLocation] =useState('');
+  const [privacy_level,setPrivacyLevel] =useState('');
+  const [image,setImage] =useState('');
+  const [email,setEmail] =useState('');
+  const [user_id,setUser];
+
   const submitData = async () => {
     const rs = await new Auth().updateUserProfile({
       id: 1,
-      first_name: "Alhaji",
-      last_name: "Taibu",
-      birthday: "2020-08-03",
-      gender: "m",
-      street_address: "NB78",
-      region: "ba",
-      gps_location: "sadj jsdiaios",
-      privacy_level: "",
-      image:
-        "http://127.0.0.1:8000/accounts/signed_in_user/Accounts/static/images/Clash_of_Kings_Screenshot_2020.04.16_05.56.21.jpg",
-      user: 1,
+      first_name: first_name,
+      last_name: last_name,
+      birthday: birthday,
+      gender: gender,
+      street_address: street_address,
+      region: region,
+      gps_location: gps_location,
+      privacy_level: privacy_level,
+      image:image,
+      user: user_id,
     });
+    console.log(rs)
   };
   return (
     <Layout title={"edit Profile"}>
@@ -62,7 +59,7 @@ function editprofile() {
         </div>
 
         <div className="col-md-8 row">
-          <form className=" col form-group md-12">
+          <form className=" col form-group md-12" onSubmit={submitData}>
             <div className="row md-10">
               {/*from here*/}
 
@@ -77,6 +74,8 @@ function editprofile() {
                       className="form-control"
                       placeholder="Lois"
                       required
+                      value={first_name}
+                      onChange={(e)=>setFirstName(e.target.value)}
                     />
                   </div>
                 </div>
@@ -90,6 +89,8 @@ function editprofile() {
                       className="form-control"
                       placeholder="Young"
                       required
+                      value={last_name}
+                      onChange={(e)=>setLastName(e.target.value)}
                     />
                   </div>
                 </div>
@@ -103,6 +104,8 @@ function editprofile() {
                       className="form-control"
                       placeholder="loisewuramayoung@gmail.com"
                       required
+                      value={email}
+                      onChange={(e)=>setEmail(e.target.value)}
                     />
                   </div>
                 </div>
@@ -113,6 +116,8 @@ function editprofile() {
                       type="number"
                       className="form-control"
                       placeholder="024 678 9560"
+                      value={phone_number}
+                      onChange={(e)=>setPhoneNumber(e.target.value)}
                     />
                   </div>
                 </div>
@@ -125,6 +130,8 @@ function editprofile() {
                           type="date"
                           className="form-control"
                           placeholder="10 Aug 1993"
+                          value={reg_dat}
+                      onChange={(e)=>setRegDate(e.target.value)}
                         />
                       </div>
                     </div>
@@ -144,6 +151,8 @@ function editprofile() {
                           name="inlineRadioOptions"
                           id="inlineRadio1"
                           value="option1"
+                          value={gender}
+                      onChange={(e)=>setGender(e.target.value)}
                         />
                         <label
                           className="form-check-label"
@@ -159,6 +168,8 @@ function editprofile() {
                           name="inlineRadioOptions"
                           id="inlineRadio2"
                           value="option2"
+                          value={gender}
+                      onChange={(e)=>setGender(e.target.value)}
                         />
                         <label
                           className="form-check-label"
