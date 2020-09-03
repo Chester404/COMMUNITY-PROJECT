@@ -10,7 +10,7 @@ const verifyLogin = (
   let lStorage = window.localStorage.getItem("cp-a");
   lStorage = JSON.parse(lStorage);
   if (lStorage == null || lStorage == undefined) {
-    if (router.pathname.includes("/jobs")) {
+    if (router.pathname.includes("/blog")) {
       return { verified: false, path: "" };
     }
     if (router.pathname.includes("/marketplace")) {

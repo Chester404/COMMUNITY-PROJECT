@@ -14,7 +14,7 @@
 
 .container {
   margin: 0 auto;
-  width: 30%;
+  width: 25%;
   background: #ffffff;
   padding: 25px;
 }
@@ -33,4 +33,14 @@
 .input-group-addon:last-child {
   background-color: #ffffff;
   border-radius: 0px 10px 10px 0px;
+}
+
+i {
+  position: absolute;
+  top: 62%;
+  right: 7%;
+}
+i:hover {
+  color: #00fcb6;
+  cursor: pointer;
 }

@@ -1,9 +1,9 @@
 import Layout from "../../components/Layout";
 import Head from "next/head";
 
-function profileList() {
+function profilelist() {
   return (
-    <Layout title="Profile List View">
+    <Layout title="Profile List registered viewer">
       <Head>
         <link rel="stylesheet" href="/css/profiles.css" />
       </Head>
@@ -38,15 +38,189 @@ function profileList() {
                   <tr>
                     <th scope="row">
                       <div className="row">
-                        <img
-                          src="../images/profileImage1.png"
-                          className="rounded-circle mr-3"
-                          alt="profile pic"
-                        />
-                        <h6 className="username mt-2">Godsway Hadson</h6>
+                        <div className="dropdown w-100 float-left">
+                          <img
+                            src="../images/profileImage1.png"
+                            className="img-fluid rounded-circle mr-3"
+                            alt="profile pic"
+                          />
+                          <button
+                            className="btn btn-secondary "
+                            type="button"
+                            id="dropdownMenuButton"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                          >
+                            <h6 className="username mt-2">Kristine Wonder</h6>
+                          </button>
+                          <div className="dropdown-menu">
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col">
+                                  <img
+                                    src="../images/profileImage1.png"
+                                    className="img-fluid rounded-circle mr-3"
+                                    alt="profile pic"
+                                  />
+                                </div>
+                                <div className="col dropdown_username">
+                                  <a className="dropdown-item" href="#">
+                                    Kristine Wonder
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_tel">
+                                  <p>Telephone :</p>
+                                </div>
+                                <div className="col dropdown_contact">
+                                  <a className="dropdown-item">
+                                    +233 050 123 9876
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_mail">
+                                  <a>Email :</a>
+                                </div>
+                                <div className="col dropdown_email">
+                                  <p className="dropdown-item">
+                                    wonder1993@gmail.com
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_address1">
+                                  <a>Street Address :</a>
+                                </div>
+                                <div className="col dropdown_address2">
+                                  <p className="dropdown-item">
+                                    Executive Avenue 123{" "}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </th>
-                    <td>Anaji, Takoradi</td>
+                    <td>Beach Road, Takoradi</td>
+                    <td>
+                      <span className="info-icon mr-2">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                        >
+                          <path d="M0 0h24v24H0V0z" fill="none" />
+                          <path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+                        </svg>
+                      </span>
+                      <span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                        >
+                          <path d="M0 0h24v24H0V0z" fill="none" />
+                          <path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z" />
+                        </svg>
+                      </span>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <th scope="row">
+                      <div className="row">
+                        <div className="dropdown w-100 float-left">
+                          <img
+                            src="../images/profileImage1.png"
+                            className="img-fluid rounded-circle mr-3"
+                            alt="profile pic"
+                          />
+                          <button
+                            className="btn btn-secondary"
+                            type="button"
+                            id="dropdownMenuButton"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                          >
+                            <h6 className="username mt-2">Kristine Wonder</h6>
+                          </button>
+                          <div className="dropdown-menu">
+                            <a className="dropdown-item" href="#">
+                              <div className="row">
+                                <div className="col">
+                                  <img
+                                    src="../images/profileImage1.png"
+                                    className="img-fluid rounded-circle mr-3"
+                                    alt="profile pic"
+                                  />
+                                </div>
+                                <div className="col">
+                                  <a className="dropdown-item" href="#">
+                                    Kristine Wonder
+                                  </a>
+                                </div>
+                              </div>
+                            </a>
+                            <a className="dropdown-item" href="#">
+                              <div className="row">
+                                <div className="col">
+                                  <a>Telephone :</a>
+                                </div>
+                                <div className="col">
+                                  <a className="dropdown-item" href="#">
+                                    +233 050 123 9876
+                                  </a>
+                                </div>
+                              </div>
+                            </a>
+                            <a className="dropdown-item" href="#">
+                              <div className="row">
+                                <div className="col">
+                                  <a>Email :</a>
+                                </div>
+                                <div className="col">
+                                  <a className="dropdown-item" href="#">
+                                    wonder1993@gmail.com
+                                  </a>
+                                </div>
+                              </div>
+                            </a>
+                            <div className="dropdown-divider"></div>
+                            <a className="dropdown-item" href="#">
+                              <a className="dropdown-item" href="#">
+                                <div className="row">
+                                  <div className="col">
+                                    <a>Street Address :</a>
+                                  </div>
+                                  <div className="col">
+                                    <a className="dropdown-item" href="#">
+                                      Executive Avenue 123, Anaji
+                                    </a>
+                                  </div>
+                                </div>
+                              </a>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </th>
+                    <td>Beach Road, Takoradi</td>
                     <td>
                       <span className="info-icon mr-2">
                         <svg
@@ -75,324 +249,1891 @@ function profileList() {
                   <tr>
                     <th scope="row">
                       <div className="row">
-                        <img
-                          src="../images/profileImage2.png"
-                          className="rounded-circle mr-3"
-                          alt="profile pic"
-                        />
-                        <h6 className="username mt-2">Ebenezer Skyler</h6>
-                      </div>
-                    </th>
-                    <td>Effiakuma, Takoradi</td>
-                    <td>
-                      <button className="">info</button>
-                      <button className="">heart</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      <div className="row">
-                        <img
-                          src="../images/profileImage1.png"
-                          className="rounded-circle mr-3"
-                          alt="profile pic"
-                        />
-                        <h6 className="username mt-2">Kristine Wonder</h6>
+                        <div className="dropdown w-100 float-left">
+                          <img
+                            src="../images/profileImage1.png"
+                            className="img-fluid rounded-circle mr-3"
+                            alt="profile pic"
+                          />
+                          <button
+                            className="btn btn-secondary "
+                            type="button"
+                            id="dropdownMenuButton"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                          >
+                            <h6 className="username mt-2">Kristine Wonder</h6>
+                          </button>
+                          <div className="dropdown-menu">
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col">
+                                  <img
+                                    src="../images/profileImage1.png"
+                                    className="img-fluid rounded-circle mr-3"
+                                    alt="profile pic"
+                                  />
+                                </div>
+                                <div className="col dropdown_username">
+                                  <a className="dropdown-item" href="#">
+                                    Kristine Wonder
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_tel">
+                                  <p>Telephone :</p>
+                                </div>
+                                <div className="col dropdown_contact">
+                                  <a className="dropdown-item">
+                                    +233 050 123 9876
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_mail">
+                                  <a>Email :</a>
+                                </div>
+                                <div className="col dropdown_email">
+                                  <p className="dropdown-item">
+                                    wonder1993@gmail.com
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_address1">
+                                  <a>Street Address :</a>
+                                </div>
+                                <div className="col dropdown_address2">
+                                  <p className="dropdown-item">
+                                    Executive Avenue 123{" "}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </th>
                     <td>Beach Road, Takoradi</td>
                     <td>
-                      <button className="">info</button>
-                      <button className="">heart</button>
+                      <span className="info-icon mr-2">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                        >
+                          <path d="M0 0h24v24H0V0z" fill="none" />
+                          <path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+                        </svg>
+                      </span>
+                      <span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                        >
+                          <path d="M0 0h24v24H0V0z" fill="none" />
+                          <path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z" />
+                        </svg>
+                      </span>
                     </td>
                   </tr>
                   <tr>
                     <th scope="row">
                       <div className="row">
-                        <img
-                          src="../images/profileImage2.png"
-                          className="rounded-circle mr-3"
-                          alt="profile pic"
-                        />
-                        <h6 className="username mt-2">Godsway Hadson</h6>
+                        <div className="dropdown w-100 float-left">
+                          <img
+                            src="../images/profileImage1.png"
+                            className="img-fluid rounded-circle mr-3"
+                            alt="profile pic"
+                          />
+                          <button
+                            className="btn btn-secondary "
+                            type="button"
+                            id="dropdownMenuButton"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                          >
+                            <h6 className="username mt-2">Kristine Wonder</h6>
+                          </button>
+                          <div className="dropdown-menu">
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col">
+                                  <img
+                                    src="../images/profileImage1.png"
+                                    className="img-fluid rounded-circle mr-3"
+                                    alt="profile pic"
+                                  />
+                                </div>
+                                <div className="col dropdown_username">
+                                  <a className="dropdown-item" href="#">
+                                    Kristine Wonder
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_tel">
+                                  <p>Telephone :</p>
+                                </div>
+                                <div className="col dropdown_contact">
+                                  <a className="dropdown-item">
+                                    +233 050 123 9876
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_mail">
+                                  <a>Email :</a>
+                                </div>
+                                <div className="col dropdown_email">
+                                  <p className="dropdown-item">
+                                    wonder1993@gmail.com
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_address1">
+                                  <a>Street Address :</a>
+                                </div>
+                                <div className="col dropdown_address2">
+                                  <p className="dropdown-item">
+                                    Executive Avenue 123{" "}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </th>
-                    <td>Anaji, Takoradi</td>
+                    <td>Beach Road, Takoradi</td>
                     <td>
-                      <button className="">info</button>
-                      <button className="">heart</button>
+                      <span className="info-icon mr-2">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                        >
+                          <path d="M0 0h24v24H0V0z" fill="none" />
+                          <path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+                        </svg>
+                      </span>
+                      <span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                        >
+                          <path d="M0 0h24v24H0V0z" fill="none" />
+                          <path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z" />
+                        </svg>
+                      </span>
                     </td>
                   </tr>
                   <tr>
                     <th scope="row">
                       <div className="row">
-                        <img
-                          src="../images/profileImage1.png"
-                          className="rounded-circle mr-3"
-                          alt="profile pic"
-                        />
-                        <h6 className="username mt-2">Godsway Hadson</h6>
+                        <div className="dropdown w-100 float-left">
+                          <img
+                            src="../images/profileImage1.png"
+                            className="img-fluid rounded-circle mr-3"
+                            alt="profile pic"
+                          />
+                          <button
+                            className="btn btn-secondary "
+                            type="button"
+                            id="dropdownMenuButton"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                          >
+                            <h6 className="username mt-2">Kristine Wonder</h6>
+                          </button>
+                          <div className="dropdown-menu">
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col">
+                                  <img
+                                    src="../images/profileImage1.png"
+                                    className="img-fluid rounded-circle mr-3"
+                                    alt="profile pic"
+                                  />
+                                </div>
+                                <div className="col dropdown_username">
+                                  <a className="dropdown-item" href="#">
+                                    Kristine Wonder
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_tel">
+                                  <p>Telephone :</p>
+                                </div>
+                                <div className="col dropdown_contact">
+                                  <a className="dropdown-item">
+                                    +233 050 123 9876
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_mail">
+                                  <a>Email :</a>
+                                </div>
+                                <div className="col dropdown_email">
+                                  <p className="dropdown-item">
+                                    wonder1993@gmail.com
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_address1">
+                                  <a>Street Address :</a>
+                                </div>
+                                <div className="col dropdown_address2">
+                                  <p className="dropdown-item">
+                                    Executive Avenue 123{" "}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </th>
-                    <td>Anaji, Takoradi</td>
+                    <td>Beach Road, Takoradi</td>
                     <td>
-                      <button className="">info</button>
-                      <button className="">heart</button>
+                      <span className="info-icon mr-2">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                        >
+                          <path d="M0 0h24v24H0V0z" fill="none" />
+                          <path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+                        </svg>
+                      </span>
+                      <span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                        >
+                          <path d="M0 0h24v24H0V0z" fill="none" />
+                          <path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z" />
+                        </svg>
+                      </span>
                     </td>
                   </tr>
                   <tr>
                     <th scope="row">
                       <div className="row">
-                        <img
-                          src="../images/profileImage1.png"
-                          className="rounded-circle mr-3"
-                          alt="profile pic"
-                        />
-                        <h6 className="username mt-2">Godsway Hadson</h6>
+                        <div className="dropdown w-100 float-left">
+                          <img
+                            src="../images/profileImage1.png"
+                            className="img-fluid rounded-circle mr-3"
+                            alt="profile pic"
+                          />
+                          <button
+                            className="btn btn-secondary "
+                            type="button"
+                            id="dropdownMenuButton"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                          >
+                            <h6 className="username mt-2">Kristine Wonder</h6>
+                          </button>
+                          <div className="dropdown-menu">
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col">
+                                  <img
+                                    src="../images/profileImage1.png"
+                                    className="img-fluid rounded-circle mr-3"
+                                    alt="profile pic"
+                                  />
+                                </div>
+                                <div className="col dropdown_username">
+                                  <a className="dropdown-item" href="#">
+                                    Kristine Wonder
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_tel">
+                                  <p>Telephone :</p>
+                                </div>
+                                <div className="col dropdown_contact">
+                                  <a className="dropdown-item">
+                                    +233 050 123 9876
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_mail">
+                                  <a>Email :</a>
+                                </div>
+                                <div className="col dropdown_email">
+                                  <p className="dropdown-item">
+                                    wonder1993@gmail.com
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_address1">
+                                  <a>Street Address :</a>
+                                </div>
+                                <div className="col dropdown_address2">
+                                  <p className="dropdown-item">
+                                    Executive Avenue 123{" "}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </th>
-                    <td>Anaji, Takoradi</td>
+                    <td>Beach Road, Takoradi</td>
                     <td>
-                      <button className="">info</button>
-                      <button className="">heart</button>
+                      <span className="info-icon mr-2">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                        >
+                          <path d="M0 0h24v24H0V0z" fill="none" />
+                          <path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+                        </svg>
+                      </span>
+                      <span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                        >
+                          <path d="M0 0h24v24H0V0z" fill="none" />
+                          <path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z" />
+                        </svg>
+                      </span>
                     </td>
                   </tr>
                   <tr>
                     <th scope="row">
                       <div className="row">
-                        <img
-                          src="../images/profileImage1.png"
-                          className="rounded-circle mr-3"
-                          alt="profile pic"
-                        />
-                        <h6 className="username mt-2">Godsway Hadson</h6>
+                        <div className="dropdown w-100 float-left">
+                          <img
+                            src="../images/profileImage1.png"
+                            className="img-fluid rounded-circle mr-3"
+                            alt="profile pic"
+                          />
+                          <button
+                            className="btn btn-secondary "
+                            type="button"
+                            id="dropdownMenuButton"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                          >
+                            <h6 className="username mt-2">Kristine Wonder</h6>
+                          </button>
+                          <div className="dropdown-menu">
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col">
+                                  <img
+                                    src="../images/profileImage1.png"
+                                    className="img-fluid rounded-circle mr-3"
+                                    alt="profile pic"
+                                  />
+                                </div>
+                                <div className="col dropdown_username">
+                                  <a className="dropdown-item" href="#">
+                                    Kristine Wonder
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_tel">
+                                  <p>Telephone :</p>
+                                </div>
+                                <div className="col dropdown_contact">
+                                  <a className="dropdown-item">
+                                    +233 050 123 9876
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_mail">
+                                  <a>Email :</a>
+                                </div>
+                                <div className="col dropdown_email">
+                                  <p className="dropdown-item">
+                                    wonder1993@gmail.com
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_address1">
+                                  <a>Street Address :</a>
+                                </div>
+                                <div className="col dropdown_address2">
+                                  <p className="dropdown-item">
+                                    Executive Avenue 123{" "}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </th>
-                    <td>Anaji, Takoradi</td>
+                    <td>Beach Road, Takoradi</td>
                     <td>
-                      <button className="">info</button>
-                      <button className="">heart</button>
+                      <span className="info-icon mr-2">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                        >
+                          <path d="M0 0h24v24H0V0z" fill="none" />
+                          <path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+                        </svg>
+                      </span>
+                      <span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                        >
+                          <path d="M0 0h24v24H0V0z" fill="none" />
+                          <path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z" />
+                        </svg>
+                      </span>
                     </td>
                   </tr>
                   <tr>
                     <th scope="row">
                       <div className="row">
-                        <img
-                          src="../images/profileImage1.png"
-                          className="rounded-circle mr-3"
-                          alt="profile pic"
-                        />
-                        <h6 className="username mt-2">Godsway Hadson</h6>
+                        <div className="dropdown w-100 float-left">
+                          <img
+                            src="../images/profileImage1.png"
+                            className="img-fluid rounded-circle mr-3"
+                            alt="profile pic"
+                          />
+                          <button
+                            className="btn btn-secondary "
+                            type="button"
+                            id="dropdownMenuButton"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                          >
+                            <h6 className="username mt-2">Kristine Wonder</h6>
+                          </button>
+                          <div className="dropdown-menu">
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col">
+                                  <img
+                                    src="../images/profileImage1.png"
+                                    className="img-fluid rounded-circle mr-3"
+                                    alt="profile pic"
+                                  />
+                                </div>
+                                <div className="col dropdown_username">
+                                  <a className="dropdown-item" href="#">
+                                    Kristine Wonder
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_tel">
+                                  <p>Telephone :</p>
+                                </div>
+                                <div className="col dropdown_contact">
+                                  <a className="dropdown-item">
+                                    +233 050 123 9876
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_mail">
+                                  <a>Email :</a>
+                                </div>
+                                <div className="col dropdown_email">
+                                  <p className="dropdown-item">
+                                    wonder1993@gmail.com
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_address1">
+                                  <a>Street Address :</a>
+                                </div>
+                                <div className="col dropdown_address2">
+                                  <p className="dropdown-item">
+                                    Executive Avenue 123{" "}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </th>
-                    <td>Anaji, Takoradi</td>
+                    <td>Beach Road, Takoradi</td>
                     <td>
-                      <button className="">info</button>
-                      <button className="">heart</button>
+                      <span className="info-icon mr-2">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                        >
+                          <path d="M0 0h24v24H0V0z" fill="none" />
+                          <path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+                        </svg>
+                      </span>
+                      <span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                        >
+                          <path d="M0 0h24v24H0V0z" fill="none" />
+                          <path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z" />
+                        </svg>
+                      </span>
                     </td>
                   </tr>
                   <tr>
                     <th scope="row">
                       <div className="row">
-                        <img
-                          src="../images/profileImage1.png"
-                          className="rounded-circle mr-3"
-                          alt="profile pic"
-                        />
-                        <h6 className="username mt-2">Godsway Hadson</h6>
+                        <div className="dropdown w-100 float-left">
+                          <img
+                            src="../images/profileImage1.png"
+                            className="img-fluid rounded-circle mr-3"
+                            alt="profile pic"
+                          />
+                          <button
+                            className="btn btn-secondary "
+                            type="button"
+                            id="dropdownMenuButton"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                          >
+                            <h6 className="username mt-2">Kristine Wonder</h6>
+                          </button>
+                          <div className="dropdown-menu">
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col">
+                                  <img
+                                    src="../images/profileImage1.png"
+                                    className="img-fluid rounded-circle mr-3"
+                                    alt="profile pic"
+                                  />
+                                </div>
+                                <div className="col dropdown_username">
+                                  <a className="dropdown-item" href="#">
+                                    Kristine Wonder
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_tel">
+                                  <p>Telephone :</p>
+                                </div>
+                                <div className="col dropdown_contact">
+                                  <a className="dropdown-item">
+                                    +233 050 123 9876
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_mail">
+                                  <a>Email :</a>
+                                </div>
+                                <div className="col dropdown_email">
+                                  <p className="dropdown-item">
+                                    wonder1993@gmail.com
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_address1">
+                                  <a>Street Address :</a>
+                                </div>
+                                <div className="col dropdown_address2">
+                                  <p className="dropdown-item">
+                                    Executive Avenue 123{" "}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </th>
-                    <td>Anaji, Takoradi</td>
+                    <td>Beach Road, Takoradi</td>
                     <td>
-                      <button className="">info</button>
-                      <button className="">heart</button>
+                      <span className="info-icon mr-2">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                        >
+                          <path d="M0 0h24v24H0V0z" fill="none" />
+                          <path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+                        </svg>
+                      </span>
+                      <span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                        >
+                          <path d="M0 0h24v24H0V0z" fill="none" />
+                          <path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z" />
+                        </svg>
+                      </span>
                     </td>
                   </tr>
                   <tr>
                     <th scope="row">
                       <div className="row">
-                        <img
-                          src="../images/profileImage1.png"
-                          className="rounded-circle mr-3"
-                          alt="profile pic"
-                        />
-                        <h6 className="username mt-2">Godsway Hadson</h6>
+                        <div className="dropdown w-100 float-left">
+                          <img
+                            src="../images/profileImage1.png"
+                            className="img-fluid rounded-circle mr-3"
+                            alt="profile pic"
+                          />
+                          <button
+                            className="btn btn-secondary "
+                            type="button"
+                            id="dropdownMenuButton"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                          >
+                            <h6 className="username mt-2">Kristine Wonder</h6>
+                          </button>
+                          <div className="dropdown-menu">
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col">
+                                  <img
+                                    src="../images/profileImage1.png"
+                                    className="img-fluid rounded-circle mr-3"
+                                    alt="profile pic"
+                                  />
+                                </div>
+                                <div className="col dropdown_username">
+                                  <a className="dropdown-item" href="#">
+                                    Kristine Wonder
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_tel">
+                                  <p>Telephone :</p>
+                                </div>
+                                <div className="col dropdown_contact">
+                                  <a className="dropdown-item">
+                                    +233 050 123 9876
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_mail">
+                                  <a>Email :</a>
+                                </div>
+                                <div className="col dropdown_email">
+                                  <p className="dropdown-item">
+                                    wonder1993@gmail.com
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_address1">
+                                  <a>Street Address :</a>
+                                </div>
+                                <div className="col dropdown_address2">
+                                  <p className="dropdown-item">
+                                    Executive Avenue 123{" "}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </th>
-                    <td>Anaji, Takoradi</td>
+                    <td>Beach Road, Takoradi</td>
                     <td>
-                      <button className="">info</button>
-                      <button className="">heart</button>
+                      <span className="info-icon mr-2">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                        >
+                          <path d="M0 0h24v24H0V0z" fill="none" />
+                          <path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+                        </svg>
+                      </span>
+                      <span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                        >
+                          <path d="M0 0h24v24H0V0z" fill="none" />
+                          <path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z" />
+                        </svg>
+                      </span>
                     </td>
                   </tr>
                   <tr>
                     <th scope="row">
                       <div className="row">
-                        <img
-                          src="../images/profileImage1.png"
-                          className="rounded-circle mr-3"
-                          alt="profile pic"
-                        />
-                        <h6 className="username mt-2">Godsway Hadson</h6>
+                        <div className="dropdown w-100 float-left">
+                          <img
+                            src="../images/profileImage1.png"
+                            className="img-fluid rounded-circle mr-3"
+                            alt="profile pic"
+                          />
+                          <button
+                            className="btn btn-secondary "
+                            type="button"
+                            id="dropdownMenuButton"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                          >
+                            <h6 className="username mt-2">Kristine Wonder</h6>
+                          </button>
+                          <div className="dropdown-menu">
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col">
+                                  <img
+                                    src="../images/profileImage1.png"
+                                    className="img-fluid rounded-circle mr-3"
+                                    alt="profile pic"
+                                  />
+                                </div>
+                                <div className="col dropdown_username">
+                                  <a className="dropdown-item" href="#">
+                                    Kristine Wonder
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_tel">
+                                  <p>Telephone :</p>
+                                </div>
+                                <div className="col dropdown_contact">
+                                  <a className="dropdown-item">
+                                    +233 050 123 9876
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_mail">
+                                  <a>Email :</a>
+                                </div>
+                                <div className="col dropdown_email">
+                                  <p className="dropdown-item">
+                                    wonder1993@gmail.com
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_address1">
+                                  <a>Street Address :</a>
+                                </div>
+                                <div className="col dropdown_address2">
+                                  <p className="dropdown-item">
+                                    Executive Avenue 123{" "}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </th>
-                    <td>Anaji, Takoradi</td>
+                    <td>Beach Road, Takoradi</td>
                     <td>
-                      <button className="">info</button>
-                      <button className="">heart</button>
+                      <span className="info-icon mr-2">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                        >
+                          <path d="M0 0h24v24H0V0z" fill="none" />
+                          <path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+                        </svg>
+                      </span>
+                      <span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                        >
+                          <path d="M0 0h24v24H0V0z" fill="none" />
+                          <path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z" />
+                        </svg>
+                      </span>
                     </td>
                   </tr>
                   <tr>
                     <th scope="row">
                       <div className="row">
-                        <img
-                          src="../images/profileImage1.png"
-                          className="rounded-circle mr-3"
-                          alt="profile pic"
-                        />
-                        <h6 className="username mt-2">Godsway Hadson</h6>
+                        <div className="dropdown w-100 float-left">
+                          <img
+                            src="../images/profileImage1.png"
+                            className="img-fluid rounded-circle mr-3"
+                            alt="profile pic"
+                          />
+                          <button
+                            className="btn btn-secondary "
+                            type="button"
+                            id="dropdownMenuButton"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                          >
+                            <h6 className="username mt-2">Kristine Wonder</h6>
+                          </button>
+                          <div className="dropdown-menu">
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col">
+                                  <img
+                                    src="../images/profileImage1.png"
+                                    className="img-fluid rounded-circle mr-3"
+                                    alt="profile pic"
+                                  />
+                                </div>
+                                <div className="col dropdown_username">
+                                  <a className="dropdown-item" href="#">
+                                    Kristine Wonder
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_tel">
+                                  <p>Telephone :</p>
+                                </div>
+                                <div className="col dropdown_contact">
+                                  <a className="dropdown-item">
+                                    +233 050 123 9876
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_mail">
+                                  <a>Email :</a>
+                                </div>
+                                <div className="col dropdown_email">
+                                  <p className="dropdown-item">
+                                    wonder1993@gmail.com
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_address1">
+                                  <a>Street Address :</a>
+                                </div>
+                                <div className="col dropdown_address2">
+                                  <p className="dropdown-item">
+                                    Executive Avenue 123{" "}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </th>
-                    <td>Anaji, Takoradi</td>
+                    <td>Beach Road, Takoradi</td>
                     <td>
-                      <button className="">info</button>
-                      <button className="">heart</button>
+                      <span className="info-icon mr-2">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                        >
+                          <path d="M0 0h24v24H0V0z" fill="none" />
+                          <path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+                        </svg>
+                      </span>
+                      <span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                        >
+                          <path d="M0 0h24v24H0V0z" fill="none" />
+                          <path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z" />
+                        </svg>
+                      </span>
                     </td>
                   </tr>
                   <tr>
                     <th scope="row">
                       <div className="row">
-                        <img
-                          src="../images/profileImage1.png"
-                          className="rounded-circle mr-3"
-                          alt="profile pic"
-                        />
-                        <h6 className="username mt-2">Godsway Hadson</h6>
+                        <div className="dropdown w-100 float-left">
+                          <img
+                            src="../images/profileImage1.png"
+                            className="img-fluid rounded-circle mr-3"
+                            alt="profile pic"
+                          />
+                          <button
+                            className="btn btn-secondary "
+                            type="button"
+                            id="dropdownMenuButton"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                          >
+                            <h6 className="username mt-2">Kristine Wonder</h6>
+                          </button>
+                          <div className="dropdown-menu">
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col">
+                                  <img
+                                    src="../images/profileImage1.png"
+                                    className="img-fluid rounded-circle mr-3"
+                                    alt="profile pic"
+                                  />
+                                </div>
+                                <div className="col dropdown_username">
+                                  <a className="dropdown-item" href="#">
+                                    Kristine Wonder
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_tel">
+                                  <p>Telephone :</p>
+                                </div>
+                                <div className="col dropdown_contact">
+                                  <a className="dropdown-item">
+                                    +233 050 123 9876
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_mail">
+                                  <a>Email :</a>
+                                </div>
+                                <div className="col dropdown_email">
+                                  <p className="dropdown-item">
+                                    wonder1993@gmail.com
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_address1">
+                                  <a>Street Address :</a>
+                                </div>
+                                <div className="col dropdown_address2">
+                                  <p className="dropdown-item">
+                                    Executive Avenue 123{" "}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </th>
-                    <td>Anaji, Takoradi</td>
+                    <td>Beach Road, Takoradi</td>
                     <td>
-                      <button className="">info</button>
-                      <button className="">heart</button>
+                      <span className="info-icon mr-2">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                        >
+                          <path d="M0 0h24v24H0V0z" fill="none" />
+                          <path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+                        </svg>
+                      </span>
+                      <span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                        >
+                          <path d="M0 0h24v24H0V0z" fill="none" />
+                          <path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z" />
+                        </svg>
+                      </span>
                     </td>
                   </tr>
                   <tr>
                     <th scope="row">
                       <div className="row">
-                        <img
-                          src="../images/profileImage1.png"
-                          className="rounded-circle mr-3"
-                          alt="profile pic"
-                        />
-                        <h6 className="username mt-2">Godsway Hadson</h6>
+                        <div className="dropdown w-100 float-left">
+                          <img
+                            src="../images/profileImage1.png"
+                            className="img-fluid rounded-circle mr-3"
+                            alt="profile pic"
+                          />
+                          <button
+                            className="btn btn-secondary "
+                            type="button"
+                            id="dropdownMenuButton"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                          >
+                            <h6 className="username mt-2">Kristine Wonder</h6>
+                          </button>
+                          <div className="dropdown-menu">
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col">
+                                  <img
+                                    src="../images/profileImage1.png"
+                                    className="img-fluid rounded-circle mr-3"
+                                    alt="profile pic"
+                                  />
+                                </div>
+                                <div className="col dropdown_username">
+                                  <a className="dropdown-item" href="#">
+                                    Kristine Wonder
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_tel">
+                                  <p>Telephone :</p>
+                                </div>
+                                <div className="col dropdown_contact">
+                                  <a className="dropdown-item">
+                                    +233 050 123 9876
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_mail">
+                                  <a>Email :</a>
+                                </div>
+                                <div className="col dropdown_email">
+                                  <p className="dropdown-item">
+                                    wonder1993@gmail.com
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_address1">
+                                  <a>Street Address :</a>
+                                </div>
+                                <div className="col dropdown_address2">
+                                  <p className="dropdown-item">
+                                    Executive Avenue 123{" "}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </th>
-                    <td>Anaji, Takoradi</td>
+                    <td>Beach Road, Takoradi</td>
                     <td>
-                      <button className="">info</button>
-                      <button className="">heart</button>
+                      <span className="info-icon mr-2">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                        >
+                          <path d="M0 0h24v24H0V0z" fill="none" />
+                          <path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+                        </svg>
+                      </span>
+                      <span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                        >
+                          <path d="M0 0h24v24H0V0z" fill="none" />
+                          <path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z" />
+                        </svg>
+                      </span>
                     </td>
                   </tr>
                   <tr>
                     <th scope="row">
                       <div className="row">
-                        <img
-                          src="../images/profileImage1.png"
-                          className="rounded-circle mr-3"
-                          alt="profile pic"
-                        />
-                        <h6 className="username mt-2">Godsway Hadson</h6>
+                        <div className="dropdown w-100 float-left">
+                          <img
+                            src="../images/profileImage1.png"
+                            className="img-fluid rounded-circle mr-3"
+                            alt="profile pic"
+                          />
+                          <button
+                            className="btn btn-secondary "
+                            type="button"
+                            id="dropdownMenuButton"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                          >
+                            <h6 className="username mt-2">Kristine Wonder</h6>
+                          </button>
+                          <div className="dropdown-menu">
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col">
+                                  <img
+                                    src="../images/profileImage1.png"
+                                    className="img-fluid rounded-circle mr-3"
+                                    alt="profile pic"
+                                  />
+                                </div>
+                                <div className="col dropdown_username">
+                                  <a className="dropdown-item" href="#">
+                                    Kristine Wonder
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_tel">
+                                  <p>Telephone :</p>
+                                </div>
+                                <div className="col dropdown_contact">
+                                  <a className="dropdown-item">
+                                    +233 050 123 9876
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_mail">
+                                  <a>Email :</a>
+                                </div>
+                                <div className="col dropdown_email">
+                                  <p className="dropdown-item">
+                                    wonder1993@gmail.com
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_address1">
+                                  <a>Street Address :</a>
+                                </div>
+                                <div className="col dropdown_address2">
+                                  <p className="dropdown-item">
+                                    Executive Avenue 123{" "}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </th>
-                    <td>Anaji, Takoradi</td>
+                    <td>Beach Road, Takoradi</td>
                     <td>
-                      <button className="">info</button>
-                      <button className="">heart</button>
+                      <span className="info-icon mr-2">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                        >
+                          <path d="M0 0h24v24H0V0z" fill="none" />
+                          <path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+                        </svg>
+                      </span>
+                      <span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                        >
+                          <path d="M0 0h24v24H0V0z" fill="none" />
+                          <path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z" />
+                        </svg>
+                      </span>
                     </td>
                   </tr>
                   <tr>
                     <th scope="row">
                       <div className="row">
-                        <img
-                          src="../images/profileImage1.png"
-                          className="rounded-circle mr-3"
-                          alt="profile pic"
-                        />
-                        <h6 className="username mt-2">Godsway Hadson</h6>
+                        <div className="dropdown w-100 float-left">
+                          <img
+                            src="../images/profileImage1.png"
+                            className="img-fluid rounded-circle mr-3"
+                            alt="profile pic"
+                          />
+                          <button
+                            className="btn btn-secondary "
+                            type="button"
+                            id="dropdownMenuButton"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                          >
+                            <h6 className="username mt-2">Kristine Wonder</h6>
+                          </button>
+                          <div className="dropdown-menu">
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col">
+                                  <img
+                                    src="../images/profileImage1.png"
+                                    className="img-fluid rounded-circle mr-3"
+                                    alt="profile pic"
+                                  />
+                                </div>
+                                <div className="col dropdown_username">
+                                  <a className="dropdown-item" href="#">
+                                    Kristine Wonder
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_tel">
+                                  <p>Telephone :</p>
+                                </div>
+                                <div className="col dropdown_contact">
+                                  <a className="dropdown-item">
+                                    +233 050 123 9876
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_mail">
+                                  <a>Email :</a>
+                                </div>
+                                <div className="col dropdown_email">
+                                  <p className="dropdown-item">
+                                    wonder1993@gmail.com
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_address1">
+                                  <a>Street Address :</a>
+                                </div>
+                                <div className="col dropdown_address2">
+                                  <p className="dropdown-item">
+                                    Executive Avenue 123{" "}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </th>
-                    <td>Anaji, Takoradi</td>
+                    <td>Beach Road, Takoradi</td>
                     <td>
-                      <button className="">info</button>
-                      <button className="">heart</button>
+                      <span className="info-icon mr-2">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                        >
+                          <path d="M0 0h24v24H0V0z" fill="none" />
+                          <path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+                        </svg>
+                      </span>
+                      <span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                        >
+                          <path d="M0 0h24v24H0V0z" fill="none" />
+                          <path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z" />
+                        </svg>
+                      </span>
                     </td>
                   </tr>
                   <tr>
                     <th scope="row">
                       <div className="row">
-                        <img
-                          src="../images/profileImage1.png"
-                          className="rounded-circle mr-3"
-                          alt="profile pic"
-                        />
-                        <h6 className="username mt-2">Godsway Hadson</h6>
+                        <div className="dropdown w-100 float-left">
+                          <img
+                            src="../images/profileImage1.png"
+                            className="img-fluid rounded-circle mr-3"
+                            alt="profile pic"
+                          />
+                          <button
+                            className="btn btn-secondary "
+                            type="button"
+                            id="dropdownMenuButton"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                          >
+                            <h6 className="username mt-2">Kristine Wonder</h6>
+                          </button>
+                          <div className="dropdown-menu">
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col">
+                                  <img
+                                    src="../images/profileImage1.png"
+                                    className="img-fluid rounded-circle mr-3"
+                                    alt="profile pic"
+                                  />
+                                </div>
+                                <div className="col dropdown_username">
+                                  <a className="dropdown-item" href="#">
+                                    Kristine Wonder
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_tel">
+                                  <p>Telephone :</p>
+                                </div>
+                                <div className="col dropdown_contact">
+                                  <a className="dropdown-item">
+                                    +233 050 123 9876
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_mail">
+                                  <a>Email :</a>
+                                </div>
+                                <div className="col dropdown_email">
+                                  <p className="dropdown-item">
+                                    wonder1993@gmail.com
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_address1">
+                                  <a>Street Address :</a>
+                                </div>
+                                <div className="col dropdown_address2">
+                                  <p className="dropdown-item">
+                                    Executive Avenue 123{" "}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </th>
-                    <td>Anaji, Takoradi</td>
+                    <td>Beach Road, Takoradi</td>
                     <td>
-                      <button className="">info</button>
-                      <button className="">heart</button>
+                      <span className="info-icon mr-2">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                        >
+                          <path d="M0 0h24v24H0V0z" fill="none" />
+                          <path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+                        </svg>
+                      </span>
+                      <span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                        >
+                          <path d="M0 0h24v24H0V0z" fill="none" />
+                          <path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z" />
+                        </svg>
+                      </span>
                     </td>
                   </tr>
                   <tr>
                     <th scope="row">
                       <div className="row">
-                        <img
-                          src="../images/profileImage1.png"
-                          className="rounded-circle mr-3"
-                          alt="profile pic"
-                        />
-                        <h6 className="username mt-2">Godsway Hadson</h6>
+                        <div className="dropdown w-100 float-left">
+                          <img
+                            src="../images/profileImage1.png"
+                            className="img-fluid rounded-circle mr-3"
+                            alt="profile pic"
+                          />
+                          <button
+                            className="btn btn-secondary "
+                            type="button"
+                            id="dropdownMenuButton"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                          >
+                            <h6 className="username mt-2">Kristine Wonder</h6>
+                          </button>
+                          <div className="dropdown-menu">
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col">
+                                  <img
+                                    src="../images/profileImage1.png"
+                                    className="img-fluid rounded-circle mr-3"
+                                    alt="profile pic"
+                                  />
+                                </div>
+                                <div className="col dropdown_username">
+                                  <a className="dropdown-item" href="#">
+                                    Kristine Wonder
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_tel">
+                                  <p>Telephone :</p>
+                                </div>
+                                <div className="col dropdown_contact">
+                                  <a className="dropdown-item">
+                                    +233 050 123 9876
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_mail">
+                                  <a>Email :</a>
+                                </div>
+                                <div className="col dropdown_email">
+                                  <p className="dropdown-item">
+                                    wonder1993@gmail.com
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_address1">
+                                  <a>Street Address :</a>
+                                </div>
+                                <div className="col dropdown_address2">
+                                  <p className="dropdown-item">
+                                    Executive Avenue 123{" "}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </th>
-                    <td>Anaji, Takoradi</td>
+                    <td>Beach Road, Takoradi</td>
                     <td>
-                      <button className="">info</button>
-                      <button className="">heart</button>
+                      <span className="info-icon mr-2">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                        >
+                          <path d="M0 0h24v24H0V0z" fill="none" />
+                          <path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+                        </svg>
+                      </span>
+                      <span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                        >
+                          <path d="M0 0h24v24H0V0z" fill="none" />
+                          <path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z" />
+                        </svg>
+                      </span>
                     </td>
                   </tr>
                   <tr>
                     <th scope="row">
                       <div className="row">
-                        <img
-                          src="../images/profileImage1.png"
-                          className="rounded-circle mr-3"
-                          alt="profile pic"
-                        />
-                        <h6 className="username mt-2">Godsway Hadson</h6>
+                        <div className="dropdown w-100 float-left">
+                          <img
+                            src="../images/profileImage1.png"
+                            className="img-fluid rounded-circle mr-3"
+                            alt="profile pic"
+                          />
+                          <button
+                            className="btn btn-secondary "
+                            type="button"
+                            id="dropdownMenuButton"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                          >
+                            <h6 className="username mt-2">Kristine Wonder</h6>
+                          </button>
+                          <div className="dropdown-menu">
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col">
+                                  <img
+                                    src="../images/profileImage1.png"
+                                    className="img-fluid rounded-circle mr-3"
+                                    alt="profile pic"
+                                  />
+                                </div>
+                                <div className="col dropdown_username">
+                                  <a className="dropdown-item" href="#">
+                                    Kristine Wonder
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_tel">
+                                  <p>Telephone :</p>
+                                </div>
+                                <div className="col dropdown_contact">
+                                  <a className="dropdown-item">
+                                    +233 050 123 9876
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_mail">
+                                  <a>Email :</a>
+                                </div>
+                                <div className="col dropdown_email">
+                                  <p className="dropdown-item">
+                                    wonder1993@gmail.com
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_address1">
+                                  <a>Street Address :</a>
+                                </div>
+                                <div className="col dropdown_address2">
+                                  <p className="dropdown-item">
+                                    Executive Avenue 123{" "}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </th>
-                    <td>Anaji, Takoradi</td>
+                    <td>Beach Road, Takoradi</td>
                     <td>
-                      <button className="">info</button>
-                      <button className="">heart</button>
+                      <span className="info-icon mr-2">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                        >
+                          <path d="M0 0h24v24H0V0z" fill="none" />
+                          <path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+                        </svg>
+                      </span>
+                      <span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                        >
+                          <path d="M0 0h24v24H0V0z" fill="none" />
+                          <path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z" />
+                        </svg>
+                      </span>
                     </td>
                   </tr>
                   <tr>
                     <th scope="row">
                       <div className="row">
-                        <img
-                          src="../images/profileImage1.png"
-                          className="rounded-circle mr-3"
-                          alt="profile pic"
-                        />
-                        <h6 className="username mt-2">Godsway Hadson</h6>
+                        <div className="dropdown w-100 float-left">
+                          <img
+                            src="../images/profileImage1.png"
+                            className="img-fluid rounded-circle mr-3"
+                            alt="profile pic"
+                          />
+                          <button
+                            className="btn btn-secondary "
+                            type="button"
+                            id="dropdownMenuButton"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                          >
+                            <h6 className="username mt-2">Kristine Wonder</h6>
+                          </button>
+                          <div className="dropdown-menu">
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col">
+                                  <img
+                                    src="../images/profileImage1.png"
+                                    className="img-fluid rounded-circle mr-3"
+                                    alt="profile pic"
+                                  />
+                                </div>
+                                <div className="col dropdown_username">
+                                  <a className="dropdown-item" href="#">
+                                    Kristine Wonder
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_tel">
+                                  <p>Telephone :</p>
+                                </div>
+                                <div className="col dropdown_contact">
+                                  <a className="dropdown-item">
+                                    +233 050 123 9876
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_mail">
+                                  <a>Email :</a>
+                                </div>
+                                <div className="col dropdown_email">
+                                  <p className="dropdown-item">
+                                    wonder1993@gmail.com
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="dropdown-item">
+                              <div className="row">
+                                <div className="col dropdown_address1">
+                                  <a>Street Address :</a>
+                                </div>
+                                <div className="col dropdown_address2">
+                                  <p className="dropdown-item">
+                                    Executive Avenue 123{" "}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </th>
-                    <td>Anaji, Takoradi</td>
+                    <td>Beach Road, Takoradi</td>
                     <td>
-                      <button className="">info</button>
-                      <button className="">heart</button>
+                      <span className="info-icon mr-2">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                        >
+                          <path d="M0 0h24v24H0V0z" fill="none" />
+                          <path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+                        </svg>
+                      </span>
+                      <span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                        >
+                          <path d="M0 0h24v24H0V0z" fill="none" />
+                          <path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z" />
+                        </svg>
+                      </span>
                     </td>
                   </tr>
                 </tbody>
@@ -405,4 +2146,4 @@ function profileList() {
   );
 }
 
-export default profileList;
+export default profilelist;

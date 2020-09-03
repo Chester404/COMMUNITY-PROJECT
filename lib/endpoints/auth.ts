@@ -46,6 +46,14 @@ export class Auth {
     });
   }
 
+  async updateUserProfile(userData: any) {
+    const data = new URLSearchParams(userData).toString();
+    return await ufetch("accounts/update", {
+      method: "PUT",
+      body: data,
+    });
+  }
+
   protected async generic_query(ctx: any) {
     return await ufetch(`/${ctx.endpoint}/${ctx.query_params}`, {
       method: ctx.method,

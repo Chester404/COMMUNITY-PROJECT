@@ -1,15 +1,27 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 const navFontSize = {
   fontSize: "18px",
 };
 const Navbar = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {}, []);
+  const router = useRouter();
+  useEffect(() => {
+    let lStorage = window.localStorage.getItem("cp-a");
+    lStorage = JSON.parse(lStorage);
+    console.log("lStorage", lStorage);
+    if (lStorage) {
+      console.log("WHy here");
+      setIsLoggedIn(true);
+    }
+  }, []);
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav
+      className="navbar navbar-expand-lg navbar-light"
+      style={{ backgroundColor: "white" }}
+    >
       <h1>
         {props.headerTitle ? (
           props.headerTitle
@@ -36,7 +48,7 @@ const Navbar = (props) => {
               <div className="navbar-nav">
                 <Link href="/marketplace">
                   <a className="nav-item nav-link active">
-                    Market <span className="sr-only">(current)</span>
+                    Marketplace <span className="sr-only">(current)</span>
                   </a>
                 </Link>
                 <Link href="/jobs">
@@ -48,13 +60,92 @@ const Navbar = (props) => {
                 <a className="nav-item nav-link" href="#">
                   Forum
                 </a>
-                <a className="nav-item nav-link" href="#">
-                  Blog
+                <Link href="/blog">
+                  <a className="nav-item nav-link">Blog</a>
+                </Link>
+                <a>
+                  <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
+                    <li className="nav-item dropdown">
+                      <a
+                        className="nav-link dropdown-toggle"
+                        href="#"
+                        id="navbarDropdownMenuLink"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                      >
+                        Members
+                      </a>
+                      <div
+                        className="dropdown-menu"
+                        aria-labelledby="navbarDropdownMenuLink"
+                      >
+                        <a className="dropdown-item" href="#">
+                          Individual
+                        </a>
+                        <a className="dropdown-item" href="#">
+                          Organization
+                        </a>
+                      </div>
+                    </li>
+                  </ul>
                 </a>
               </div>
             </div>
           </div>
           <div
+            className="nav navbar-nav ml-auto"
+            id="navbarNavDropdown"
+            style={navFontSize}
+          >
+            <i className="far fa-bell" style={{ margin: "15px 20px" }}></i>
+            <img
+              src="/images/profileImage2.png"
+              alt="Avatar"
+              style={{
+                width: "50px",
+                height: "50px",
+                marginTop: 2,
+                marginRight: 10,
+              }}
+            ></img>
+            <ul style={{ listStyle: "none", marginTop: 0, padding: 0 }}>
+              <li className="nav-item dropdown">
+                <a
+                  className="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdownMenuLink"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  James Asafuah
+                </a>
+                <div
+                  className="dropdown-menu"
+                  aria-labelledby="navbarDropdownMenuLink"
+                >
+                  <Link href="/user/profile">
+                    <a className="dropdown-item">View Profile</a>
+                  </Link>
+                  <a className="dropdown-item" href="#">
+                    Account Settings
+                  </a>
+                  <a
+                    className="dropdown-item"
+                    onClick={() => {
+                      window.localStorage.removeItem("cp-a");
+                      router.push("/auth/login");
+                    }}
+                  >
+                    Logout
+                  </a>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          {/* <div
             className="nav navbar-nav ml-auto"
             id="navbarNavDropdown"
             style={navFontSize}
@@ -73,7 +164,7 @@ const Navbar = (props) => {
                 </Link>
               </li>
             </ul>
-          </div>
+          </div> */}
         </>
       ) : (
         ""
