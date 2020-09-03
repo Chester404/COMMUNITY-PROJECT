@@ -73,22 +73,59 @@ const Signup = () => {
   // };
 
   // Password Validation
+  // function allLetter(inputtxt) {
+  //   var letters = /^[A-Za-z]+$/;
+  //   if (inputtxt.value.match(letters)) {
+  //     alert("Your name have accepted : you can try another");
+  //     return true;
+  //   } else {
+  //     alert("Please input alphabet characters only");
+  //     return false;
+  //   }
+  // }
+
   const validatePassword = (e) => {
     console.log(confirmPassword, password);
-    if (
-      e.target.value.match(/[a-z]/g) &&
-      e.target.value.match(/[A-Z]/g) &&
-      e.target.value.match(/[0-9]/g) &&
-      e.target.value.match(/[^a-zA-Z\d]/g) &&
-      e.target.value.length >= 8
-    ) {
-      // res = "TRUE";
-      setPassword(e.target.value);
-      setPasswordFieldValidity("valid");
-    } else {
-      // console.log("invalid password")
+    const r = e.target.value;
+    let tr = true;
+    let letters = /^[A-Za-z]+$/;
+    if (!e.target.value.match(letters) && !e.target.value.match(/[A-Z]/g)) {
       setPasswordFieldValidity("invalid");
+      return;
     }
+    // if (!e.target.value.match(/[A-Z]/g)) {
+    //   setPasswordFieldValidity("invalid");
+    //   return;
+    // }
+    // if (!e.target.value.match(/[0-9]/g)) {
+    //   setPasswordFieldValidity("invalid");
+    //   return;
+    // }
+    // if (!e.target.value.match(/[^a-zA-Z\d]/g)) {
+    //   setPasswordFieldValidity("invalid");
+    //   return;
+    // }
+    // if (!e.target.value.length >= 8) {
+    //   setPasswordFieldValidity("invalid");
+    //   return;
+    // }
+
+    setPassword(e.target.value);
+    setPasswordFieldValidity("valid");
+    // if (
+    //   e.target.value.match(/[a-z]/g)  &&
+    //   e.target.value.match(/[A-Z]/g) &&
+    //   e.target.value.match(/[0-9]/g) &&
+    //   e.target.value.match(/[^a-zA-Z\d]/g) &&
+    //   e.target.value.length >= 8
+    // ) {
+    //   // res = "TRUE";
+    //   setPassword(e.target.value);
+    //   setPasswordFieldValidity("valid");
+    // } else {
+    //   // console.log("invalid password")
+    //   setPasswordFieldValidity("invalid");
+    // }
   };
 
   const confirmPasswordMatch = (e) => {
