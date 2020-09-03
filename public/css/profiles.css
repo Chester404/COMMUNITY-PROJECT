@@ -127,24 +127,11 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-/* .dropdown_username{
-    float: right;
+.btnedit{
+    width: 100%;
+    font-family: 'Open Sans', sans-serif;
+    border-radius:15px;
 }
-.dropdown_tel{
-    float: left;
+.required{
+    color: red;
 }
-.dropdown_contact{
-    float: right;
-}
-.dropdown_mail{
-    float: left;
-}
-.dropdown_email{
-    float: right;
-}
-.dropdown_address1{
-    float: left;
-}
-.dropdown_address2{
-    float: right;
-} */

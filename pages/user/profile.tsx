@@ -10,18 +10,26 @@ function Profile() {
       <div className="container-fluid row profileContainer justify-content-center">
         <div className="col-md-12 page-tittle justify-content-left">
           {/* <p> */}
-            <h1>Edit Profile</h1>
+            <h1>Profile</h1>
           {/* </p> */}
         </div>
 
         <div className="col-md-2">
-          <img
-            src="../images/profileImage1.png"
-            width={150}
-            height={150}
-            alt="image"
-            className="rounded float-right"
-          />
+            <div className="col-md-12 justify-content-center">
+                <img
+                  src="../images/profileImage1.png"
+                  width={150}
+                  height={150}
+                  alt="image"
+                  className="rounded float-right"
+                />
+                {/* <div className="row col mt-4  justify-content-center"> */}
+                  <button type="submit" className="btn btn-primary mt-4 btnedit">
+                    Edit Profile
+                  </button>  
+                {/* </div> */}
+            </div>
+          
         </div>
 
         <div className="col-md-8 row">
@@ -32,7 +40,8 @@ function Profile() {
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Lois"
+                  placeholder="Lois Ewurama"
+                  readOnly
                   required
                 />
               </div>
@@ -44,6 +53,7 @@ function Profile() {
                   type="text"
                   className="form-control"
                   placeholder="Young"
+                  readOnly
                 />
               </div>
             </div>
@@ -54,6 +64,7 @@ function Profile() {
                   type="text"
                   className="form-control"
                   placeholder="loisewuramayoung@gmail.com"
+                  readOnly
                 />
               </div>
             </div>
@@ -63,7 +74,8 @@ function Profile() {
                 <input
                   type="number"
                   className="form-control"
-                  placeholder="024 678 9560"
+                  placeholder="+233 024 678 9560"
+                  readOnly
                 />
               </div>
             </div>
@@ -73,9 +85,10 @@ function Profile() {
                 <div className="form-group">
                   <div className="input-group-date" id="datetimepicker1">
                     <input
-                      type="date"
+                      type="text"
                       className="form-control"
                       placeholder="10 Aug 1993"
+                      readOnly
                     />
                   </div>
                 </div>
@@ -88,30 +101,12 @@ function Profile() {
               <div className="col">
                 <label htmlFor="exampleInput">Gender</label>
                 <div className="row" style={{ marginLeft: 3 }}>
-                  <div className="form-check form-check-inline">
-                    <input
-                      className="form-check-input"
-                      type="radio"
-                      name="inlineRadioOptions"
-                      id="inlineRadio1"
-                      value="option1"
-                    />
-                    <label className="form-check-label" htmlFor="inlineRadio1">
-                      Male
-                    </label>
-                  </div>
-                  <div className="form-check form-check-inline">
-                    <input
-                      className="form-check-input"
-                      type="radio"
-                      name="inlineRadioOptions"
-                      id="inlineRadio2"
-                      value="option2"
-                    />
-                    <label className="form-check-label" htmlFor="inlineRadio2">
-                      Female
-                    </label>
-                  </div>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Female"
+                  readOnly
+                />
                 </div>
               </div>
             </div>
@@ -123,6 +118,7 @@ function Profile() {
                   type="text"
                   className="form-control"
                   placeholder="Executive Avenue Anaji"
+                  readOnly
                 />
               </div>
             </div>
@@ -130,26 +126,24 @@ function Profile() {
               <div className="col">
                 <div className="form-group">
                   <label htmlFor="exampleInput">Region</label>
-                  <select
-                    className="form-control"
-                    id="exampleFormControlSelect1"
-                  >
-                    <option>Western Region</option>
-                    <option>Central Region</option>
-                    <option>Eastern Region</option>
-                    <option>Greater Accra</option>
-                    <option>Volta Region</option>
-                  </select>
+                  <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Western Region"
+                  readOnly
+                />
+                  
                 </div>
               </div>
             </div>
             <div className="row mt-2">
               <div className="col">
-                <label htmlFor="exampleInput">GPS Location</label>
+                <label htmlFor="exampleInput">Digital Address</label>
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="43.21.31.N"
+                  placeholder="AK-039-5028"
+                  readOnly
                 />
               </div>
             </div>
@@ -157,35 +151,18 @@ function Profile() {
               <div className="col">
                 <div className="form-group">
                   <label htmlFor="exampleInput">Privacy Level</label>
-                  <select
-                    className="form-control"
-                    id="exampleFormControlSelect1"
-                  >
-                    <option>Just me</option>
-                    <option>Registered Organization Only</option>
-                    <option>
-                      Registered Organization and Community members
-                    </option>
-                  </select>
+                  <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Registered businesses only"
+                  readOnly
+                />
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="row col-md-12 justify-content-center">
-            <div className="row col-md-12 mt-4  justify-content-center">
-              <div className="col-md-4 mr-2">
-                <button type="submit" className="btn btn-primary mr-4 btnsave">
-                  Save
-                </button>
-              </div>
-              <div className="col-md-4">
-                <button type="submit" className="btn btn-primary btncancel">
-                  Cancel
-                </button>
-              </div>
-            </div>
-          </div>
+          
         </div>
       </div>
     </Layout>

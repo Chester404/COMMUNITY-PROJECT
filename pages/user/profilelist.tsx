@@ -1,9 +1,9 @@
 import Layout from "../../components/Layout";
 import Head from "next/head";
 
-function profileList() {
+function profilelist() {
   return (
-    <Layout title="Profile List View">
+    <Layout title="Profile List registered viewer">
       <Head>
         <link rel="stylesheet" href="/css/profiles.css" />
       </Head>
@@ -1462,4 +1462,4 @@ function profileList() {
   );
 }
 
-export default profileList;
+export default profilelist;
