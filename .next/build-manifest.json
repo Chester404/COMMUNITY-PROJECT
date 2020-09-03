@@ -24,6 +24,7 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
+<<<<<<< HEAD
     "/admin": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
@@ -33,6 +34,17 @@
       "static/chunks/main.js",
       "static/chunks/webpack.js",
       "static/chunks/pages/user/profile.js"
+=======
+    "/user/profile": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/user/profile.js"
+    ],
+    "/user/profilelist": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/user/profilelist.js"
+>>>>>>> 2928f4197e80498c2e731f6d0c16eb7d9ce1869e
     ]
   },
   "ampFirstPages": []
