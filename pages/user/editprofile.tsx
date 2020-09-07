@@ -1,6 +1,6 @@
 import Layout from "../../components/Layout";
 import Head from "next/head";
-import { Auth } from "../../lib/endpoints";
+import { Users } from "../../lib/endpoints";
 import { useState, FormEvent } from "react";
 
 function editprofile() {
@@ -18,11 +18,12 @@ function editprofile() {
   const [image, setImage] = useState("");
   const [email, setEmail] = useState("");
   const [user_id, setUser] = useState("");
-
+  const [statusMsg, setStatusMsg] = useState("");
+  const [statusColor, setStatusColor] = useState("blue");
   const submitData = async (e: FormEvent) => {
     e.preventDefault();
-    const rs = await new Auth().updateUserProfile({
-      id: 1,
+
+    const response = await new Users().updateUserProfile({
       first_name: first_name,
       last_name: last_name,
       birthday: birthday,
@@ -31,10 +32,17 @@ function editprofile() {
       region: region,
       gps_location: gps_location,
       privacy_level: privacy_level,
-      image: image,
-      user: user_id,
     });
-    console.log(rs);
+    console.log(response);
+    if (!response.error) {
+      //Do whatever
+      setStatusColor("red");
+      setStatusMsg("Some error occurred");
+      return;
+    }
+    setStatusColor("blue");
+    setStatusMsg("Updated");
+    //process when succesfull
   };
   return (
     <Layout title={"edit Profile"}>
@@ -62,7 +70,6 @@ function editprofile() {
           <form className=" col form-group md-12" onSubmit={submitData}>
             <div className="row md-10">
               {/*from here*/}
-
               <div className="col-md-6">
                 <div className="col-md-12">
                   <div className="row mt-2">
@@ -96,21 +103,6 @@ function editprofile() {
                 </div>
                 <div className="row mt-2">
                   <div className="col">
-                    <label htmlFor="exampleInput">
-                      Email Address <span className="required">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="loisewuramayoung@gmail.com"
-                      required
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                    />
-                  </div>
-                </div>
-                <div className="row mt-2">
-                  <div className="col">
                     <label htmlFor="exampleInput">Phone Number</label>
                     <input
                       type="number"
@@ -138,7 +130,6 @@ function editprofile() {
                   </div>
                 </div>
               </div>
-
               <div className="col-md-6">
                 <div className="row mt-2">
                   <div className="col">
@@ -238,6 +229,16 @@ function editprofile() {
                 </div>
               </div>
               {/*to here*/}
+              <div
+                className="col-12"
+                style={{
+                  color: statusColor,
+                  fontWeight: "bold",
+                  textAlign: "center",
+                }}
+              >
+                {statusMsg}
+              </div>
             </div>
             <div className="row md-2">
               {/* <div className="row col-md-12 justify-content-center"> */}

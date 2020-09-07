@@ -1,7 +1,30 @@
 import Layout from "../../components/Layout";
 import Head from "next/head";
 import Link from "next/link";
+import { Users } from "../../lib/endpoints";
+import { useEffect, useState } from "react";
+
 function Profile() {
+  const [firstname, setFirstName] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [user, setUser] = useState("");
+  const api_users = new Users();
+
+  const getUserProfile = async () => {
+    const rs = await api_users.getUserProfile();
+    if (rs.error) {
+      return;
+    }
+    console.log(rs);
+    setFirstName(rs.first_name);
+    setLastname(rs.last_name);
+    setUser(rs.user);
+  };
+
+  useEffect(() => {
+    getUserProfile();
+  });
+
   return (
     <Layout title={"Profile"}>
       <Head>
@@ -44,6 +67,7 @@ function Profile() {
                   placeholder="Lois Ewurama"
                   readOnly
                   required
+                  value={firstname}
                 />
               </div>
             </div>
@@ -55,6 +79,7 @@ function Profile() {
                   className="form-control"
                   placeholder="Young"
                   readOnly
+                  value={lastname}
                 />
               </div>
             </div>
@@ -77,6 +102,7 @@ function Profile() {
                   className="form-control"
                   placeholder="+233 024 678 9560"
                   readOnly
+                  value={user}
                 />
               </div>
             </div>
