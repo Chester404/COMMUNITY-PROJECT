@@ -1,36 +1,47 @@
-import Layout from "../../components/Layout";
-import Head from "next/head";
 import Button from "react-bootstrap/Button";
 import Link from "next/link";
-import { useState, createRef } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import Prompt from "../../components/Prompt";
+import AuthHeader from "../../components/auth/AuthHeader";
 
 const ConfirmAccount = () => {
-  const [code, setCode] = useState("");
-  const myRef = createRef;
   const [code1, setCode1] = useState("");
   const [code2, setCode2] = useState("");
   const [code3, setCode3] = useState("");
   const [code4, setCode4] = useState("");
-  const [promptBody, setPromptBody] = useState("");
-  const [linkTo, setLinkTo] = useState(null);
-  const [linkText, setLinkText] = useState(null);
   const [show, setShow] = useState(false);
+  const [prompt_title, setPromptTitle] = useState("");
+  const [prompt_body, setPromptBody] = useState("");
+  const [link_to, setLinkTo] = useState("");
+  const [link_text, setLinkText] = useState("");
 
   const router = useRouter();
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
-  const autotab = (current, to) => {
-    if (
-      current.getAttribute &&
-      current.value.length == current.getAttribute("maxlength")
-    ) {
-      to.focus();
-    }
+  // const autotab = (current, to) => {
+  //   if (
+  //     current.getAttribute &&
+  //     current.value.length == current.getAttribute("maxlength")
+  //   ) {
+  //     to.focus();
+  //   }
+  // };
+
+  const callPrompt = (
+    title: string,
+    link: string,
+    link_text: string,
+    message: string
+  ) => {
+    if (show) setShow(false);
+    setShow(true);
+    setPromptTitle(title);
+    setLinkText(link_text);
+    setLinkTo(link);
+    setPromptBody(message);
   };
 
   const submitCode = async () => {
@@ -42,35 +53,60 @@ const ConfirmAccount = () => {
         }
       );
       console.log(rs);
-      setPromptBody("Verification successful");
-      setLinkTo("login");
-      setLinkText("Login");
-      setShow(true);
+      callPrompt(
+        "Verification",
+        "/auth/login",
+        "Login",
+        "Verification successful"
+      );
     } catch (e) {
       console.log(e);
-      setPromptBody("Verification failed");
-      setLinkTo("login");
-      setLinkText("");
-      setShow(true);
+      callPrompt("Verification", "", "close", "Verification failed");
     }
   };
+
   return (
-    <>
-      <Layout>
-        <Head>
-          <link rel="stylesheet" type="text/css" href="/auth.css" />
-        </Head>
-        <Prompt
-          // body={`A confirmation has been sent to your email. Please retrieve the code and
-          // confirm acount`}
-          title="Verification"
-          linkTo={linkTo}
-          linkText={linkText}
-          show={show}
-          handleClose={handleClose}
-        >
-          <p>{promptBody}</p>
-        </Prompt>
+    <AuthHeader title="Verify Code">
+      <style jsx>{`
+        .container {
+          margin: 0 auto;
+          width: 30%;
+          background: #ffffff;
+          padding: 25px;
+        }
+        .submitbutton {
+          background: #3964fc;
+          border: #3964fc;
+          border-radius: 10px;
+        }
+        :hover .submitbutton {
+          background: #3964fc;
+          border: #3964fc;
+        }
+        .cinput {
+          border-radius: 10px;
+        }
+        .input-group-addon:last-child {
+          background-color: #ffffff;
+          border-radius: 0px 10px 10px 0px;
+        }
+      `}</style>
+      <div className="row">
+        <div className="navbar">
+          <img className="logo" src="/images/Logo.png" />
+        </div>
+      </div>
+      <Prompt
+        title={prompt_title}
+        linkTo={link_to}
+        linkText={link_text}
+        success={link_to.length > 0 ? true : false}
+        show={show}
+        handleClose={handleClose}
+      >
+        <p>{prompt_body}</p>
+      </Prompt>
+      <div className="container">
         <div className="wrapper" style={{ margin: "70px 0" }}>
           <div className="row" style={{ margin: "0 40px" }}>
             <div
@@ -198,8 +234,9 @@ const ConfirmAccount = () => {
             </div>
           </div>
         </div>
-      </Layout>
-    </>
+      </div>
+      <script type="text/javascript" src="/js/a.js"></script>
+    </AuthHeader>
   );
 };
 
