@@ -64,8 +64,7 @@ const Login = () => {
           margin-top: 70px;
           width: 30%;
           background: #ffffff;
-          padding: 45px;
-          height: 550px;
+          padding: 25px;
         }
         .submitbutton {
           background: #3964fc;
@@ -99,7 +98,7 @@ const Login = () => {
             </div>
             <br />
           </div>{" "}
-          <div className="row" style={{ marginTop: 50 }}>
+          <div className="row">
             <form onSubmit={authenticate}>
               <div className="form-group">
                 <label htmlFor="email">Email address / Phone Number</label>
@@ -125,7 +124,7 @@ const Login = () => {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-              <div style={{ textAlign: "center", marginTop: 25 }}>
+              <div style={{ textAlign: "center" }}>
                 <button
                   type="submit"
                   className="btn btn-primary btn-block submitbutton"

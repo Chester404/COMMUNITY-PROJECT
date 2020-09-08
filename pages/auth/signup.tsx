@@ -155,7 +155,7 @@ const Signup = () => {
           margin: 0 auto;
           width: 30%;
           background: #ffffff;
-          padding: 45px;
+          padding: 25px;
         }
         .submitbutton {
           background: #3964fc;
