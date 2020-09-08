@@ -20,7 +20,10 @@ const Navbar = (props) => {
   }, []);
 
   return (
-    <div className="hor-header header d-flex navbar-collapse">
+    <div
+      className="hor-header header d-flex navbar-collapse"
+      style={{ height: "80px !important" }}
+    >
       <div className="container">
         <div className="d-flex">
           <a className="animated-arrow hor-toggle horizontal-navtoggle">
@@ -31,6 +34,7 @@ const Navbar = (props) => {
               src="assets/images/Logo.png"
               className="header-brand-img main-logo"
               alt="logo"
+              style={{ marginLeft: "-1em" }}
             />
           </a>
           {/* logo*/}
@@ -63,7 +67,6 @@ const Navbar = (props) => {
               <a
                 className="nav-link pr-0 leading-none d-flex pt-1"
                 data-toggle="dropdown"
-                href
               >
                 <span
                   className="avatar avatar-md brround cover-image"
