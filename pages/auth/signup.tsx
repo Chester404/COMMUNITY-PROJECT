@@ -217,11 +217,11 @@ const Signup = () => {
               <div className="form-group">
                 <label htmlFor="email">Email address / Phone</label>
                 <input
-                  type="text"
+                  type="email"
                   className="form-control cinput"
                   id="exampleInputEmail1"
                   aria-describedby="emailHelp"
-                  placeholder="Email or Phone number"
+                  placeholder="Email"
                   value={authentication_property}
                   onChange={(e) => setAuthenticationProperty(e.target.value)}
                 />
