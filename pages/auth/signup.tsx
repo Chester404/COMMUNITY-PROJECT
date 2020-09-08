@@ -215,13 +215,13 @@ const Signup = () => {
           <div className="row">
             <form onSubmit={register}>
               <div className="form-group">
-                <label htmlFor="email">Email address / Phone</label>
+                <label htmlFor="email">Email</label>
                 <input
                   type="email"
                   className="form-control cinput"
                   id="exampleInputEmail1"
                   aria-describedby="emailHelp"
-                  placeholder="Email"
+                  placeholder="Please enter a valid email"
                   value={authentication_property}
                   onChange={(e) => setAuthenticationProperty(e.target.value)}
                 />
