@@ -64,7 +64,7 @@ const Login = () => {
           margin-top: 70px;
           width: 30%;
           background: #ffffff;
-          padding: 25px;
+          padding: 45px;
         }
         .submitbutton {
           background: #3964fc;
