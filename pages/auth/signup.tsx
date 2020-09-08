@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useState, FormEvent } from "react";
 import axios from "axios";
 import Prompt from "../../components/Prompt";
+import Head from "next/head";
 
 const Signup = () => {
   const [authentication_property, setAuthenticationProperty] = useState("");
@@ -149,34 +150,29 @@ const Signup = () => {
   };
 
   return (
-    <AuthHeader title="SignUp Page">
-      <style jsx>{`
-        .container {
-          margin: 0 auto;
-          width: 30%;
-          background: #ffffff;
-          padding: 45px;
-        }
-        .submitbutton {
-          background: #3964fc;
-          border: #3964fc;
-          border-radius: 10px;
-        }
-        :hover .submitbutton {
-          background: #3964fc;
-          border: #3964fc;
-        }
-        .cinput {
-          border-radius: 10px;
-        }
-        .input-group-addon:last-child {
-          background-color: #ffffff;
-          border-radius: 0px 10px 10px 0px;
-        }
-      `}</style>
+    <>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Sign Up</title>
+        <link
+          rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossOrigin="anonymous"
+        />
+        <script
+          type="text/javascript"
+          src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"
+        ></script>
+
+        <script
+          type="text/javascript"
+          src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-show-password/1.0.3/bootstrap-show-password.min.js"
+        ></script>
+
+        <link rel="stylesheet" type="text/css" href="/sign_up.css" />
+      </Head>
       <Prompt
-        // body={`A confirmation has been sent to your email. Please retrieve the code and
-        // confirm acount`}
         title={prompt_title}
         linkTo={link_to}
         linkText={link_text}
@@ -192,11 +188,12 @@ const Signup = () => {
             <img className="logo" src="/images/Logo.png" />
           </div>
         </div>
-        <div className="container">
+        <div className="content">
           <div style={{ textAlign: "center" }}>
             <div>
-              <img src="/images/Logo.png" />
+              <img className="innerlogo" src="/images/Logo.png" />
             </div>
+            <br />
             <br />
             <div>
               <b>Make the most out of your business</b>
@@ -204,50 +201,42 @@ const Signup = () => {
             <br />
             <div>
               Already on Market Circle?{" "}
-              <Link href="/auth/login">
-                <a>
-                  <b>Log in</b>
-                </a>
-              </Link>
+              <a href="login.html" className="logintext">
+                <b>Log in</b>
+              </a>
             </div>
             <br />
-          </div>{" "}
+          </div>
           <div className="row">
             <form onSubmit={register}>
               <div className="form-group">
                 <label htmlFor="email">Email</label>
                 <input
                   type="email"
-                  className="form-control cinput"
-                  id="exampleInputEmail1"
+                  className="form-control textbox"
+                  id="InputEmail"
                   aria-describedby="emailHelp"
                   placeholder="Please enter a valid email"
-                  value={authentication_property}
-                  onChange={(e) => setAuthenticationProperty(e.target.value)}
                 />
               </div>
               <div className="form-group">
                 <label htmlFor="exampleInputPassword1">Password</label>
                 <input
                   type="password"
-                  className="form-control cinput"
-                  id="exampleInputPassword1"
-                  placeholder="Password"
+                  className="form-control textbox"
+                  id="InputPassword1"
+                  placeholder="Password must be at least 8 characters"
                   data-toggle="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="exampleInputPassword1">Confirm Password</label>
+                <label htmlFor="InputPassword2">Confirm Password</label>
                 <input
                   type="password"
-                  className="form-control cinput"
+                  className="form-control textbox"
                   id="exampleInputPassword1"
-                  placeholder="Password"
+                  placeholder="Re-Enter the same password as above"
                   data-toggle="password"
-                  value={confirm_password}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
                 />
               </div>
               <div className="form-group" style={{ textAlign: "center" }}>
@@ -256,40 +245,48 @@ const Signup = () => {
                   id="organization"
                   name="account_type"
                   defaultValue="organization"
-                  onChange={() => setIsOrganization(true)}
-                />{" "}
-                <label htmlFor="organization">Organization</label>&nbsp;
+                  defaultChecked
+                />
+                <label htmlFor="organization" className="radio_spc">
+                  Organization
+                </label>
                 <input
                   type="radio"
                   id="individual"
                   name="account_type"
                   defaultValue="individual"
-                  checked={!is_organization}
-                  onChange={() => setIsOrganization(false)}
-                />{" "}
+                  className="radio_spc"
+                />
                 <label htmlFor="individual">Individual</label>
               </div>
               <div style={{ textAlign: "center" }}>
                 <button
                   type="submit"
-                  className="btn btn-primary btn-block submitbutton"
+                  className="btn btn-primary btn-block"
+                  id="signup_button"
                 >
                   Sign Up
                 </button>
               </div>
               <br />
               <div style={{ textAlign: "center" }}>
-                By clicking Sing up, you agree to the Market Circle
+                By clicking sign up, you agree to the Market Circle
                 <br />
                 <b>
-                  <a href="#">User Agreement,</a>
+                  <a href="#" className="texthover" id="user_agreement">
+                    User Agreement,
+                  </a>
                 </b>{" "}
                 <b>
-                  <a href="#">Privacy Policy</a>
+                  <a href="#" className="texthover" id="privacy_policy">
+                    Privacy Policy
+                  </a>
                 </b>{" "}
                 and{" "}
                 <b>
-                  <a href="#">Cookie Policy</a>
+                  <a href="#" className="texthover" id="cookie_policy">
+                    Cookie Policy.
+                  </a>
                 </b>
               </div>
               <b></b>
@@ -299,8 +296,9 @@ const Signup = () => {
         </div>
         <b></b>
       </div>
+
       <script type="text/javascript" src="/js/a.js"></script>
-    </AuthHeader>
+    </>
   );
 };
 

@@ -3,11 +3,31 @@ import Link from "next/link";
 import { useState, FormEvent } from "react";
 import { Auth } from "../../lib/endpoints";
 import { useRouter } from "next/router";
+import Prompt from "../../components/Prompt";
 
 const Login = () => {
   const [authentication_property, setAuthenticationProperty] = useState("");
   const [password, setPassword] = useState("");
+  const [show, setShow] = useState(false);
+  const [prompt_title, setPromptTitle] = useState("");
+  const [prompt_body, setPromptBody] = useState("");
+  const [link_to, setLinkTo] = useState("");
+  const [link_text, setLinkText] = useState("");
 
+  const handleClose = () => setShow(false);
+
+  const callPrompt = (
+    title: string,
+    link: string,
+    link_text: string,
+    message: string
+  ) => {
+    setShow(true);
+    setPromptTitle(title);
+    setLinkText(link_text);
+    setLinkTo(link);
+    setPromptBody(message);
+  };
   const router = useRouter();
   const authenticate = async (e: FormEvent) => {
     e.preventDefault();
@@ -16,22 +36,30 @@ const Login = () => {
         authentication_property,
         password
       );
-      console.log(response);
       if (response.status === 200) {
         window.localStorage.setItem("cp-a", JSON.stringify(response.data));
         router.push("/blog");
       }
     } catch (err) {
-      console.log(e);
       if (err.message === "Request failed with status code 401") {
         // bad credentials
-        alert("Please check your credentials and try again.");
+        callPrompt(
+          "Sign Up",
+          "",
+          "Close",
+          "Please check your credentials and try again."
+        );
       } else if (err.message === "Request failed with status code 404") {
         // bad endpoint
-        alert("Request failed");
+        callPrompt("Sign Up", "", "Close", "Request failed");
       } else if (err.message === "Network Error") {
         // bad network connection
-        alert("Please check your network connection and try again.");
+        callPrompt(
+          "Sign Up",
+          "",
+          "Close",
+          "Please check your network connection and try again."
+        );
       }
     }
   };
@@ -39,8 +67,12 @@ const Login = () => {
   return (
     <>
       <Head>
-        <link rel="stylesheet" type="text/css" href="/css/sign_up.css" />
-        <title>Community Project | Login Page</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        />
+        <title>Login</title>
         <link
           rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -57,93 +89,82 @@ const Login = () => {
           type="text/javascript"
           src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-show-password/1.0.3/bootstrap-show-password.min.js"
         ></script>
+        <link rel="stylesheet" type="text/css" href="/login.css" />
       </Head>
-      <style jsx>{`
-        .container {
-          margin: 0 auto;
-          margin-top: 70px;
-          width: 30%;
-          background: #ffffff;
-          padding: 45px;
-        }
-        .submitbutton {
-          background: #3964fc;
-          border: #3964fc;
-          border-radius: 10px;
-        }
-        :hover .submitbutton {
-          background: #3964fc;
-          border: #3964fc;
-        }
-        .cinput {
-          border-radius: 10px;
-        }
-        .input-group-addon:last-child {
-          background-color: #ffffff;
-          border-radius: 0px 10px 10px 0px;
-        }
-      `}</style>
-      <div>
-        <div className="row">
-          <div className="navbar">
-            <img className="logo" src="/images/Logo.png" />
-          </div>
+      <Prompt
+        title={prompt_title}
+        linkTo={link_to}
+        linkText={link_text}
+        show={show}
+        success={link_to.length > 0 ? true : false}
+        handleClose={handleClose}
+      >
+        <p>{prompt_body}</p>
+      </Prompt>
+      <div className="row">
+        <div className="navbar">
+          <img className="logo" src="/images/Logo.png" />
         </div>
-        <div className="container">
-          <div style={{ textAlign: "center" }}>
-            <div>
-              <h3>
-                <b>Login</b>
-              </h3>
+      </div>
+      <div className="content">
+        <div style={{ textAlign: "center" }}>
+          <div>
+            <h3>
+              <b>Login</b>
+            </h3>
+          </div>
+          <br />
+        </div>
+        <div className="row">
+          <form className="needs-validation" noValidate onSubmit={authenticate}>
+            <div className="form-group">
+              <label htmlFor="email">Email / Phone Number</label>
+              <input
+                type="email"
+                className="form-control textbox"
+                id="InputEmail"
+                placeholder="Please enter a valid email or phone number"
+                value={authentication_property}
+                onChange={(e) => setAuthenticationProperty(e.target.value)}
+              />
             </div>
-            <br />
-          </div>{" "}
-          <div className="row">
-            <form onSubmit={authenticate}>
-              <div className="form-group">
-                <label htmlFor="email">Email address / Phone Number</label>
-                <input
-                  type="email"
-                  className="form-control cinput"
-                  id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
-                  placeholder="Enter email"
-                  value={authentication_property}
-                  onChange={(e) => setAuthenticationProperty(e.target.value)}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="exampleInputPassword1">Password</label>
+            <div className="form-group">
+              <label htmlFor="exampleInputPassword1">Password</label>
+              <span>
                 <input
                   type="password"
-                  className="form-control cinput"
-                  id="exampleInputPassword1"
-                  placeholder="Password"
+                  className="form-control textbox"
+                  id="InputPassword1"
+                  placeholder="Password must be at least 8 characters"
                   data-toggle="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
-              </div>
-              <div style={{ textAlign: "center" }}>
-                <button
-                  type="submit"
-                  className="btn btn-primary btn-block submitbutton"
-                >
-                  Login
-                </button>
+              </span>
+            </div>
+            <div style={{ textAlign: "center" }}>
+              <button type="submit" className="btn btn-primary btn-block">
+                Login
+              </button>
+            </div>
+            <br />
+            <div style={{ textAlign: "center" }}>
+              <div>
+                <a href="#" className="texthover">
+                  Forgot Password?
+                </a>
               </div>
               <br />
-              <div style={{ textAlign: "center" }}>
-                <a>Forgotten Password?</a>
-                <br />
-                <br />
-                Don't have an account?
-                <Link href="/auth/signup/">
-                  <a>Sign Up</a>
+              <div>
+                Don't have an account?{" "}
+                <Link href="/auth/signup">
+                  <a className="signuptext">
+                    <b>Sign Up</b>
+                  </a>
                 </Link>
               </div>
-            </form>
-          </div>
+            </div>
+          </form>
         </div>
       </div>
 

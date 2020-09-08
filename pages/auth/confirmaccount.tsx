@@ -1,10 +1,11 @@
 import Button from "react-bootstrap/Button";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, FormEvent, useEffect, useRef } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import Prompt from "../../components/Prompt";
 import AuthHeader from "../../components/auth/AuthHeader";
+import Head from "next/head";
 
 const ConfirmAccount = () => {
   const [code1, setCode1] = useState("");
@@ -16,6 +17,12 @@ const ConfirmAccount = () => {
   const [prompt_body, setPromptBody] = useState("");
   const [link_to, setLinkTo] = useState("");
   const [link_text, setLinkText] = useState("");
+  const [countDown, setCountDown] = useState(60);
+
+  const code2Ref = useRef(null);
+  const code3Ref = useRef(null);
+  const code4Ref = useRef(null);
+  const submitBtnRef = useRef(null);
 
   const router = useRouter();
 
@@ -29,6 +36,30 @@ const ConfirmAccount = () => {
   //     to.focus();
   //   }
   // };
+
+  function countdown(minutes) {
+    var seconds = 60;
+    var mins = minutes;
+
+    function tick() {
+      //This script expects an element with an ID = "counter". You can change that to what ever you want.
+
+      var current_minutes = mins - 1;
+      seconds--;
+      const cnt: any =
+        current_minutes.toString() +
+        ":" +
+        (seconds < 10 ? "0" : "") +
+        String(seconds);
+      if (seconds > 0) {
+        setTimeout(tick, 1000);
+      } else if (mins > 1) {
+        countdown(mins - 1);
+      }
+      setCountDown(cnt);
+    }
+    tick();
+  }
 
   const callPrompt = (
     title: string,
@@ -44,7 +75,8 @@ const ConfirmAccount = () => {
     setPromptBody(message);
   };
 
-  const submitCode = async () => {
+  const submitCode = async (e: FormEvent) => {
+    e.preventDefault();
     try {
       const rs: any = await axios.post(
         "http://51.116.114.155:8080/auth/keyinput/",
@@ -61,182 +93,186 @@ const ConfirmAccount = () => {
       );
     } catch (e) {
       console.log(e);
-      callPrompt("Verification", "", "close", "Verification failed");
+      callPrompt("Verification", "", "Close", "Verification failed");
     }
   };
 
+  useEffect(() => {
+    if (countDown == 60) countdown(1), [];
+  });
   return (
-    <AuthHeader title="Verify Code">
-      <style jsx>{`
-        .container {
-          margin: 0 auto;
-          width: 30%;
-          background: #ffffff;
-          padding: 25px;
-        }
-        .submitbutton {
-          background: #3964fc;
-          border: #3964fc;
-          border-radius: 10px;
-        }
-        :hover .submitbutton {
-          background: #3964fc;
-          border: #3964fc;
-        }
-        .cinput {
-          border-radius: 10px;
-        }
-        .input-group-addon:last-child {
-          background-color: #ffffff;
-          border-radius: 0px 10px 10px 0px;
-        }
-      `}</style>
-      <div className="row">
-        <div className="navbar">
-          <img className="logo" src="/images/Logo.png" />
-        </div>
-      </div>
+    <>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        />
+        <title>Account Verification</title>
+        <link
+          rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossOrigin="anonymous"
+        />
+        <script
+          type="text/javascript"
+          src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"
+        ></script>
+        <script
+          type="text/javascript"
+          src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-show-password/1.0.3/bootstrap-show-password.min.js"
+        ></script>
+
+        <link rel="stylesheet" href="/account_verification.css" />
+      </Head>
       <Prompt
         title={prompt_title}
         linkTo={link_to}
         linkText={link_text}
-        success={link_to.length > 0 ? true : false}
         show={show}
+        success={link_to.length > 0 ? true : false}
         handleClose={handleClose}
       >
         <p>{prompt_body}</p>
       </Prompt>
-      <div className="container">
-        <div className="wrapper" style={{ margin: "70px 0" }}>
-          <div className="row" style={{ margin: "0 40px" }}>
-            <div
-              className="col-12"
-              style={{
-                textAlign: "center",
-                alignContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <div
-                style={{
-                  fontSize: 30,
-                  fontWeight: "bolder",
-                  margin: 0,
-                  padding: 0,
-                }}
-              >
-                Enter code for
-              </div>
-              <div
-                style={{
-                  fontSize: 30,
-                  fontWeight: "bolder",
-                  margin: 0,
-                  padding: 0,
-                }}
-              >
-                verification
-              </div>
-              <form
-                name="confirmation_code"
-                style={{ width: "100%", marginTop: 40 }}
-              >
-                <div>
+      <div>
+        <div className="row">
+          <div className="navbar">
+            <img className="logo" src="/images/Logo.png" />
+          </div>
+        </div>
+        <div className="content">
+          <div style={{ textAlign: "center" }}>
+            <div>
+              <h3>
+                <b>
+                  Enter code for
+                  <br />
+                  verification
+                </b>
+              </h3>
+            </div>
+            <br />
+          </div>
+          <div className="row">
+            <form onSubmit={submitCode}>
+              <div className="form-group" style={{ textAlign: "center" }}>
+                <div id="form">
                   <input
                     type="text"
+                    className="codebox"
+                    id="code1"
                     maxLength={1}
                     size={1}
-                    min="0"
-                    max="9"
-                    name="number_1"
+                    min={0}
+                    max={9}
                     pattern="[0-9]{1}"
-                    style={{
-                      margin: "20px 10px 30px 0px",
-                      textAlign: "center",
-                      fontSize: 24,
-                    }}
-                    className="verificationbox"
                     value={code1}
                     onChange={(e) => setCode1(e.target.value)}
-                  ></input>
+                    onKeyUp={() => code2Ref.current.focus()}
+                    style={{
+                      textAlign: "center",
+                    }}
+                  />
                   <input
                     type="text"
+                    className="codebox"
+                    id="code2"
                     maxLength={1}
                     size={1}
-                    min="0"
-                    max="9"
-                    name="number_2"
+                    min={0}
+                    max={9}
                     pattern="[0-9]{1}"
-                    style={{
-                      margin: "20px 10px 30px 0px",
-                      textAlign: "center",
-                      fontSize: 24,
-                    }}
-                    className="verificationbox"
                     value={code2}
                     onChange={(e) => setCode2(e.target.value)}
-                  ></input>
+                    style={{
+                      textAlign: "center",
+                    }}
+                    ref={code2Ref}
+                    onKeyUp={() => code3Ref.current.focus()}
+                  />
                   <input
                     type="text"
+                    className="codebox"
+                    id="code3"
                     maxLength={1}
                     size={1}
-                    min="0"
-                    max="9"
-                    name="number_3"
+                    min={0}
+                    max={9}
                     pattern="[0-9]{1}"
-                    style={{
-                      margin: "20px 10px 30px 0px",
-                      textAlign: "center",
-                      fontSize: 24,
-                    }}
-                    className="verificationbox"
                     value={code3}
                     onChange={(e) => setCode3(e.target.value)}
-                  ></input>
+                    style={{
+                      textAlign: "center",
+                    }}
+                    ref={code3Ref}
+                    onKeyUp={() => code4Ref.current.focus()}
+                  />
                   <input
                     type="text"
+                    className="codebox"
+                    id="code4"
                     maxLength={1}
                     size={1}
-                    min="0"
-                    max="9"
-                    name="number_4"
+                    min={0}
+                    max={9}
                     pattern="[0-9]{1}"
-                    style={{
-                      margin: "20px 10px 30px 0px",
-                      textAlign: "center",
-                      fontSize: 24,
-                    }}
-                    className="verificationbox"
                     value={code4}
                     onChange={(e) => setCode4(e.target.value)}
-                  ></input>
+                    style={{
+                      textAlign: "center",
+                    }}
+                    ref={code4Ref}
+                    onKeyUp={() => submitBtnRef.current.focus()}
+                  />
                 </div>
-              </form>
-            </div>
-            <Button
-              variant="primary"
-              type="submit"
-              block
-              size="lg"
-              className="signup-btn"
-              onClick={submitCode}
-            >
-              Continue
-            </Button>
-            <br />
-            <div className="col-12 text-center mt-3">
-              If you don't receive the code within 1 minute, tap below to resend
-              it
-              <br />
-              <Link href="#">
-                <a>Resend</a>
-              </Link>
-            </div>
+                <br />
+                <div style={{ textAlign: "center" }}>
+                  <button
+                    type="submit"
+                    className="btn btn-primary"
+                    id="continue"
+                    ref={submitBtnRef}
+                  >
+                    Continue
+                  </button>
+                </div>
+                <br />
+                <div style={{ textAlign: "center" }}>
+                  If you don't recieve the code within
+                  <br />
+                  1mins, click below to re-send it.
+                </div>
+                <div style={{ marginTop: 15 }}>
+                  <button className="re-sendbtn" id="re-send_code">
+                    Resend Code<i className="material-icons">refresh</i>
+                  </button>
+                  {countDown}
+                </div>
+                {/* <table className="cell" style={{ width: "100%" }}>
+                  <tbody>
+                    <tr>
+                      <td style={{ width: "75%" }}>
+                        <button className="re-sendbtn" id="re-send_code">
+                          Resend Code<i className="material-icons">refresh</i>
+                        </button>
+                      </td>
+                      <td style={{ textAlign: "start" }} id="counter">
+                        {" "}
+                        {countDown}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table> */}
+              </div>
+            </form>
           </div>
         </div>
       </div>
+
       <script type="text/javascript" src="/js/a.js"></script>
-    </AuthHeader>
+    </>
   );
 };
 
