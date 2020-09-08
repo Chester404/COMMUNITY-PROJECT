@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 
 const Prompt = (props: any) => {
   const [closeBox, setCloseBox] = useState(props.show);
-  console.log(props);
   useEffect(() => {
     setCloseBox(props.show);
   }, [props.show]);
@@ -28,10 +27,7 @@ const Prompt = (props: any) => {
         }}
       >
         {/* <p>{props.title}</p> */}
-        <div style={{ fontWeight: "bold", fontSize: 20 }}>
-          {" "}
-          {props.children}
-        </div>
+        <div style={{ fontWeight: "bold" }}> {props.children}</div>
         {props.success ? (
           <Link href={props.linkTo}>
             <a className="btn btn-primary">{props.linkText}</a>

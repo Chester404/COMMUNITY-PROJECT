@@ -1,6 +1,6 @@
 import AuthHeader from "../../components/auth/AuthHeader";
 import Link from "next/link";
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useEffect } from "react";
 import axios from "axios";
 import Prompt from "../../components/Prompt";
 import Head from "next/head";
@@ -149,6 +149,11 @@ const Signup = () => {
     }
   };
 
+  useEffect(() => {
+    var body = document.body;
+
+    body.classList.add("parent");
+  }, []);
   return (
     <>
       <Head>

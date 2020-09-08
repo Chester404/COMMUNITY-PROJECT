@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useEffect } from "react";
 import { Auth } from "../../lib/endpoints";
 import { useRouter } from "next/router";
 import Prompt from "../../components/Prompt";
@@ -22,6 +22,7 @@ const Login = () => {
     link_text: string,
     message: string
   ) => {
+    if (show) setShow(false);
     setShow(true);
     setPromptTitle(title);
     setLinkText(link_text);
@@ -64,6 +65,11 @@ const Login = () => {
     }
   };
 
+  useEffect(() => {
+    var body = document.body;
+
+    body.classList.add("parent");
+  }, []);
   return (
     <>
       <Head>

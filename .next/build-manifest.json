@@ -24,15 +24,15 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
-    "/auth/confirmaccount": [
+    "/user/editprofile": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/auth/confirmaccount.js"
+      "static/chunks/pages/user/editprofile.js"
     ],
-    "/auth/login": [
+    "/user/profile": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/auth/login.js"
+      "static/chunks/pages/user/profile.js"
     ]
   },
   "ampFirstPages": []
