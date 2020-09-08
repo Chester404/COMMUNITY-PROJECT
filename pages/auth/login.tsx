@@ -1,167 +1,184 @@
 import Head from "next/head";
-import { useRouter } from "next/router";
-import Layout from "../../components/Layout";
 import Link from "next/link";
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useEffect } from "react";
 import { Auth } from "../../lib/endpoints";
-import { route } from "next/dist/next-server/server/router";
-import axios from "axios";
+import { useRouter } from "next/router";
 import Prompt from "../../components/Prompt";
 
-const Loader = () => (
-  <span
-    className="spinner-border spinner-border-sm"
-    role="status"
-    aria-hidden="true"
-    style={{ width: "1.5rem", height: "1.5rem" }}
-  ></span>
-);
-
 const Login = () => {
-  const [show, setShow] = useState(false);
-  const [isRegistered, setIsRegistered] = useState(null);
-  const [isInputValid, setIsInputValid] = useState(null);
-  const [isLoggedIn, setIsLoggedIn] = useState(null);
-  const [promptBody, setPromptBody] = useState("");
-  const [linkTo, setLinkTo] = useState(null);
-  const [linkText, setLinkText] = useState(null);
-  const [authentication_property, setaAthenticationProperty] = useState("");
+  const [authentication_property, setAuthenticationProperty] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [status, setStatus] = useState("");
-  const [statusColor, setStatusColor] = useState("blue");
-
-  const router = useRouter();
+  const [show, setShow] = useState(false);
+  const [prompt_title, setPromptTitle] = useState("");
+  const [prompt_body, setPromptBody] = useState("");
+  const [link_to, setLinkTo] = useState("");
+  const [link_text, setLinkText] = useState("");
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    setLoading(true);
+  const callPrompt = (
+    title: string,
+    link: string,
+    link_text: string,
+    message: string
+  ) => {
+    if (show) setShow(false);
+    setShow(true);
+    setPromptTitle(title);
+    setLinkText(link_text);
+    setLinkTo(link);
+    setPromptBody(message);
+  };
+  const router = useRouter();
+  const authenticate = async (e: FormEvent) => {
+    e.preventDefault();
     try {
-      const result = await axios.post("http://51.116.114.155:8080/auth/token", {
-        authentication_property: authentication_property,
-        password: password,
-        // authentication_property: "ogembodennis@gmail.com",
-        // password: "@Beloved2020",
-      });
-
-      if (result) {
-        setLoading(false);
-        if (result.status === 200) {
-          window.localStorage.setItem("cp-a", JSON.stringify(result.data));
-          setLoading(false);
-          router.push("/blog");
-        }
+      const response = await new Auth().login(
+        authentication_property,
+        password
+      );
+      if (response.status === 200) {
+        window.localStorage.setItem("cp-a", JSON.stringify(response.data));
+        router.push("/blog");
       }
     } catch (err) {
-      setLoading(false);
       if (err.message === "Request failed with status code 401") {
         // bad credentials
-        console.log("BAD CREDENTIALS");
-        setPromptBody("Please check your credentials and try again.");
-        setLinkTo("signup");
-        setLinkText("");
-        setShow(true);
-        setLoading(false);
+        callPrompt(
+          "Sign Up",
+          "",
+          "Close",
+          "Please check your credentials and try again."
+        );
       } else if (err.message === "Request failed with status code 404") {
         // bad endpoint
+        callPrompt("Sign Up", "", "Close", "Request failed");
       } else if (err.message === "Network Error") {
         // bad network connection
-        setPromptBody("Please check your network connection and try again.");
-        setShow(true);
-        setLoading(false);
+        callPrompt(
+          "Sign Up",
+          "",
+          "Close",
+          "Please check your network connection and try again."
+        );
       }
     }
   };
 
+  useEffect(() => {
+    var body = document.body;
+
+    body.classList.add("parent");
+  }, []);
   return (
     <>
-      <Layout>
-        <Head>
-          <link rel="stylesheet" type="text/css" href="/auth.css" />
-        </Head>
-        <Prompt
-          // body={`A confirmation has been sent to your email. Please retrieve the code and
-          // confirm acount`}
-          title=""
-          linkTo={linkTo}
-          linkText={linkText}
-          show={show}
-          handleClose={handleClose}
-        >
-          <p>{promptBody}</p>
-        </Prompt>
-        <div
-          style={{
-            textAlign: "center",
-            margin: "50px 0",
-          }}
-        >
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        />
+        <title>Login</title>
+        <link
+          rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossOrigin="anonymous"
+        />
+
+        <script
+          type="text/javascript"
+          src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"
+        ></script>
+
+        <script
+          type="text/javascript"
+          src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-show-password/1.0.3/bootstrap-show-password.min.js"
+        ></script>
+        <link rel="stylesheet" type="text/css" href="/login.css" />
+      </Head>
+      <Prompt
+        title={prompt_title}
+        linkTo={link_to}
+        linkText={link_text}
+        show={show}
+        success={link_to.length > 0 ? true : false}
+        handleClose={handleClose}
+      >
+        <p>{prompt_body}</p>
+      </Prompt>
+      <div className="row">
+        <div className="navbar">
+          <img className="logo" src="/images/Logo.png" />
+        </div>
+      </div>
+      <div className="content">
+        <div style={{ textAlign: "center" }}>
           <div>
             <h3>
               <b>Login</b>
             </h3>
           </div>
           <br />
-        </div>{" "}
-        <div className="row" style={{ margin: "0px 5px" }}>
-          <form style={{ width: "100%" }} onSubmit={handleSubmit}>
-            <div className="form-group col-12">
-              <label htmlFor="email">Email address / Phone Number</label>
+        </div>
+        <div className="row">
+          <form className="needs-validation" noValidate onSubmit={authenticate}>
+            <div className="form-group">
+              <label htmlFor="email">Email / Phone Number</label>
               <input
                 type="email"
-                className="form-control cinput"
-                id="email"
-                aria-describedby="emailHelp"
-                placeholder="Enter email or Phone number"
+                className="form-control textbox"
+                id="InputEmail"
+                placeholder="Please enter a valid email or phone number"
                 value={authentication_property}
-                onChange={(e) => setaAthenticationProperty(e.target.value)}
-                style={{ padding: "20px" }}
+                onChange={(e) => setAuthenticationProperty(e.target.value)}
               />
             </div>
-            <div className="form-group col-12" style={{ marginBottom: 30 }}>
+            <div className="form-group">
               <label htmlFor="exampleInputPassword1">Password</label>
-              <input
-                type="password"
-                className="form-control cinput"
-                id="password"
-                placeholder="Password"
-                data-toggle="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                style={{ padding: "20px" }}
-              />
+              <span>
+                <input
+                  type="password"
+                  className="form-control textbox"
+                  id="InputPassword1"
+                  placeholder="Password must be at least 8 characters"
+                  data-toggle="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </span>
             </div>
-            <div className="form-group col-12">
-              <button
-                type="submit"
-                className="btn btn-primary btn-block submitbutton"
-                id="submitButton"
-                style={{ padding: "10px" }}
-              >
+            <div style={{ textAlign: "center" }}>
+              <button type="submit" className="btn btn-primary btn-block">
                 Login
               </button>
             </div>
-            <div
-              style={{
-                textAlign: "center",
-                fontWeight: "bolder",
-                color: "grey",
-              }}
-            >
-              <a>Forgot password?</a>
+            <br />
+            <div style={{ textAlign: "center" }}>
+              <div>
+                <a href="#" className="texthover">
+                  Forgot Password?
+                </a>
+              </div>
               <br />
-              <br />
-              Don't have an account?{" "}
-              <Link href="/auth/signup">
-                <a id="signup">Sign Up</a>
-              </Link>
+              <div>
+                Don't have an account?{" "}
+                <Link href="/auth/signup">
+                  <a className="signuptext">
+                    <b>Sign Up</b>
+                  </a>
+                </Link>
+              </div>
             </div>
           </form>
         </div>
-      </Layout>
+      </div>
+
+      <script type="text/javascript" src="/js/a.js"></script>
+      <script
+        src="https://kit.fontawesome.com/3303a2a495.js"
+        crossOrigin="anonymous"
+      ></script>
     </>
   );
 };

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="sign up.css" />
+    <title></title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-show-password/1.0.3/bootstrap-show-password.min.js"></script>
+
+    <style>
+      .container {
+        margin: 0 auto;
+        width: 30%;
+        background: #ffffff;
+        padding: 25px;
+      }
+      .submitbutton{
+        background: #3964FC;
+        border: #3964FC;
+        border-radius: 10px;
+      }
+      :hover .submitbutton{
+        background: #3964FC;
+        border: #3964FC;
+      }
+      .cinput{
+        border-radius: 10px;
+      }
+      .input-group-addon:last-child {
+        background-color: #ffffff;
+        border-radius:  0px 10px 10px 0px;
+        }
+
+    </style>
+  </head>
+  <body class="parent">
+    <div class="row">
+      <div class="navbar">
+        <img class="logo" src="Images/Logo.png" />
+      </div>
+      
+    </div>
+    <div class="container" >
+
+      <div align="center">
+        <div><img src="Images/Logo.png" /></div><br>
+        <div><b>Make the most out of your business</b></div><br>
+        <div>
+          Already on Market Circle? <a href="login.html"><b>Log in</b></a>
+        </div><br>
+      </div>      <div class="row">
+        <form>
+          <div class="form-group">
+            <label for="email">Email address / Phone</label>
+            <input
+              type="email"
+              class="form-control cinput"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+              placeholder="Enter email"
+            />
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input
+              type="password"
+              class="form-control cinput"
+              id="exampleInputPassword1"
+              placeholder="Password"
+              data-toggle="password"
+            />
+          </div>     
+          <div class="form-group">
+            <label for="exampleInputPassword1">Confirm Password</label>
+            <input
+              type="password"
+              class="form-control cinput"
+              id="exampleInputPassword1"
+              placeholder="Password"
+              data-toggle="password"
+            />
+          </div> 
+          <div class="form-group" align= "center">
+            <input type="radio" id="organization" name="account_type" value="organization">
+            <label for="organization">Organization</label>
+            <input type="radio" id="individual" name="account_type" value="individual">
+            <label for="individual">Individual</label>
+          </div> 
+          <div align="center">   
+          <button type="submit" class="btn btn-primary btn-block submitbutton">Sign Up</button>
+        </div><br>
+        <div align="center">
+        By clicking Sing up, you agree to the Market Circle<br><b><a href="">User Agreement,
+
+        </a></b> <b><a href="">Privacy Policy</a></b> and <b><a href="">Cookie Policy</a>
+        </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

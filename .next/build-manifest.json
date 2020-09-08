@@ -24,10 +24,17 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
+<<<<<<< HEAD
     "/auth/login": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
       "static/chunks/pages/auth/login.js"
+=======
+    "/user/editprofile": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/user/editprofile.js"
+>>>>>>> pre-release
     ],
     "/next/dist/pages/_error": [
       "static/chunks/main.js",
