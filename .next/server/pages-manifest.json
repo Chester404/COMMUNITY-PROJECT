@@ -2,12 +2,6 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-<<<<<<< HEAD
-  "/auth/login": "pages/auth/login.js",
-  "/user/editprofile": "pages/user/editprofile.js",
-  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js"
-=======
-  "/user/editprofile": "pages/user/editprofile.js",
-  "/user/profile": "pages/user/profile.js"
->>>>>>> pre-release
+  "/memberlist": "pages/memberlist.js",
+  "/auth/login": "pages/auth/login.js"
 }
