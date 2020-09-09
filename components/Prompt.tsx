@@ -6,7 +6,7 @@ const Prompt = (props: any) => {
   useEffect(() => {
     setCloseBox(props.show);
   }, [props.show]);
-  console.log("Propmt calles");
+
   return (
     <div
       id="myModal"
@@ -36,7 +36,10 @@ const Prompt = (props: any) => {
         ) : (
           <a
             href="#"
-            onClick={() => setCloseBox(false)}
+            onClick={() => {
+              props.handleClose();
+              // setCloseBox(false);
+            }}
             style={{ fontSize: 20 }}
           >
             {props.linkText.length > 0 ? props.linkText : "Close"}

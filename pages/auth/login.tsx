@@ -22,7 +22,6 @@ const Login = () => {
     link_text: string,
     message: string
   ) => {
-    if (show) setShow(false);
     setShow(true);
     setPromptTitle(title);
     setLinkText(link_text);

@@ -1,4 +1,4 @@
-import AuthHeader from "../../components/auth/AuthHeader";
+// import AuthHeader from "../../components/auth/AuthHeader";
 import Link from "next/link";
 import { useState, FormEvent, useEffect } from "react";
 import axios from "axios";
@@ -24,7 +24,6 @@ const Signup = () => {
     link_text: string,
     message: string
   ) => {
-    if (show) setShow(false);
     setShow(true);
     setPromptTitle(title);
     setLinkText(link_text);
