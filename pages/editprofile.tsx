@@ -58,7 +58,7 @@ export default function Home() {
               <div className="userpic mb-4">
                 <div className="profile-pic">
                   <img src="assets/images/Profile_Icon.png"
-                width={200}
+                  width={200}
                   height={200} />
                   <div
                     className="edit"

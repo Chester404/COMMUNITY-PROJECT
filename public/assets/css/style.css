@@ -210,7 +210,7 @@ sup {
   top: -0.5em;
 }
 a {
-  color: #5964ff;
+  color: #000000;
   text-decoration: none;
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
@@ -14170,9 +14170,9 @@ a.icon:hover {
   background: #5964ff;
 }
 
-.hor-menu .horizontalMenu>.horizontalMenu-list>li>a:hover{
-	color:#5964ff;
-	background:rgba(234, 235, 243, 0.3);
+.hor-menu .horizontalMenu > .horizontalMenu-list > li > a:hover {
+  color: #5964ff;
+  background: rgba(234, 235, 243, 0.3);
 }
 
 .nav-tabs .nav-link.active {
@@ -25394,7 +25394,7 @@ div[data-acc-step]:not(.open) .badge-primary {
   }
   .page-title {
     font-size: 17px;
-    font-family: 'Open sans';
+    font-family: "Open sans";
   }
 }
 .owl-carousel .owl-nav {
@@ -25945,9 +25945,5 @@ body.sidebar-show {
 }
 
 a.nav-link:hover {
-  color:#3964FC !important;
-}
-
-h4{
-  font-family: 'Open sans';
+  color: #3964fc !important;
 }

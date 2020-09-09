@@ -67,7 +67,7 @@ export default function Home() {
                         alt=""
                         style={{ width: "40px", height: "40px" }}
                       />
-                      <span id="memberid" className="ml-5">
+                      <span id="memberid" className="ml-5 column-color">
                         Godsway Hadson
                       </span>
                       <div className="dropdown-content">
