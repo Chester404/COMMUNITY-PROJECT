@@ -65,11 +65,6 @@ const Login = () => {
     }
   };
 
-  useEffect(() => {
-    var body = document.body;
-
-    body.classList.add("parent");
-  }, []);
   return (
     <>
       <Head>
