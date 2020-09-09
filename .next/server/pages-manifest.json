@@ -2,7 +2,8 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/profile": "pages/profile.js",
-  "/editprofile": "pages/editprofile.js",
-  "/memberlist": "pages/memberlist.js"
+  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js",
+  "/memberlist": "pages/memberlist.js",
+  "/membersigned": "pages/membersigned.js",
+  "/membernotsigned": "pages/membernotsigned.js"
 }
