@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useEffect, useState, createContext, useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/router";
 
 import { Store } from "../../contextStore";
@@ -10,17 +10,19 @@ const Navbar = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const router = useRouter();
 
-  const { state } = useContext(Store);
+  const { state, dispatch } = useContext(Store);
   const logout = () => {
     console.log("LOGOUT");
     window.localStorage.removeItem("cp-a");
     router.push("/auth/login");
   };
   useEffect(() => {
-    console.log("Nav Called");
-    let lStorage = window.localStorage.getItem("cp-a");
+    let lStorage: any = window.localStorage.getItem("cp-a");
     lStorage = JSON.parse(lStorage);
     if (lStorage) {
+      console.log("STATE", lStorage);
+      dispatch({ type: "UPDATE_USERNAME", payload: lStorage.username });
+      dispatch({ type: "SET_EMAIL", payload: lStorage.emailaddress });
       setIsLoggedIn(true);
     }
   }, []);
@@ -58,12 +60,20 @@ const Navbar = (props) => {
               <span className="lay-outstyle mt-1">Forum</span>
             </a>
             <Link href="/blog">
-              <a className="nav-link">
+              <a
+                className="nav-link"
+                style={{ color: router.pathname == "/blog" ? "" : "black" }}
+              >
                 <span className="lay-outstyle mt-1">Blog</span>
               </a>
             </Link>
             <Link href="/memberlist">
-              <a className="nav-link">
+              <a
+                className="nav-link"
+                style={{
+                  color: router.pathname == "/memberlist" ? "" : "black",
+                }}
+              >
                 <span className="lay-outstyle mt-1">Members</span>
               </a>
             </Link>

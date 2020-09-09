@@ -1,8 +1,9 @@
 import MainLayout from "../components/MainLayout";
 // import Link from "next/link";
 import { Users } from "../lib/endpoints";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Link from "next/link";
+import { Store } from "../contextStore";
 
 const REGIONS = [
   ["as", "Ashanti"],
@@ -31,7 +32,8 @@ export default function Home() {
   const [profileData, setProfileData] = useState<any>({});
   // const [statusMsg, setStatusMsg] = useState("");
   // const [statusColor, setStatusColor] = useState("blue");
-
+  const { state } = useContext<any>(Store);
+  console.log("Somestate", state);
   useEffect(() => {
     (async () => {
       const rs = await new Users().getUserProfile();
@@ -103,7 +105,11 @@ export default function Home() {
                       type="text"
                       className="form-control form-rounded"
                       readOnly
-                      defaultValue={profileData?.email ? profileData.email : ""}
+                      defaultValue={
+                        profileData?.email
+                          ? profileData.email
+                          : state.emailaddress
+                      }
                     />
                   </div>
                   <div className="form-group">

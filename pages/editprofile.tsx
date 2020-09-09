@@ -6,6 +6,7 @@ import Prompt from "../components/Prompt";
 import { Store } from "../contextStore";
 
 const REGIONS = [
+  ["wr", "Western Region"],
   ["as", "Ashanti"],
   ["ba", "Brong Ahafo Region"],
   ["be", "Bono-East Region"],
@@ -19,7 +20,6 @@ const REGIONS = [
   ["ue", "Upper East Region"],
   ["uw", "Upper West Region"],
   ["ot", "Oti Region"],
-  ["wr", "Western Region"],
   ["wn", "Western-North Region"],
 ];
 const PRIVACY = [
@@ -36,7 +36,7 @@ export default function Home() {
   // const [reg_dat, setRegDate] = useState("");
   const [street_address, setStreetAddress] = useState("");
   const [phone_number, setPhoneNumber] = useState("");
-  const [region, setRegion] = useState("");
+  const [region, setRegion] = useState("Western Region");
   const [digital_address, setDigitalAddress] = useState("");
   const [privacy_level, setPrivacyLevel] = useState("");
   // const [image, setImage] = useState("");
@@ -50,7 +50,7 @@ export default function Home() {
   const [link_to, setLinkTo] = useState("");
   const [link_text, setLinkText] = useState("");
 
-  const { dispatch } = useContext(Store);
+  const { state, dispatch } = useContext(Store);
   const handleClose = () => setShow(false);
 
   const callPrompt = (
@@ -111,6 +111,7 @@ export default function Home() {
       setRegion(rs.region ? rs.region : "Western Region");
       setDigitalAddress(rs.digital_address);
       setPrivacyLevel(rs.privacy_level ? rs.privacy_level : "Just me");
+      setEmail(state.emailaddress);
       console.log("rsData", rs);
     })();
   }, []);
@@ -207,7 +208,7 @@ export default function Home() {
                       className="form-control form-rounded"
                       placeholder="your@email.com"
                       value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      readOnly
                     />
                   </div>
                   <div className="form-group">

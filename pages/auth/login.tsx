@@ -41,12 +41,20 @@ const Login = () => {
         password
       );
       if (response.status === 200) {
+        response.data.emailaddress = authentication_property;
         window.localStorage.setItem("cp-a", JSON.stringify(response.data));
         const userInfo = await new Users().getUserProfile();
         if (userInfo.first_name > 0 || userInfo.last_name.length > 0) {
+          (response.data.username =
+            userInfo.first_name + " " + userInfo.last_name),
+            window.localStorage.setItem("cp-a", JSON.stringify(response.data));
           dispatch({
             type: "UPDATE_USERNAME",
             payload: userInfo.first_name + " " + userInfo.last_name,
+          });
+          dispatch({
+            type: "SET_EMAIL",
+            payload: authentication_property,
           });
         }
         setShow(false);
