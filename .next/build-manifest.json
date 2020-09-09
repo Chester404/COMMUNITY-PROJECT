@@ -29,10 +29,11 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/editprofile.js"
     ],
-    "/profile": [
+    "/membersigned": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/profile.js"
+      
+      "static/chunks/pages/membersigned.js"
     ]
   },
   "ampFirstPages": []
