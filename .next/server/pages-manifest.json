@@ -1,7 +1,19 @@
 {
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
-  "/_error": "pages/_error.js",
+  "/about": "pages/about.js",
+  "/admin": "pages/admin.js",
+  "/auth/confirmaccount": "pages/auth/confirmaccount.js",
+  "/auth/login": "pages/auth/login.js",
+  "/auth/signup": "pages/auth/signup.js",
   "/blog": "pages/blog.js",
-  "/memberlist": "pages/memberlist.js"
+  "/editprofile": "pages/editprofile.js",
+  "/": "pages/index.js",
+  "/memberlist": "pages/memberlist.js",
+  "/profile": "pages/profile.js",
+  "/user/editprofile": "pages/user/editprofile.js",
+  "/user/profile": "pages/user/profile.js",
+  "/user/profilelist": "pages/user/profilelist.js",
+  "/user/profilelist_unregistered": "pages/user/profilelist_unregistered.js",
+  "/_error": "pages/_error.js"
 }

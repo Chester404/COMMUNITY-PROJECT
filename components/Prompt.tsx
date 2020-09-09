@@ -6,6 +6,7 @@ const Prompt = (props: any) => {
   useEffect(() => {
     setCloseBox(props.show);
   }, [props.show]);
+  console.log("Propmt calles");
   return (
     <div
       id="myModal"

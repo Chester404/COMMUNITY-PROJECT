@@ -1,6 +1,16 @@
 import MainLayout from "../components/MainLayout";
+import { Users } from "../lib/endpoints";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [userProfiles, setUserProfiles] = useState([]);
+  useEffect(() => {
+    (async () => {
+      const rs = await new Users().getProfiles();
+      // console.log(rs);
+      setUserProfiles(rs);
+    })();
+  }, []);
   return (
     <>
       <MainLayout>
@@ -33,149 +43,64 @@ export default function Home() {
           <div className="card">
             <div className="card-body">
               <h4>Market Circle Individuals</h4>
-              <div className="table-responsive table-lg">
-                <table className="table">
-                  <thead>
-                    <tr>
-                      <th scope="col">Name</th>
-                      <th scope="col">Location</th>
-                      <th scope="col">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <img
-                          src="assets/images/img.jpg"
-                          className="brround"
-                          alt=""
-                          style={{ width: "40px", height: "40px" }}
-                        />
-                        <span className="ml-5">Godsway Hadson</span>
-                      </td>
-                      <td>
-                        <p className="mt-2">Anaji, Takoradi</p>
-                      </td>
-                      <td>
-                        <p className="mt-2">
-                          <i
-                            className="fe fe-alert-octagon"
-                            style={{ fontSize: "large" }}
-                          />
-                          <i
-                            className="fe fe-heart ml-1"
-                            style={{ fontSize: "large" }}
-                          />
-                        </p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <img
-                          src="assets/images/img.jpg"
-                          className="brround"
-                          alt=""
-                          style={{ width: "40px", height: "40px" }}
-                        />
-                        <span className="ml-5">Godsway Hadson</span>
-                      </td>
-                      <td>
-                        <p className="mt-2">Anaji, Takoradi</p>
-                      </td>
-                      <td>
-                        <p className="mt-2">
-                          <i
-                            className="fe fe-alert-octagon"
-                            style={{ fontSize: "large" }}
-                          />
-                          <i
-                            className="fe fe-heart ml-1"
-                            style={{ fontSize: "large" }}
-                          />
-                        </p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <img
-                          src="assets/images/img.jpg"
-                          className="brround"
-                          alt=""
-                          style={{ width: "40px", height: "40px" }}
-                        />
-                        <span className="ml-5">Godsway Hadson</span>
-                      </td>
-                      <td>
-                        <p className="mt-2">Anaji, Takoradi</p>
-                      </td>
-                      <td>
-                        <p className="mt-2">
-                          <i
-                            className="fe fe-alert-octagon"
-                            style={{ fontSize: "large" }}
-                          />
-                          <i
-                            className="fe fe-heart ml-1"
-                            style={{ fontSize: "large" }}
-                          />
-                        </p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <img
-                          src="assets/images/img.jpg"
-                          className="brround"
-                          alt=""
-                          style={{ width: "40px", height: "40px" }}
-                        />
-                        <span className="ml-5">Godsway Hadson</span>
-                      </td>
-                      <td>
-                        <p className="mt-2">Anaji, Takoradi</p>
-                      </td>
-                      <td>
-                        <p className="mt-2">
-                          <i
-                            className="fe fe-alert-octagon"
-                            style={{ fontSize: "large" }}
-                          />
-                          <i
-                            className="fe fe-heart ml-1"
-                            style={{ fontSize: "large" }}
-                          />
-                        </p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <img
-                          src="assets/images/img.jpg"
-                          className="brround"
-                          alt=""
-                          style={{ width: "40px", height: "40px" }}
-                        />
-                        <span className="ml-5">Godsway Hadson</span>
-                      </td>
-                      <td>
-                        <p className="mt-2">Anaji, Takoradi</p>
-                      </td>
-                      <td>
-                        <p className="mt-2">
-                          <i
-                            className="fe fe-alert-octagon"
-                            style={{ fontSize: "large" }}
-                          />
-                          <i
-                            className="fe fe-heart ml-1"
-                            style={{ fontSize: "large" }}
-                          />
-                        </p>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+              {!userProfiles[0] ? (
+                <h3>Loading user list ...</h3>
+              ) : (
+                <div className="table-responsive table-lg">
+                  <table className="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Location</th>
+                        <th scope="col">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {userProfiles.map((user: any) => {
+                        if (
+                          user.first_name.length <= 0 ||
+                          user.last_name.length <= 0
+                        )
+                          return;
+
+                        const image_link = user.image
+                          ? user.image
+                          : "/assets/images/Profile_Icon.png";
+                        return (
+                          <tr key={user.id}>
+                            <td>
+                              <img
+                                src={image_link}
+                                className="brround"
+                                alt=""
+                                style={{ width: "40px", height: "40px" }}
+                              />
+                              <span className="ml-5">
+                                {user.first_name + " " + user.last_name}
+                              </span>
+                            </td>
+                            <td>
+                              <p className="mt-2">{user.street_address}</p>
+                            </td>
+                            <td>
+                              <p className="mt-2">
+                                <i
+                                  className="fe fe-alert-octagon"
+                                  style={{ fontSize: "large" }}
+                                />
+                                <i
+                                  className="fe fe-heart ml-1"
+                                  style={{ fontSize: "large" }}
+                                />
+                              </p>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              )}
               <div className="row">
                 <div className="col-md-5">
                   <label>

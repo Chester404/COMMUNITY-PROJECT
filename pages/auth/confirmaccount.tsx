@@ -1,10 +1,10 @@
 import Button from "react-bootstrap/Button";
-import Link from "next/link";
+// import Link from "next/link";
 import { useState, FormEvent, useEffect, useRef } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import Prompt from "../../components/Prompt";
-import AuthHeader from "../../components/auth/AuthHeader";
+// import AuthHeader from "../../components/auth/AuthHeader";
 import Head from "next/head";
 
 const ConfirmAccount = () => {

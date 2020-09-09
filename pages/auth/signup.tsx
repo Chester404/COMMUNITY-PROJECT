@@ -24,6 +24,7 @@ const Signup = () => {
     link_text: string,
     message: string
   ) => {
+    if (show) setShow(false);
     setShow(true);
     setPromptTitle(title);
     setLinkText(link_text);
@@ -102,6 +103,7 @@ const Signup = () => {
       callPrompt("Sign Up", "", "Close", "Password mismatch");
       return;
     }
+
     try {
       const response = await axios.post(
         "http://51.116.114.155:8080/auth/registration/",
@@ -112,7 +114,6 @@ const Signup = () => {
         }
       );
 
-      console.log("response:", response);
       if (response.status === 200 || response.statusText === "Created") {
         // go to landing page
 
@@ -126,7 +127,6 @@ const Signup = () => {
         callPrompt("Sign Up", "", "Close", "Failed to register");
       }
     } catch (err) {
-      console.log(err.message);
       if (err.message === "Request failed with status code 400") {
         callPrompt(
           "Sign Up",
@@ -201,9 +201,11 @@ const Signup = () => {
             <br />
             <div>
               Already on Market Circle?{" "}
-              <a href="login.html" className="logintext">
-                <b>Log in</b>
-              </a>
+              <Link href="/auth/login">
+                <a className="logintext">
+                  <b>Log in</b>
+                </a>
+              </Link>
             </div>
             <br />
           </div>
@@ -217,6 +219,8 @@ const Signup = () => {
                   id="InputEmail"
                   aria-describedby="emailHelp"
                   placeholder="Please enter a valid email"
+                  value={authentication_property}
+                  onChange={(e) => setAuthenticationProperty(e.target.value)}
                 />
               </div>
               <div className="form-group">
@@ -227,6 +231,8 @@ const Signup = () => {
                   id="InputPassword1"
                   placeholder="Password must be at least 8 characters"
                   data-toggle="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
               <div className="form-group">
@@ -237,15 +243,17 @@ const Signup = () => {
                   id="exampleInputPassword1"
                   placeholder="Re-Enter the same password as above"
                   data-toggle="password"
+                  value={confirm_password}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
                 />
               </div>
-              <div className="form-group" style={{ textAlign: "center" }}>
+
+              <div className="form-group " style={{ textAlign: "center" }}>
                 <input
                   type="radio"
                   id="organization"
                   name="account_type"
                   defaultValue="organization"
-                  defaultChecked
                 />
                 <label htmlFor="organization" className="radio_spc">
                   Organization
@@ -256,10 +264,11 @@ const Signup = () => {
                   name="account_type"
                   defaultValue="individual"
                   className="radio_spc"
+                  defaultChecked
                 />
                 <label htmlFor="individual">Individual</label>
               </div>
-              <div style={{ textAlign: "center" }}>
+              <div style={{ textAlign: "center", paddingRight: "10px" }}>
                 <button
                   type="submit"
                   className="btn btn-primary btn-block"

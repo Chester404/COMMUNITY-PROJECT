@@ -9,12 +9,16 @@ const navFontSize = {
 const Navbar = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const router = useRouter();
+
+  const logout = () => {
+    console.log("LOGOUT");
+    window.localStorage.removeItem("cp-a");
+    router.push("/auth/login");
+  };
   useEffect(() => {
     let lStorage = window.localStorage.getItem("cp-a");
     lStorage = JSON.parse(lStorage);
-    console.log("lStorage", lStorage);
     if (lStorage) {
-      console.log("WHy here");
       setIsLoggedIn(true);
     }
   }, []);
@@ -29,9 +33,9 @@ const Navbar = (props) => {
           <a className="animated-arrow hor-toggle horizontal-navtoggle">
             <span />
           </a>
-          <a className="header-brand" href="index.html">
+          <a className="header-brand" href="#">
             <img
-              src="assets/images/Logo.png"
+              src="/assets/images/Logo.png"
               className="header-brand-img main-logo"
               alt="logo"
               style={{ marginLeft: "-1em" }}
@@ -51,12 +55,16 @@ const Navbar = (props) => {
             <a className="nav-link">
               <span className="lay-outstyle mt-1">Forum</span>
             </a>
-            <a className="nav-link">
-              <span className="lay-outstyle mt-1">Blog</span>
-            </a>
-            <a className="nav-link">
-              <span className="lay-outstyle mt-1">Members</span>
-            </a>
+            <Link href="/blog">
+              <a className="nav-link">
+                <span className="lay-outstyle mt-1">Blog</span>
+              </a>
+            </Link>
+            <Link href="/memberlist">
+              <a className="nav-link">
+                <span className="lay-outstyle mt-1">Members</span>
+              </a>
+            </Link>
           </div>
           <div className="d-flex order-lg-2 ml-auto header-right">
             <a href="#" className="nav-link icon full-screen-link">
@@ -70,28 +78,31 @@ const Navbar = (props) => {
               >
                 <span
                   className="avatar avatar-md brround cover-image"
-                  data-image-src="assets/images/img.jpg"
+                  data-image-src="/images/blank_avatar.jpeg"
                   style={{
-                    background: 'url("assets/images/img.jpg") center center',
+                    background:
+                      'url("/images/blank_avatar.jpeg") center center',
                   }}
                 ></span>
                 <div className="ml-3">
                   <span style={{ color: "#000000" }}>
-                    Louis Ewurama Young{" "}
+                    No Name
                     <i className="fe fe-chevron-down ml-1" />
                   </span>
                 </div>
               </a>
               <div className="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                <a className="dropdown-item" href="#">
-                  <i className="dropdown-icon fe fe-user" />
-                  View Profile
-                </a>
+                <Link href="/profile">
+                  <a className="dropdown-item">
+                    <i className="dropdown-icon fe fe-user" />
+                    View Profile
+                  </a>
+                </Link>
                 <a className="dropdown-item" href="#">
                   <i className="dropdown-icon fe fe-edit" />
                   Account Setting
                 </a>
-                <a className="dropdown-item" href="#">
+                <a className="dropdown-item" href="#" onClick={logout}>
                   <i className="dropdown-icon fe fe-power" /> Log Out
                 </a>
               </div>
