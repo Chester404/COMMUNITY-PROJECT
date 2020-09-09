@@ -36,14 +36,14 @@ export default function Home() {
             className="table-responsive table-lg"
             style={{ background: "#ffffff", marginBottom: "30px" }}
           >
-            <h5 className="mt-5 mb-5 ml-3 table-title">
+            <h5 className="mt-5 mb-5 ml-5 table-title">
               Market Circle Individuals
             </h5>
             <table className="table">
               <thead>
                 <tr>
-                  <th scope="col" className="text-muted">
-                    Name{" "}
+                  <th scope="col" className="text-muted ml-5">
+                    <span className="ml-3">Name </span>
                     <i
                       className="fe fe-align-left"
                       style={{ fontSize: "20px" }}
@@ -63,7 +63,7 @@ export default function Home() {
                     <div className="dropdown">
                       <img
                         src="assets/images/img.jpg"
-                        className="brround"
+                        className="brround ml-3"
                         alt=""
                         style={{ width: "40px", height: "40px" }}
                       />
@@ -128,7 +128,7 @@ export default function Home() {
                   <td>
                     <img
                       src="assets/images/img.jpg"
-                      className="brround"
+                      className="brround ml-3"
                       alt=""
                       style={{ width: "40px", height: "40px" }}
                     />
@@ -154,7 +154,7 @@ export default function Home() {
                   <td>
                     <img
                       src="assets/images/img.jpg"
-                      className="brround"
+                      className="brround ml-3"
                       alt=""
                       style={{ width: "40px", height: "40px" }}
                     />
@@ -180,7 +180,7 @@ export default function Home() {
                   <td>
                     <img
                       src="assets/images/img.jpg"
-                      className="brround"
+                      className="brround ml-3"
                       alt=""
                       style={{ width: "40px", height: "40px" }}
                     />
@@ -206,7 +206,7 @@ export default function Home() {
                   <td>
                     <img
                       src="assets/images/img.jpg"
-                      className="brround"
+                      className="brround ml-3"
                       alt=""
                       style={{ width: "40px", height: "40px" }}
                     />
