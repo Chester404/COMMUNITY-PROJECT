@@ -19,8 +19,8 @@ const gState: IGState = {
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case "change":
-      return action.payload;
+    case "UPDATE_USERNAME":
+      return { ...state, username: action.payload };
     default:
       return state;
   }

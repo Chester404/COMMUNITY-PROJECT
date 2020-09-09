@@ -2,6 +2,30 @@ import MainLayout from "../components/MainLayout";
 // import Link from "next/link";
 import { Users } from "../lib/endpoints";
 import { useState, useEffect } from "react";
+import Link from "next/link";
+
+const REGIONS = [
+  ["as", "Ashanti"],
+  ["ba", "Brong Ahafo Region"],
+  ["be", "Bono-East Region"],
+  ["ah", "Ahafo Region"],
+  ["cr", "Central Region"],
+  ["er", "Eastern Region"],
+  ["gr", "Greater Accra Region"],
+  ["nr", "Northern Region"],
+  ["sa", "Savannah Region"],
+  ["ne", "North East Region"],
+  ["ue", "Upper East Region"],
+  ["uw", "Upper West Region"],
+  ["ot", "Oti Region"],
+  ["wr", "Western Region"],
+  ["wn", "Western-North Region"],
+];
+const PRIVACY = [
+  ["me", "Me"],
+  ["or", "Registered Organisation Only"],
+  ["orc", "Registered Organisation and Community members"],
+];
 
 export default function Home() {
   const [profileData, setProfileData] = useState<any>({});
@@ -11,6 +35,10 @@ export default function Home() {
   useEffect(() => {
     (async () => {
       const rs = await new Users().getUserProfile();
+      const rIndex = REGIONS.findIndex((r) => r[0] == rs.region);
+      rs.region = REGIONS[rIndex][1];
+      const pIndex = PRIVACY.findIndex((r) => r[0] == rs.privacy_level);
+      rs.privacy_level = PRIVACY[pIndex][1];
       setProfileData(rs);
       console.log(rs);
     })();
@@ -28,16 +56,26 @@ export default function Home() {
           <div className="row ">
             <div className="col-md-3 ">
               <div className="userpic mb-4">
-                <img src={profileData.image} alt="" width={200} height={200} />
+                <img
+                  src={
+                    profileData.image
+                      ? profileData.image
+                      : "/assets/images/Profile_Icon.png"
+                  }
+                  alt=""
+                  width={200}
+                  height={200}
+                />
               </div>
               <div className="text-center">
-                <a
-                  href="editprofile"
-                  className="btn btn-primary btn-block mt-1"
-                  style={{ borderRadius: "12px", width: "200px" }}
-                >
-                  Edit Information
-                </a>
+                <Link href="/editprofile">
+                  <a
+                    className="btn btn-primary btn-block mt-1"
+                    style={{ borderRadius: "12px", width: "200px" }}
+                  >
+                    Edit Information
+                  </a>
+                </Link>
                 <br />
               </div>
             </div>
@@ -114,7 +152,11 @@ export default function Home() {
                       className="form-control form-rounded"
                       readOnly
                       defaultValue={
-                        profileData?.gender ? profileData.gender : ""
+                        profileData?.gender
+                          ? profileData.gender === "m"
+                            ? "Male"
+                            : "Female"
+                          : ""
                       }
                     />
                   </div>

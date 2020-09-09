@@ -13,6 +13,16 @@ const Prompt = (props: any) => {
       className="modal overlay"
       style={{ display: closeBox ? "block" : "", zIndex: 9999 }}
     >
+      <div
+        style={{
+          display: closeBox ? "block" : "",
+          position: "absolute",
+          width: "100%",
+          height: "100%",
+          backgroundColor: "black",
+          opacity: 0.6,
+        }}
+      />
       {/* <!-- Modal content --> */}
       <div
         className="modal-content"
@@ -40,9 +50,9 @@ const Prompt = (props: any) => {
               props.handleClose();
               // setCloseBox(false);
             }}
-            style={{ fontSize: 20 }}
+            style={{ fontSize: 15 }}
           >
-            {props.linkText.length > 0 ? props.linkText : "Close"}
+            {props.linkText.length > 0 ? props.linkText : ""}
           </a>
         )}
       </div>

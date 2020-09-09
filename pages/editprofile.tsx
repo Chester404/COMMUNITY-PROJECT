@@ -1,6 +1,9 @@
 import MainLayout from "../components/MainLayout";
 import { Users } from "../lib/endpoints";
-import { useState, FormEvent, useEffect } from "react";
+import { useState, FormEvent, useEffect, useContext } from "react";
+import Link from "next/link";
+import Prompt from "../components/Prompt";
+import { Store } from "../contextStore";
 
 const REGIONS = [
   ["as", "Ashanti"],
@@ -41,10 +44,35 @@ export default function Home() {
   // const [user_id, setUser] = useState("");
   // const [statusMsg, setStatusMsg] = useState("");
   // const [statusColor, setStatusColor] = useState("blue");
+  const [show, setShow] = useState(false);
+  const [prompt_title, setPromptTitle] = useState("");
+  const [prompt_body, setPromptBody] = useState("");
+  const [link_to, setLinkTo] = useState("");
+  const [link_text, setLinkText] = useState("");
+
+  const { dispatch } = useContext(Store);
+  const handleClose = () => setShow(false);
+
+  const callPrompt = (
+    title: string,
+    link: string,
+    link_text: string,
+    message: string
+  ) => {
+    setShow(true);
+    setPromptTitle(title);
+    setLinkText(link_text);
+    setLinkTo(link);
+    setPromptBody(message);
+  };
 
   const submitData = async () => {
+    callPrompt("Edit Profile", "", "", "Please wait...");
+    const [first, ...last] = name.split(" ");
     const response = await new Users().updateUserProfile({
       name: name,
+      first_name: first,
+      last_name: last.join(" "),
       birthday: birthday,
       gender: gender,
       street_address: street_address,
@@ -54,14 +82,19 @@ export default function Home() {
       privacy_level: privacy_level,
     });
 
-    console.log(response);
-
-    if (!response.error) {
+    setShow(false);
+    if (response.error) {
+      callPrompt("Edit Profile", "", "Close", "An error occured");
       //Do whatever
       // setStatusColor("red");
       // setStatusMsg("Some error occurred");
       return;
     }
+    callPrompt("Edit Profile", "", "Close", "Success: User profile saved");
+    dispatch({
+      type: "UPDATE_USERNAME",
+      payload: name,
+    });
     // setStatusColor("blue");
     // setStatusMsg("Updated");
     //process when succesfull
@@ -85,6 +118,16 @@ export default function Home() {
   return (
     <>
       <MainLayout>
+        <Prompt
+          title={prompt_title}
+          linkTo={link_to}
+          linkText={link_text}
+          show={show}
+          success={link_to.length > 0 ? true : false}
+          handleClose={handleClose}
+        >
+          {prompt_body}
+        </Prompt>
         <div>
           {/* page-header */}
           <div className="page-header">
@@ -307,18 +350,19 @@ export default function Home() {
                   >
                     Save
                   </button>
-                  <button
-                    type="button"
-                    className="btn ml-5 btn-lg mb-1 mt-5"
-                    style={{
-                      background: "#818AA9 !important",
-                      width: "160px !important",
-                      color: "#ffffff !important",
-                      borderRadius: "20px !important",
-                    }}
-                  >
-                    Cancel
-                  </button>
+                  <Link href="/profile">
+                    <a
+                      className="btn ml-5 btn-lg mb-1 mt-5"
+                      style={{
+                        background: "#818AA9 !important",
+                        width: "160px !important",
+                        color: "#ffffff !important",
+                        borderRadius: "20px !important",
+                      }}
+                    >
+                      Cancel
+                    </a>
+                  </Link>
                 </div>
               </div>
               {/* </div> */}`

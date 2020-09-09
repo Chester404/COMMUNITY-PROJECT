@@ -45,7 +45,7 @@ const Signup = () => {
         "Sign Up",
         "",
         "Close",
-        "Please enter the correct email address or phone number"
+        "Check E-mail: Please enter the correct email address or phone number"
       );
       return;
     }
@@ -58,7 +58,7 @@ const Signup = () => {
         "Sign Up",
         "",
         "Close",
-        "There should be at least one lowercase character"
+        "Check Password: There should be at least one lowercase character"
       );
       return;
     }
@@ -70,7 +70,7 @@ const Signup = () => {
         "Sign Up",
         "",
         "Close",
-        "There should be at least one uppercase character"
+        "Check Password: There should be at least one uppercase character"
       );
       return;
     }
@@ -82,7 +82,7 @@ const Signup = () => {
         "Sign Up",
         "",
         "Close",
-        "There should be at least one numeric character"
+        "Check Password: There should be at least one numeric character"
       );
       return;
     }
@@ -93,7 +93,7 @@ const Signup = () => {
         "Sign Up",
         "",
         "Close",
-        "Password should be eight or more characters long"
+        "Check Password: Password should be eight or more characters long"
       );
       return;
     }
@@ -102,7 +102,7 @@ const Signup = () => {
       callPrompt("Sign Up", "", "Close", "Password mismatch");
       return;
     }
-
+    callPrompt("Sign Up", "", "", "Please wait...");
     try {
       const response = await axios.post(
         "http://51.116.114.155:8080/auth/registration/",

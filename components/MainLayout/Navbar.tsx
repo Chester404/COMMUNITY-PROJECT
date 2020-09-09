@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useEffect, useState, createContext } from "react";
+import { useEffect, useState, createContext, useContext } from "react";
 import { useRouter } from "next/router";
 
 import { Store } from "../../contextStore";
@@ -10,12 +10,14 @@ const Navbar = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const router = useRouter();
 
+  const { state } = useContext(Store);
   const logout = () => {
     console.log("LOGOUT");
     window.localStorage.removeItem("cp-a");
     router.push("/auth/login");
   };
   useEffect(() => {
+    console.log("Nav Called");
     let lStorage = window.localStorage.getItem("cp-a");
     lStorage = JSON.parse(lStorage);
     if (lStorage) {
@@ -86,7 +88,7 @@ const Navbar = (props) => {
                 ></span>
                 <div className="ml-3">
                   <span style={{ color: "#000000" }}>
-                    No Name
+                    {state.username.length <= 0 ? "No Name" : state.username}
                     <i className="fe fe-chevron-down ml-1" />
                   </span>
                 </div>

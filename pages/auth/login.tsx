@@ -1,9 +1,10 @@
 import Head from "next/head";
 import Link from "next/link";
-import { useState, FormEvent, useEffect } from "react";
-import { Auth } from "../../lib/endpoints";
+import { useState, FormEvent, useEffect, useContext } from "react";
+import { Auth, Users } from "../../lib/endpoints";
 import { useRouter } from "next/router";
 import Prompt from "../../components/Prompt";
+import { Store } from "../../contextStore";
 
 const Login = () => {
   const [authentication_property, setAuthenticationProperty] = useState("");
@@ -13,6 +14,8 @@ const Login = () => {
   const [prompt_body, setPromptBody] = useState("");
   const [link_to, setLinkTo] = useState("");
   const [link_text, setLinkText] = useState("");
+  const { dispatch } = useContext(Store);
+  const router = useRouter();
 
   const handleClose = () => setShow(false);
 
@@ -28,9 +31,10 @@ const Login = () => {
     setLinkTo(link);
     setPromptBody(message);
   };
-  const router = useRouter();
+
   const authenticate = async (e: FormEvent) => {
     e.preventDefault();
+    callPrompt("Login", "", "", "Please wait...");
     try {
       const response = await new Auth().login(
         authentication_property,
@@ -38,28 +42,40 @@ const Login = () => {
       );
       if (response.status === 200) {
         window.localStorage.setItem("cp-a", JSON.stringify(response.data));
+        const userInfo = await new Users().getUserProfile();
+        if (userInfo.first_name > 0 || userInfo.last_name.length > 0) {
+          dispatch({
+            type: "UPDATE_USERNAME",
+            payload: userInfo.first_name + " " + userInfo.last_name,
+          });
+        }
+        setShow(false);
         router.push("/blog");
+      } else {
+        callPrompt("Login", "", "Close", "An error occured.");
       }
     } catch (err) {
       if (err.message === "Request failed with status code 401") {
         // bad credentials
         callPrompt(
-          "Sign Up",
+          "Login",
           "",
           "Close",
           "Please check your credentials and try again."
         );
       } else if (err.message === "Request failed with status code 404") {
         // bad endpoint
-        callPrompt("Sign Up", "", "Close", "Request failed");
+        callPrompt("Login", "", "Close", "Request failed");
       } else if (err.message === "Network Error") {
         // bad network connection
         callPrompt(
-          "Sign Up",
+          "Login",
           "",
           "Close",
           "Please check your network connection and try again."
         );
+      } else {
+        callPrompt("Login", "", "Close", "An error occured.");
       }
     }
   };
