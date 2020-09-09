@@ -164,6 +164,14 @@ h5.table-title {
   font-weight: 700;
 }
 
+<<<<<<< HEAD
 .column-color {
   font-weight: 800;
+=======
+.dropdown:hover .dropdown-content {display: block;}
+
+.form-control:disabled, .form-control[readonly] {
+    background-color: white;
+    opacity: 1;
+>>>>>>> cd203616cf19a8427a5a239dd0d5c6ecd693571f
 }

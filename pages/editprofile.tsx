@@ -1,20 +1,65 @@
 import MainLayout from "../components/MainLayout";
+import { Users } from "../lib/endpoints";
+import { useState, FormEvent } from "react";
 
 export default function Home() {
+
+  const [id, setId] = useState("");
+  const [name, setName] = useState("");
+  const [birthday, setBirthDay] = useState("");
+  const [gender, setGender] = useState("");
+  const [reg_dat, setRegDate] = useState("");
+  const [street_address, setStreetAddress] = useState("");
+  const [phone_number, setPhoneNumber] = useState("");
+  const [region, setRegion] = useState("");
+  const [digital_address, setDigitalAddress] = useState("");
+  const [privacy_level, setPrivacyLevel] = useState("");
+  const [image, setImage] = useState("");
+  const [email, setEmail] = useState("");
+  const [user_id, setUser] = useState("");
+  const [statusMsg, setStatusMsg] = useState("");
+  const [statusColor, setStatusColor] = useState("blue");
+  const submitData = async (e: FormEvent) => {
+    e.preventDefault();
+
+    const response = await new Users().updateUserProfile({
+      name: name,     
+      birthday: birthday,
+      gender: gender,
+      street_address: street_address,
+      phone_number:phone_number,
+      region: region,
+      digital_address: digital_address,
+      privacy_level: privacy_level,
+    });
+    console.log(response);
+    if (!response.error) {
+      //Do whatever
+      setStatusColor("red");
+      setStatusMsg("Some error occurred");
+      return;
+    }
+    setStatusColor("blue");
+    setStatusMsg("Updated");
+    //process when succesfull
+  };
+
   return (
     <>
       <MainLayout>
         <div>
           {/* page-header */}
           <div className="page-header">
-            <h1 className="page-title">Edit Profile</h1>
+            <h1 className="page-title">Edit Information</h1>
           </div>
           {/* End page-header */}
           <div className="row">
             <div className="col-md-3">
               <div className="userpic mb-4">
                 <div className="profile-pic">
-                  <img src="assets/images/img.jpg" />
+                  <img src="assets/images/Profile_Icon.png"
+                  width={200}
+                  height={200} />
                   <div
                     className="edit"
                     style={{
@@ -57,34 +102,29 @@ export default function Home() {
               </div>
             </div>
             <div className="col-lg-12 col-xl-9 col-md-12 col-sm-12">
-              <div className="card-body">
+              {/* <div className="card-body editprofile_cardbody"> */}
                 <div className="row">
                   <div className="col-lg-6 col-md-12">
                     <div className="form-group">
-                      <label>First Name</label>
+                      <label>Name</label>
                       <input
                         type="text"
                         className="form-control form-rounded"
-                        placeholder="Enter first name"
-                        defaultValue="Lois Ewurama"
+                        placeholder="Lois Young"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        
                       />
-                    </div>
+                    </div>                    
                     <div className="form-group">
-                      <label>Last Name</label>
+                      <label style={{color:"grey", fontFamily:""}}>Email Address</label>
                       <input
                         type="text"
                         className="form-control form-rounded"
-                        placeholder="Enter last name"
-                        defaultValue="Young"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label>Email Address</label>
-                      <input
-                        type="text"
-                        className="form-control form-rounded"
-                        placeholder="Enter Email Address"
-                        defaultValue="loisewuramayoung@gmail.com"
+                        placeholder="your@email.com"
+                        readOnly
+                        value={email}
+                        
                       />
                     </div>
                     <div className="form-group">
@@ -92,83 +132,111 @@ export default function Home() {
                       <input
                         type="text"
                         className="form-control form-rounded"
-                        placeholder="Enter Email Address"
-                        defaultValue="+233 24 678 9560"
+                        placeholder="024 678 9560"
+                        value={phone_number}
+                        onChange={(e) =>  setPhoneNumber(e.target.value)}
                       />
                     </div>
                     <div className="form-group">
-                      <label className="form-label">Date of Birth</label>
-                      <div className="input-group">
-                        <input
-                          type="text"
+                   
+                      <label htmlFor="form-label">Date of Birth</label>
+                      <div className="form-group">
+                      <div className="input-group-date">
+                      <input
+                          type="date"
                           id="dob"
                           className="form-control form-rounded"
-                          placeholder="Date of Birth"
-                          defaultValue="10 Oct 1993"
+                          defaultValue="30/12/2020" 
+                          value={birthday}
+                          onChange={(e) =>  setBirthDay(e.target.value)}                         
+                        />  
+                      </div>
+                                              
+                      </div>
+                    </div>
+                    <div className="form-group">
+                      <label>Private Level</label>
+                      <select className="form-control select2 form-rounded">
+                      <option>Just me</option>
+                        <option>Registered Organizations Only</option>
+                        <option>
+                          Registered Organizations and Community members
+                        </option>
+                      </select>
+                    </div>
+                    
+                  </div>
+                  <div className="col-lg-6 col-md-12">
+                  <div className="form-group mt-4">
+                  <label htmlFor="exampleInput">Gender</label>
+                    <div className="row" style={{ marginLeft: 3 }}>
+                      <div className="form-check form-check-inline">
+                        <input
+                          className="form-check-input"
+                          type="radio"
+                          name="inlineRadioOptions"
+                          id="inlineRadio1"                         
+                          value={gender}
+                          onChange={(e) => setGender(e.target.value)}
                         />
-                        <span className="input-group-append">
-                          <button
-                            className="btn btn-transparent"
-                            type="button"
-                            style={{
-                              borderBottomRightRadius: "12px",
-                              borderTopRightRadius: "12px",
-                            }}
-                          >
-                            <i
-                              className="fe fe-calendar fa-lg"
-                              style={{
-                                background: "#FFFFFF !important",
-                                color: "#000000",
-                              }}
-                            />
-                          </button>
-                        </span>
+                        <label
+                          className="form-check-label"
+                          htmlFor="inlineRadio1"
+                        >
+                          Male
+                        </label>
+                      </div>
+                      <div className="form-check form-check-inline">
+                        <input
+                          className="form-check-input"
+                          type="radio"
+                          name="inlineRadioOptions"
+                          id="inlineRadio2"                          
+                          value={gender}
+                          onChange={(e) => setGender(e.target.value)}
+                        />
+                        <label
+                          className="form-check-label"
+                          htmlFor="inlineRadio2"
+                        >
+                          Female
+                        </label>
                       </div>
                     </div>
                   </div>
-                  <div className="col-lg-6 col-md-12">
-                    <div className="form-group">
-                      <label>Gender</label>
-                      <select className="form-control select2 form-rounded">
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                      </select>
-                    </div>
+                    
                     <div className="form-group">
                       <label>Street Address</label>
                       <input
                         type="text"
                         className="form-control form-rounded"
-                        placeholder="Enter Street Address"
-                        defaultValue="Executive Avenue, Anaji"
+                        placeholder="Executive Avenue Anaji"
+                        value={street_address}
+                        onChange={(e) => setStreetAddress(e.target.value)}
                       />
                     </div>
                     <div className="form-group">
                       <label>Region</label>
                       <select className="form-control select2 form-rounded">
-                        <option value="Western Region">Western Region</option>
-                        <option value={2}>Option 2</option>
+                        <option>Western Region</option>
+                        <option>Central Region</option>
+                        <option>Eastern Region</option>
+                        <option>Greater Accra</option>
+                        <option>Volta Region</option>
                       </select>
+                      
                     </div>
                     <div className="form-group">
                       <label>Digital Address</label>
                       <input
                         type="text"
-                        className="form-control form-rounded"
-                        placeholder="Enter Digital Address"
-                        defaultValue="AK-039-5028"
+                        className="form-control form-rounded"                        
+                        placeholder="eg. AK-039-5028"
+                        value={digital_address}
+                        onChange={(e) => setDigitalAddress(e.target.value)}
                       />
                     </div>
-                    <div className="form-group">
-                      <label>Private Level</label>
-                      <select className="form-control select2 form-rounded">
-                        <option value="Registered Business Only">
-                          Registered Business Only
-                        </option>
-                        <option value={2}>Option 2</option>
-                      </select>
-                    </div>
+                    
                   </div>
                 </div>
                 <div
@@ -202,7 +270,7 @@ export default function Home() {
                     </button>
                   </div>
                 </div>
-              </div>
+              {/* </div> */}
               `
             </div>
           </div>
