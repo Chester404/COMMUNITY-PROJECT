@@ -105,11 +105,6 @@
     border-radius: 5px;
 }
 
-
-
-
-
-
 .pagination {
     display: inline-block;
 }
@@ -149,3 +144,8 @@
 }
 
 .dropdown:hover .dropdown-content {display: block;}
+
+.form-control:disabled, .form-control[readonly] {
+    background-color: white;
+    opacity: 1;
+}

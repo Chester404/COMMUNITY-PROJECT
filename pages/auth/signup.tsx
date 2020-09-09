@@ -206,7 +206,7 @@ const Signup = () => {
             <br />
             <div>
               Already on Market Circle?{" "}
-              <a href="login.html" className="logintext">
+              <a href="login" className="logintext">
                 <b>Log in</b>
               </a>
             </div>
@@ -244,16 +244,17 @@ const Signup = () => {
                   data-toggle="password"
                 />
               </div>
-              <div className="form-group" style={{ textAlign: "center" }}>
+                              
+              <div className="form-group " style={{ textAlign: "center" }}>
                 <input
                   type="radio"
                   id="organization"
                   name="account_type"
                   defaultValue="organization"
-                  defaultChecked
+                  
                 />
                 <label htmlFor="organization" className="radio_spc">
-                  Organization
+                   Organization
                 </label>
                 <input
                   type="radio"
@@ -261,10 +262,11 @@ const Signup = () => {
                   name="account_type"
                   defaultValue="individual"
                   className="radio_spc"
+                  defaultChecked
                 />
                 <label htmlFor="individual">Individual</label>
               </div>
-              <div style={{ textAlign: "center" }}>
+              <div style={{ textAlign: "center", paddingRight:"10px" }}>
                 <button
                   type="submit"
                   className="btn btn-primary btn-block"
