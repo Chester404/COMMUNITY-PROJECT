@@ -238,7 +238,7 @@ export default function Home() {
               </div>
               <div className="col-md-7">
                 <div className="pagination ml-auto" style={{ float: "right" }}>
-                  <a href="#">«</a>
+                  <a href="#">« Prev</a>
                   <a href="#" className="active">
                     1
                   </a>
@@ -247,7 +247,7 @@ export default function Home() {
                   <a href="#">4</a>
                   <a href="#">5</a>
                   <a href="#">6</a>
-                  <a href="#">»</a>
+                  <a href="#">Next »</a>
                 </div>
               </div>
             </div>
