@@ -99,9 +99,6 @@ const ConfirmAccount = () => {
 
   useEffect(() => {
     if (countDown == 60) countdown(1);
-    var body = document.body;
-
-    body.classList.add("parent");
   }, []);
   return (
     <>
