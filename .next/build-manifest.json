@@ -14,6 +14,11 @@
     "static/development/_ssgManifest.js"
   ],
   "pages": {
+    "/": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/index.js"
+    ],
     "/_app": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
@@ -24,6 +29,7 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
+<<<<<<< HEAD
     "/user/editprofile": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
@@ -33,6 +39,12 @@
       "static/chunks/main.js",
       "static/chunks/webpack.js",
       "static/chunks/pages/user/profile.js"
+=======
+    "/memberlist": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/memberlist.js"
+>>>>>>> profile-memberlist
     ]
   },
   "ampFirstPages": []

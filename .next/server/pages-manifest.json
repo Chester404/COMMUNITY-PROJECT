@@ -2,6 +2,11 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
+<<<<<<< HEAD
   "/user/editprofile": "pages/user/editprofile.js",
   "/user/profile": "pages/user/profile.js"
+=======
+  "/memberlist": "pages/memberlist.js",
+  "/": "pages/index.js"
+>>>>>>> profile-memberlist
 }
