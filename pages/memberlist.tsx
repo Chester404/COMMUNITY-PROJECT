@@ -107,6 +107,7 @@ export default function Home() {
                     Showing
                     <select
                       className="ml-3"
+                      disabled
                       style={{
                         height: "30px !important",
                         borderRadius: "6px",
@@ -126,16 +127,20 @@ export default function Home() {
                     className="pagination ml-auto"
                     style={{ float: "right" }}
                   >
-                    <a href="#">«</a>
-                    <a href="#" className="active">
+                    <a href="#" className="disabled">
+                      «
+                    </a>
+                    <a href="#" className="active disabled">
                       1
                     </a>
-                    <a href="#">2</a>
+                    {/* <a href="#">2</a>
                     <a href="#">3</a>
                     <a href="#">4</a>
                     <a href="#">5</a>
-                    <a href="#">6</a>
-                    <a href="#">»</a>
+                    <a href="#">6</a> */}
+                    <a href="#" className="disabled">
+                      »
+                    </a>
                   </div>
                 </div>
               </div>
