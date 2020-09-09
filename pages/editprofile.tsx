@@ -109,8 +109,8 @@ export default function Home() {
                       <label>Name</label>
                       <input
                         type="text"
-                        className="form-control form-rounded"
-                        placeholder="Lois Young"
+                        className="form-control form-rounded text-field-hover"
+                        placeholder="Full name"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         
@@ -130,13 +130,11 @@ export default function Home() {
                     <div className="form-group">
                       <label>Phone Number</label>
                       <input
-                        type="text"
+                        type="number"
                         className="form-control form-rounded"
-                        placeholder="024 678 9560"
-                        value={phone_number}
-                        onChange={(e) =>  setPhoneNumber(e.target.value)}
+                        placeholder="eg. 024 567 3456"                        
                       />
-                    </div>
+                      </div>
                     <div className="form-group">
                    
                       <label htmlFor="form-label">Date of Birth</label>
@@ -155,7 +153,7 @@ export default function Home() {
                       </div>
                     </div>
                     <div className="form-group">
-                      <label>Private Level</label>
+                      <label>Privacy Level</label>
                       <select className="form-control select2 form-rounded">
                       <option>Just me</option>
                         <option>Registered Organizations Only</option>
@@ -167,7 +165,7 @@ export default function Home() {
                     
                   </div>
                   
-                  <div className="col-lg-2"></div>
+                  <div className="col-lg-1"></div>
                   <div className="col-lg-5 col-md-12">
                   <div className="form-group mt-4">
                   <label htmlFor="exampleInput">Gender</label>
@@ -248,24 +246,24 @@ export default function Home() {
                   <div className="row">
                     <button
                       type="button"
-                      className="btn btn-lg mb-1 mt-5"
+                      className="btn bnt-hover  mb-1 mt-5"
                       style={{
                         background: "#3964FC !important",
                         width: "160px !important",
                         color: "#ffffff !important",
-                        borderRadius: "20px !important",
+                        borderRadius: "10px !important",
                       }}
                     >
                       Save
                     </button>
                     <button
                       type="button"
-                      className="btn ml-5 btn-lg mb-1 mt-5"
+                      className="btn  ml-5  mb-1 mt-5"
                       style={{
                         background: "#818AA9 !important",
-                        width: "160px !important",
+                        width: "160px !important",                       
                         color: "#ffffff !important",
-                        borderRadius: "20px !important",
+                        borderRadius: "10px !important",
                       }}
                     >
                       Cancel

@@ -1,11 +1,20 @@
 .lay-outstyle {
   font-weight: 600;
 }
-
-.form-rounded {
-  border-radius: 1rem;
+h1,h2,h3{
+    font-family: "Open Sans", sans-serif;
 }
-
+.page-title{
+     font-family: "Open Sans", sans-serif;
+    font-weight: bold;
+    font-size: 34px;
+}
+.formgr{
+    border-radius:50px;
+}
+ .input[type=text] :hover{
+     border-color:2px solid#3863fc;
+ }
 .profile-pic {
   position: relative;
   display: inline-block;
@@ -39,8 +48,15 @@
 }
 
 .form-rounded {
-  border-radius: 1rem;
+  border-radius: 10px;
+  border:1px solid grey;
 }
+
+.form-rounded:hover {
+    border-radius: 10px;
+    border:2px solid #3863fc;
+  }
+  
 
 .pagination {
   display: inline-block;
@@ -160,7 +176,7 @@ thead th {
 }
 
 h5.table-title {
-  font-family: "Open sans";
+   font-family: "Open Sans", sans-serif;
   font-weight: 700;
 }
 
@@ -174,4 +190,15 @@ h5.table-title {
     background-color: white;
     opacity: 1;
 
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
 }
