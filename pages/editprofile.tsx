@@ -104,6 +104,7 @@ export default function Home() {
             </div>
             <div className="col-lg-12 col-xl-9 col-md-12 col-sm-12">
               {/* <div className="card-body editprofile_cardbody"> */}
+<<<<<<< HEAD
               <div className="row">
                 <div className="col-lg-6 col-md-12">
                   <div className="form-group">
@@ -140,6 +141,40 @@ export default function Home() {
                   </div>
                   <div className="form-group">
                     <label htmlFor="form-label">Date of Birth</label>
+=======
+                <div className="row">
+                  <div className="col-lg-5 col-md-12">
+                    <div className="form-group">
+                      <label>Name</label>
+                      <input
+                        type="text"
+                        className="form-control form-rounded text-field-hover"
+                        placeholder="Full name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        
+                      />
+                    </div>                    
+                    <div className="form-group">
+                      <label style={{color:"grey", fontFamily:""}}>Email Address</label>
+                      <input
+                        type="text"
+                        className="form-control form-rounded"
+                        placeholder="your@email.com"
+                        readOnly
+                        value={email}
+                        
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label>Phone Number</label>
+                      <input
+                        type="number"
+                        className="form-control form-rounded"
+                        placeholder="eg. 024 567 3456"                        
+                      />
+                      </div>
+>>>>>>> 4c83e3b4b33e2c1ee7bfc07caedaa187c2ce2863
                     <div className="form-group">
                       <div className="input-group-date">
                         <input
@@ -152,10 +187,16 @@ export default function Home() {
                         />
                       </div>
                     </div>
+<<<<<<< HEAD
                   </div>
                   <div className="form-group">
                     <label>Private Level</label>
                     <select className="form-control select2 form-rounded">
+=======
+                    <div className="form-group">
+                      <label>Privacy Level</label>
+                      <select className="form-control select2 form-rounded">
+>>>>>>> 4c83e3b4b33e2c1ee7bfc07caedaa187c2ce2863
                       <option>Just me</option>
                       <option>Registered Organizations Only</option>
                       <option>
@@ -163,8 +204,14 @@ export default function Home() {
                       </option>
                     </select>
                   </div>
+<<<<<<< HEAD
                 </div>
                 <div className="col-lg-6 col-md-12">
+=======
+                  
+                  <div className="col-lg-1"></div>
+                  <div className="col-lg-5 col-md-12">
+>>>>>>> 4c83e3b4b33e2c1ee7bfc07caedaa187c2ce2863
                   <div className="form-group mt-4">
                     <label htmlFor="exampleInput">Gender</label>
                     <div className="row" style={{ marginLeft: 3 }}>
@@ -213,6 +260,7 @@ export default function Home() {
                       onChange={(e) => setStreetAddress(e.target.value)}
                     />
                   </div>
+<<<<<<< HEAD
                   <div className="form-group">
                     <label>Region</label>
                     <select className="form-control select2 form-rounded">
@@ -222,6 +270,38 @@ export default function Home() {
                       <option>Greater Accra</option>
                       <option>Volta Region</option>
                     </select>
+=======
+                </div>
+                <div
+                  className="btn-list"
+                  style={{ marginLeft: "30%", marginRight: "30%" }}
+                >
+                  <div className="row">
+                    <button
+                      type="button"
+                      className="btn bnt-hover  mb-1 mt-5"
+                      style={{
+                        background: "#3964FC !important",
+                        width: "160px !important",
+                        color: "#ffffff !important",
+                        borderRadius: "10px !important",
+                      }}
+                    >
+                      Save
+                    </button>
+                    <button
+                      type="button"
+                      className="btn  ml-5  mb-1 mt-5"
+                      style={{
+                        background: "#818AA9 !important",
+                        width: "160px !important",                       
+                        color: "#ffffff !important",
+                        borderRadius: "10px !important",
+                      }}
+                    >
+                      Cancel
+                    </button>
+>>>>>>> 4c83e3b4b33e2c1ee7bfc07caedaa187c2ce2863
                   </div>
                   <div className="form-group">
                     <label>Digital Address</label>
@@ -265,8 +345,13 @@ export default function Home() {
                     Cancel
                   </button>
                 </div>
+<<<<<<< HEAD
               </div>
               {/* </div> */}`
+=======
+              {/* </div> */}
+              
+>>>>>>> 4c83e3b4b33e2c1ee7bfc07caedaa187c2ce2863
             </div>
           </div>
         </div>

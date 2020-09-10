@@ -59,13 +59,13 @@ const Navbar = (props) => {
             </a>
           </div>
           <div className="d-flex order-lg-2 ml-auto header-right">
-            <a
+            {/* <a
               href="#"
               id="notification"
               className="nav-link icon full-screen-link"
             >
               <i className="fe fe-bell" />
-            </a>
+            </a> */}
             {/*Navbar */}
             <div className="dropdown header-profile">
               <a
@@ -75,20 +75,20 @@ const Navbar = (props) => {
                 <span
                   id="memberprofile"
                   className="avatar avatar-md brround cover-image"
-                  data-image-src="assets/images/img.jpg"
+                  data-image-src="../../../public/assets/images/Profile_Icon.png" //user image
                   style={{
-                    background: 'url("assets/images/img.jpg") center center',
+                    background: 'url("assets/images/Profile_Icon.png") center center',
                   }}
                 ></span>
                 <div className="ml-3">
-                  <span style={{ color: "#000000" }}>
-                    Louis Ewurama Young{" "}
+                  <span style={{ color: "#000000", fontWeight:"bold" }}>
+                    No Name{" "} 
                     <i className="fe fe-chevron-down ml-1" />
                   </span>
                 </div>
               </a>
               <div className="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                <a className="dropdown-item" href="#">
+                <a className="dropdown-item" href="profile">
                   <i className="dropdown-icon fe fe-user" />
                   View Profile
                 </a>
@@ -96,7 +96,7 @@ const Navbar = (props) => {
                   <i className="dropdown-icon fe fe-edit" />
                   Account Setting
                 </a>
-                <a className="dropdown-item" href="#">
+                <a className="dropdown-item" href="auth/login">
                   <i className="dropdown-icon fe fe-power" /> Log Out
                 </a>
               </div>

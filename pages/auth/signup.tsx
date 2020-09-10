@@ -245,33 +245,31 @@ const Signup = () => {
                 />
               </div>
                               
-              <div className="form-group " style={{ textAlign: "center" }}>
+              <div className="form-group" style={{ textAlign: "center" }}>
                 <input
                   type="radio"
                   id="organization"
                   name="account_type"
                   defaultValue="organization"
                   
+                  
                 />
-                <label htmlFor="organization" className="radio_spc">
-                   Organization
-                </label>
+                <label htmlFor="organization" className="radio_spc " style={{marginRight:"15px !important"}}>Organization</label>
                 <input
                   type="radio"
                   id="individual"
                   name="account_type"
                   defaultValue="individual"
-                  className="radio_spc"
+                  className="radio_spc "
                   defaultChecked
                 />
-                <label htmlFor="individual">Individual</label>
+                <label  htmlFor="individual">Individual</label>
               </div>
               <div style={{ textAlign: "center", paddingRight:"10px" }}>
                 <button
                   type="submit"
                   className="btn btn-primary btn-block"
-                  id="signup_button"
-                >
+                  id="signup_button">
                   Sign Up
                 </button>
               </div>

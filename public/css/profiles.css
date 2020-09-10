@@ -14,13 +14,13 @@ body {
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 120px;
-  font-family: "Open Sans", sans-serif;
+   font-family: "Open Sans", sans-serif;
 }
 .container {
   background-color: lavender;
 }
 .login-header {
-  font-family: "Open Sans", sans-serif;
+   font-family: "Open Sans", sans-serif;
   text-align: center;
   margin-top: 10%;
   margin-bottom: 10%;

@@ -129,7 +129,7 @@ body {
   line-height: 1.5;
   color: #000;
   text-align: left;
-  background: #f0f1f7;
+  background: #f7f7f7;
 }
 [tabindex="-1"]:focus {
   outline: 0 !important;
@@ -14761,6 +14761,10 @@ a.icon:hover {
 /*------ Nav Link -------*/
 
 /*----- Btn styles------*/
+.btn-hover :hover{
+  background-color: '#3355be1';
+}
+
 .btn i {
   font-size: 1rem;
 }
