@@ -4,7 +4,6 @@ import { Users } from "../lib/endpoints";
 import { useState, FormEvent } from "react";
 
 export default function Home() {
-
   const [id, setId] = useState("");
   const [name, setName] = useState("");
   const [last_name, setLastName] = useState("");
@@ -58,16 +57,18 @@ export default function Home() {
           <div className="row ">
             <div className="col-md-3 ">
               <div className="userpic mb-4">
-                <img src="assets/images/img.jpg" alt=""
-                width={200}
-                height={200} />
+                <img
+                  src="assets/images/img.jpg"
+                  alt=""
+                  width={200}
+                  height={200}
+                />
               </div>
               <div className="text-center">
-              
                 <a
                   href="editprofile"
                   className="btn btn-primary btn-block mt-1"
-                  style={{ borderRadius: "12px", width:"200px"}}
+                  style={{ borderRadius: "12px", width: "200px" }}
                 >
                   Edit Information
                 </a>
@@ -76,104 +77,102 @@ export default function Home() {
             </div>
             <div className="col-lg-12 col-xl-9 col-md-12 col-sm-12">
               {/* <div className="card-body"> */}
-                <div className="row">
-                  <div className="col-lg-6 col-md-12">
+              <div className="row">
+                <div className="col-lg-6 col-md-12">
+                  <div className="form-group">
+                    <label>Name</label>
+                    <input
+                      type="text"
+                      className="form-control form-rounded"
+                      defaultValue=""
+                      readOnly
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label>Email Address</label>
+                    <input
+                      type="text"
+                      className="form-control form-rounded"
+                      defaultValue=""
+                      readOnly
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label>Phone Number</label>
+                    <input
+                      type="text"
+                      className="form-control form-rounded"
+                      defaultValue=""
+                      readOnly
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="form-label">Date of Birth</label>
                     <div className="form-group">
-                      <label>Name</label>
-                      <input
-                        type="text"
-                        className="form-control form-rounded"
-                        defaultValue=""
-                        readOnly
-                      />
-                    </div>
-                    
-                    <div className="form-group">
-                      <label>Email Address</label>
-                      <input
-                        type="text"
-                        className="form-control form-rounded"
-                        defaultValue=""
-                        readOnly
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label>Phone Number</label>
-                      <input
-                        type="text"
-                        className="form-control form-rounded"
-                        defaultValue=""
-                        readOnly
-                      />
-                    </div>
-                    <div className="form-group">
-                   
-                      <label htmlFor="form-label">Date of Birth</label>
-                      <div className="form-group">
                       <div className="input-group-date">
-                      <input
+                        <input
                           type="text"
                           id="dob"
                           className="form-control form-rounded"
-                          defaultValue=""                  
+                          defaultValue=""
                           readOnly
-                        />  
+                          onKeyPress
+                        />
                       </div>
-                                              
-                      </div>
-                    </div>
-                    <div className="form-group">
-                      <label>Private Level</label>
-                      <input
-                        type="text"
-                        className="form-control form-rounded"
-                        defaultValue=""
-                        readOnly
-                      />
                     </div>
                   </div>
-
-
-                  <div className="col-lg-6 col-md-12">
-                    <div className="form-group">
-                      <label>Gender</label>
-                      <input
-                        type="text"
-                        className="form-control form-rounded"
-                        defaultValue=""
-                        readOnly
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label>Town</label>
-                      <input
-                        type="text"
-                        className="form-control form-rounded"
-                        defaultValue=""
-                        readOnly                        
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label>Region</label>
-                      <input
-                        type="text"
-                        className="form-control form-rounded"
-                        defaultValue=""
-                        readOnly
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label>Digital Address</label>
-                      <input
-                        type="text"
-                        className="form-control form-rounded"
-                        defaultValue=""                        
-                        readOnly
-                      />
-                    </div>
-                    
+                  <div className="form-group">
+                    <label>Private Level</label>
+                    <input
+                      type="text"
+                      className="form-control form-rounded"
+                      defaultValue=""
+                      readOnly
+                    />
                   </div>
                 </div>
+
+                <div className="col-lg-6 col-md-12">
+                  <div className="form-group">
+                    <label>Gender</label>
+                    <input
+                      type="text"
+                      className="form-control form-rounded"
+                      defaultValue=""
+                      readOnly
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Town</label>
+                    <input
+                      type="text"
+                      className="form-control form-rounded"
+                      defaultValue=""
+                      readOnly
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Region</label>
+                    <input
+                      type="text"
+                      className="form-control form-rounded"
+                      defaultValue=""
+                      readOnly
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Digital Address</label>
+                    <input
+                      type="text"
+                      className="form-control form-rounded"
+                      defaultValue=""
+                      readOnly
+                    />
+                  </div>
+                </div>
+              </div>
               {/* </div> */}
             </div>
           </div>

@@ -3,7 +3,6 @@ import { Users } from "../lib/endpoints";
 import { useState, FormEvent } from "react";
 
 export default function Home() {
-
   const [id, setId] = useState("");
   const [name, setName] = useState("");
   const [birthday, setBirthDay] = useState("");
@@ -23,11 +22,11 @@ export default function Home() {
     e.preventDefault();
 
     const response = await new Users().updateUserProfile({
-      name: name,     
+      name: name,
       birthday: birthday,
       gender: gender,
       street_address: street_address,
-      phone_number:phone_number,
+      phone_number: phone_number,
       region: region,
       digital_address: digital_address,
       privacy_level: privacy_level,
@@ -57,9 +56,11 @@ export default function Home() {
             <div className="col-md-3">
               <div className="userpic mb-4">
                 <div className="profile-pic">
-                  <img src="assets/images/Profile_Icon.png"
-                  width={200}
-                  height={200} />
+                  <img
+                    src="assets/images/Profile_Icon.png"
+                    width={200}
+                    height={200}
+                  />
                   <div
                     className="edit"
                     style={{
@@ -103,79 +104,76 @@ export default function Home() {
             </div>
             <div className="col-lg-12 col-xl-9 col-md-12 col-sm-12">
               {/* <div className="card-body editprofile_cardbody"> */}
-                <div className="row">
-                  <div className="col-lg-6 col-md-12">
+              <div className="row">
+                <div className="col-lg-6 col-md-12">
+                  <div className="form-group">
+                    <label>Name</label>
+                    <input
+                      type="text"
+                      className="form-control form-rounded"
+                      placeholder="Lois Young"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label style={{ color: "grey", fontFamily: "" }}>
+                      Email Address
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control form-rounded"
+                      placeholder="your@email.com"
+                      readOnly
+                      value={email}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Phone Number</label>
+                    <input
+                      type="number"
+                      className="form-control form-rounded"
+                      placeholder="024 678 9560"
+                      value={phone_number}
+                      onChange={(e) => setPhoneNumber(e.target.value)}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="form-label">Date of Birth</label>
                     <div className="form-group">
-                      <label>Name</label>
-                      <input
-                        type="text"
-                        className="form-control form-rounded"
-                        placeholder="Lois Young"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        
-                      />
-                    </div>                    
-                    <div className="form-group">
-                      <label style={{color:"grey", fontFamily:""}}>Email Address</label>
-                      <input
-                        type="text"
-                        className="form-control form-rounded"
-                        placeholder="your@email.com"
-                        readOnly
-                        value={email}
-                        
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label>Phone Number</label>
-                      <input
-                        type="text"
-                        className="form-control form-rounded"
-                        placeholder="024 678 9560"
-                        value={phone_number}
-                        onChange={(e) =>  setPhoneNumber(e.target.value)}
-                      />
-                    </div>
-                    <div className="form-group">
-                   
-                      <label htmlFor="form-label">Date of Birth</label>
-                      <div className="form-group">
                       <div className="input-group-date">
-                      <input
+                        <input
                           type="date"
                           id="dob"
                           className="form-control form-rounded"
-                          defaultValue="30/12/2020" 
+                          defaultValue="30/12/2020"
                           value={birthday}
-                          onChange={(e) =>  setBirthDay(e.target.value)}                         
-                        />  
-                      </div>
-                                              
+                          onChange={(e) => setBirthDay(e.target.value)}
+                        />
                       </div>
                     </div>
-                    <div className="form-group">
-                      <label>Private Level</label>
-                      <select className="form-control select2 form-rounded">
-                      <option>Just me</option>
-                        <option>Registered Organizations Only</option>
-                        <option>
-                          Registered Organizations and Community members
-                        </option>
-                      </select>
-                    </div>
-                    
                   </div>
-                  <div className="col-lg-6 col-md-12">
+                  <div className="form-group">
+                    <label>Private Level</label>
+                    <select className="form-control select2 form-rounded">
+                      <option>Just me</option>
+                      <option>Registered Organizations Only</option>
+                      <option>
+                        Registered Organizations and Community members
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div className="col-lg-6 col-md-12">
                   <div className="form-group mt-4">
-                  <label htmlFor="exampleInput">Gender</label>
+                    <label htmlFor="exampleInput">Gender</label>
                     <div className="row" style={{ marginLeft: 3 }}>
                       <div className="form-check form-check-inline">
                         <input
                           className="form-check-input"
                           type="radio"
                           name="inlineRadioOptions"
-                          id="inlineRadio1"                         
+                          id="inlineRadio1"
                           value={gender}
                           onChange={(e) => setGender(e.target.value)}
                         />
@@ -191,7 +189,7 @@ export default function Home() {
                           className="form-check-input"
                           type="radio"
                           name="inlineRadioOptions"
-                          id="inlineRadio2"                          
+                          id="inlineRadio2"
                           value={gender}
                           onChange={(e) => setGender(e.target.value)}
                         />
@@ -204,74 +202,71 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
-                    
-                    <div className="form-group">
-                      <label>Street Address</label>
-                      <input
-                        type="text"
-                        className="form-control form-rounded"
-                        placeholder="Executive Avenue Anaji"
-                        value={street_address}
-                        onChange={(e) => setStreetAddress(e.target.value)}
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label>Region</label>
-                      <select className="form-control select2 form-rounded">
-                        <option>Western Region</option>
-                        <option>Central Region</option>
-                        <option>Eastern Region</option>
-                        <option>Greater Accra</option>
-                        <option>Volta Region</option>
-                      </select>
-                      
-                    </div>
-                    <div className="form-group">
-                      <label>Digital Address</label>
-                      <input
-                        type="text"
-                        className="form-control form-rounded"                        
-                        placeholder="eg. AK-039-5028"
-                        value={digital_address}
-                        onChange={(e) => setDigitalAddress(e.target.value)}
-                      />
-                    </div>
-                    
+
+                  <div className="form-group">
+                    <label>Street Address</label>
+                    <input
+                      type="text"
+                      className="form-control form-rounded"
+                      placeholder="Executive Avenue Anaji"
+                      value={street_address}
+                      onChange={(e) => setStreetAddress(e.target.value)}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Region</label>
+                    <select className="form-control select2 form-rounded">
+                      <option>Western Region</option>
+                      <option>Central Region</option>
+                      <option>Eastern Region</option>
+                      <option>Greater Accra</option>
+                      <option>Volta Region</option>
+                    </select>
+                  </div>
+                  <div className="form-group">
+                    <label>Digital Address</label>
+                    <input
+                      type="text"
+                      className="form-control form-rounded"
+                      placeholder="eg. AK-039-5028"
+                      value={digital_address}
+                      onChange={(e) => setDigitalAddress(e.target.value)}
+                    />
                   </div>
                 </div>
-                <div
-                  className="btn-list"
-                  style={{ marginLeft: "30%", marginRight: "30%" }}
-                >
-                  <div className="row">
-                    <button
-                      type="button"
-                      className="btn btn-lg mb-1 mt-5"
-                      style={{
-                        background: "#3964FC !important",
-                        width: "160px !important",
-                        color: "#ffffff !important",
-                        borderRadius: "20px !important",
-                      }}
-                    >
-                      Save
-                    </button>
-                    <button
-                      type="button"
-                      className="btn ml-5 btn-lg mb-1 mt-5"
-                      style={{
-                        background: "#818AA9 !important",
-                        width: "160px !important",
-                        color: "#ffffff !important",
-                        borderRadius: "20px !important",
-                      }}
-                    >
-                      Cancel
-                    </button>
-                  </div>
+              </div>
+              <div
+                className="btn-list"
+                style={{ marginLeft: "30%", marginRight: "30%" }}
+              >
+                <div className="row">
+                  <button
+                    type="button"
+                    className="btn btn-lg mb-1 mt-5"
+                    style={{
+                      background: "#3964FC !important",
+                      width: "160px !important",
+                      color: "#ffffff !important",
+                      borderRadius: "20px !important",
+                    }}
+                  >
+                    Save
+                  </button>
+                  <button
+                    type="button"
+                    className="btn ml-5 btn-lg mb-1 mt-5"
+                    style={{
+                      background: "#818AA9 !important",
+                      width: "160px !important",
+                      color: "#ffffff !important",
+                      borderRadius: "20px !important",
+                    }}
+                  >
+                    Cancel
+                  </button>
                 </div>
-              {/* </div> */}
-              `
+              </div>
+              {/* </div> */}`
             </div>
           </div>
         </div>
