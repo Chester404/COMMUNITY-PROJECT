@@ -48,7 +48,7 @@ const Login = () => {
         if (userInfo.name.length > 0) {
           response.data.username = userInfo.name;
         } else {
-          response.data.username = "";
+          response.data.username = "No Name";
         }
         window.localStorage.setItem("cp-a", JSON.stringify(response.data));
         dispatch({
