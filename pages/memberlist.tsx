@@ -4,11 +4,13 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const [userProfiles, setUserProfiles] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     (async () => {
       const rs = await new Users().getProfiles();
-      // console.log(rs);
+      console.log(rs);
       setUserProfiles(rs);
+      setIsLoading(false);
     })();
   }, []);
   return (
@@ -43,8 +45,10 @@ export default function Home() {
           <div className="card">
             <div className="card-body">
               <h4>Market Circle Individuals</h4>
-              {!userProfiles[0] ? (
+              {isLoading ? (
                 <h3>Loading user list ...</h3>
+              ) : !userProfiles[0] ? (
+                <h3>No user list available.</h3>
               ) : (
                 <div className="table-responsive table-lg">
                   <table className="table">

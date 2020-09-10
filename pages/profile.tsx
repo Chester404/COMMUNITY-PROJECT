@@ -37,12 +37,12 @@ export default function Home() {
   useEffect(() => {
     (async () => {
       const rs = await new Users().getUserProfile();
+      console.log(rs);
       const rIndex = REGIONS.findIndex((r) => r[0] == rs.region);
-      rs.region = REGIONS[rIndex][1];
+      rs.region = rs.region.length > 0 ? REGIONS[rIndex][1] : "";
       const pIndex = PRIVACY.findIndex((r) => r[0] == rs.privacy_level);
       rs.privacy_level = PRIVACY[pIndex][1];
       setProfileData(rs);
-      console.log(rs);
     })();
   }, []);
 
@@ -91,11 +91,7 @@ export default function Home() {
                       type="text"
                       className="form-control form-rounded"
                       readOnly
-                      defaultValue={
-                        profileData?.first_name
-                          ? profileData.first_name + " " + profileData.last_name
-                          : ""
-                      }
+                      defaultValue={profileData?.name ? profileData.name : ""}
                     />
                   </div>
 

@@ -44,19 +44,21 @@ const Login = () => {
         response.data.emailaddress = authentication_property;
         window.localStorage.setItem("cp-a", JSON.stringify(response.data));
         const userInfo = await new Users().getUserProfile();
-        if (userInfo.first_name > 0 || userInfo.last_name.length > 0) {
-          (response.data.username =
-            userInfo.first_name + " " + userInfo.last_name),
-            window.localStorage.setItem("cp-a", JSON.stringify(response.data));
-          dispatch({
-            type: "UPDATE_USERNAME",
-            payload: userInfo.first_name + " " + userInfo.last_name,
-          });
-          dispatch({
-            type: "SET_EMAIL",
-            payload: authentication_property,
-          });
+        console.log(userInfo);
+        if (userInfo.name.length > 0) {
+          response.data.username = userInfo.name;
+        } else {
+          response.data.username = "";
         }
+        window.localStorage.setItem("cp-a", JSON.stringify(response.data));
+        dispatch({
+          type: "UPDATE_USERNAME",
+          payload: userInfo.name,
+        });
+        dispatch({
+          type: "SET_EMAIL",
+          payload: authentication_property,
+        });
         setShow(false);
         router.push("/blog");
       } else {
