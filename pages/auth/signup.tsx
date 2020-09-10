@@ -239,7 +239,7 @@ const Signup = () => {
                 <input
                   type="password"
                   className="form-control textbox"
-                  id="exampleInputPassword1"
+                  id="InputPassword2"
                   placeholder="Re-Enter the same password as above"
                   data-toggle="password"
                   value={confirm_password}
