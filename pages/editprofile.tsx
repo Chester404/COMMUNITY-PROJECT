@@ -108,7 +108,7 @@ export default function Home() {
     (async () => {
       const rs = await new Users().getUserProfile();
       setName(rs.name);
-      setBirthDay(rs.birthday);
+      setBirthDay(rs.birthday ? "" : rs.birthday);
       setGender(rs.gender ? rs.gender : "m");
       setStreetAddress(rs.street_address);
       setPhoneNumber(rs.phone_number);
@@ -116,8 +116,8 @@ export default function Home() {
       setDigitalAddress(rs.digital_address);
       setPrivacyLevel(rs.privacy_level ? rs.privacy_level : "me");
       setEmail(rs.user.email);
-      setImage(rs.image);
-      console.log("rsData", rs.user);
+      if (rs.image) setImage(rs.image);
+      console.log("rsData", rs);
     })();
   }, []);
 
@@ -220,7 +220,6 @@ export default function Home() {
                           type="date"
                           id="dob"
                           className="form-control form-rounded"
-                          defaultValue="30/12/2020"
                           value={birthday}
                           onChange={(e) => setBirthDay(e.target.value)}
                         />

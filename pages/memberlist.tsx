@@ -108,7 +108,7 @@ export default function Home() {
               className="row"
               style={{ margin: "10px", background: "#ffffff" }}
             >
-              <div className="col-md-5">
+              {/* <div className="col-md-5">
                 <label>
                   Showing
                   <select
@@ -127,8 +127,8 @@ export default function Home() {
                   </select>{" "}
                   entries
                 </label>
-              </div>
-              <div className="col-md-7">
+              </div> */}
+              <div className="col-md-12">
                 <div className="pagination ml-auto" style={{ float: "right" }}>
                   <a href="#">« Prev</a>
                   <a href="#" className="active">

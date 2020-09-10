@@ -37,7 +37,7 @@ export default function Home() {
   useEffect(() => {
     (async () => {
       const rs = await new Users().getUserProfile();
-      console.log(rs);
+      console.log("Profile", rs);
       const rIndex = REGIONS.findIndex((r) => r[0] == rs.region);
       rs.region = rs.region.length > 0 ? REGIONS[rIndex][1] : "";
       const pIndex = PRIVACY.findIndex((r) => r[0] == rs.privacy_level);
@@ -70,18 +70,19 @@ export default function Home() {
                 />
               </div>
               <div className="text-center">
-                <Link href="/editprofile">
-                  <a
-                    className="btn btn-primary btn-block mt-1"
-                    style={{
-                      borderRadius: "10px",
-                      width: "200px",
-                      backgroundColor: "#3964fc",
-                    }}
-                  >
-                    Edit Information
-                  </a>
-                </Link>
+                {/* <Link href="/editprofile"> */}
+                <a
+                  onClick={() => (window.location.pathname = "/editprofile")}
+                  className="btn btn-primary btn-block mt-1"
+                  style={{
+                    borderRadius: "10px",
+                    width: "200px",
+                    backgroundColor: "#3964fc",
+                  }}
+                >
+                  Edit Information
+                </a>
+                {/* </Link> */}
                 <br />
               </div>
             </div>
