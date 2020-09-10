@@ -50,6 +50,7 @@ const Login = () => {
         } else {
           response.data.username = "No Name";
         }
+        response.data.image = "/images/blank_avatar.jpeg";
         window.localStorage.setItem("cp-a", JSON.stringify(response.data));
         dispatch({
           type: "UPDATE_USERNAME",
@@ -59,6 +60,11 @@ const Login = () => {
           type: "SET_EMAIL",
           payload: authentication_property,
         });
+        dispatch({
+          type: "SET_IMAGE",
+          payload: userInfo.image,
+        });
+
         setShow(false);
         router.push("/blog");
       } else {

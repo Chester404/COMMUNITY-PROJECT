@@ -23,6 +23,7 @@ const Navbar = (props) => {
       console.log("STATE", lStorage);
       dispatch({ type: "UPDATE_USERNAME", payload: lStorage.username });
       dispatch({ type: "SET_EMAIL", payload: lStorage.emailaddress });
+      dispatch({ type: "SET_IMAGE", payload: lStorage.image });
       setIsLoggedIn(true);
     }
   }, []);
@@ -92,8 +93,7 @@ const Navbar = (props) => {
                   className="avatar avatar-md brround cover-image"
                   data-image-src="/images/blank_avatar.jpeg"
                   style={{
-                    background:
-                      'url("/images/blank_avatar.jpeg") center center',
+                    background: `url(${state.image}) center center`,
                   }}
                 ></span>
                 <div className="ml-3">

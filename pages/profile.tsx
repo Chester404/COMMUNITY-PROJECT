@@ -102,8 +102,8 @@ export default function Home() {
                       className="form-control form-rounded"
                       readOnly
                       defaultValue={
-                        profileData?.email
-                          ? profileData.email
+                        profileData?.user
+                          ? profileData.user.email
                           : state.emailaddress
                       }
                     />

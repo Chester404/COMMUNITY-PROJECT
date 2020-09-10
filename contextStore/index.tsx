@@ -10,12 +10,14 @@ type TTokens = {
 interface IGState {
   username: string;
   emailaddress: string;
+  image: string;
   tokens: TTokens;
 }
 
 const gState: IGState = {
   username: "",
   emailaddress: "",
+  image: "",
   tokens: { accessToken: "", refreshToken: "" },
 };
 
@@ -25,6 +27,8 @@ const reducer = (state, action) => {
       return { ...state, username: action.payload };
     case "SET_EMAIL":
       return { ...state, emailaddress: action.payload };
+    case "SET_IMAGE":
+      return { ...state, image: action.payload };
     default:
       return state;
   }

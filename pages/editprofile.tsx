@@ -36,9 +36,9 @@ export default function Home() {
   // const [reg_dat, setRegDate] = useState("");
   const [street_address, setStreetAddress] = useState("");
   const [phone_number, setPhoneNumber] = useState("");
-  const [region, setRegion] = useState("Western Region");
+  const [region, setRegion] = useState("wr");
   const [digital_address, setDigitalAddress] = useState("");
-  const [privacy_level, setPrivacyLevel] = useState("");
+  const [privacy_level, setPrivacyLevel] = useState("me");
   // const [image, setImage] = useState("");
   const [email, setEmail] = useState("");
   // const [user_id, setUser] = useState("");
@@ -81,7 +81,7 @@ export default function Home() {
       digital_address: digital_address,
       privacy_level: privacy_level,
     });
-
+    console.log("RESPONSE ON PUSH", response);
     setShow(false);
     if (response.error) {
       callPrompt("Edit Profile", "", "Close", "An error occured");
@@ -90,14 +90,18 @@ export default function Home() {
       // setStatusMsg("Some error occurred");
       return;
     }
-    callPrompt("Edit Profile", "", "Close", "Success: User profile saved");
+
     dispatch({
       type: "UPDATE_USERNAME",
       payload: name,
     });
-    // setStatusColor("blue");
-    // setStatusMsg("Updated");
-    //process when succesfull
+    let lStorage: any = window.localStorage.getItem("cp-a");
+    lStorage = JSON.parse(lStorage);
+    if (lStorage) {
+      lStorage.username = name;
+      window.localStorage.setItem("cp-a", JSON.stringify(lStorage));
+    }
+    callPrompt("Edit Profile", "", "Close", "Success: User profile saved");
   };
 
   useEffect(() => {
@@ -108,11 +112,11 @@ export default function Home() {
       setGender(rs.gender ? rs.gender : "m");
       setStreetAddress(rs.street_address);
       setPhoneNumber(rs.phone_number);
-      setRegion(rs.region ? rs.region : "Western Region");
+      setRegion(rs.region ? rs.region : "wr");
       setDigitalAddress(rs.digital_address);
-      setPrivacyLevel(rs.privacy_level ? rs.privacy_level : "Just me");
-      setEmail(state.emailaddress);
-      console.log("rsData", rs);
+      setPrivacyLevel(rs.privacy_level ? rs.privacy_level : "me");
+      setEmail(rs.user.email);
+      console.log("rsData", rs.user);
     })();
   }, []);
 
@@ -166,7 +170,7 @@ export default function Home() {
                           style={{ fontSize: "25px" }}
                         />
                       </button>
-                      <button
+                      {/* <button
                         type="button"
                         className="btn btn-icon ml-2"
                         style={{
@@ -179,7 +183,7 @@ export default function Home() {
                           className="fe fe-trash fa-lg"
                           style={{ fontSize: "25px" }}
                         />
-                      </button>
+                      </button> */}
                     </a>
                   </div>
                 </div>
