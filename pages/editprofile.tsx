@@ -1,6 +1,6 @@
 import MainLayout from "../components/MainLayout";
 import { Users } from "../lib/endpoints";
-import { useState, FormEvent, useEffect, useContext } from "react";
+import { useState, FormEvent, useEffect, useContext, useRef } from "react";
 import Link from "next/link";
 import Prompt from "../components/Prompt";
 import { Store } from "../contextStore";
@@ -51,8 +51,15 @@ export default function Home() {
   const [link_to, setLinkTo] = useState("");
   const [link_text, setLinkText] = useState("");
   const [image, setImage] = useState("/assets/images/Profile_Icon.png");
+  const [tempImage, setTempImage] = useState("/assets/images/Profile_Icon.png");
   const { state, dispatch } = useContext(Store);
   const [doneUpdate, setDoneUpdate] = useState(false);
+  const fileRef = useRef<HTMLInputElement>(null);
+
+  const triggerUpload = () => {
+    fileRef.current!.click();
+  };
+
   const router = useRouter();
 
   const handleClose = () => {
@@ -130,10 +137,28 @@ export default function Home() {
       setDigitalAddress(rs.gps_location);
       setPrivacyLevel(rs.privacy_level ? rs.privacy_level : "me");
       setEmail(rs.user.email);
-      if (rs.image) setImage(rs.image);
+      if (rs.image) {
+        setImage(rs.image);
+        setTempImage(rs.image);
+      }
       console.log("rsData", rs);
     })();
   }, []);
+
+  const preview_image = async (event) => {
+    var reader: any = new FileReader();
+    const files: any = Array.from(event.target.files);
+    reader.onload = async () => {
+      var output = document.getElementById("output_image");
+      const formData = new FormData();
+      formData.append("1", files[0]);
+      // output.src = reader.result;
+      setImage(reader.result);
+      const rs = await new Users().uplaodImage({ image: formData });
+      console.log(rs);
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  };
 
   return (
     <>
@@ -154,6 +179,13 @@ export default function Home() {
             <h1 className="page-title">Edit Information</h1>
           </div>
           {/* End page-header */}
+          <input
+            type="file"
+            style={{ display: "none" }}
+            ref={fileRef}
+            onChange={preview_image}
+          />
+
           <div className="row">
             <div className="col-md-3">
               <div className="userpic mb-4">
@@ -175,6 +207,7 @@ export default function Home() {
                           color: "#ffffff !important",
                           borderRadius: "50%",
                         }}
+                        onClick={triggerUpload}
                       >
                         <i
                           className="fe fe-edit-2 fa-lg"

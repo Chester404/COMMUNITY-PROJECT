@@ -68,6 +68,14 @@ export class Users {
     });
   }
 
+  async uplaodImage(formData: any) {
+    // const data = new URLSearchParams(userData).toString();
+    return await ufetch("/accounts/image_upload/", {
+      method: "PUT",
+      body: formData,
+    });
+  }
+
   protected async generic_query(ctx: any) {
     return await ufetch(`/${ctx.endpoint}/${ctx.query_params}`, {
       method: ctx.method,
