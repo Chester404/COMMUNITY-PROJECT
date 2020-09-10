@@ -78,6 +78,7 @@ export default function Home() {
                     borderRadius: "10px",
                     width: "200px",
                     backgroundColor: "#3964fc",
+                    color: "#FFF",
                   }}
                 >
                   Edit Information
