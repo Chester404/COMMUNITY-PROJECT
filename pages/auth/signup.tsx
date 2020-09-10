@@ -4,6 +4,7 @@ import { useState, FormEvent, useEffect } from "react";
 import axios from "axios";
 import Prompt from "../../components/Prompt";
 import Head from "next/head";
+import MainLayout from "../../components/MainLayout";
 
 const Signup = () => {
   const [authentication_property, setAuthenticationProperty] = useState("");
@@ -156,63 +157,49 @@ const Signup = () => {
   }, []);
   return (
     <>
-      <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Sign Up</title>
-        <link
-          rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-          crossOrigin="anonymous"
-        />
-        <script
-          type="text/javascript"
-          src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"
-        ></script>
+      <MainLayout>
+        <Head>
+          <script
+            type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"
+          ></script>
+          <script
+            type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-show-password/1.0.3/bootstrap-show-password.min.js"
+          ></script>
+          <link rel="stylesheet" type="text/css" href="/login.css" />
+        </Head>
+        <Prompt
+          title={prompt_title}
+          linkTo={link_to}
+          linkText={link_text}
+          show={show}
+          success={link_to.length > 0 ? true : false}
+          handleClose={handleClose}
+        >
+          <p>{prompt_body}</p>
+        </Prompt>
+        <div style={{ paddingBottom: "50px" }}>
+          <div className="signupcontent" style={{ height: "610px !important" }}>
+            <div style={{ textAlign: "center" }}>
+              <div>
+                <img className="innerlogo" src="/images/Logo.png" />
+              </div>
+              <br />
+              <br />
+              <div>
+                <b>Make the most out of your business</b>
+              </div>
+              <br />
+              <div>
+                Already on Market Circle?{" "}
+                <a href="login" className="logintext">
+                  <b>Log in</b>
+                </a>
+              </div>
+              <br />
+            </div>
 
-        <script
-          type="text/javascript"
-          src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-show-password/1.0.3/bootstrap-show-password.min.js"
-        ></script>
-
-        <link rel="stylesheet" type="text/css" href="/sign_up.css" />
-      </Head>
-      <Prompt
-        title={prompt_title}
-        linkTo={link_to}
-        linkText={link_text}
-        show={show}
-        success={link_to.length > 0 ? true : false}
-        handleClose={handleClose}
-      >
-        <p>{prompt_body}</p>
-      </Prompt>
-      <div>
-        <div className="row">
-          <div className="navbar">
-            <img className="logo" src="/images/Logo.png" />
-          </div>
-        </div>
-        <div className="content">
-          <div style={{ textAlign: "center" }}>
-            <div>
-              <img className="innerlogo" src="/images/Logo.png" />
-            </div>
-            <br />
-            <br />
-            <div>
-              <b>Make the most out of your business</b>
-            </div>
-            <br />
-            <div>
-              Already on Market Circle?{" "}
-              <a href="login" className="logintext">
-                <b>Log in</b>
-              </a>
-            </div>
-            <br />
-          </div>
-          <div className="row">
             <form onSubmit={register}>
               <div className="form-group">
                 <label htmlFor="email">Email</label>
@@ -244,32 +231,37 @@ const Signup = () => {
                   data-toggle="password"
                 />
               </div>
-                              
-              <div className="form-group" style={{ textAlign: "center" }}>
-                <input
-                  type="radio"
-                  id="organization"
-                  name="account_type"
-                  defaultValue="organization"
-                  
-                  
-                />
-                <label htmlFor="organization" className="radio_spc " style={{marginRight:"15px !important"}}>Organization</label>
-                <input
-                  type="radio"
-                  id="individual"
-                  name="account_type"
-                  defaultValue="individual"
-                  className="radio_spc "
-                  defaultChecked
-                />
-                <label  htmlFor="individual">Individual</label>
+              <div className="row" style={{ textAlign: "center" }}>
+                <div className="col-md-6">
+                  <input
+                    type="radio"
+                    id="organization"
+                    name="account_type"
+                    defaultValue="organization"
+                  />
+                  <label className="radio_spc ml-3">Organization</label>
+                </div>
+                <div className="col-md-6">
+                  <input
+                    type="radio"
+                    id="individual"
+                    name="account_type"
+                    defaultValue="individual"
+                    className="radio_spc "
+                    defaultChecked
+                  />
+                  <label htmlFor="individual" className="ml-3">
+                    Individual
+                  </label>
+                </div>
               </div>
-              <div style={{ textAlign: "center", paddingRight:"10px" }}>
+              <br />
+              <div style={{ textAlign: "center", paddingRight: "10px" }}>
                 <button
                   type="submit"
                   className="btn btn-primary btn-block"
-                  id="signup_button">
+                  id="signup_button"
+                >
                   Sign Up
                 </button>
               </div>
@@ -297,12 +289,12 @@ const Signup = () => {
               <b></b>
             </form>
           </div>
+
           <b></b>
         </div>
-        <b></b>
-      </div>
 
-      <script type="text/javascript" src="/js/a.js"></script>
+        <script type="text/javascript" src="/js/a.js"></script>
+      </MainLayout>
     </>
   );
 };

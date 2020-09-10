@@ -14761,8 +14761,8 @@ a.icon:hover {
 /*------ Nav Link -------*/
 
 /*----- Btn styles------*/
-.btn-hover :hover{
-  background-color: '#3355be1';
+.btn-hover :hover {
+  background-color: "#3355be1";
 }
 
 .btn i {
@@ -25895,6 +25895,7 @@ body.sidebar-show {
 }
 .hor-header {
   padding: 10px 0;
+  height: 80px !important;
 }
 .siderbar-tabs .tabs-menu ul li a {
   border: 1px solid #e8ebf1;

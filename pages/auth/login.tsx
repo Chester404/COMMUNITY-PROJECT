@@ -4,6 +4,7 @@ import { useState, FormEvent, useEffect } from "react";
 import { Auth } from "../../lib/endpoints";
 import { useRouter } from "next/router";
 import Prompt from "../../components/Prompt";
+import MainLayout from "../../components/MainLayout";
 
 const Login = () => {
   const [authentication_property, setAuthenticationProperty] = useState("");
@@ -72,59 +73,45 @@ const Login = () => {
   }, []);
   return (
     <>
-      <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/icon?family=Material+Icons"
-        />
-        <title>Login</title>
-        <link
-          rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-          crossOrigin="anonymous"
-        />
+      <MainLayout>
+        <Head>
+          <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
+          />
+          <script
+            type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"
+          ></script>
+          <script
+            type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-show-password/1.0.3/bootstrap-show-password.min.js"
+          ></script>
+          <link rel="stylesheet" type="text/css" href="/login.css" />
+        </Head>
+        <Prompt
+          title={prompt_title}
+          linkTo={link_to}
+          linkText={link_text}
+          show={show}
+          success={link_to.length > 0 ? true : false}
+          handleClose={handleClose}
+        >
+          <p>{prompt_body}</p>
+        </Prompt>
 
-        <script
-          type="text/javascript"
-          src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"
-        ></script>
-
-        <script
-          type="text/javascript"
-          src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-show-password/1.0.3/bootstrap-show-password.min.js"
-        ></script>
-        <link rel="stylesheet" type="text/css" href="/login.css" />
-      </Head>
-      <Prompt
-        title={prompt_title}
-        linkTo={link_to}
-        linkText={link_text}
-        show={show}
-        success={link_to.length > 0 ? true : false}
-        handleClose={handleClose}
-      >
-        <p>{prompt_body}</p>
-      </Prompt>
-      <div className="row">
-        <div className="navbar">
-          <img className="logo" src="/images/Logo.png" />
-        </div>
-      </div>
-      <div className="content">
-        <div style={{ textAlign: "center" }}>
-          <div>
+        <div className="content">
+          <div style={{ textAlign: "center", paddingTop: "12%" }}>
             <h3>
               <b>Login</b>
             </h3>
+            <br />
           </div>
-          <br />
-        </div>
-        <div className="row">
           <form className="needs-validation" noValidate onSubmit={authenticate}>
             <div className="form-group">
-              <label htmlFor="email">Email / Phone Number</label>
+              <label htmlFor="InputEmail" className="loginlabel">
+                Email / Phone Number
+              </label>
               <input
                 type="email"
                 className="form-control textbox"
@@ -135,7 +122,9 @@ const Login = () => {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="exampleInputPassword1">Password</label>
+              <label htmlFor="InputPassword1" className="loginlabel">
+                Password
+              </label>
               <span>
                 <input
                   type="password"
@@ -172,13 +161,13 @@ const Login = () => {
             </div>
           </form>
         </div>
-      </div>
 
-      <script type="text/javascript" src="/js/a.js"></script>
-      <script
-        src="https://kit.fontawesome.com/3303a2a495.js"
-        crossOrigin="anonymous"
-      ></script>
+        <script type="text/javascript" src="/js/a.js"></script>
+        <script
+          src="https://kit.fontawesome.com/3303a2a495.js"
+          crossOrigin="anonymous"
+        ></script>
+      </MainLayout>
     </>
   );
 };

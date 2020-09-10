@@ -31,7 +31,7 @@ const Navbar = (props) => {
           </a>
           <a className="header-brand" href="index.html">
             <img
-              src="assets/images/Logo.png"
+              src="/assets/images/Logo.png"
               className="header-brand-img main-logo"
               alt="logo"
               style={{ marginLeft: "-1em" }}
@@ -75,15 +75,15 @@ const Navbar = (props) => {
                 <span
                   id="memberprofile"
                   className="avatar avatar-md brround cover-image"
-                  data-image-src="../../../public/assets/images/Profile_Icon.png" //user image
+                  data-image-src="/assets/images/Profile_Icon.png" //user image
                   style={{
-                    background: 'url("assets/images/Profile_Icon.png") center center',
+                    background:
+                      'url("/assets/images/Profile_Icon.png") center center',
                   }}
                 ></span>
                 <div className="ml-3">
-                  <span style={{ color: "#000000", fontWeight:"bold" }}>
-                    No Name{" "} 
-                    <i className="fe fe-chevron-down ml-1" />
+                  <span style={{ color: "#000000", fontWeight: "bold" }}>
+                    No Name <i className="fe fe-chevron-down ml-1" />
                   </span>
                 </div>
               </a>
