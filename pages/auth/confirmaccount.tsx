@@ -1,11 +1,13 @@
 import Button from "react-bootstrap/Button";
 // import Link from "next/link";
-import { useState, FormEvent, useEffect, useRef } from "react";
+import { useState, FormEvent, useEffect, useRef, useContext } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import Prompt from "../../components/Prompt";
 // import AuthHeader from "../../components/auth/AuthHeader";
 import Head from "next/head";
+import { Store } from "../../contextStore";
+import { Users } from "../../lib/endpoints";
 
 const ConfirmAccount = () => {
   const [code1, setCode1] = useState("");
@@ -23,7 +25,7 @@ const ConfirmAccount = () => {
   const code3Ref = useRef(null);
   const code4Ref = useRef(null);
   const submitBtnRef = useRef(null);
-
+  const { state, dispatch } = useContext(Store);
   const router = useRouter();
 
   const handleClose = () => setShow(false);
@@ -97,6 +99,21 @@ const ConfirmAccount = () => {
     }
   };
 
+  const requestVerificationCode = async () => {
+    callPrompt("Verification", "", "", "Requesting for verification code");
+    const rs = await new Users().resendToken(state.emailaddress);
+    if (rs.error) {
+      callPrompt("Verification", "", "Close", "Code request failed");
+    } else {
+      callPrompt(
+        "Verification",
+        "",
+        "Close",
+        "Code request successfull. Please check your email"
+      );
+    }
+    console.log(rs);
+  };
   useEffect(() => {
     if (countDown == 60) countdown(1);
   }, []);
@@ -248,7 +265,7 @@ const ConfirmAccount = () => {
                 <button
                   className="re-sendbtn"
                   id="re-send_code"
-                  onClick={() => {}}
+                  onClick={requestVerificationCode}
                 >
                   Resend Code<i className="material-icons">refresh</i>
                 </button>

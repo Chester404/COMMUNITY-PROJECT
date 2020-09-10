@@ -76,6 +76,14 @@ export class Users {
     });
   }
 
+  async resendToken(authentication_property: string) {
+    // const data = new URLSearchParams(userData).toString();
+    return await ufetch("/auth/password-forgotten/", {
+      method: "POST",
+      body: JSON.stringify({ authentication_property, access_type: "a" }),
+    });
+  }
+
   protected async generic_query(ctx: any) {
     return await ufetch(`/${ctx.endpoint}/${ctx.query_params}`, {
       method: ctx.method,

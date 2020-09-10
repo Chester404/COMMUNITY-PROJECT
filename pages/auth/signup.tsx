@@ -1,9 +1,10 @@
 // import AuthHeader from "../../components/auth/AuthHeader";
 import Link from "next/link";
-import { useState, FormEvent, useEffect } from "react";
+import { useState, FormEvent, useEffect, useContext } from "react";
 import axios from "axios";
 import Prompt from "../../components/Prompt";
 import Head from "next/head";
+import { Store } from "../../contextStore";
 
 const Signup = () => {
   const [authentication_property, setAuthenticationProperty] = useState("");
@@ -15,7 +16,7 @@ const Signup = () => {
   const [prompt_body, setPromptBody] = useState("");
   const [link_to, setLinkTo] = useState("");
   const [link_text, setLinkText] = useState("");
-
+  const { dispatch } = useContext(Store);
   const handleClose = () => setShow(false);
 
   const callPrompt = (
@@ -122,6 +123,10 @@ const Signup = () => {
           "Confirm Account",
           "A confirmation has been sent to your email. Please retrieve the code and confirm acount"
         );
+        dispatch({
+          type: "SET_EMAIL",
+          payload: authentication_property,
+        });
       } else {
         callPrompt("Sign Up", "", "Close", "Failed to register");
       }
