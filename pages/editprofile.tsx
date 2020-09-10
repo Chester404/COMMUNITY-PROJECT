@@ -103,7 +103,7 @@ export default function Home() {
   useEffect(() => {
     (async () => {
       const rs = await new Users().getUserProfile();
-      setName(`${rs.first_name} ${rs.last_name}`);
+      setName(rs.name);
       setBirthDay(rs.birthday);
       setGender(rs.gender ? rs.gender : "m");
       setStreetAddress(rs.street_address);
