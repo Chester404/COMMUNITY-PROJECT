@@ -67,7 +67,7 @@ export default function Home() {
                         alt=""
                         style={{ width: "40px", height: "40px" }}
                       />
-                      <span id="memberid" className="ml-5 column-color">
+                      <span className="ml-5 column-color" id="memberid">
                         Godsway Hadson
                       </span>
                       <div className="dropdown-content">
@@ -83,12 +83,30 @@ export default function Home() {
                           </div>
                           <div className="dropdown-divider m-0" />
                           <div className="ml-3 mr-3 mt-5 mb-5">
-                            For more information, please register <br />
-                            an <span style={{ color: "blue" }}> account</span>
+                            <p>
+                              <b>Telephone:</b>
+                              <span style={{ float: "right" }}>
+                                +233 50 123 98 76
+                              </span>
+                            </p>
+                            <p>
+                              <b>Email:</b>
+                              <span style={{ float: "right" }}>
+                                wonder@1993@gmail.com
+                              </span>
+                            </p>
+                            <p>
+                              <b>Street Address:</b>
+                              <span
+                                style={{ float: "right", textAlign: "right" }}
+                              >
+                                Executive Avenue 123, Anaji
+                              </span>
+                            </p>
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </div>{" "}
                   </td>
                   <td>
                     <p className="mt-2">Anaji, Takoradi</p>

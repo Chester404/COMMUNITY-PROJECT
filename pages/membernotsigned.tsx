@@ -63,7 +63,7 @@ export default function Home() {
                     <div className="dropdown">
                       <img
                         src="assets/images/img.jpg"
-                        className="brround ml-3"
+                        className="brround"
                         alt=""
                         style={{ width: "40px", height: "40px" }}
                       />

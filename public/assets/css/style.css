@@ -129,7 +129,7 @@ body {
   line-height: 1.5;
   color: #000;
   text-align: left;
-  background: #f0f1f7;
+  background: #f7f7f7;
 }
 [tabindex="-1"]:focus {
   outline: 0 !important;
@@ -210,7 +210,7 @@ sup {
   top: -0.5em;
 }
 a {
-  color: #5964ff;
+  color: #000000;
   text-decoration: none;
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
@@ -14170,9 +14170,9 @@ a.icon:hover {
   background: #5964ff;
 }
 
-.hor-menu .horizontalMenu>.horizontalMenu-list>li>a:hover{
-	color:#5964ff;
-	background:rgba(234, 235, 243, 0.3);
+.hor-menu .horizontalMenu > .horizontalMenu-list > li > a:hover {
+  color: #5964ff;
+  background: rgba(234, 235, 243, 0.3);
 }
 
 .nav-tabs .nav-link.active {
@@ -14761,6 +14761,10 @@ a.icon:hover {
 /*------ Nav Link -------*/
 
 /*----- Btn styles------*/
+.btn-hover :hover {
+  background-color: "#3355be1";
+}
+
 .btn i {
   font-size: 1rem;
 }
@@ -25394,7 +25398,7 @@ div[data-acc-step]:not(.open) .badge-primary {
   }
   .page-title {
     font-size: 17px;
-    font-family: 'Open sans';
+    font-family: "Open sans";
   }
 }
 .owl-carousel .owl-nav {
@@ -25891,6 +25895,7 @@ body.sidebar-show {
 }
 .hor-header {
   padding: 10px 0;
+  height: 80px !important;
 }
 .siderbar-tabs .tabs-menu ul li a {
   border: 1px solid #e8ebf1;
@@ -25945,9 +25950,5 @@ body.sidebar-show {
 }
 
 a.nav-link:hover {
-  color:#3964FC !important;
-}
-
-h4{
-  font-family: 'Open sans';
+  color: #3964fc !important;
 }

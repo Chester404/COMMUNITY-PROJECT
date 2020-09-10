@@ -24,15 +24,15 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
-    "/profile": [
+    "/editprofile": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/profile.js"
+      "static/chunks/pages/editprofile.js"
     ],
-    "/user/profile": [
+    "/memberlist": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/user/profile.js"
+      "static/chunks/pages/memberlist.js"
     ]
   },
   "ampFirstPages": []
