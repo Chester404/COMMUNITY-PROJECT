@@ -28,11 +28,6 @@
       "static/chunks/main.js",
       "static/chunks/webpack.js",
       "static/chunks/pages/auth/confirmaccount.js"
-    ],
-    "/auth/signup": [
-      "static/chunks/main.js",
-      "static/chunks/webpack.js",
-      "static/chunks/pages/auth/signup.js"
     ]
   },
   "ampFirstPages": []

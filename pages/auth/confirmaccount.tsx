@@ -20,7 +20,7 @@ const ConfirmAccount = () => {
   const [link_to, setLinkTo] = useState("");
   const [link_text, setLinkText] = useState("");
   const [countDown, setCountDown] = useState(60);
-
+  const [disabled, setDisabled] = useState(true);
   const code2Ref = useRef(null);
   const code3Ref = useRef(null);
   const code4Ref = useRef(null);
@@ -57,6 +57,8 @@ const ConfirmAccount = () => {
         setTimeout(tick, 1000);
       } else if (mins > 1) {
         countdown(mins - 1);
+      } else {
+        setDisabled(false);
       }
       setCountDown(cnt);
     }
@@ -264,8 +266,10 @@ const ConfirmAccount = () => {
               <div style={{ marginTop: 15 }}>
                 <button
                   className="re-sendbtn"
+                  style={{ color: disabled ? "grey" : "" }}
                   id="re-send_code"
                   onClick={requestVerificationCode}
+                  disabled={disabled}
                 >
                   Resend Code<i className="material-icons">refresh</i>
                 </button>
