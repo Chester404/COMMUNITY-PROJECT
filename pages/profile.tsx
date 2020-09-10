@@ -92,7 +92,7 @@ export default function Home() {
               <div className="row">
                 <div className="col-lg-5 col-md-12">
                   <div className="form-group">
-                    <label>Name</label>
+                    <label style={{ fontWeight: "bolder" }}>Name</label>
                     <input
                       type="text"
                       className="form-control form-rounded"
@@ -102,7 +102,9 @@ export default function Home() {
                   </div>
 
                   <div className="form-group">
-                    <label>Email Address</label>
+                    <label style={{ fontWeight: "bolder" }}>
+                      Email Address
+                    </label>
                     <input
                       type="text"
                       className="form-control form-rounded"
@@ -115,7 +117,7 @@ export default function Home() {
                     />
                   </div>
                   <div className="form-group">
-                    <label>Phone Number</label>
+                    <label style={{ fontWeight: "bolder" }}>Phone Number</label>
                     <input
                       type="text"
                       className="form-control form-rounded"
@@ -128,7 +130,12 @@ export default function Home() {
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="form-label">Date of Birth</label>
+                    <label
+                      style={{ fontWeight: "bolder" }}
+                      htmlFor="form-label"
+                    >
+                      Date of Birth
+                    </label>
                     <div className="form-group">
                       <div className="input-group-date">
                         <input
@@ -144,7 +151,9 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="form-group">
-                    <label>Privacy Level</label>
+                    <label style={{ fontWeight: "bolder" }}>
+                      Privacy Level
+                    </label>
                     <input
                       type="text"
                       className="form-control form-rounded"
@@ -161,7 +170,7 @@ export default function Home() {
                 <div className="col-lg-1"></div>
                 <div className="col-lg-5 col-md-12">
                   <div className="form-group">
-                    <label>Gender</label>
+                    <label style={{ fontWeight: "bolder" }}>Gender</label>
                     <input
                       type="text"
                       className="form-control form-rounded"
@@ -176,7 +185,7 @@ export default function Home() {
                     />
                   </div>
                   <div className="form-group">
-                    <label>Town</label>
+                    <label style={{ fontWeight: "bolder" }}>Town</label>
                     <input
                       type="text"
                       className="form-control form-rounded"
@@ -189,7 +198,7 @@ export default function Home() {
                     />
                   </div>
                   <div className="form-group">
-                    <label>Region</label>
+                    <label style={{ fontWeight: "bolder" }}>Region</label>
                     <input
                       type="text"
                       className="form-control form-rounded"
@@ -200,7 +209,9 @@ export default function Home() {
                     />
                   </div>
                   <div className="form-group">
-                    <label>Digital Address</label>
+                    <label style={{ fontWeight: "bolder" }}>
+                      Digital Address
+                    </label>
                     <input
                       type="text"
                       className="form-control form-rounded"

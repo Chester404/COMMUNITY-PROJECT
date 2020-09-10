@@ -4,6 +4,7 @@ import { useState, FormEvent, useEffect, useContext } from "react";
 import Link from "next/link";
 import Prompt from "../components/Prompt";
 import { Store } from "../contextStore";
+import { useRouter } from "next/router";
 
 const REGIONS = [
   ["wr", "Western Region"],
@@ -37,7 +38,7 @@ export default function Home() {
   const [street_address, setStreetAddress] = useState("");
   const [phone_number, setPhoneNumber] = useState("");
   const [region, setRegion] = useState("wr");
-  const [digital_address, setDigitalAddress] = useState("");
+  const [gps_location, setDigitalAddress] = useState("");
   const [privacy_level, setPrivacyLevel] = useState("me");
   // const [image, setImage] = useState("");
   const [email, setEmail] = useState("");
@@ -51,7 +52,15 @@ export default function Home() {
   const [link_text, setLinkText] = useState("");
   const [image, setImage] = useState("/assets/images/Profile_Icon.png");
   const { state, dispatch } = useContext(Store);
-  const handleClose = () => setShow(false);
+  const [doneUpdate, setDoneUpdate] = useState(false);
+  const router = useRouter();
+
+  const handleClose = () => {
+    if (doneUpdate) {
+      router.push("/profile");
+    }
+    setShow(false);
+  };
 
   const callPrompt = (
     title: string,
@@ -67,6 +76,10 @@ export default function Home() {
   };
 
   const submitData = async () => {
+    if (name.length <= 0) {
+      callPrompt("Edit Profile", "", "Close", "Name can not be blank");
+      return;
+    }
     callPrompt("Edit Profile", "", "", "Please wait...");
     const [first, ...last] = name.split(" ");
     const response = await new Users().updateUserProfile({
@@ -78,7 +91,7 @@ export default function Home() {
       street_address: street_address,
       phone_number: phone_number,
       region: region,
-      digital_address: digital_address,
+      gps_location: gps_location,
       privacy_level: privacy_level,
     });
     console.log("RESPONSE ON PUSH", response);
@@ -101,6 +114,7 @@ export default function Home() {
       lStorage.username = name;
       window.localStorage.setItem("cp-a", JSON.stringify(lStorage));
     }
+    setDoneUpdate(true);
     callPrompt("Edit Profile", "", "Close", "Success: User profile saved");
   };
 
@@ -113,7 +127,7 @@ export default function Home() {
       setStreetAddress(rs.street_address);
       setPhoneNumber(rs.phone_number);
       setRegion(rs.region ? rs.region : "wr");
-      setDigitalAddress(rs.digital_address);
+      setDigitalAddress(rs.gps_location);
       setPrivacyLevel(rs.privacy_level ? rs.privacy_level : "me");
       setEmail(rs.user.email);
       if (rs.image) setImage(rs.image);
@@ -191,7 +205,7 @@ export default function Home() {
               <div className="row">
                 <div className="col-lg-5 col-md-12">
                   <div className="form-group">
-                    <label>
+                    <label style={{ fontWeight: "bold" }}>
                       Name <span style={{ color: "red" }}>*</span>
                     </label>
                     <input
@@ -204,7 +218,7 @@ export default function Home() {
                     />
                   </div>
                   <div className="form-group">
-                    <label style={{ color: "grey", fontFamily: "" }}>
+                    <label style={{ color: "grey", fontWeight: "bold" }}>
                       Email Address
                     </label>
                     <input
@@ -216,7 +230,7 @@ export default function Home() {
                     />
                   </div>
                   <div className="form-group">
-                    <label>Phone Number</label>
+                    <label style={{ fontWeight: "bolder" }}>Phone Number</label>
                     <input
                       type="number"
                       className="form-control form-rounded"
@@ -226,7 +240,12 @@ export default function Home() {
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="form-label">Date of Birth</label>
+                    <label
+                      htmlFor="form-label"
+                      style={{ fontWeight: "bolder" }}
+                    >
+                      Date of Birth
+                    </label>
                     <div className="form-group">
                       <div className="input-group-date">
                         <input
@@ -240,7 +259,9 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="form-group">
-                    <label>Privacy Level</label>
+                    <label style={{ fontWeight: "bolder" }}>
+                      Privacy Level
+                    </label>
                     <select
                       className="form-control select2 form-rounded"
                       value={privacy_level}
@@ -258,7 +279,12 @@ export default function Home() {
                 <div className="col-lg-1"></div>
                 <div className="col-lg-5 col-md-12">
                   <div className="form-group mt-4">
-                    <label htmlFor="exampleInput">Gender</label>
+                    <label
+                      style={{ fontWeight: "bolder" }}
+                      htmlFor="exampleInput"
+                    >
+                      Gender
+                    </label>
                     <div className="row" style={{ marginLeft: 3 }}>
                       <div className="form-check form-check-inline">
                         <input
@@ -271,6 +297,7 @@ export default function Home() {
                           onChange={(e) => setGender(e.target.value)}
                         />
                         <label
+                          style={{ fontWeight: "bolder" }}
                           className="form-check-label"
                           htmlFor="inlineRadio1"
                         >
@@ -288,6 +315,7 @@ export default function Home() {
                           onChange={(e) => setGender(e.target.value)}
                         />
                         <label
+                          style={{ fontWeight: "bolder" }}
                           className="form-check-label"
                           htmlFor="inlineRadio2"
                         >
@@ -298,7 +326,7 @@ export default function Home() {
                   </div>
 
                   <div className="form-group">
-                    <label>Town</label>
+                    <label style={{ fontWeight: "bolder" }}>Town</label>
                     <input
                       type="text"
                       className="form-control form-rounded"
@@ -308,7 +336,7 @@ export default function Home() {
                     />
                   </div>
                   <div className="form-group">
-                    <label>Region</label>
+                    <label style={{ fontWeight: "bolder" }}>Region</label>
                     <select
                       className="form-control select2 form-rounded"
                       onChange={(e) => setRegion(e.target.value)}
@@ -322,12 +350,14 @@ export default function Home() {
                     </select>
                   </div>
                   <div className="form-group">
-                    <label>Digital Address</label>
+                    <label style={{ fontWeight: "bolder" }}>
+                      Digital Address
+                    </label>
                     <input
                       type="text"
                       className="form-control form-rounded"
                       placeholder="eg. AK-039-5028"
-                      value={digital_address}
+                      value={gps_location}
                       onChange={(e) => setDigitalAddress(e.target.value)}
                     />
                   </div>
