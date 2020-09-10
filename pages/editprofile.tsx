@@ -124,6 +124,16 @@ export default function Home() {
   return (
     <>
       <MainLayout>
+        <Prompt
+          title={prompt_title}
+          linkTo={link_to}
+          linkText={link_text}
+          show={show}
+          success={link_to.length > 0 ? true : false}
+          handleClose={handleClose}
+        >
+          <p>{prompt_body}</p>
+        </Prompt>
         <div>
           {/* page-header */}
           <div className="page-header">
@@ -333,7 +343,7 @@ export default function Home() {
                       color: "#ffffff !important",
                       borderRadius: "10px !important",
                     }}
-                    onClick={submitData}
+                    onClick={() => submitData()}
                   >
                     Save
                   </button>
