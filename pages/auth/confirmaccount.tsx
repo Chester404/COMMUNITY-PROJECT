@@ -75,8 +75,8 @@ const ConfirmAccount = () => {
     setPromptBody(message);
   };
 
-  const submitCode = async (e: FormEvent) => {
-    e.preventDefault();
+  const submitCode = async () => {
+    // e.preventDefault();
     try {
       const rs: any = await axios.post(
         "http://51.116.114.155:8080/auth/keyinput/",
@@ -156,101 +156,105 @@ const ConfirmAccount = () => {
             <br />
           </div>
           <div className="row">
-            <form onSubmit={submitCode}>
-              <div className="form-group" style={{ textAlign: "center" }}>
-                <div id="form">
-                  <input
-                    type="text"
-                    className="codebox"
-                    id="code1"
-                    maxLength={1}
-                    size={1}
-                    min={0}
-                    max={9}
-                    pattern="[0-9]{1}"
-                    value={code1}
-                    onChange={(e) => setCode1(e.target.value)}
-                    onKeyUp={() => code2Ref.current.focus()}
-                    style={{
-                      textAlign: "center",
-                    }}
-                  />
-                  <input
-                    type="text"
-                    className="codebox"
-                    id="code2"
-                    maxLength={1}
-                    size={1}
-                    min={0}
-                    max={9}
-                    pattern="[0-9]{1}"
-                    value={code2}
-                    onChange={(e) => setCode2(e.target.value)}
-                    style={{
-                      textAlign: "center",
-                    }}
-                    ref={code2Ref}
-                    onKeyUp={() => code3Ref.current.focus()}
-                  />
-                  <input
-                    type="text"
-                    className="codebox"
-                    id="code3"
-                    maxLength={1}
-                    size={1}
-                    min={0}
-                    max={9}
-                    pattern="[0-9]{1}"
-                    value={code3}
-                    onChange={(e) => setCode3(e.target.value)}
-                    style={{
-                      textAlign: "center",
-                    }}
-                    ref={code3Ref}
-                    onKeyUp={() => code4Ref.current.focus()}
-                  />
-                  <input
-                    type="text"
-                    className="codebox"
-                    id="code4"
-                    maxLength={1}
-                    size={1}
-                    min={0}
-                    max={9}
-                    pattern="[0-9]{1}"
-                    value={code4}
-                    onChange={(e) => setCode4(e.target.value)}
-                    style={{
-                      textAlign: "center",
-                    }}
-                    ref={code4Ref}
-                    onKeyUp={() => submitBtnRef.current.focus()}
-                  />
-                </div>
+            {/* <form onSubmit={submitCode}> */}
+            <div className="form-group" style={{ textAlign: "center" }}>
+              <div id="form">
+                <input
+                  type="text"
+                  className="codebox"
+                  id="code1"
+                  maxLength={1}
+                  size={1}
+                  min={0}
+                  max={9}
+                  pattern="[0-9]{1}"
+                  value={code1}
+                  onChange={(e) => setCode1(e.target.value)}
+                  onKeyUp={() => code2Ref.current.focus()}
+                  style={{
+                    textAlign: "center",
+                  }}
+                />
+                <input
+                  type="text"
+                  className="codebox"
+                  id="code2"
+                  maxLength={1}
+                  size={1}
+                  min={0}
+                  max={9}
+                  pattern="[0-9]{1}"
+                  value={code2}
+                  onChange={(e) => setCode2(e.target.value)}
+                  style={{
+                    textAlign: "center",
+                  }}
+                  ref={code2Ref}
+                  onKeyUp={() => code3Ref.current.focus()}
+                />
+                <input
+                  type="text"
+                  className="codebox"
+                  id="code3"
+                  maxLength={1}
+                  size={1}
+                  min={0}
+                  max={9}
+                  pattern="[0-9]{1}"
+                  value={code3}
+                  onChange={(e) => setCode3(e.target.value)}
+                  style={{
+                    textAlign: "center",
+                  }}
+                  ref={code3Ref}
+                  onKeyUp={() => code4Ref.current.focus()}
+                />
+                <input
+                  type="text"
+                  className="codebox"
+                  id="code4"
+                  maxLength={1}
+                  size={1}
+                  min={0}
+                  max={9}
+                  pattern="[0-9]{1}"
+                  value={code4}
+                  onChange={(e) => setCode4(e.target.value)}
+                  style={{
+                    textAlign: "center",
+                  }}
+                  ref={code4Ref}
+                  onKeyUp={() => submitBtnRef.current.focus()}
+                />
+              </div>
+              <br />
+              <div style={{ textAlign: "center" }}>
+                <button
+                  className="btn btn-primary"
+                  id="continue"
+                  ref={submitBtnRef}
+                  onClick={submitCode}
+                >
+                  Continue
+                </button>
+              </div>
+              <br />
+              <div style={{ textAlign: "center" }}>
+                If you don't recieve the code within
                 <br />
-                <div style={{ textAlign: "center" }}>
-                  <button
-                    type="submit"
-                    className="btn btn-primary"
-                    id="continue"
-                    ref={submitBtnRef}
-                  >
-                    Continue
-                  </button>
-                </div>
-                <br />
-                <div style={{ textAlign: "center" }}>
-                  If you don't recieve the code within
-                  <br />
-                  1mins, click below to re-send it.
-                </div>
-                <div style={{ marginTop: 15 }}>
-                  <button className="re-sendbtn" id="re-send_code">
-                    Resend Code<i className="material-icons">refresh</i>
-                  </button>
-                  {countDown}
-                </div>
-                {/* <table className="cell" style={{ width: "100%" }}>
+                1min, click below to re-send it.
+              </div>
+              <div style={{ marginTop: 15 }}>
+                <button
+                  className="re-sendbtn"
+                  id="re-send_code"
+                  onClick={() => {}}
+                >
+                  Resend Code<i className="material-icons">refresh</i>
+                </button>
+                {countDown}
+              </div>
+              {/* <table className="cell" style={{ width: "100%" }}>
                   <tbody>
                     <tr>
                       <td style={{ width: "75%" }}>
@@ -265,8 +269,8 @@ const ConfirmAccount = () => {
                     </tr>
                   </tbody>
                 </table> */}
-              </div>
-            </form>
+            </div>
+            {/* </form> */}
           </div>
         </div>
       </div>
