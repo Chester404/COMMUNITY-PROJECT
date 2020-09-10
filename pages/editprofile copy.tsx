@@ -49,7 +49,7 @@ export default function Home() {
   const [prompt_body, setPromptBody] = useState("");
   const [link_to, setLinkTo] = useState("");
   const [link_text, setLinkText] = useState("");
-  const [image, setImage] = useState("assets/images/Profile_Icon.png");
+
   const { state, dispatch } = useContext(Store);
   const handleClose = () => setShow(false);
 
@@ -116,7 +116,6 @@ export default function Home() {
       setDigitalAddress(rs.digital_address);
       setPrivacyLevel(rs.privacy_level ? rs.privacy_level : "me");
       setEmail(rs.user.email);
-      setImage(rs.image);
       console.log("rsData", rs.user);
     })();
   }, []);
@@ -124,6 +123,16 @@ export default function Home() {
   return (
     <>
       <MainLayout>
+        <Prompt
+          title={prompt_title}
+          linkTo={link_to}
+          linkText={link_text}
+          show={show}
+          success={link_to.length > 0 ? true : false}
+          handleClose={handleClose}
+        >
+          {prompt_body}
+        </Prompt>
         <div>
           {/* page-header */}
           <div className="page-header">
@@ -134,7 +143,11 @@ export default function Home() {
             <div className="col-md-3">
               <div className="userpic mb-4">
                 <div className="profile-pic">
-                  <img src={image} width={200} height={200} />
+                  <img
+                    src="assets/images/Profile_Icon.png"
+                    width={200}
+                    height={200}
+                  />
                   <div
                     className="edit"
                     style={{
@@ -157,7 +170,7 @@ export default function Home() {
                           style={{ fontSize: "25px" }}
                         />
                       </button>
-                      <button
+                      {/* <button
                         type="button"
                         className="btn btn-icon ml-2"
                         style={{
@@ -170,7 +183,7 @@ export default function Home() {
                           className="fe fe-trash fa-lg"
                           style={{ fontSize: "25px" }}
                         />
-                      </button>
+                      </button> */}
                     </a>
                   </div>
                 </div>
@@ -179,13 +192,13 @@ export default function Home() {
             <div className="col-lg-12 col-xl-9 col-md-12 col-sm-12">
               {/* <div className="card-body editprofile_cardbody"> */}
               <div className="row">
-                <div className="col-lg-5 col-md-12">
+                <div className="col-lg-6 col-md-12">
                   <div className="form-group">
                     <label>Name</label>
                     <input
                       type="text"
-                      className="form-control form-rounded text-field-hover"
-                      placeholder="Full name"
+                      className="form-control form-rounded"
+                      placeholder="Lois Young"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                     />
@@ -198,16 +211,16 @@ export default function Home() {
                       type="text"
                       className="form-control form-rounded"
                       placeholder="your@email.com"
-                      readOnly
                       value={email}
+                      readOnly
                     />
                   </div>
                   <div className="form-group">
                     <label>Phone Number</label>
                     <input
-                      type="number"
+                      type="text"
                       className="form-control form-rounded"
-                      placeholder="eg. 024 567 3456"
+                      placeholder="024 678 9560"
                       value={phone_number}
                       onChange={(e) => setPhoneNumber(e.target.value)}
                     />
@@ -228,7 +241,7 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="form-group">
-                    <label>Privacy Level</label>
+                    <label>Private Level</label>
                     <select
                       className="form-control select2 form-rounded"
                       value={privacy_level}
@@ -242,9 +255,7 @@ export default function Home() {
                     </select>
                   </div>
                 </div>
-
-                <div className="col-lg-1"></div>
-                <div className="col-lg-5 col-md-12">
+                <div className="col-lg-6 col-md-12">
                   <div className="form-group mt-4">
                     <label htmlFor="exampleInput">Gender</label>
                     <div className="row" style={{ marginLeft: 3 }}>
@@ -286,7 +297,7 @@ export default function Home() {
                   </div>
 
                   <div className="form-group">
-                    <label>Town</label>
+                    <label>Street Address</label>
                     <input
                       type="text"
                       className="form-control form-rounded"
@@ -307,6 +318,11 @@ export default function Home() {
                           {r[1]}
                         </option>
                       ))}
+                      {/* <option>Western Region</option>
+                      <option>Central Region</option>
+                      <option>Eastern Region</option>
+                      <option>Greater Accra</option>
+                      <option>Volta Region</option> */}
                     </select>
                   </div>
                   <div className="form-group">
@@ -327,12 +343,13 @@ export default function Home() {
               >
                 <div className="row">
                   <button
-                    className="btn bnt-primary  mb-1 mt-5"
+                    type="button"
+                    className="btn btn-lg mb-1 mt-5"
                     style={{
                       background: "#3964FC !important",
                       width: "160px !important",
                       color: "#ffffff !important",
-                      borderRadius: "10px !important",
+                      borderRadius: "20px !important",
                     }}
                     onClick={submitData}
                   >
@@ -340,12 +357,12 @@ export default function Home() {
                   </button>
                   <Link href="/profile">
                     <a
-                      className="btn  ml-5  mb-1 mt-5"
+                      className="btn ml-5 btn-lg mb-1 mt-5"
                       style={{
                         background: "#818AA9 !important",
                         width: "160px !important",
                         color: "#ffffff !important",
-                        borderRadius: "10px !important",
+                        borderRadius: "20px !important",
                       }}
                     >
                       Cancel
@@ -353,7 +370,7 @@ export default function Home() {
                   </Link>
                 </div>
               </div>
-              {/* </div> */}
+              {/* </div> */}`
             </div>
           </div>
         </div>

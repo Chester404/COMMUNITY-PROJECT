@@ -52,7 +52,7 @@ export default function Home() {
         <div>
           {/* page-header */}
           <div className="page-header mt-6">
-            <h1 className="page-title ">Profile</h1>
+            <h3 className="page-title ">Profile</h3>
           </div>
           {/* End page-header */}
           <div className="row ">
@@ -73,7 +73,11 @@ export default function Home() {
                 <Link href="/editprofile">
                   <a
                     className="btn btn-primary btn-block mt-1"
-                    style={{ borderRadius: "12px", width: "200px" }}
+                    style={{
+                      borderRadius: "10px",
+                      width: "200px",
+                      backgroundColor: "#3964fc",
+                    }}
                   >
                     Edit Information
                   </a>
@@ -84,14 +88,14 @@ export default function Home() {
             <div className="col-lg-12 col-xl-9 col-md-12 col-sm-12">
               {/* <div className="card-body"> */}
               <div className="row">
-                <div className="col-lg-6 col-md-12">
+                <div className="col-lg-5 col-md-12">
                   <div className="form-group">
                     <label>Name</label>
                     <input
                       type="text"
                       className="form-control form-rounded"
-                      readOnly
                       defaultValue={profileData?.name ? profileData.name : ""}
+                      readOnly
                     />
                   </div>
 
@@ -100,12 +104,12 @@ export default function Home() {
                     <input
                       type="text"
                       className="form-control form-rounded"
-                      readOnly
                       defaultValue={
                         profileData?.user
                           ? profileData.user.email
                           : state.emailaddress
                       }
+                      readOnly
                     />
                   </div>
                   <div className="form-group">
@@ -113,8 +117,8 @@ export default function Home() {
                     <input
                       type="text"
                       className="form-control form-rounded"
-                      readOnly
                       defaultValue={profileData?.phone ? profileData.phone : ""}
+                      readOnly
                     />
                   </div>
                   <div className="form-group">
@@ -125,34 +129,36 @@ export default function Home() {
                           type="text"
                           id="dob"
                           className="form-control form-rounded"
+                          defaultValue={
+                            profileData?.birthday ? profileData.birthday : ""
+                          }
                           readOnly
-                          defaultValue={profileData?.dob ? profileData.dob : ""}
                         />
                       </div>
                     </div>
                   </div>
                   <div className="form-group">
-                    <label>Private Level</label>
+                    <label>Privacy Level</label>
                     <input
                       type="text"
                       className="form-control form-rounded"
-                      readOnly
                       defaultValue={
                         profileData?.privacy_level
                           ? profileData.privacy_level
                           : ""
                       }
+                      readOnly
                     />
                   </div>
                 </div>
 
-                <div className="col-lg-6 col-md-12">
+                <div className="col-lg-1"></div>
+                <div className="col-lg-5 col-md-12">
                   <div className="form-group">
                     <label>Gender</label>
                     <input
                       type="text"
                       className="form-control form-rounded"
-                      readOnly
                       defaultValue={
                         profileData?.gender
                           ? profileData.gender === "m"
@@ -160,6 +166,7 @@ export default function Home() {
                             : "Female"
                           : ""
                       }
+                      readOnly
                     />
                   </div>
                   <div className="form-group">
@@ -167,8 +174,12 @@ export default function Home() {
                     <input
                       type="text"
                       className="form-control form-rounded"
+                      defaultValue={
+                        profileData?.street_address
+                          ? profileData.street_address
+                          : ""
+                      }
                       readOnly
-                      defaultValue={profileData?.town ? profileData.town : ""}
                     />
                   </div>
                   <div className="form-group">
@@ -176,10 +187,10 @@ export default function Home() {
                     <input
                       type="text"
                       className="form-control form-rounded"
-                      readOnly
                       defaultValue={
                         profileData?.region ? profileData.region : ""
                       }
+                      readOnly
                     />
                   </div>
                   <div className="form-group">
@@ -187,12 +198,12 @@ export default function Home() {
                     <input
                       type="text"
                       className="form-control form-rounded"
-                      readOnly
                       defaultValue={
                         profileData?.gps_location
                           ? profileData.gps_location
                           : ""
                       }
+                      readOnly
                     />
                   </div>
                 </div>
