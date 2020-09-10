@@ -9,121 +9,7 @@ _N_E =
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-<<<<<<< HEAD
 eval("__webpack_require__.r(__webpack_exports__);\n/* WEBPACK VAR INJECTION */(function(module) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"Store\", function() { return Store; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"ContextWrapper\", function() { return ContextWrapper; });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\nvar _this = undefined,\n    _jsxFileName = \"/home/james/Documents/dev/cp-fe/contextStore/index.tsx\",\n    _s = $RefreshSig$();\n\n\nvar __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;\n\nvar Store = Object(react__WEBPACK_IMPORTED_MODULE_0__[\"createContext\"])(\"\");\n\nvar reducer = function reducer(state, action) {\n  switch (action.type) {\n    case \"change\":\n      return action.payload;\n\n    default:\n      return state;\n  }\n};\n\nvar ContextWrapper = function ContextWrapper(_ref) {\n  _s();\n\n  var children = _ref.children;\n\n  var _useReducer = Object(react__WEBPACK_IMPORTED_MODULE_0__[\"useReducer\"])(reducer, \"Paul\"),\n      state = _useReducer[0],\n      dispatch = _useReducer[1];\n\n  return __jsx(Store.Provider, {\n    value: {\n      state: state,\n      dispatch: dispatch\n    },\n    __self: _this,\n    __source: {\n      fileName: _jsxFileName,\n      lineNumber: 22,\n      columnNumber: 5\n    }\n  }, children);\n};\n\n_s(ContextWrapper, \"7VZWd1Mfl2xRAWIpcqKDMW5705g=\");\n\n_c = ContextWrapper;\n\nvar _c;\n\n$RefreshReg$(_c, \"ContextWrapper\");\n\n;\n    var _a, _b;\n    // Legacy CSS implementations will `eval` browser code in a Node.js context\n    // to extract CSS. For backwards compatibility, we need to check we're in a\n    // browser context before continuing.\n    if (typeof self !== 'undefined' &&\n        // AMP / No-JS mode does not inject these helpers:\n        '$RefreshHelpers$' in self) {\n        var currentExports = module.__proto__.exports;\n        var prevExports = (_b = (_a = module.hot.data) === null || _a === void 0 ? void 0 : _a.prevExports) !== null && _b !== void 0 ? _b : null;\n        // This cannot happen in MainTemplate because the exports mismatch between\n        // templating and execution.\n        self.$RefreshHelpers$.registerExportsForReactRefresh(currentExports, module.i);\n        // A module can be accepted automatically based on its exports, e.g. when\n        // it is a Refresh Boundary.\n        if (self.$RefreshHelpers$.isReactRefreshBoundary(currentExports)) {\n            // Save the previous exports on update so we can compare the boundary\n            // signatures.\n            module.hot.dispose(function (data) {\n                data.prevExports = currentExports;\n            });\n            // Unconditionally accept an update to this module, we'll check if it's\n            // still a Refresh Boundary later.\n            module.hot.accept();\n            // This field is set when the previous version of this module was a\n            // Refresh Boundary, letting us know we need to check for invalidation or\n            // enqueue an update.\n            if (prevExports !== null) {\n                // A boundary can become ineligible if its exports are incompatible\n                // with the previous exports.\n                //\n                // For example, if you add/remove/change exports, we'll want to\n                // re-execute the importing modules, and force those components to\n                // re-render. Similarly, if you convert a class component to a\n                // function, we want to invalidate the boundary.\n                if (self.$RefreshHelpers$.shouldInvalidateReactRefreshBoundary(prevExports, currentExports)) {\n                    module.hot.invalidate();\n                }\n                else {\n                    self.$RefreshHelpers$.scheduleUpdate();\n                }\n            }\n        }\n        else {\n            // Since we just executed the code for the module, it's possible that the\n            // new exports made it ineligible for being a boundary.\n            // We only care about the case when we were _previously_ a boundary,\n            // because we already accepted this update (accidental side effect).\n            var isNoLongerABoundary = prevExports !== null;\n            if (isNoLongerABoundary) {\n                module.hot.invalidate();\n            }\n        }\n    }\n\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/webpack/buildin/harmony-module.js */ \"./node_modules/webpack/buildin/harmony-module.js\")(module)))//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9fTl9FLy4vY29udGV4dFN0b3JlL2luZGV4LnRzeD9lMTdkIl0sIm5hbWVzIjpbIlN0b3JlIiwiY3JlYXRlQ29udGV4dCIsInJlZHVjZXIiLCJzdGF0ZSIsImFjdGlvbiIsInR5cGUiLCJwYXlsb2FkIiwiQ29udGV4dFdyYXBwZXIiLCJjaGlsZHJlbiIsInVzZVJlZHVjZXIiLCJkaXNwYXRjaCJdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7QUFBQTtBQUVPLElBQU1BLEtBQUssR0FBR0MsMkRBQWEsQ0FBZSxFQUFmLENBQTNCOztBQU9QLElBQU1DLE9BQU8sR0FBRyxTQUFWQSxPQUFVLENBQUNDLEtBQUQsRUFBUUMsTUFBUixFQUFtQjtBQUNqQyxVQUFRQSxNQUFNLENBQUNDLElBQWY7QUFDRSxTQUFLLFFBQUw7QUFDRSxhQUFPRCxNQUFNLENBQUNFLE9BQWQ7O0FBQ0Y7QUFDRSxhQUFPSCxLQUFQO0FBSko7QUFNRCxDQVBEOztBQVNPLElBQU1JLGNBQWMsR0FBRyxTQUFqQkEsY0FBaUIsT0FBa0I7QUFBQTs7QUFBQSxNQUFmQyxRQUFlLFFBQWZBLFFBQWU7O0FBQUEsb0JBQ3BCQyx3REFBVSxDQUFDUCxPQUFELEVBQVUsTUFBVixDQURVO0FBQUEsTUFDdkNDLEtBRHVDO0FBQUEsTUFDaENPLFFBRGdDOztBQUU5QyxTQUNFLE1BQUMsS0FBRCxDQUFPLFFBQVA7QUFBZ0IsU0FBSyxFQUFFO0FBQUVQLFdBQUssRUFBTEEsS0FBRjtBQUFTTyxjQUFRLEVBQVJBO0FBQVQsS0FBdkI7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQSxLQUE2Q0YsUUFBN0MsQ0FERjtBQUdELENBTE07O0dBQU1ELGM7O0tBQUFBLGMiLCJmaWxlIjoiLi9jb250ZXh0U3RvcmUvaW5kZXgudHN4LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgY3JlYXRlQ29udGV4dCwgdXNlUmVkdWNlciB9IGZyb20gXCJyZWFjdFwiO1xuXG5leHBvcnQgY29uc3QgU3RvcmUgPSBjcmVhdGVDb250ZXh0PHN0cmluZyB8IGFueT4oXCJcIik7XG5cbmludGVyZmFjZSBJU2lnbnVwIHtcbiAgdXNlck5hbWU6IHN0cmluZztcbiAgcGFzc3dvcmQ6IHN0cmluZztcbn1cblxuY29uc3QgcmVkdWNlciA9IChzdGF0ZSwgYWN0aW9uKSA9PiB7XG4gIHN3aXRjaCAoYWN0aW9uLnR5cGUpIHtcbiAgICBjYXNlIFwiY2hhbmdlXCI6XG4gICAgICByZXR1cm4gYWN0aW9uLnBheWxvYWQ7XG4gICAgZGVmYXVsdDpcbiAgICAgIHJldHVybiBzdGF0ZTtcbiAgfVxufTtcblxuZXhwb3J0IGNvbnN0IENvbnRleHRXcmFwcGVyID0gKHsgY2hpbGRyZW4gfSkgPT4ge1xuICBjb25zdCBbc3RhdGUsIGRpc3BhdGNoXSA9IHVzZVJlZHVjZXIocmVkdWNlciwgXCJQYXVsXCIpO1xuICByZXR1cm4gKFxuICAgIDxTdG9yZS5Qcm92aWRlciB2YWx1ZT17eyBzdGF0ZSwgZGlzcGF0Y2ggfX0+e2NoaWxkcmVufTwvU3RvcmUuUHJvdmlkZXI+XG4gICk7XG59O1xuIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./contextStore/index.tsx\n");
-=======
-__webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(module) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Store", function() { return Store; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ContextWrapper", function() { return ContextWrapper; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-var _this = undefined,
-    _jsxFileName = "C:\\Users\\AMALITECH\\Desktop\\sprint_3\\cp-fe\\contextStore\\index.tsx",
-    _s = $RefreshSig$();
-
-
-var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
-
-var Store = Object(react__WEBPACK_IMPORTED_MODULE_0__["createContext"])("");
-
-var reducer = function reducer(state, action) {
-  switch (action.type) {
-    case "change":
-      return action.payload;
-
-    default:
-      return state;
-  }
-};
-
-var ContextWrapper = function ContextWrapper(_ref) {
-  _s();
-
-  var children = _ref.children;
-
-  var _useReducer = Object(react__WEBPACK_IMPORTED_MODULE_0__["useReducer"])(reducer, "Paul"),
-      state = _useReducer[0],
-      dispatch = _useReducer[1];
-
-  return __jsx(Store.Provider, {
-    value: {
-      state: state,
-      dispatch: dispatch
-    },
-    __self: _this,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 22,
-      columnNumber: 5
-    }
-  }, children);
-};
-
-_s(ContextWrapper, "7VZWd1Mfl2xRAWIpcqKDMW5705g=");
-
-_c = ContextWrapper;
-
-var _c;
-
-$RefreshReg$(_c, "ContextWrapper");
-
-;
-    var _a, _b;
-    // Legacy CSS implementations will `eval` browser code in a Node.js context
-    // to extract CSS. For backwards compatibility, we need to check we're in a
-    // browser context before continuing.
-    if (typeof self !== 'undefined' &&
-        // AMP / No-JS mode does not inject these helpers:
-        '$RefreshHelpers$' in self) {
-        var currentExports = module.__proto__.exports;
-        var prevExports = (_b = (_a = module.hot.data) === null || _a === void 0 ? void 0 : _a.prevExports) !== null && _b !== void 0 ? _b : null;
-        // This cannot happen in MainTemplate because the exports mismatch between
-        // templating and execution.
-        self.$RefreshHelpers$.registerExportsForReactRefresh(currentExports, module.i);
-        // A module can be accepted automatically based on its exports, e.g. when
-        // it is a Refresh Boundary.
-        if (self.$RefreshHelpers$.isReactRefreshBoundary(currentExports)) {
-            // Save the previous exports on update so we can compare the boundary
-            // signatures.
-            module.hot.dispose(function (data) {
-                data.prevExports = currentExports;
-            });
-            // Unconditionally accept an update to this module, we'll check if it's
-            // still a Refresh Boundary later.
-            module.hot.accept();
-            // This field is set when the previous version of this module was a
-            // Refresh Boundary, letting us know we need to check for invalidation or
-            // enqueue an update.
-            if (prevExports !== null) {
-                // A boundary can become ineligible if its exports are incompatible
-                // with the previous exports.
-                //
-                // For example, if you add/remove/change exports, we'll want to
-                // re-execute the importing modules, and force those components to
-                // re-render. Similarly, if you convert a class component to a
-                // function, we want to invalidate the boundary.
-                if (self.$RefreshHelpers$.shouldInvalidateReactRefreshBoundary(prevExports, currentExports)) {
-                    module.hot.invalidate();
-                }
-                else {
-                    self.$RefreshHelpers$.scheduleUpdate();
-                }
-            }
-        }
-        else {
-            // Since we just executed the code for the module, it's possible that the
-            // new exports made it ineligible for being a boundary.
-            // We only care about the case when we were _previously_ a boundary,
-            // because we already accepted this update (accidental side effect).
-            var isNoLongerABoundary = prevExports !== null;
-            if (isNoLongerABoundary) {
-                module.hot.invalidate();
-            }
-        }
-    }
-
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
->>>>>>> cd203616cf19a8427a5a239dd0d5c6ecd693571f
 
 /***/ }),
 
@@ -607,104 +493,7 @@ eval("module.exports = function(module) {\n\tif (!module.webpackPolyfill) {\n\t\
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-<<<<<<< HEAD
 eval("__webpack_require__.r(__webpack_exports__);\n/* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ \"./node_modules/@babel/runtime/helpers/esm/extends.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _contextStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../contextStore */ \"./contextStore/index.tsx\");\n\nvar _jsxFileName = \"/home/james/Documents/dev/cp-fe/pages/_app.tsx\";\n\nvar __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;\n\n\nfunction MyApp(_ref) {\n  var Component = _ref.Component,\n      pageProps = _ref.pageProps;\n  return __jsx(_contextStore__WEBPACK_IMPORTED_MODULE_2__[\"ContextWrapper\"], {\n    __self: this,\n    __source: {\n      fileName: _jsxFileName,\n      lineNumber: 5,\n      columnNumber: 3\n    }\n  }, __jsx(Component, Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[\"default\"])({}, pageProps, {\n    __self: this,\n    __source: {\n      fileName: _jsxFileName,\n      lineNumber: 6,\n      columnNumber: 4\n    }\n  })));\n}\n\n_c = MyApp;\n/* harmony default export */ __webpack_exports__[\"default\"] = (MyApp);\n\nvar _c;\n\n$RefreshReg$(_c, \"MyApp\");\n\n;\n    var _a, _b;\n    // Legacy CSS implementations will `eval` browser code in a Node.js context\n    // to extract CSS. For backwards compatibility, we need to check we're in a\n    // browser context before continuing.\n    if (typeof self !== 'undefined' &&\n        // AMP / No-JS mode does not inject these helpers:\n        '$RefreshHelpers$' in self) {\n        var currentExports = module.__proto__.exports;\n        var prevExports = (_b = (_a = module.hot.data) === null || _a === void 0 ? void 0 : _a.prevExports) !== null && _b !== void 0 ? _b : null;\n        // This cannot happen in MainTemplate because the exports mismatch between\n        // templating and execution.\n        self.$RefreshHelpers$.registerExportsForReactRefresh(currentExports, module.i);\n        // A module can be accepted automatically based on its exports, e.g. when\n        // it is a Refresh Boundary.\n        if (self.$RefreshHelpers$.isReactRefreshBoundary(currentExports)) {\n            // Save the previous exports on update so we can compare the boundary\n            // signatures.\n            module.hot.dispose(function (data) {\n                data.prevExports = currentExports;\n            });\n            // Unconditionally accept an update to this module, we'll check if it's\n            // still a Refresh Boundary later.\n            module.hot.accept();\n            // This field is set when the previous version of this module was a\n            // Refresh Boundary, letting us know we need to check for invalidation or\n            // enqueue an update.\n            if (prevExports !== null) {\n                // A boundary can become ineligible if its exports are incompatible\n                // with the previous exports.\n                //\n                // For example, if you add/remove/change exports, we'll want to\n                // re-execute the importing modules, and force those components to\n                // re-render. Similarly, if you convert a class component to a\n                // function, we want to invalidate the boundary.\n                if (self.$RefreshHelpers$.shouldInvalidateReactRefreshBoundary(prevExports, currentExports)) {\n                    module.hot.invalidate();\n                }\n                else {\n                    self.$RefreshHelpers$.scheduleUpdate();\n                }\n            }\n        }\n        else {\n            // Since we just executed the code for the module, it's possible that the\n            // new exports made it ineligible for being a boundary.\n            // We only care about the case when we were _previously_ a boundary,\n            // because we already accepted this update (accidental side effect).\n            var isNoLongerABoundary = prevExports !== null;\n            if (isNoLongerABoundary) {\n                module.hot.invalidate();\n            }\n        }\n    }\n\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/webpack/buildin/harmony-module.js */ \"./node_modules/webpack/buildin/harmony-module.js\")(module)))//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9fTl9FLy4vcGFnZXMvX2FwcC50c3g/NzIxNiJdLCJuYW1lcyI6WyJNeUFwcCIsIkNvbXBvbmVudCIsInBhZ2VQcm9wcyJdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7O0FBQUE7O0FBRUEsU0FBU0EsS0FBVCxPQUF5QztBQUFBLE1BQXhCQyxTQUF3QixRQUF4QkEsU0FBd0I7QUFBQSxNQUFiQyxTQUFhLFFBQWJBLFNBQWE7QUFDeEMsU0FDQyxNQUFDLDREQUFEO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUEsS0FDQyxNQUFDLFNBQUQseUZBQWVBLFNBQWY7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQSxLQURELENBREQ7QUFLQTs7S0FOUUYsSztBQVFNQSxvRUFBZiIsImZpbGUiOiIuL3BhZ2VzL19hcHAudHN4LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgQ29udGV4dFdyYXBwZXIgfSBmcm9tIFwiLi4vY29udGV4dFN0b3JlXCI7XG5cbmZ1bmN0aW9uIE15QXBwKHsgQ29tcG9uZW50LCBwYWdlUHJvcHMgfSkge1xuXHRyZXR1cm4gKFxuXHRcdDxDb250ZXh0V3JhcHBlcj5cblx0XHRcdDxDb21wb25lbnQgey4uLnBhZ2VQcm9wc30gLz5cblx0XHQ8L0NvbnRleHRXcmFwcGVyPlxuXHQpO1xufVxuXG5leHBvcnQgZGVmYXVsdCBNeUFwcDtcbiJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./pages/_app.tsx\n");
-=======
-__webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _contextStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../contextStore */ "./contextStore/index.tsx");
-
-var _jsxFileName = "C:\\Users\\AMALITECH\\Desktop\\sprint_3\\cp-fe\\pages\\_app.tsx";
-
-var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
-
-
-function MyApp(_ref) {
-  var Component = _ref.Component,
-      pageProps = _ref.pageProps;
-  return __jsx(_contextStore__WEBPACK_IMPORTED_MODULE_2__["ContextWrapper"], {
-    __self: this,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 5,
-      columnNumber: 3
-    }
-  }, __jsx(Component, Object(_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, pageProps, {
-    __self: this,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 6,
-      columnNumber: 4
-    }
-  })));
-}
-
-_c = MyApp;
-/* harmony default export */ __webpack_exports__["default"] = (MyApp);
-
-var _c;
-
-$RefreshReg$(_c, "MyApp");
-
-;
-    var _a, _b;
-    // Legacy CSS implementations will `eval` browser code in a Node.js context
-    // to extract CSS. For backwards compatibility, we need to check we're in a
-    // browser context before continuing.
-    if (typeof self !== 'undefined' &&
-        // AMP / No-JS mode does not inject these helpers:
-        '$RefreshHelpers$' in self) {
-        var currentExports = module.__proto__.exports;
-        var prevExports = (_b = (_a = module.hot.data) === null || _a === void 0 ? void 0 : _a.prevExports) !== null && _b !== void 0 ? _b : null;
-        // This cannot happen in MainTemplate because the exports mismatch between
-        // templating and execution.
-        self.$RefreshHelpers$.registerExportsForReactRefresh(currentExports, module.i);
-        // A module can be accepted automatically based on its exports, e.g. when
-        // it is a Refresh Boundary.
-        if (self.$RefreshHelpers$.isReactRefreshBoundary(currentExports)) {
-            // Save the previous exports on update so we can compare the boundary
-            // signatures.
-            module.hot.dispose(function (data) {
-                data.prevExports = currentExports;
-            });
-            // Unconditionally accept an update to this module, we'll check if it's
-            // still a Refresh Boundary later.
-            module.hot.accept();
-            // This field is set when the previous version of this module was a
-            // Refresh Boundary, letting us know we need to check for invalidation or
-            // enqueue an update.
-            if (prevExports !== null) {
-                // A boundary can become ineligible if its exports are incompatible
-                // with the previous exports.
-                //
-                // For example, if you add/remove/change exports, we'll want to
-                // re-execute the importing modules, and force those components to
-                // re-render. Similarly, if you convert a class component to a
-                // function, we want to invalidate the boundary.
-                if (self.$RefreshHelpers$.shouldInvalidateReactRefreshBoundary(prevExports, currentExports)) {
-                    module.hot.invalidate();
-                }
-                else {
-                    self.$RefreshHelpers$.scheduleUpdate();
-                }
-            }
-        }
-        else {
-            // Since we just executed the code for the module, it's possible that the
-            // new exports made it ineligible for being a boundary.
-            // We only care about the case when we were _previously_ a boundary,
-            // because we already accepted this update (accidental side effect).
-            var isNoLongerABoundary = prevExports !== null;
-            if (isNoLongerABoundary) {
-                module.hot.invalidate();
-            }
-        }
-    }
-
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
->>>>>>> cd203616cf19a8427a5a239dd0d5c6ecd693571f
 
 /***/ }),
 
@@ -716,11 +505,7 @@ $RefreshReg$(_c, "MyApp");
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! next-client-pages-loader?page=%2F_app&absolutePagePath=private-next-pages%2F_app.tsx! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F_app&absolutePagePath=private-next-pages%2F_app.tsx!./");
-<<<<<<< HEAD
 module.exports = __webpack_require__(/*! /home/james/Documents/dev/cp-fe/node_modules/next/dist/client/router.js */"./node_modules/next/dist/client/router.js");
-=======
-module.exports = __webpack_require__(/*! C:\Users\AMALITECH\Desktop\sprint_3\cp-fe\node_modules\next\dist\client\router.js */"./node_modules/next/dist/client/router.js");
->>>>>>> cd203616cf19a8427a5a239dd0d5c6ecd693571f
 
 
 /***/ })

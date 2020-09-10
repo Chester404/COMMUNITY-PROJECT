@@ -2,11 +2,6 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-<<<<<<< HEAD
-  "/memberlist": "pages/memberlist.js",
-  "/": "pages/index.js"
-=======
-  "/editprofile": "pages/editprofile.js",
+  "/user/profile": "pages/user/profile.js",
   "/profile": "pages/profile.js"
->>>>>>> cd203616cf19a8427a5a239dd0d5c6ecd693571f
 }
