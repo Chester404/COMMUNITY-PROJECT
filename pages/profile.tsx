@@ -119,7 +119,11 @@ export default function Home() {
                     <input
                       type="text"
                       className="form-control form-rounded"
-                      defaultValue={profileData?.phone ? profileData.phone : ""}
+                      defaultValue={
+                        profileData?.phone_number
+                          ? profileData.phone_number
+                          : ""
+                      }
                       readOnly
                     />
                   </div>

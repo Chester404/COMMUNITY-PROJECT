@@ -49,7 +49,7 @@ export default function Home() {
   const [prompt_body, setPromptBody] = useState("");
   const [link_to, setLinkTo] = useState("");
   const [link_text, setLinkText] = useState("");
-  const [image, setImage] = useState("assets/images/Profile_Icon.png");
+  const [image, setImage] = useState("/assets/images/Profile_Icon.png");
   const { state, dispatch } = useContext(Store);
   const handleClose = () => setShow(false);
 
@@ -108,7 +108,7 @@ export default function Home() {
     (async () => {
       const rs = await new Users().getUserProfile();
       setName(rs.name);
-      setBirthDay(rs.birthday ? "" : rs.birthday);
+      setBirthDay(rs.birthday ? rs.birthday : "1999-12-12");
       setGender(rs.gender ? rs.gender : "m");
       setStreetAddress(rs.street_address);
       setPhoneNumber(rs.phone_number);
@@ -167,7 +167,7 @@ export default function Home() {
                           style={{ fontSize: "25px" }}
                         />
                       </button>
-                      <button
+                      {/* <button
                         type="button"
                         className="btn btn-icon ml-2"
                         style={{
@@ -180,7 +180,7 @@ export default function Home() {
                           className="fe fe-trash fa-lg"
                           style={{ fontSize: "25px" }}
                         />
-                      </button>
+                      </button> */}
                     </a>
                   </div>
                 </div>
@@ -191,12 +191,15 @@ export default function Home() {
               <div className="row">
                 <div className="col-lg-5 col-md-12">
                   <div className="form-group">
-                    <label>Name</label>
+                    <label>
+                      Name <span style={{ color: "red" }}>*</span>
+                    </label>
                     <input
                       type="text"
                       className="form-control form-rounded text-field-hover"
                       placeholder="Full name"
                       value={name}
+                      required
                       onChange={(e) => setName(e.target.value)}
                     />
                   </div>
