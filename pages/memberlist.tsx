@@ -61,12 +61,6 @@ export default function Home() {
                     </thead>
                     <tbody>
                       {userProfiles.map((user: any) => {
-                        if (
-                          user.first_name.length <= 0 ||
-                          user.last_name.length <= 0
-                        )
-                          return;
-
                         const image_link = user.image
                           ? user.image
                           : "/assets/images/Profile_Icon.png";
