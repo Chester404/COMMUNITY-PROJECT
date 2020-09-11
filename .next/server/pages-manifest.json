@@ -1,21 +1,7 @@
 {
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
-  "/about": "pages/about.html",
-  "/admin": "pages/admin.html",
-  "/auth/confirmaccount": "pages/auth/confirmaccount.html",
-  "/auth/login": "pages/auth/login.html",
-  "/auth/signup": "pages/auth/signup.html",
-  "/blog": "pages/blog.html",
-  "/editprofile": "pages/editprofile.html",
-  "/": "pages/index.html",
-  "/memberlist copy": "pages/memberlist copy.html",
-  "/memberlist": "pages/memberlist.html",
-  "/profile": "pages/profile.html",
-  "/user/editprofile": "pages/user/editprofile.html",
-  "/user/profile": "pages/user/profile.html",
-  "/user/profilelist": "pages/user/profilelist.html",
-  "/user/profilelist_unregistered": "pages/user/profilelist_unregistered.html",
   "/_error": "pages/_error.js",
-  "/404": "pages/404.html"
+  "/auth/login": "pages/auth/login.js",
+  "/blog": "pages/blog.js"
 }

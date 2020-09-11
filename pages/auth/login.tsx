@@ -50,7 +50,9 @@ const Login = () => {
         } else {
           response.data.username = "No Name";
         }
-        response.data.image = "/assets/images/Profile_Icon.png";
+        response.data.image = userInfo.image
+          ? userInfo
+          : "/assets/images/Profile_Icon.png";
         window.localStorage.setItem("cp-a", JSON.stringify(response.data));
         dispatch({
           type: "UPDATE_USERNAME",
