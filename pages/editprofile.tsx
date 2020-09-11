@@ -1,10 +1,11 @@
 import MainLayout from "../components/MainLayout";
 import { Users } from "../lib/endpoints";
-import { useState, FormEvent, useEffect, useContext, useRef } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import Link from "next/link";
 import Prompt from "../components/Prompt";
 import { Store } from "../contextStore";
 import { useRouter } from "next/router";
+import moment from "moment";
 
 const REGIONS = [
   ["wr", "Western Region"],
@@ -84,10 +85,41 @@ export default function Home() {
   };
 
   const submitData = async () => {
-    if (name.length <= 0) {
-      callPrompt("Edit Profile", "", "Close", "Name can not be blank");
+    if (name.length <= 0 || !/^([a-zA-Z0-9 _-]+)$/.test(name)) {
+      callPrompt(
+        "Edit Profile",
+        "",
+        "Close",
+        "Invalid character in name field"
+      );
       return;
     }
+
+    let phoneno = /^\d{10}$/;
+    if (
+      !phone_number.match(phoneno) ||
+      phone_number.length > 10 ||
+      phone_number.length < 10
+    ) {
+      callPrompt("Edit Profile", "", "Close", "Invalid phone number");
+      return;
+    }
+
+    const allowedYear = new Date(
+      moment().subtract(10, "years").toString()
+    ).getFullYear();
+    const userYear = new Date(birthday).getFullYear();
+
+    if (userYear > allowedYear) {
+      callPrompt(
+        "Edit Profile",
+        "",
+        "Close",
+        "Date should be at least equal to or more than 10 years"
+      );
+      return;
+    }
+
     callPrompt("Edit Profile", "", "", "Please wait...");
     const [first, ...last] = name.split(" ");
     const response = await new Users().updateUserProfile({
@@ -330,6 +362,8 @@ export default function Home() {
                       className="form-control form-rounded"
                       placeholder="eg. 024 567 3456"
                       value={phone_number}
+                      min={10}
+                      max={10}
                       onChange={(e) => setPhoneNumber(e.target.value)}
                     />
                   </div>

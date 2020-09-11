@@ -37,8 +37,7 @@ const Signup = () => {
     if (
       /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
         authentication_property
-      ) ||
-      /^\d{10}$/.test(authentication_property)
+      )
     ) {
       //email or phone number is valid. Currently validating 10 digits
     } else {
