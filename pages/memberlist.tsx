@@ -9,24 +9,14 @@ export default function Home() {
           <div className="page-header">
             <h1 className="page-title">Member List</h1>
             <div className="ml-auto">
-              <div className="input-group">
+              <div className="inner-addon right-addon">
+                <i className="fe fe-search fa-lg" />
                 <input
                   id="searchmember"
-                  className="form-control border-right-0 form-rounded"
+                  className="form-control form-rounded"
                   type="text"
                   placeholder="Search..."
                 />
-                <span
-                  className="input-group-append bg-white border-left-0"
-                  style={{
-                    borderTopRightRadius: "50%",
-                    borderBottomRightRadius: "50%",
-                  }}
-                >
-                  <span className="input-group-text bg-transparent">
-                    <i className="fe fe-search fa-lg" />
-                  </span>
-                </span>
               </div>
             </div>
           </div>
@@ -45,7 +35,7 @@ export default function Home() {
                   <th scope="col" className="text-muted ml-5">
                     <span className="ml-3">Name </span>
                     <i
-                      className="fe fe-align-left"
+                      className="fa fa-sort-amount-desc ml-2"
                       style={{ fontSize: "20px" }}
                     ></i>
                   </th>
@@ -218,7 +208,7 @@ export default function Home() {
               style={{ margin: "10px", background: "#ffffff" }}
             >
               <div className="col-md-5">
-                <label>
+                {/*  <label>
                   Showing
                   <select
                     className="ml-3"
@@ -235,6 +225,7 @@ export default function Home() {
                   </select>{" "}
                   entries
                 </label>
+              */}{" "}
               </div>
               <div className="col-md-7">
                 <div className="pagination ml-auto" style={{ float: "right" }}>

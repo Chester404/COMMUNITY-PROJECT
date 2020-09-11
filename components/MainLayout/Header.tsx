@@ -12,12 +12,17 @@ const Header = ({ title = "Community Project" }) => {
       /> */}
       <link
         rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
+      />
+      <link
+        rel="stylesheet"
         href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css"
       />
       <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
       <link rel="stylesheet" href="/assets/css/style.css" />
       <link rel="stylesheet" href="/assets/css/icons.css" />
       <link rel="stylesheet" href="/assets/css/custom.css" />
+      <link rel="stylesheet" href="/assets/css/horizontal-menu.css" />
 
       {/* <link rel="stylesheet" type="text/css" href="styles.css" /> */}
     </Head>
