@@ -52,7 +52,9 @@ body {
   border-radius: 10px;
   margin-top: 1px;
   font-family: "Open Sans", sans-serif;
+  background-color: #ffffff;
 }
+
 .form-control.required .control-label:after {
   content: "*";
   color: red;

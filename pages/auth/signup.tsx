@@ -1,9 +1,10 @@
-import AuthHeader from "../../components/auth/AuthHeader";
+// import AuthHeader from "../../components/auth/AuthHeader";
 import Link from "next/link";
-import { useState, FormEvent, useEffect } from "react";
+import { useState, FormEvent, useEffect, useContext } from "react";
 import axios from "axios";
 import Prompt from "../../components/Prompt";
 import Head from "next/head";
+import { Store } from "../../contextStore";
 
 const Signup = () => {
   const [authentication_property, setAuthenticationProperty] = useState("");
@@ -15,7 +16,7 @@ const Signup = () => {
   const [prompt_body, setPromptBody] = useState("");
   const [link_to, setLinkTo] = useState("");
   const [link_text, setLinkText] = useState("");
-
+  const { dispatch } = useContext(Store);
   const handleClose = () => setShow(false);
 
   const callPrompt = (
@@ -36,8 +37,7 @@ const Signup = () => {
     if (
       /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
         authentication_property
-      ) ||
-      /^\d{10}$/.test(authentication_property)
+      )
     ) {
       //email or phone number is valid. Currently validating 10 digits
     } else {
@@ -45,7 +45,7 @@ const Signup = () => {
         "Sign Up",
         "",
         "Close",
-        "Please enter the correct email address or phone number"
+        "Check E-mail: Please enter the correct email address or phone number"
       );
       return;
     }
@@ -58,7 +58,7 @@ const Signup = () => {
         "Sign Up",
         "",
         "Close",
-        "There should be at least one lowercase character"
+        "Check Password: There should be at least one lowercase character"
       );
       return;
     }
@@ -70,7 +70,7 @@ const Signup = () => {
         "Sign Up",
         "",
         "Close",
-        "There should be at least one uppercase character"
+        "Check Password: There should be at least one uppercase character"
       );
       return;
     }
@@ -82,7 +82,7 @@ const Signup = () => {
         "Sign Up",
         "",
         "Close",
-        "There should be at least one numeric character"
+        "Check Password: There should be at least one numeric character"
       );
       return;
     }
@@ -93,7 +93,7 @@ const Signup = () => {
         "Sign Up",
         "",
         "Close",
-        "Password should be eight or more characters long"
+        "Check Password: Password should be eight or more characters long"
       );
       return;
     }
@@ -102,6 +102,7 @@ const Signup = () => {
       callPrompt("Sign Up", "", "Close", "Password mismatch");
       return;
     }
+    callPrompt("Sign Up", "", "", "Please wait...");
     try {
       const response = await axios.post(
         "http://51.116.114.155:8080/auth/registration/",
@@ -112,7 +113,6 @@ const Signup = () => {
         }
       );
 
-      console.log("response:", response);
       if (response.status === 200 || response.statusText === "Created") {
         // go to landing page
 
@@ -122,11 +122,14 @@ const Signup = () => {
           "Confirm Account",
           "A confirmation has been sent to your email. Please retrieve the code and confirm acount"
         );
+        dispatch({
+          type: "SET_EMAIL",
+          payload: authentication_property,
+        });
       } else {
         callPrompt("Sign Up", "", "Close", "Failed to register");
       }
     } catch (err) {
-      console.log(err.message);
       if (err.message === "Request failed with status code 400") {
         callPrompt(
           "Sign Up",
@@ -149,11 +152,6 @@ const Signup = () => {
     }
   };
 
-  useEffect(() => {
-    var body = document.body;
-
-    body.classList.add("parent");
-  }, []);
   return (
     <>
       <Head>
@@ -206,9 +204,11 @@ const Signup = () => {
             <br />
             <div>
               Already on Market Circle?{" "}
-              <a href="login.html" className="logintext">
-                <b>Log in</b>
-              </a>
+              <Link href="/auth/login">
+                <a className="logintext">
+                  <b>Log in</b>
+                </a>
+              </Link>
             </div>
             <br />
           </div>
@@ -222,6 +222,8 @@ const Signup = () => {
                   id="InputEmail"
                   aria-describedby="emailHelp"
                   placeholder="Please enter a valid email"
+                  value={authentication_property}
+                  onChange={(e) => setAuthenticationProperty(e.target.value)}
                 />
               </div>
               <div className="form-group">
@@ -232,6 +234,8 @@ const Signup = () => {
                   id="InputPassword1"
                   placeholder="Password must be at least 8 characters"
                   data-toggle="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
               <div className="form-group">
@@ -239,18 +243,20 @@ const Signup = () => {
                 <input
                   type="password"
                   className="form-control textbox"
-                  id="exampleInputPassword1"
+                  id="InputPassword2"
                   placeholder="Re-Enter the same password as above"
                   data-toggle="password"
+                  value={confirm_password}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
                 />
               </div>
-              <div className="form-group" style={{ textAlign: "center" }}>
+
+              <div className="form-group " style={{ textAlign: "center" }}>
                 <input
                   type="radio"
                   id="organization"
                   name="account_type"
                   defaultValue="organization"
-                  defaultChecked
                 />
                 <label htmlFor="organization" className="radio_spc">
                   Organization
@@ -261,10 +267,11 @@ const Signup = () => {
                   name="account_type"
                   defaultValue="individual"
                   className="radio_spc"
+                  defaultChecked
                 />
                 <label htmlFor="individual">Individual</label>
               </div>
-              <div style={{ textAlign: "center" }}>
+              <div style={{ textAlign: "center", paddingRight: "10px" }}>
                 <button
                   type="submit"
                   className="btn btn-primary btn-block"
@@ -303,6 +310,13 @@ const Signup = () => {
       </div>
 
       <script type="text/javascript" src="/js/a.js"></script>
+      <script
+        src="https://kit.fontawesome.com/3303a2a495.js"
+        crossOrigin="anonymous"
+      ></script>
+      <script src="/assets/js/jquery-3.4.1.min.js"></script>
+      <script src="/assets/js/popper.min.js"></script>
+      <script src="/assets/js/bootstrap.min.js"></script>
     </>
   );
 };

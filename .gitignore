@@ -22,7 +22,11 @@ dist/
 # Maven
 target/
 dist/
+<<<<<<< HEAD
 .next
+=======
+/.next/
+>>>>>>> pre-release
 
 # JetBrains IDE
 .idea/
