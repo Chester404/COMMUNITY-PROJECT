@@ -12,7 +12,6 @@ const Navbar = (props) => {
 
   const { state, dispatch } = useContext(Store);
   const logout = () => {
-    console.log("LOGOUT");
     window.localStorage.removeItem("cp-a");
     router.push("/auth/login");
   };
@@ -20,7 +19,6 @@ const Navbar = (props) => {
     let lStorage: any = window.localStorage.getItem("cp-a");
     lStorage = JSON.parse(lStorage);
     if (lStorage) {
-      console.log("STATE", lStorage);
       dispatch({ type: "UPDATE_USERNAME", payload: lStorage.username });
       dispatch({ type: "SET_EMAIL", payload: lStorage.emailaddress });
       dispatch({ type: "SET_IMAGE", payload: lStorage.image });

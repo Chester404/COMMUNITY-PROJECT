@@ -44,7 +44,6 @@ const Login = () => {
         response.data.emailaddress = authentication_property;
         window.localStorage.setItem("cp-a", JSON.stringify(response.data));
         const userInfo = await new Users().getUserProfile();
-        console.log(userInfo);
         if (userInfo.name.length > 0) {
           response.data.username = userInfo.name;
         } else {

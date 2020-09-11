@@ -1,25 +1,95 @@
 import MainLayout from "../components/MainLayout";
 import { Users } from "../lib/endpoints";
-import { useEffect, useState, ChangeEvent } from "react";
+import { useEffect, useState } from "react";
 
+interface IPaginateProps {
+  callback(i: number): void;
+  recordsPerpage: number;
+  totalRecords: number;
+}
+const Pagination = ({
+  callback,
+  recordsPerpage,
+  totalRecords,
+}: IPaginateProps) => {
+  const [iter, setIter] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  useEffect(() => {
+    const tr = Math.ceil(totalRecords / recordsPerpage);
+    if (tr > 0) setIter(Array(tr).fill(0));
+  }, [totalRecords]);
+
+  return (
+    <div className="col-md-12">
+      <div className="pagination ml-auto" style={{ float: "right" }}>
+        <a
+          href="#"
+          onClick={() => {
+            if (currentPage != 1) {
+              callback(currentPage - 1);
+              setCurrentPage(currentPage - 1);
+            }
+          }}
+        >
+          « Prev
+        </a>
+
+        {iter.map((_, index: number) => {
+          return (
+            <a
+              key={index}
+              href="#"
+              onClick={() => {
+                setCurrentPage(index + 1);
+                callback(index + 1);
+              }}
+              className={currentPage == index + 1 ? "active" : ""}
+            >
+              {index + 1}
+            </a>
+          );
+        })}
+        <a
+          href="#"
+          onClick={() => {
+            if (currentPage < Math.ceil(totalRecords / recordsPerpage)) {
+              callback(currentPage + 1);
+              setCurrentPage(currentPage + 1);
+            }
+          }}
+        >
+          Next »
+        </a>
+      </div>
+    </div>
+  );
+};
 export default function Home() {
   const [userProfiles, setUserProfiles] = useState([]);
   const [tempList, setTempList] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [sorted, setSorted] = useState(false);
+  const [totalRecords, settotalRecords] = useState(0);
+  const [recordsPerPage] = useState(5);
+  // const [isLoading, setIsLoading] = useState(true);
+  // const [sorted, setSorted] = useState(false);
 
   useEffect(() => {
     (async () => {
       const rs = await new Users().getProfiles();
-      console.log(rs);
-      setUserProfiles(rs);
-      setTempList(rs);
-      setIsLoading(false);
+      setTempList([...rs]);
+      setUserProfiles(rs.slice(0, recordsPerPage));
+      // setIsLoading(false);
+      settotalRecords(rs.length);
     })();
   }, []);
 
-  const str: string = "";
-  str.toLocaleLowerCase;
+  const paginate = (page: number) => {
+    const start = (page - 1) * recordsPerPage + 1;
+    const end = start + recordsPerPage;
+    const ts = tempList.slice(start - 1, end - 1);
+    setUserProfiles(ts);
+  };
+
   const searchLocation = (e: any) => {
     const ts = tempList.filter((p) => {
       return p.street_address
@@ -60,7 +130,6 @@ export default function Home() {
             </div>
           </div>
           {/* End page-header */}
-
           <div
             className="table-responsive table-lg"
             style={{ background: "#ffffff", marginBottom: "30px" }}
@@ -89,7 +158,7 @@ export default function Home() {
               <tbody>
                 {userProfiles.map((uprofile: any, index: number) => {
                   return (
-                    <tr>
+                    <tr key={index}>
                       <td>
                         <div className="dropdown">
                           <img
@@ -194,20 +263,11 @@ export default function Home() {
                   entries
                 </label>
               </div> */}
-              <div className="col-md-12">
-                <div className="pagination ml-auto" style={{ float: "right" }}>
-                  <a href="#">« Prev</a>
-                  <a href="#" className="active">
-                    1
-                  </a>
-                  {/* <a href="#">2</a>
-                  <a href="#">3</a>
-                  <a href="#">4</a>
-                  <a href="#">5</a>
-                  <a href="#">6</a> */}
-                  <a href="#">Next »</a>
-                </div>
-              </div>
+              <Pagination
+                callback={paginate}
+                totalRecords={totalRecords}
+                recordsPerpage={recordsPerPage}
+              />
             </div>
           </div>
         </div>
