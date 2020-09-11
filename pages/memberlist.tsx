@@ -76,7 +76,7 @@ export default function Home() {
   useEffect(() => {
     (async () => {
       const rs = await new Users().getProfiles();
-      setTempList([...rs]);
+      setTempList(rs);
       setUserProfiles(rs.slice(0, recordsPerPage));
       // setIsLoading(false);
       settotalRecords(rs.length);
@@ -86,6 +86,7 @@ export default function Home() {
   const paginate = (page: number) => {
     const start = (page - 1) * recordsPerPage + 1;
     const end = start + recordsPerPage;
+    console.log(start, end);
     const ts = tempList.slice(start - 1, end - 1);
     setUserProfiles(ts);
   };
@@ -130,6 +131,7 @@ export default function Home() {
             </div>
           </div>
           {/* End page-header */}
+
           <div
             className="table-responsive table-lg"
             style={{ background: "#ffffff", marginBottom: "30px" }}
