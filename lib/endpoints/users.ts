@@ -61,7 +61,6 @@ export class Users {
   }
 
   async updateUserProfile(userData: any) {
-    // const data = new URLSearchParams(userData).toString();
     return await ufetch("/accounts/update/", {
       method: "PUT",
       body: JSON.stringify(userData),
@@ -69,15 +68,14 @@ export class Users {
   }
 
   async uplaodImage(formData: any) {
-    // const data = new URLSearchParams(userData).toString();
     return await ufetch("/accounts/image_upload/", {
       method: "PUT",
       body: formData,
+      redirect: "follow",
     });
   }
 
   async resendToken(authentication_property: string) {
-    // const data = new URLSearchParams(userData).toString();
     return await ufetch("/auth/password-forgotten/", {
       method: "POST",
       body: JSON.stringify({ authentication_property, access_type: "a" }),
