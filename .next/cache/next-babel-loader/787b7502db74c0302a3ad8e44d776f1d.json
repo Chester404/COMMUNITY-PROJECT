@@ -1,0 +1,1 @@
+{"ast":null,"code":"import React from \"react\";\nvar __jsx = React.createElement;\nimport { useContext } from \"react\";\nimport { Store } from \"../contextStore\";\n\nconst About = () => {\n  const {\n    state\n  } = useContext(Store);\n  return __jsx(\"h3\", null, \"About Page \", state);\n};\n\nexport default About;","map":null,"metadata":{},"sourceType":"module"}

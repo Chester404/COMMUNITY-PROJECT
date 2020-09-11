@@ -1,10 +1,14 @@
-import AuthHeader from "../../components/auth/AuthHeader";
+// import AuthHeader from "../../components/auth/AuthHeader";
 import Link from "next/link";
-import { useState, FormEvent, useEffect } from "react";
+import { useState, FormEvent, useEffect, useContext } from "react";
 import axios from "axios";
 import Prompt from "../../components/Prompt";
 import Head from "next/head";
+<<<<<<< HEAD
 import MainLayout from "../../components/MainLayout";
+=======
+import { Store } from "../../contextStore";
+>>>>>>> origin/pre-release
 
 const Signup = () => {
   const [authentication_property, setAuthenticationProperty] = useState("");
@@ -16,7 +20,7 @@ const Signup = () => {
   const [prompt_body, setPromptBody] = useState("");
   const [link_to, setLinkTo] = useState("");
   const [link_text, setLinkText] = useState("");
-
+  const { dispatch } = useContext(Store);
   const handleClose = () => setShow(false);
 
   const callPrompt = (
@@ -46,7 +50,7 @@ const Signup = () => {
         "Sign Up",
         "",
         "Close",
-        "Please enter the correct email address or phone number"
+        "Check E-mail: Please enter the correct email address or phone number"
       );
       return;
     }
@@ -59,7 +63,7 @@ const Signup = () => {
         "Sign Up",
         "",
         "Close",
-        "There should be at least one lowercase character"
+        "Check Password: There should be at least one lowercase character"
       );
       return;
     }
@@ -71,7 +75,7 @@ const Signup = () => {
         "Sign Up",
         "",
         "Close",
-        "There should be at least one uppercase character"
+        "Check Password: There should be at least one uppercase character"
       );
       return;
     }
@@ -83,7 +87,7 @@ const Signup = () => {
         "Sign Up",
         "",
         "Close",
-        "There should be at least one numeric character"
+        "Check Password: There should be at least one numeric character"
       );
       return;
     }
@@ -94,7 +98,7 @@ const Signup = () => {
         "Sign Up",
         "",
         "Close",
-        "Password should be eight or more characters long"
+        "Check Password: Password should be eight or more characters long"
       );
       return;
     }
@@ -103,6 +107,7 @@ const Signup = () => {
       callPrompt("Sign Up", "", "Close", "Password mismatch");
       return;
     }
+    callPrompt("Sign Up", "", "", "Please wait...");
     try {
       const response = await axios.post(
         "http://51.116.114.155:8080/auth/registration/",
@@ -113,7 +118,6 @@ const Signup = () => {
         }
       );
 
-      console.log("response:", response);
       if (response.status === 200 || response.statusText === "Created") {
         // go to landing page
 
@@ -123,11 +127,14 @@ const Signup = () => {
           "Confirm Account",
           "A confirmation has been sent to your email. Please retrieve the code and confirm acount"
         );
+        dispatch({
+          type: "SET_EMAIL",
+          payload: authentication_property,
+        });
       } else {
         callPrompt("Sign Up", "", "Close", "Failed to register");
       }
     } catch (err) {
-      console.log(err.message);
       if (err.message === "Request failed with status code 400") {
         callPrompt(
           "Sign Up",
@@ -150,13 +157,9 @@ const Signup = () => {
     }
   };
 
-  useEffect(() => {
-    var body = document.body;
-
-    body.classList.add("parent");
-  }, []);
   return (
     <>
+<<<<<<< HEAD
       <MainLayout>
         <Head>
           <script
@@ -198,6 +201,63 @@ const Signup = () => {
                 </a>
               </div>
               <br />
+=======
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Sign Up</title>
+        <link
+          rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossOrigin="anonymous"
+        />
+        <script
+          type="text/javascript"
+          src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"
+        ></script>
+
+        <script
+          type="text/javascript"
+          src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-show-password/1.0.3/bootstrap-show-password.min.js"
+        ></script>
+
+        <link rel="stylesheet" type="text/css" href="/sign_up.css" />
+      </Head>
+      <Prompt
+        title={prompt_title}
+        linkTo={link_to}
+        linkText={link_text}
+        show={show}
+        success={link_to.length > 0 ? true : false}
+        handleClose={handleClose}
+      >
+        <p>{prompt_body}</p>
+      </Prompt>
+      <div>
+        <div className="row">
+          <div className="navbar">
+            <img className="logo" src="/images/Logo.png" />
+          </div>
+        </div>
+        <div className="content">
+          <div style={{ textAlign: "center" }}>
+            <div>
+              <img className="innerlogo" src="/images/Logo.png" />
+            </div>
+            <br />
+            <br />
+            <div>
+              <b>Make the most out of your business</b>
+            </div>
+            <br />
+            <div>
+              Already on Market Circle?{" "}
+              <Link href="/auth/login">
+                <a className="logintext">
+                  <b>Log in</b>
+                </a>
+              </Link>
+>>>>>>> origin/pre-release
             </div>
 
             <form onSubmit={register}>
@@ -209,6 +269,8 @@ const Signup = () => {
                   id="InputEmail"
                   aria-describedby="emailHelp"
                   placeholder="Please enter a valid email"
+                  value={authentication_property}
+                  onChange={(e) => setAuthenticationProperty(e.target.value)}
                 />
               </div>
               <div className="form-group">
@@ -219,6 +281,8 @@ const Signup = () => {
                   id="InputPassword1"
                   placeholder="Password must be at least 8 characters"
                   data-toggle="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
               <div className="form-group">
@@ -226,11 +290,14 @@ const Signup = () => {
                 <input
                   type="password"
                   className="form-control textbox"
-                  id="exampleInputPassword1"
+                  id="InputPassword2"
                   placeholder="Re-Enter the same password as above"
                   data-toggle="password"
+                  value={confirm_password}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
                 />
               </div>
+<<<<<<< HEAD
               <div className="row" style={{ textAlign: "center" }}>
                 <div className="col-md-6">
                   <input
@@ -256,6 +323,29 @@ const Signup = () => {
                 </div>
               </div>
               <br />
+=======
+
+              <div className="form-group " style={{ textAlign: "center" }}>
+                <input
+                  type="radio"
+                  id="organization"
+                  name="account_type"
+                  defaultValue="organization"
+                />
+                <label htmlFor="organization" className="radio_spc">
+                  Organization
+                </label>
+                <input
+                  type="radio"
+                  id="individual"
+                  name="account_type"
+                  defaultValue="individual"
+                  className="radio_spc"
+                  defaultChecked
+                />
+                <label htmlFor="individual">Individual</label>
+              </div>
+>>>>>>> origin/pre-release
               <div style={{ textAlign: "center", paddingRight: "10px" }}>
                 <button
                   type="submit"
@@ -293,8 +383,19 @@ const Signup = () => {
           <b></b>
         </div>
 
+<<<<<<< HEAD
         <script type="text/javascript" src="/js/a.js"></script>
       </MainLayout>
+=======
+      <script type="text/javascript" src="/js/a.js"></script>
+      <script
+        src="https://kit.fontawesome.com/3303a2a495.js"
+        crossOrigin="anonymous"
+      ></script>
+      <script src="/assets/js/jquery-3.4.1.min.js"></script>
+      <script src="/assets/js/popper.min.js"></script>
+      <script src="/assets/js/bootstrap.min.js"></script>
+>>>>>>> origin/pre-release
     </>
   );
 };

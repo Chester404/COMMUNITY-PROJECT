@@ -1,11 +1,13 @@
 import Button from "react-bootstrap/Button";
-import Link from "next/link";
-import { useState, FormEvent, useEffect, useRef } from "react";
+// import Link from "next/link";
+import { useState, FormEvent, useEffect, useRef, useContext } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import Prompt from "../../components/Prompt";
-import AuthHeader from "../../components/auth/AuthHeader";
+// import AuthHeader from "../../components/auth/AuthHeader";
 import Head from "next/head";
+import { Store } from "../../contextStore";
+import { Users } from "../../lib/endpoints";
 
 const ConfirmAccount = () => {
   const [code1, setCode1] = useState("");
@@ -18,12 +20,12 @@ const ConfirmAccount = () => {
   const [link_to, setLinkTo] = useState("");
   const [link_text, setLinkText] = useState("");
   const [countDown, setCountDown] = useState(60);
-
+  const [disabled, setDisabled] = useState(true);
   const code2Ref = useRef(null);
   const code3Ref = useRef(null);
   const code4Ref = useRef(null);
   const submitBtnRef = useRef(null);
-
+  const { state, dispatch } = useContext(Store);
   const router = useRouter();
 
   const handleClose = () => setShow(false);
@@ -55,6 +57,8 @@ const ConfirmAccount = () => {
         setTimeout(tick, 1000);
       } else if (mins > 1) {
         countdown(mins - 1);
+      } else {
+        setDisabled(false);
       }
       setCountDown(cnt);
     }
@@ -75,8 +79,8 @@ const ConfirmAccount = () => {
     setPromptBody(message);
   };
 
-  const submitCode = async (e: FormEvent) => {
-    e.preventDefault();
+  const submitCode = async () => {
+    // e.preventDefault();
     try {
       const rs: any = await axios.post(
         "http://51.116.114.155:8080/auth/keyinput/",
@@ -97,11 +101,23 @@ const ConfirmAccount = () => {
     }
   };
 
+  const requestVerificationCode = async () => {
+    callPrompt("Verification", "", "", "Requesting for verification code");
+    const rs = await new Users().resendToken(state.emailaddress);
+    if (rs.error) {
+      callPrompt("Verification", "", "Close", "Code request failed");
+    } else {
+      callPrompt(
+        "Verification",
+        "",
+        "Close",
+        "Code request successfull. Please check your email"
+      );
+    }
+    console.log(rs);
+  };
   useEffect(() => {
     if (countDown == 60) countdown(1);
-    var body = document.body;
-
-    body.classList.add("parent");
   }, []);
   return (
     <>
@@ -159,101 +175,107 @@ const ConfirmAccount = () => {
             <br />
           </div>
           <div className="row">
-            <form onSubmit={submitCode}>
-              <div className="form-group" style={{ textAlign: "center" }}>
-                <div id="form">
-                  <input
-                    type="text"
-                    className="codebox"
-                    id="code1"
-                    maxLength={1}
-                    size={1}
-                    min={0}
-                    max={9}
-                    pattern="[0-9]{1}"
-                    value={code1}
-                    onChange={(e) => setCode1(e.target.value)}
-                    onKeyUp={() => code2Ref.current.focus()}
-                    style={{
-                      textAlign: "center",
-                    }}
-                  />
-                  <input
-                    type="text"
-                    className="codebox"
-                    id="code2"
-                    maxLength={1}
-                    size={1}
-                    min={0}
-                    max={9}
-                    pattern="[0-9]{1}"
-                    value={code2}
-                    onChange={(e) => setCode2(e.target.value)}
-                    style={{
-                      textAlign: "center",
-                    }}
-                    ref={code2Ref}
-                    onKeyUp={() => code3Ref.current.focus()}
-                  />
-                  <input
-                    type="text"
-                    className="codebox"
-                    id="code3"
-                    maxLength={1}
-                    size={1}
-                    min={0}
-                    max={9}
-                    pattern="[0-9]{1}"
-                    value={code3}
-                    onChange={(e) => setCode3(e.target.value)}
-                    style={{
-                      textAlign: "center",
-                    }}
-                    ref={code3Ref}
-                    onKeyUp={() => code4Ref.current.focus()}
-                  />
-                  <input
-                    type="text"
-                    className="codebox"
-                    id="code4"
-                    maxLength={1}
-                    size={1}
-                    min={0}
-                    max={9}
-                    pattern="[0-9]{1}"
-                    value={code4}
-                    onChange={(e) => setCode4(e.target.value)}
-                    style={{
-                      textAlign: "center",
-                    }}
-                    ref={code4Ref}
-                    onKeyUp={() => submitBtnRef.current.focus()}
-                  />
-                </div>
+            {/* <form onSubmit={submitCode}> */}
+            <div className="form-group" style={{ textAlign: "center" }}>
+              <div id="form">
+                <input
+                  type="text"
+                  className="codebox"
+                  id="code1"
+                  maxLength={1}
+                  size={1}
+                  min={0}
+                  max={9}
+                  pattern="[0-9]{1}"
+                  value={code1}
+                  onChange={(e) => setCode1(e.target.value)}
+                  onKeyUp={() => code2Ref.current.focus()}
+                  style={{
+                    textAlign: "center",
+                  }}
+                />
+                <input
+                  type="text"
+                  className="codebox"
+                  id="code2"
+                  maxLength={1}
+                  size={1}
+                  min={0}
+                  max={9}
+                  pattern="[0-9]{1}"
+                  value={code2}
+                  onChange={(e) => setCode2(e.target.value)}
+                  style={{
+                    textAlign: "center",
+                  }}
+                  ref={code2Ref}
+                  onKeyUp={() => code3Ref.current.focus()}
+                />
+                <input
+                  type="text"
+                  className="codebox"
+                  id="code3"
+                  maxLength={1}
+                  size={1}
+                  min={0}
+                  max={9}
+                  pattern="[0-9]{1}"
+                  value={code3}
+                  onChange={(e) => setCode3(e.target.value)}
+                  style={{
+                    textAlign: "center",
+                  }}
+                  ref={code3Ref}
+                  onKeyUp={() => code4Ref.current.focus()}
+                />
+                <input
+                  type="text"
+                  className="codebox"
+                  id="code4"
+                  maxLength={1}
+                  size={1}
+                  min={0}
+                  max={9}
+                  pattern="[0-9]{1}"
+                  value={code4}
+                  onChange={(e) => setCode4(e.target.value)}
+                  style={{
+                    textAlign: "center",
+                  }}
+                  ref={code4Ref}
+                  onKeyUp={() => submitBtnRef.current.focus()}
+                />
+              </div>
+              <br />
+              <div style={{ textAlign: "center" }}>
+                <button
+                  className="btn btn-primary"
+                  id="continue"
+                  ref={submitBtnRef}
+                  onClick={submitCode}
+                >
+                  Continue
+                </button>
+              </div>
+              <br />
+              <div style={{ textAlign: "center" }}>
+                If you don't recieve the code within
                 <br />
-                <div style={{ textAlign: "center" }}>
-                  <button
-                    type="submit"
-                    className="btn btn-primary"
-                    id="continue"
-                    ref={submitBtnRef}
-                  >
-                    Continue
-                  </button>
-                </div>
-                <br />
-                <div style={{ textAlign: "center" }}>
-                  If you don't recieve the code within
-                  <br />
-                  1mins, click below to re-send it.
-                </div>
-                <div style={{ marginTop: 15 }}>
-                  <button className="re-sendbtn" id="re-send_code">
-                    Resend Code<i className="material-icons">refresh</i>
-                  </button>
-                  {countDown}
-                </div>
-                {/* <table className="cell" style={{ width: "100%" }}>
+                1min, click below to re-send it.
+              </div>
+              <div style={{ marginTop: 15 }}>
+                <button
+                  className="re-sendbtn"
+                  style={{ color: disabled ? "grey" : "" }}
+                  id="re-send_code"
+                  onClick={requestVerificationCode}
+                  disabled={disabled}
+                >
+                  Resend Code<i className="material-icons">refresh</i>
+                </button>
+                {countDown}
+              </div>
+              {/* <table className="cell" style={{ width: "100%" }}>
                   <tbody>
                     <tr>
                       <td style={{ width: "75%" }}>
@@ -268,13 +290,20 @@ const ConfirmAccount = () => {
                     </tr>
                   </tbody>
                 </table> */}
-              </div>
-            </form>
+            </div>
+            {/* </form> */}
           </div>
         </div>
       </div>
 
       <script type="text/javascript" src="/js/a.js"></script>
+      <script
+        src="https://kit.fontawesome.com/3303a2a495.js"
+        crossOrigin="anonymous"
+      ></script>
+      <script src="/assets/js/jquery-3.4.1.min.js"></script>
+      <script src="/assets/js/popper.min.js"></script>
+      <script src="/assets/js/bootstrap.min.js"></script>
     </>
   );
 };

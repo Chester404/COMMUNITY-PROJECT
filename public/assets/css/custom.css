@@ -1,6 +1,7 @@
 .lay-outstyle {
   font-weight: 600;
 }
+<<<<<<< HEAD
 h1,
 h2,
 h3 {
@@ -17,6 +18,22 @@ h3 {
 .input[type="text"] :hover {
   border-color: 2px solid#3863fc;
 }
+=======
+h1,h2,h3{
+    font-family: "Open Sans", sans-serif;
+}
+.page-title{
+     font-family: "Open Sans", sans-serif;
+    font-weight: bold;
+    font-size: 34px;
+}
+.formgr{
+    border-radius:50px;
+}
+ .input[type=text] :hover{
+     border-color:2px solid#3863fc;
+ }
+>>>>>>> origin/pre-release
 .profile-pic {
   position: relative;
   display: inline-block;
@@ -51,13 +68,23 @@ h3 {
 
 .form-rounded {
   border-radius: 10px;
+<<<<<<< HEAD
   border: 1px solid grey;
 }
 
 .form-rounded:hover {
   border-radius: 10px;
   border: 2px solid #3863fc;
+=======
+  border:1px solid grey;
+>>>>>>> origin/pre-release
 }
+
+.form-rounded:hover {
+    border-radius: 10px;
+    border:2px solid #3863fc;
+  }
+  
 
 .pagination {
   display: inline-block;
@@ -174,6 +201,7 @@ thead th {
   padding: 14px !important;
   height: 55px;
   text-transform: capitalize !important;
+<<<<<<< HEAD
 }
 
 h5.table-title {
@@ -259,4 +287,48 @@ input[type="number"] {
 }
 .right-addon input {
   padding-right: 30px;
+=======
 }
+
+h5.table-title {
+   font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+}
+
+
+.column-color {
+  font-weight: 800;
+}
+.dropdown:hover .dropdown-content {display: block;}
+
+.form-control:disabled, .form-control[readonly] {
+    background-color: white;
+    opacity: 1;
+
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+<<<<<<< HEAD
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+=======
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+>>>>>>> origin/pre-release
+}
+>>>>>>> 4c83e3b4b33e2c1ee7bfc07caedaa187c2ce2863
