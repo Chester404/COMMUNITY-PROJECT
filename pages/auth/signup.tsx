@@ -5,6 +5,7 @@ import axios from "axios";
 import Prompt from "../../components/Prompt";
 import Head from "next/head";
 import { Store } from "../../contextStore";
+import LoginLayout from "../../components/LoginLayout";
 
 const Signup = () => {
   const [authentication_property, setAuthenticationProperty] = useState("");
@@ -154,45 +155,20 @@ const Signup = () => {
 
   return (
     <>
-      <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Sign Up</title>
-        <link
-          rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-          crossOrigin="anonymous"
-        />
-        <script
-          type="text/javascript"
-          src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"
-        ></script>
+      <LoginLayout>
+        <Prompt
+          title={prompt_title}
+          linkTo={link_to}
+          linkText={link_text}
+          show={show}
+          success={link_to.length > 0 ? true : false}
+          handleClose={handleClose}
+        >
+          <p>{prompt_body}</p>
+        </Prompt>
 
-        <script
-          type="text/javascript"
-          src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-show-password/1.0.3/bootstrap-show-password.min.js"
-        ></script>
-
-        <link rel="stylesheet" type="text/css" href="/sign_up.css" />
-      </Head>
-      <Prompt
-        title={prompt_title}
-        linkTo={link_to}
-        linkText={link_text}
-        show={show}
-        success={link_to.length > 0 ? true : false}
-        handleClose={handleClose}
-      >
-        <p>{prompt_body}</p>
-      </Prompt>
-      <div>
-        <div className="row">
-          <div className="navbar">
-            <img className="logo" src="/images/Logo.png" />
-          </div>
-        </div>
-        <div className="content">
-          <div style={{ textAlign: "center" }}>
+        <div className="signupcontent">
+          <div style={{ textAlign: "center" }} className="mb-5">
             <div>
               <img className="innerlogo" src="/images/Logo.png" />
             </div>
@@ -210,55 +186,56 @@ const Signup = () => {
                 </a>
               </Link>
             </div>
+          </div>
 
-            <form onSubmit={register}>
-              <div className="form-group">
-                <label htmlFor="email">Email</label>
-                <input
-                  type="email"
-                  className="form-control textbox"
-                  id="InputEmail"
-                  aria-describedby="emailHelp"
-                  placeholder="Please enter a valid email"
-                  value={authentication_property}
-                  onChange={(e) => setAuthenticationProperty(e.target.value)}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="exampleInputPassword1">Password</label>
-                <input
-                  type="password"
-                  className="form-control textbox"
-                  id="InputPassword1"
-                  placeholder="Password must be at least 8 characters"
-                  data-toggle="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="InputPassword2">Confirm Password</label>
-                <input
-                  type="password"
-                  className="form-control textbox"
-                  id="InputPassword2"
-                  placeholder="Re-Enter the same password as above"
-                  data-toggle="password"
-                  value={confirm_password}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                />
-              </div>
-
-              <div className="form-group " style={{ textAlign: "center" }}>
-                <input
-                  type="radio"
-                  id="organization"
-                  name="account_type"
-                  defaultValue="organization"
-                />
-                <label htmlFor="organization" className="radio_spc">
-                  Organization
-                </label>
+          <form onSubmit={register}>
+            <div className="form-group">
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                className="form-control textbox"
+                id="InputEmail"
+                aria-describedby="emailHelp"
+                placeholder="Please enter a valid email"
+                value={authentication_property}
+                onChange={(e) => setAuthenticationProperty(e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="exampleInputPassword1">Password</label>
+              <input
+                type="password"
+                className="form-control textbox"
+                id="InputPassword1"
+                placeholder="Password must be at least 8 characters"
+                data-toggle="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="InputPassword2">Confirm Password</label>
+              <input
+                type="password"
+                className="form-control textbox"
+                id="InputPassword2"
+                placeholder="Re-Enter the same password as above"
+                data-toggle="password"
+                value={confirm_password}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
+            </div>
+            <div style={{ textAlign: "center" }}>
+              <input
+                type="radio"
+                id="organization"
+                name="account_type"
+                defaultValue="organization"
+              />
+              <label htmlFor="organization" className="radio_spc ml-2">
+                Organization
+              </label>
+              <span className="ml-5">
                 <input
                   type="radio"
                   id="individual"
@@ -267,54 +244,48 @@ const Signup = () => {
                   className="radio_spc"
                   defaultChecked
                 />
-                <label htmlFor="individual">Individual</label>
-              </div>
-              <div style={{ textAlign: "center", paddingRight: "10px" }}>
-                <button
-                  type="submit"
-                  className="btn btn-primary btn-block"
-                  id="signup_button"
-                >
-                  Sign Up
-                </button>
-              </div>
+                <label htmlFor="individual" className="ml-2">
+                  Individual
+                </label>
+              </span>
+            </div>
+
+            <div style={{ textAlign: "center", paddingRight: "10px" }}>
+              <button
+                type="submit"
+                className="btn btn-primary btn-block"
+                id="signup_button"
+              >
+                Sign Up
+              </button>
+            </div>
+            <br />
+            <div style={{ textAlign: "center" }}>
+              By clicking sign up, you agree to the Market Circle
               <br />
-              <div style={{ textAlign: "center" }}>
-                By clicking sign up, you agree to the Market Circle
-                <br />
-                <b>
-                  <a href="#" className="texthover" id="user_agreement">
-                    User Agreement,
-                  </a>
-                </b>{" "}
-                <b>
-                  <a href="#" className="texthover" id="privacy_policy">
-                    Privacy Policy
-                  </a>
-                </b>{" "}
-                and{" "}
-                <b>
-                  <a href="#" className="texthover" id="cookie_policy">
-                    Cookie Policy.
-                  </a>
-                </b>
-              </div>
-              <b></b>
-            </form>
-          </div>
+              <b>
+                <a href="#" className="texthover" id="user_agreement">
+                  User Agreement,
+                </a>
+              </b>{" "}
+              <b>
+                <a href="#" className="texthover" id="privacy_policy">
+                  Privacy Policy
+                </a>
+              </b>{" "}
+              and{" "}
+              <b>
+                <a href="#" className="texthover" id="cookie_policy">
+                  Cookie Policy.
+                </a>
+              </b>
+            </div>
+            <b></b>
+          </form>
 
           <b></b>
         </div>
-
-        <script type="text/javascript" src="/js/a.js"></script>
-        <script
-          src="https://kit.fontawesome.com/3303a2a495.js"
-          crossOrigin="anonymous"
-        ></script>
-        <script src="/assets/js/jquery-3.4.1.min.js"></script>
-        <script src="/assets/js/popper.min.js"></script>
-        <script src="/assets/js/bootstrap.min.js"></script>
-      </div>
+      </LoginLayout>
     </>
   );
 };

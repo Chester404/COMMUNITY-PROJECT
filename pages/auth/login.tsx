@@ -4,7 +4,7 @@ import { useState, FormEvent, useEffect, useContext } from "react";
 import { Auth, Users } from "../../lib/endpoints";
 import { useRouter } from "next/router";
 import Prompt from "../../components/Prompt";
-import MainLayout from "../../components/MainLayout";
+import LoginLayout from "../../components/LoginLayout";
 import { Store } from "../../contextStore";
 
 const Login = () => {
@@ -100,22 +100,7 @@ const Login = () => {
 
   return (
     <>
-      <MainLayout>
-        <Head>
-          <link
-            rel="stylesheet"
-            href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
-          />
-          <script
-            type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"
-          ></script>
-          <script
-            type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-show-password/1.0.3/bootstrap-show-password.min.js"
-          ></script>
-          <link rel="stylesheet" type="text/css" href="/login.css" />
-        </Head>
+      <LoginLayout>
         <Prompt
           title={prompt_title}
           linkTo={link_to}
@@ -127,7 +112,7 @@ const Login = () => {
           <p>{prompt_body}</p>
         </Prompt>
 
-        <div className="content">
+        <div className="logincontent">
           <div style={{ textAlign: "center", paddingTop: "12%" }}>
             <h3>
               <b>Login</b>
@@ -148,11 +133,12 @@ const Login = () => {
                 onChange={(e) => setAuthenticationProperty(e.target.value)}
               />
             </div>
+
             <div className="form-group">
               <label htmlFor="InputPassword1" className="loginlabel">
                 Password
               </label>
-              <span>
+              <div className="input-group" id="show_hide_password">
                 <input
                   type="password"
                   className="form-control textbox"
@@ -162,8 +148,14 @@ const Login = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
-              </span>
+                <div className="input-group-addon">
+                  <a href="#">
+                    <i className="fe fe-eye-off" aria-hidden="true" />
+                  </a>
+                </div>
+              </div>
             </div>
+
             <div style={{ textAlign: "center" }}>
               <button type="submit" className="btn btn-primary btn-block">
                 Login
@@ -188,16 +180,7 @@ const Login = () => {
             </div>
           </form>
         </div>
-
-        <script type="text/javascript" src="/js/a.js"></script>
-        <script
-          src="https://kit.fontawesome.com/3303a2a495.js"
-          crossOrigin="anonymous"
-        ></script>
-        <script src="/assets/js/jquery-3.4.1.min.js"></script>
-        <script src="/assets/js/popper.min.js"></script>
-        <script src="/assets/js/bootstrap.min.js"></script>
-      </MainLayout>
+      </LoginLayout>
     </>
   );
 };
