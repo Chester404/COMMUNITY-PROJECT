@@ -1,10 +1,11 @@
 import MainLayout from "../components/MainLayout";
 import { Users } from "../lib/endpoints";
-import { useState, FormEvent, useEffect, useContext, useRef } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import Link from "next/link";
 import Prompt from "../components/Prompt";
 import { Store } from "../contextStore";
 import { useRouter } from "next/router";
+import moment from "moment";
 
 const REGIONS = [
   ["wr", "Western Region"],
@@ -50,11 +51,12 @@ export default function Home() {
   const [prompt_body, setPromptBody] = useState("");
   const [link_to, setLinkTo] = useState("");
   const [link_text, setLinkText] = useState("");
-  const [image, setImage] = useState("/assets/images/Profile_Icon.png");
-  const [tempImage, setTempImage] = useState("/assets/images/Profile_Icon.png");
+  const [userImage, setImage] = useState("/assets/images/Profile_Icon.png");
+  const [tempImage, setTempImage] = useState("");
   const { state, dispatch } = useContext(Store);
   const [doneUpdate, setDoneUpdate] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
+  const [shouldUploadImage, setShouldUpalodImage] = useState(false);
 
   const triggerUpload = () => {
     fileRef.current!.click();
@@ -83,10 +85,41 @@ export default function Home() {
   };
 
   const submitData = async () => {
-    if (name.length <= 0) {
-      callPrompt("Edit Profile", "", "Close", "Name can not be blank");
+    if (name.length <= 0 || !/^([a-zA-Z0-9 _-]+)$/.test(name)) {
+      callPrompt(
+        "Edit Profile",
+        "",
+        "Close",
+        "Invalid character in name field"
+      );
       return;
     }
+
+    let phoneno = /^\d{10}$/;
+    if (
+      !phone_number.match(phoneno) ||
+      phone_number.length > 10 ||
+      phone_number.length < 10
+    ) {
+      callPrompt("Edit Profile", "", "Close", "Invalid phone number");
+      return;
+    }
+
+    const allowedYear = new Date(
+      moment().subtract(10, "years").toString()
+    ).getFullYear();
+    const userYear = new Date(birthday).getFullYear();
+
+    if (userYear > allowedYear) {
+      callPrompt(
+        "Edit Profile",
+        "",
+        "Close",
+        "Date should be at least equal to or more than 10 years"
+      );
+      return;
+    }
+
     callPrompt("Edit Profile", "", "", "Please wait...");
     const [first, ...last] = name.split(" ");
     const response = await new Users().updateUserProfile({
@@ -101,24 +134,44 @@ export default function Home() {
       gps_location: gps_location,
       privacy_level: privacy_level,
     });
-    console.log("RESPONSE ON PUSH", response);
-    setShow(false);
+
     if (response.error) {
       callPrompt("Edit Profile", "", "Close", "An error occured");
-      //Do whatever
-      // setStatusColor("red");
-      // setStatusMsg("Some error occurred");
-      return;
+    }
+
+    if (shouldUploadImage) {
+      callPrompt(
+        "Edit Profile",
+        "",
+        "",
+        "Profile updated. Uploading image ..."
+      );
+      const imgresponse: any = await saveImage();
+      if (imgresponse.error) {
+        callPrompt(
+          "Edit Profile",
+          "",
+          "Close",
+          "An error occured. Failed to update profile picture"
+        );
+        return;
+      }
     }
 
     dispatch({
       type: "UPDATE_USERNAME",
       payload: name,
     });
+    dispatch({
+      type: "SET_IMAGE",
+      payload: userImage,
+    });
+
     let lStorage: any = window.localStorage.getItem("cp-a");
     lStorage = JSON.parse(lStorage);
     if (lStorage) {
       lStorage.username = name;
+      lStorage.image = userImage;
       window.localStorage.setItem("cp-a", JSON.stringify(lStorage));
     }
     setDoneUpdate(true);
@@ -139,25 +192,39 @@ export default function Home() {
       setEmail(rs.user.email);
       if (rs.image) {
         setImage(rs.image);
-        setTempImage(rs.image);
       }
       console.log("rsData", rs);
     })();
   }, []);
 
-  const preview_image = async (event) => {
-    var reader: any = new FileReader();
-    const files: any = Array.from(event.target.files);
-    reader.onload = async () => {
-      var output = document.getElementById("output_image");
-      const formData = new FormData();
-      formData.append("1", files[0]);
-      // output.src = reader.result;
-      setImage(reader.result);
-      const rs = await new Users().uplaodImage({ image: formData });
-      console.log(rs);
+  const saveImage = async () => {
+    // const formData = new FormData();
+    // formData.append("image", image);
+    // const rs = await new Users().uplaodImage(formData);
+    // console.log(rs);
+    const lStorage: any = JSON.parse(window.localStorage.getItem("cp-a"));
+    let myHeaders: any = new Headers();
+    myHeaders.append("Authorization", "Bearer " + lStorage.access);
+
+    var formdata = new FormData();
+    formdata.append("image", tempImage);
+
+    var requestOptions: any = {
+      method: "PUT",
+      headers: myHeaders,
+      body: formdata,
+      redirect: "follow",
     };
-    reader.readAsDataURL(event.target.files[0]);
+
+    try {
+      const rs = await fetch(
+        "http://51.116.114.155:8080/accounts/image_upload/",
+        requestOptions
+      );
+      return rs;
+    } catch (e) {
+      return { error: "Failed to updload image" };
+    }
   };
 
   return (
@@ -183,14 +250,40 @@ export default function Home() {
             type="file"
             style={{ display: "none" }}
             ref={fileRef}
-            onChange={preview_image}
+            onChange={(e: any) => {
+              let reader: any = new FileReader();
+              const file = e.target.files[0];
+              if (file.size > 317395) {
+                callPrompt("Edit Profile", "", "Close", "File size too big");
+                return;
+              }
+              reader.onload = function (event: any) {
+                setImage(event.target.result);
+                setTempImage(file);
+                setShouldUpalodImage(true);
+              };
+              reader.readAsDataURL(file);
+            }}
+            //setImage(e.target.files[0])}
+            // onChange={(evt: any) => {
+            //   var reader: any = new FileReader();
+            //   // const files: any = Array.from(event.target.files);
+            //   // reader.onload = async () => {
+            //   //   setImage(reader.result);
+            //   // };
+            //   // reader.readAsDataURL(event.target.files[0]);
+            //   reader.onload = function (event) {
+            //     setImage(event.target.result);
+            //   };
+            //   reader.readAsDataURL(evt.target.files[0]);
+            // }}
           />
 
           <div className="row">
             <div className="col-md-3">
               <div className="userpic mb-4">
                 <div className="profile-pic">
-                  <img src={image} width={200} height={200} />
+                  <img src={userImage} width={200} height={200} />
                   <div
                     className="edit"
                     style={{
@@ -269,6 +362,8 @@ export default function Home() {
                       className="form-control form-rounded"
                       placeholder="eg. 024 567 3456"
                       value={phone_number}
+                      min={10}
+                      max={10}
                       onChange={(e) => setPhoneNumber(e.target.value)}
                     />
                   </div>

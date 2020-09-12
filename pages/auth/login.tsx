@@ -45,13 +45,14 @@ const Login = () => {
         response.data.emailaddress = authentication_property;
         window.localStorage.setItem("cp-a", JSON.stringify(response.data));
         const userInfo = await new Users().getUserProfile();
-        console.log(userInfo);
         if (userInfo.name.length > 0) {
           response.data.username = userInfo.name;
         } else {
           response.data.username = "No Name";
         }
-        response.data.image = "/assets/images/Profile_Icon.png";
+        response.data.image = userInfo.image
+          ? userInfo
+          : "/assets/images/Profile_Icon.png";
         window.localStorage.setItem("cp-a", JSON.stringify(response.data));
         dispatch({
           type: "UPDATE_USERNAME",
