@@ -51,14 +51,7 @@ const Navbar = (props) => {
             <a className="nav-link">
               <span className="lay-outstyle mt-1">Market</span>
             </a>
-            <a className="header-brand" href="index.html">
-              <img
-                src="/assets/images/Logo.png"
-                className="header-brand-img main-logo"
-                alt="logo"
-                style={{ marginLeft: "-1em" }}
-              />
-            </a>
+
             <a className="nav-link">
               <span className="lay-outstyle mt-1">Partnership</span>
             </a>
@@ -85,9 +78,9 @@ const Navbar = (props) => {
             </Link>
           </div>
           <div className="d-flex order-lg-2 ml-auto header-right">
-            <a href="#" className="nav-link icon full-screen-link">
+            {/*  <a href="#" className="nav-link icon full-screen-link">
               <i className="fa fa-bell-o" />
-            </a>
+            </a> */}
             {/*Navbar */}
             <div className="dropdown header-profile">
               <a

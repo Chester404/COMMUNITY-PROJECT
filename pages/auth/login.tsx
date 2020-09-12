@@ -4,11 +4,8 @@ import { useState, FormEvent, useEffect, useContext } from "react";
 import { Auth, Users } from "../../lib/endpoints";
 import { useRouter } from "next/router";
 import Prompt from "../../components/Prompt";
-<<<<<<< HEAD
 import MainLayout from "../../components/MainLayout";
-=======
 import { Store } from "../../contextStore";
->>>>>>> origin/pre-release
 
 const Login = () => {
   const [authentication_property, setAuthenticationProperty] = useState("");
@@ -191,23 +188,15 @@ const Login = () => {
           </form>
         </div>
 
-<<<<<<< HEAD
         <script type="text/javascript" src="/js/a.js"></script>
         <script
           src="https://kit.fontawesome.com/3303a2a495.js"
           crossOrigin="anonymous"
         ></script>
+        <script src="/assets/js/jquery-3.4.1.min.js"></script>
+        <script src="/assets/js/popper.min.js"></script>
+        <script src="/assets/js/bootstrap.min.js"></script>
       </MainLayout>
-=======
-      <script type="text/javascript" src="/js/a.js"></script>
-      <script
-        src="https://kit.fontawesome.com/3303a2a495.js"
-        crossOrigin="anonymous"
-      ></script>
-      <script src="/assets/js/jquery-3.4.1.min.js"></script>
-      <script src="/assets/js/popper.min.js"></script>
-      <script src="/assets/js/bootstrap.min.js"></script>
->>>>>>> origin/pre-release
     </>
   );
 };

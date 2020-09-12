@@ -4,11 +4,7 @@ import { useState, FormEvent, useEffect, useContext } from "react";
 import axios from "axios";
 import Prompt from "../../components/Prompt";
 import Head from "next/head";
-<<<<<<< HEAD
-import MainLayout from "../../components/MainLayout";
-=======
 import { Store } from "../../contextStore";
->>>>>>> origin/pre-release
 
 const Signup = () => {
   const [authentication_property, setAuthenticationProperty] = useState("");
@@ -159,49 +155,6 @@ const Signup = () => {
 
   return (
     <>
-<<<<<<< HEAD
-      <MainLayout>
-        <Head>
-          <script
-            type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"
-          ></script>
-          <script
-            type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-show-password/1.0.3/bootstrap-show-password.min.js"
-          ></script>
-          <link rel="stylesheet" type="text/css" href="/login.css" />
-        </Head>
-        <Prompt
-          title={prompt_title}
-          linkTo={link_to}
-          linkText={link_text}
-          show={show}
-          success={link_to.length > 0 ? true : false}
-          handleClose={handleClose}
-        >
-          <p>{prompt_body}</p>
-        </Prompt>
-        <div style={{ paddingBottom: "50px" }}>
-          <div className="signupcontent" style={{ height: "610px !important" }}>
-            <div style={{ textAlign: "center" }}>
-              <div>
-                <img className="innerlogo" src="/images/Logo.png" />
-              </div>
-              <br />
-              <br />
-              <div>
-                <b>Make the most out of your business</b>
-              </div>
-              <br />
-              <div>
-                Already on Market Circle?{" "}
-                <a href="login" className="logintext">
-                  <b>Log in</b>
-                </a>
-              </div>
-              <br />
-=======
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Sign Up</title>
@@ -257,7 +210,6 @@ const Signup = () => {
                   <b>Log in</b>
                 </a>
               </Link>
->>>>>>> origin/pre-release
             </div>
 
             <form onSubmit={register}>
@@ -297,33 +249,6 @@ const Signup = () => {
                   onChange={(e) => setConfirmPassword(e.target.value)}
                 />
               </div>
-<<<<<<< HEAD
-              <div className="row" style={{ textAlign: "center" }}>
-                <div className="col-md-6">
-                  <input
-                    type="radio"
-                    id="organization"
-                    name="account_type"
-                    defaultValue="organization"
-                  />
-                  <label className="radio_spc ml-3">Organization</label>
-                </div>
-                <div className="col-md-6">
-                  <input
-                    type="radio"
-                    id="individual"
-                    name="account_type"
-                    defaultValue="individual"
-                    className="radio_spc "
-                    defaultChecked
-                  />
-                  <label htmlFor="individual" className="ml-3">
-                    Individual
-                  </label>
-                </div>
-              </div>
-              <br />
-=======
 
               <div className="form-group " style={{ textAlign: "center" }}>
                 <input
@@ -345,7 +270,6 @@ const Signup = () => {
                 />
                 <label htmlFor="individual">Individual</label>
               </div>
->>>>>>> origin/pre-release
               <div style={{ textAlign: "center", paddingRight: "10px" }}>
                 <button
                   type="submit"
@@ -383,19 +307,15 @@ const Signup = () => {
           <b></b>
         </div>
 
-<<<<<<< HEAD
         <script type="text/javascript" src="/js/a.js"></script>
-      </MainLayout>
-=======
-      <script type="text/javascript" src="/js/a.js"></script>
-      <script
-        src="https://kit.fontawesome.com/3303a2a495.js"
-        crossOrigin="anonymous"
-      ></script>
-      <script src="/assets/js/jquery-3.4.1.min.js"></script>
-      <script src="/assets/js/popper.min.js"></script>
-      <script src="/assets/js/bootstrap.min.js"></script>
->>>>>>> origin/pre-release
+        <script
+          src="https://kit.fontawesome.com/3303a2a495.js"
+          crossOrigin="anonymous"
+        ></script>
+        <script src="/assets/js/jquery-3.4.1.min.js"></script>
+        <script src="/assets/js/popper.min.js"></script>
+        <script src="/assets/js/bootstrap.min.js"></script>
+      </div>
     </>
   );
 };
