@@ -5,7 +5,7 @@ import Link from "next/link";
 import Prompt from "../components/Prompt";
 import { Store } from "../contextStore";
 import { useRouter } from "next/router";
-/* import moment from "moment"; */
+import moment from "moment";
 
 const REGIONS = [
   ["wr", "Western Region"],
@@ -96,13 +96,15 @@ export default function Home() {
     }
 
     let phoneno = /^\d{10}$/;
-    if (
-      !phone_number.match(phoneno) ||
-      phone_number.length > 10 ||
-      phone_number.length < 10
-    ) {
-      callPrompt("Edit Profile", "", "Close", "Invalid phone number");
-      return;
+    if (phone_number.length > 0) {
+      if (
+        !phone_number.match(phoneno) ||
+        phone_number.length > 10 ||
+        phone_number.length < 10
+      ) {
+        callPrompt("Edit Profile", "", "Close", "Invalid phone number");
+        return;
+      }
     }
 
     const allowedYear = new Date(
@@ -183,7 +185,7 @@ export default function Home() {
       const rs = await new Users().getUserProfile();
       setName(rs.name);
       setBirthDay(rs.birthday ? rs.birthday : "1999-12-12");
-      setGender(rs.gender ? rs.gender : "m");
+      setGender(rs.gender ? rs.gender : "");
       setStreetAddress(rs.street_address);
       setPhoneNumber(rs.phone_number);
       setRegion(rs.region ? rs.region : "wr");
@@ -248,6 +250,7 @@ export default function Home() {
           {/* End page-header */}
           <input
             type="file"
+            accept="image/*"
             style={{ display: "none" }}
             ref={fileRef}
             onChange={(e: any) => {

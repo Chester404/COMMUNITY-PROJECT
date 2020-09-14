@@ -91,8 +91,8 @@
   display: block !important;
 }
 
-.loginlabel {
-  font-weight: 500 !important;
+.formlabel {
+  font-weight: 600 !important;
 }
 .btn-primary {
   background: #3964fc;
@@ -117,7 +117,6 @@
 
 .parent {
   position: relative;
-  background: #c0c4d4;
   margin: 0;
   font-family: Open sans !important;
   font-size: 13px;
