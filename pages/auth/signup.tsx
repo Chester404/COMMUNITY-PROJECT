@@ -181,7 +181,7 @@ const Signup = () => {
             <div>
               Already on Market Circle?{" "}
               <Link href="/auth/login">
-                <a className="logintext">
+                <a className="signuptext">
                   <b>Log in</b>
                 </a>
               </Link>

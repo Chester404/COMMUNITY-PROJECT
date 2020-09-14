@@ -44,6 +44,36 @@ const Navbar = (props) => {
               style={{ marginLeft: "-1em" }}
             />
           </a>
+
+          <div>
+            <div className="btn-group mt-2 mb-2">
+              <button
+                type="button"
+                className="btn btn-default menu-button"
+                data-toggle="dropdown"
+              >
+                <i className="fe fe-menu fa-lg" style={{ fontSize: "20px" }} />
+              </button>
+              <ul className="dropdown-menu" role="menu">
+                <li>
+                  <a href="#">Market</a>
+                </li>
+                <li>
+                  <a href="#">Partnership</a>
+                </li>
+                <li>
+                  <a href="#">Forum</a>
+                </li>
+                <li>
+                  <a href="#">Blog</a>
+                </li>
+                <li>
+                  <a href="#">Members</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
           {/* logo*/}
           <div className="d-none dropdown d-md-flex header-settings ml-auto">
             <a className="nav-link">

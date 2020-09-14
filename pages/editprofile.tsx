@@ -5,7 +5,7 @@ import Link from "next/link";
 import Prompt from "../components/Prompt";
 import { Store } from "../contextStore";
 import { useRouter } from "next/router";
-import moment from "moment";
+/* import moment from "moment"; */
 
 const REGIONS = [
   ["wr", "Western Region"],

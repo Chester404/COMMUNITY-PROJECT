@@ -111,7 +111,7 @@ export default function Home() {
                 <i className="fe fe-search fa-lg" />
                 <input
                   id="searchmember"
-                  className="form-control border-right-0 form-rounded"
+                  className="form-control form-rounded"
                   type="text"
                   placeholder="Search..."
                   onChange={searchLocation}
@@ -132,10 +132,7 @@ export default function Home() {
                 <tr>
                   <th scope="col" className="text-muted ml-5">
                     <span className="ml-3">Name </span>
-                    <i
-                      className="fe fe-align-left"
-                      style={{ fontSize: "20px" }}
-                    ></i>
+                    <i className="fa fa-sort-amount-asc"></i>
                   </th>
                   <th scope="col" className="text-muted">
                     Location
