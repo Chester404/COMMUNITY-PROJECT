@@ -236,7 +236,7 @@ export default function Home() {
               style={{ margin: "10px", background: "#ffffff" }}
             >
               <div className="col-md-5">
-                <label>
+                {/*  <label>
                   Showing
                   <select
                     className="ml-3"
@@ -253,6 +253,7 @@ export default function Home() {
                   </select>{" "}
                   entries
                 </label>
+              */}{" "}
               </div>
               <div className="col-md-7">
                 <div className="pagination ml-auto" style={{ float: "right" }}>

@@ -1,9 +1,10 @@
-import AuthHeader from "../../components/auth/AuthHeader";
+// import AuthHeader from "../../components/auth/AuthHeader";
 import Link from "next/link";
-import { useState, FormEvent, useEffect } from "react";
+import { useState, FormEvent, useEffect, useContext } from "react";
 import axios from "axios";
 import Prompt from "../../components/Prompt";
 import Head from "next/head";
+import { Store } from "../../contextStore";
 import MainLayout from "../../components/MainLayout";
 
 const Signup = () => {
@@ -16,7 +17,7 @@ const Signup = () => {
   const [prompt_body, setPromptBody] = useState("");
   const [link_to, setLinkTo] = useState("");
   const [link_text, setLinkText] = useState("");
-
+  const { dispatch } = useContext(Store);
   const handleClose = () => setShow(false);
 
   const callPrompt = (
@@ -37,8 +38,7 @@ const Signup = () => {
     if (
       /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
         authentication_property
-      ) ||
-      /^\d{10}$/.test(authentication_property)
+      )
     ) {
       //email or phone number is valid. Currently validating 10 digits
     } else {
@@ -46,7 +46,7 @@ const Signup = () => {
         "Sign Up",
         "",
         "Close",
-        "Please enter the correct email address or phone number"
+        "Check E-mail: Please enter the correct email address or phone number"
       );
       return;
     }
@@ -59,7 +59,7 @@ const Signup = () => {
         "Sign Up",
         "",
         "Close",
-        "There should be at least one lowercase character"
+        "Check Password: There should be at least one lowercase character"
       );
       return;
     }
@@ -71,7 +71,7 @@ const Signup = () => {
         "Sign Up",
         "",
         "Close",
-        "There should be at least one uppercase character"
+        "Check Password: There should be at least one uppercase character"
       );
       return;
     }
@@ -83,7 +83,7 @@ const Signup = () => {
         "Sign Up",
         "",
         "Close",
-        "There should be at least one numeric character"
+        "Check Password: There should be at least one numeric character"
       );
       return;
     }
@@ -94,7 +94,7 @@ const Signup = () => {
         "Sign Up",
         "",
         "Close",
-        "Password should be eight or more characters long"
+        "Check Password: Password should be eight or more characters long"
       );
       return;
     }
@@ -103,6 +103,7 @@ const Signup = () => {
       callPrompt("Sign Up", "", "Close", "Password mismatch");
       return;
     }
+    callPrompt("Sign Up", "", "", "Please wait...");
     try {
       const response = await axios.post(
         "http://51.116.114.155:8080/auth/registration/",
@@ -113,7 +114,6 @@ const Signup = () => {
         }
       );
 
-      console.log("response:", response);
       if (response.status === 200 || response.statusText === "Created") {
         // go to landing page
 
@@ -123,11 +123,14 @@ const Signup = () => {
           "Confirm Account",
           "A confirmation has been sent to your email. Please retrieve the code and confirm acount"
         );
+        dispatch({
+          type: "SET_EMAIL",
+          payload: authentication_property,
+        });
       } else {
         callPrompt("Sign Up", "", "Close", "Failed to register");
       }
     } catch (err) {
-      console.log(err.message);
       if (err.message === "Request failed with status code 400") {
         callPrompt(
           "Sign Up",
@@ -150,25 +153,9 @@ const Signup = () => {
     }
   };
 
-  useEffect(() => {
-    var body = document.body;
-
-    body.classList.add("parent");
-  }, []);
   return (
     <>
       <MainLayout>
-        <Head>
-          <script
-            type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"
-          ></script>
-          <script
-            type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-show-password/1.0.3/bootstrap-show-password.min.js"
-          ></script>
-          <link rel="stylesheet" type="text/css" href="/login.css" />
-        </Head>
         <Prompt
           title={prompt_title}
           linkTo={link_to}
@@ -179,121 +166,146 @@ const Signup = () => {
         >
           <p>{prompt_body}</p>
         </Prompt>
-        <div style={{ paddingBottom: "50px" }}>
-          <div className="signupcontent" style={{ height: "610px !important" }}>
-            <div style={{ textAlign: "center" }}>
-              <div>
-                <img className="innerlogo" src="/images/Logo.png" />
-              </div>
-              <br />
-              <br />
-              <div>
-                <b>Make the most out of your business</b>
-              </div>
-              <br />
-              <div>
-                Already on Market Circle?{" "}
-                <a href="login" className="logintext">
+
+        <div className="signupcontent">
+          <div style={{ textAlign: "center" }} className="mb-5">
+            <div>
+              <img className="innerlogo" src="/images/Logo.png" />
+            </div>
+            <br />
+            <br />
+            <div>
+              <b>Make the most out of your business</b>
+            </div>
+            <br />
+            <div>
+              Already on Market Circle?{" "}
+              <Link href="/auth/login">
+                <a className="signuptext">
                   <b>Log in</b>
                 </a>
-              </div>
-              <br />
+              </Link>
+            </div>
+          </div>
+
+          <form onSubmit={register}>
+            <div className="form-group">
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                className="form-control textbox"
+                id="InputEmail"
+                aria-describedby="emailHelp"
+                placeholder="Please enter a valid email"
+                value={authentication_property}
+                onChange={(e) => setAuthenticationProperty(e.target.value)}
+              />
             </div>
 
-            <form onSubmit={register}>
-              <div className="form-group">
-                <label htmlFor="email">Email</label>
-                <input
-                  type="email"
-                  className="form-control textbox"
-                  id="InputEmail"
-                  aria-describedby="emailHelp"
-                  placeholder="Please enter a valid email"
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="exampleInputPassword1">Password</label>
+            <div className="form-group">
+              <label htmlFor="InputPassword1" className="loginlabel">
+                Password
+              </label>
+              <div className="input-group show_hide_password">
                 <input
                   type="password"
                   className="form-control textbox"
                   id="InputPassword1"
                   placeholder="Password must be at least 8 characters"
                   data-toggle="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
+                <div className="input-group-addon">
+                  <a href="#.">
+                    <i className="fe fe-eye-off" aria-hidden="true" />
+                  </a>
+                </div>
               </div>
-              <div className="form-group">
-                <label htmlFor="InputPassword2">Confirm Password</label>
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="InputPassword1" className="loginlabel">
+                Confirm Password
+              </label>
+              <div className="input-group show_hide_confpassword">
                 <input
                   type="password"
                   className="form-control textbox"
-                  id="exampleInputPassword1"
+                  id="InputPassword2"
                   placeholder="Re-Enter the same password as above"
                   data-toggle="password"
+                  value={confirm_password}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
                 />
-              </div>
-              <div className="row" style={{ textAlign: "center" }}>
-                <div className="col-md-6">
-                  <input
-                    type="radio"
-                    id="organization"
-                    name="account_type"
-                    defaultValue="organization"
-                  />
-                  <label className="radio_spc ml-3">Organization</label>
-                </div>
-                <div className="col-md-6">
-                  <input
-                    type="radio"
-                    id="individual"
-                    name="account_type"
-                    defaultValue="individual"
-                    className="radio_spc "
-                    defaultChecked
-                  />
-                  <label htmlFor="individual" className="ml-3">
-                    Individual
-                  </label>
+                <div className="input-group-addon">
+                  <a href="#.">
+                    <i className="fe fe-eye-off" aria-hidden="true" />
+                  </a>
                 </div>
               </div>
+            </div>
+
+            <div style={{ textAlign: "center" }}>
+              <input
+                type="radio"
+                id="organization"
+                name="account_type"
+                defaultValue="organization"
+              />
+              <label htmlFor="organization" className="radio_spc ml-2">
+                Organization
+              </label>
+              <span className="ml-5">
+                <input
+                  type="radio"
+                  id="individual"
+                  name="account_type"
+                  defaultValue="individual"
+                  className="radio_spc"
+                  defaultChecked
+                />
+                <label htmlFor="individual" className="ml-2">
+                  Individual
+                </label>
+              </span>
+            </div>
+
+            <div style={{ textAlign: "center", paddingRight: "10px" }}>
+              <button
+                type="submit"
+                className="btn btn-primary btn-block"
+                id="signup_button"
+              >
+                Sign Up
+              </button>
+            </div>
+            <br />
+            <div style={{ textAlign: "center" }}>
+              By clicking sign up, you agree to the Market Circle
               <br />
-              <div style={{ textAlign: "center", paddingRight: "10px" }}>
-                <button
-                  type="submit"
-                  className="btn btn-primary btn-block"
-                  id="signup_button"
-                >
-                  Sign Up
-                </button>
-              </div>
-              <br />
-              <div style={{ textAlign: "center" }}>
-                By clicking sign up, you agree to the Market Circle
-                <br />
-                <b>
-                  <a href="#" className="texthover" id="user_agreement">
-                    User Agreement,
-                  </a>
-                </b>{" "}
-                <b>
-                  <a href="#" className="texthover" id="privacy_policy">
-                    Privacy Policy
-                  </a>
-                </b>{" "}
-                and{" "}
-                <b>
-                  <a href="#" className="texthover" id="cookie_policy">
-                    Cookie Policy.
-                  </a>
-                </b>
-              </div>
-              <b></b>
-            </form>
-          </div>
+              <b>
+                <a href="#." className="texthover" id="user_agreement">
+                  User Agreement,
+                </a>
+              </b>{" "}
+              <b>
+                <a href="#." className="texthover" id="privacy_policy">
+                  Privacy Policy
+                </a>
+              </b>{" "}
+              and{" "}
+              <b>
+                <a href="#." className="texthover" id="cookie_policy">
+                  Cookie Policy.
+                </a>
+              </b>
+            </div>
+            <b></b>
+          </form>
 
           <b></b>
         </div>
-
-        <script type="text/javascript" src="/js/a.js"></script>
       </MainLayout>
     </>
   );

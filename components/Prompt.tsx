@@ -6,12 +6,23 @@ const Prompt = (props: any) => {
   useEffect(() => {
     setCloseBox(props.show);
   }, [props.show]);
+
   return (
     <div
       id="myModal"
       className="modal overlay"
       style={{ display: closeBox ? "block" : "", zIndex: 9999 }}
     >
+      <div
+        style={{
+          display: closeBox ? "block" : "",
+          position: "absolute",
+          width: "100%",
+          height: "100%",
+          backgroundColor: "black",
+          opacity: 0.6,
+        }}
+      />
       {/* <!-- Modal content --> */}
       <div
         className="modal-content"
@@ -35,10 +46,13 @@ const Prompt = (props: any) => {
         ) : (
           <a
             href="#"
-            onClick={() => setCloseBox(false)}
-            style={{ fontSize: 20 }}
+            onClick={() => {
+              props.handleClose();
+              // setCloseBox(false);
+            }}
+            style={{ fontSize: 15 }}
           >
-            {props.linkText.length > 0 ? props.linkText : "Close"}
+            {props.linkText.length > 0 ? props.linkText : ""}
           </a>
         )}
       </div>

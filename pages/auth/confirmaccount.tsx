@@ -1,11 +1,14 @@
 import Button from "react-bootstrap/Button";
-import Link from "next/link";
-import { useState, FormEvent, useEffect, useRef } from "react";
+// import Link from "next/link";
+import { useState, FormEvent, useEffect, useRef, useContext } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import Prompt from "../../components/Prompt";
-import AuthHeader from "../../components/auth/AuthHeader";
+// import AuthHeader from "../../components/auth/AuthHeader";
 import Head from "next/head";
+import { Store } from "../../contextStore";
+import { Users } from "../../lib/endpoints";
+import MainLayout from "../../components/MainLayout";
 
 const ConfirmAccount = () => {
   const [code1, setCode1] = useState("");
@@ -18,12 +21,12 @@ const ConfirmAccount = () => {
   const [link_to, setLinkTo] = useState("");
   const [link_text, setLinkText] = useState("");
   const [countDown, setCountDown] = useState(60);
-
+  const [disabled, setDisabled] = useState(true);
   const code2Ref = useRef(null);
   const code3Ref = useRef(null);
   const code4Ref = useRef(null);
   const submitBtnRef = useRef(null);
-
+  const { state, dispatch } = useContext(Store);
   const router = useRouter();
 
   const handleClose = () => setShow(false);
@@ -55,6 +58,8 @@ const ConfirmAccount = () => {
         setTimeout(tick, 1000);
       } else if (mins > 1) {
         countdown(mins - 1);
+      } else {
+        setDisabled(false);
       }
       setCountDown(cnt);
     }
@@ -75,8 +80,8 @@ const ConfirmAccount = () => {
     setPromptBody(message);
   };
 
-  const submitCode = async (e: FormEvent) => {
-    e.preventDefault();
+  const submitCode = async () => {
+    // e.preventDefault();
     try {
       const rs: any = await axios.post(
         "http://51.116.114.155:8080/auth/keyinput/",
@@ -97,184 +102,151 @@ const ConfirmAccount = () => {
     }
   };
 
+  const requestVerificationCode = async () => {
+    callPrompt("Verification", "", "", "Requesting for verification code");
+    const rs = await new Users().resendToken(state.emailaddress);
+    if (rs.error) {
+      callPrompt("Verification", "", "Close", "Code request failed");
+    } else {
+      callPrompt(
+        "Verification",
+        "",
+        "Close",
+        "Code request successfull. Please check your email"
+      );
+    }
+    console.log(rs);
+  };
   useEffect(() => {
     if (countDown == 60) countdown(1);
-    var body = document.body;
-
-    body.classList.add("parent");
   }, []);
   return (
     <>
-      <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/icon?family=Material+Icons"
-        />
-        <title>Account Verification</title>
-        <link
-          rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-          crossOrigin="anonymous"
-        />
-        <script
-          type="text/javascript"
-          src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"
-        ></script>
-        <script
-          type="text/javascript"
-          src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-show-password/1.0.3/bootstrap-show-password.min.js"
-        ></script>
+      <MainLayout>
+        <Prompt
+          title={prompt_title}
+          linkTo={link_to}
+          linkText={link_text}
+          show={show}
+          success={link_to.length > 0 ? true : false}
+          handleClose={handleClose}
+        >
+          <p>{prompt_body}</p>
+        </Prompt>
 
-        <link rel="stylesheet" href="/account_verification.css" />
-      </Head>
-      <Prompt
-        title={prompt_title}
-        linkTo={link_to}
-        linkText={link_text}
-        show={show}
-        success={link_to.length > 0 ? true : false}
-        handleClose={handleClose}
-      >
-        <p>{prompt_body}</p>
-      </Prompt>
-      <div>
-        <div className="row">
-          <div className="navbar">
-            <img className="logo" src="/images/Logo.png" />
+        <div className="logincontent">
+          <div style={{ textAlign: "center", paddingTop: "12%" }}>
+            <h3>
+              <b>
+                Enter code for
+                <br />
+                verification
+              </b>
+            </h3>
           </div>
-        </div>
-        <div className="content">
-          <div style={{ textAlign: "center" }}>
-            <div>
-              <h3>
-                <b>
-                  Enter code for
-                  <br />
-                  verification
-                </b>
-              </h3>
+          <br />
+          <form className="needs-validation">
+            <div className="form-group" style={{ textAlign: "center" }}>
+              <input
+                type="text"
+                className="codebox"
+                id="code1"
+                maxLength={1}
+                size={1}
+                min={0}
+                max={9}
+                pattern="[0-9]{1}"
+                value={code1}
+                onChange={(e) => setCode1(e.target.value)}
+                onKeyUp={() => code2Ref.current.focus()}
+                style={{
+                  textAlign: "center",
+                }}
+              />
+              <input
+                type="text"
+                className="codebox"
+                id="code2"
+                maxLength={1}
+                size={1}
+                min={0}
+                max={9}
+                pattern="[0-9]{1}"
+                value={code2}
+                onChange={(e) => setCode2(e.target.value)}
+                style={{
+                  textAlign: "center",
+                }}
+                ref={code2Ref}
+                onKeyUp={() => code3Ref.current.focus()}
+              />
+              <input
+                type="text"
+                className="codebox"
+                id="code3"
+                maxLength={1}
+                size={1}
+                min={0}
+                max={9}
+                pattern="[0-9]{1}"
+                value={code3}
+                onChange={(e) => setCode3(e.target.value)}
+                style={{
+                  textAlign: "center",
+                }}
+                ref={code3Ref}
+                onKeyUp={() => code4Ref.current.focus()}
+              />
+              <input
+                type="text"
+                className="codebox"
+                id="code4"
+                maxLength={1}
+                size={1}
+                min={0}
+                max={9}
+                pattern="[0-9]{1}"
+                value={code4}
+                onChange={(e) => setCode4(e.target.value)}
+                style={{
+                  textAlign: "center",
+                }}
+                ref={code4Ref}
+                onKeyUp={() => submitBtnRef.current.focus()}
+              />
             </div>
-            <br />
-          </div>
-          <div className="row">
-            <form onSubmit={submitCode}>
-              <div className="form-group" style={{ textAlign: "center" }}>
-                <div id="form">
-                  <input
-                    type="text"
-                    className="codebox"
-                    id="code1"
-                    maxLength={1}
-                    size={1}
-                    min={0}
-                    max={9}
-                    pattern="[0-9]{1}"
-                    value={code1}
-                    onChange={(e) => setCode1(e.target.value)}
-                    onKeyUp={() => code2Ref.current.focus()}
-                    style={{
-                      textAlign: "center",
-                    }}
-                  />
-                  <input
-                    type="text"
-                    className="codebox"
-                    id="code2"
-                    maxLength={1}
-                    size={1}
-                    min={0}
-                    max={9}
-                    pattern="[0-9]{1}"
-                    value={code2}
-                    onChange={(e) => setCode2(e.target.value)}
-                    style={{
-                      textAlign: "center",
-                    }}
-                    ref={code2Ref}
-                    onKeyUp={() => code3Ref.current.focus()}
-                  />
-                  <input
-                    type="text"
-                    className="codebox"
-                    id="code3"
-                    maxLength={1}
-                    size={1}
-                    min={0}
-                    max={9}
-                    pattern="[0-9]{1}"
-                    value={code3}
-                    onChange={(e) => setCode3(e.target.value)}
-                    style={{
-                      textAlign: "center",
-                    }}
-                    ref={code3Ref}
-                    onKeyUp={() => code4Ref.current.focus()}
-                  />
-                  <input
-                    type="text"
-                    className="codebox"
-                    id="code4"
-                    maxLength={1}
-                    size={1}
-                    min={0}
-                    max={9}
-                    pattern="[0-9]{1}"
-                    value={code4}
-                    onChange={(e) => setCode4(e.target.value)}
-                    style={{
-                      textAlign: "center",
-                    }}
-                    ref={code4Ref}
-                    onKeyUp={() => submitBtnRef.current.focus()}
-                  />
-                </div>
-                <br />
-                <div style={{ textAlign: "center" }}>
-                  <button
-                    type="submit"
-                    className="btn btn-primary"
-                    id="continue"
-                    ref={submitBtnRef}
-                  >
-                    Continue
-                  </button>
-                </div>
-                <br />
-                <div style={{ textAlign: "center" }}>
-                  If you don't recieve the code within
-                  <br />
-                  1mins, click below to re-send it.
-                </div>
-                <div style={{ marginTop: 15 }}>
-                  <button className="re-sendbtn" id="re-send_code">
-                    Resend Code<i className="material-icons">refresh</i>
-                  </button>
-                  {countDown}
-                </div>
-                {/* <table className="cell" style={{ width: "100%" }}>
-                  <tbody>
-                    <tr>
-                      <td style={{ width: "75%" }}>
-                        <button className="re-sendbtn" id="re-send_code">
-                          Resend Code<i className="material-icons">refresh</i>
-                        </button>
-                      </td>
-                      <td style={{ textAlign: "start" }} id="counter">
-                        {" "}
-                        {countDown}
-                      </td>
-                    </tr>
-                  </tbody>
-                </table> */}
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
 
-      <script type="text/javascript" src="/js/a.js"></script>
+            <div style={{ textAlign: "center" }}>
+              <button
+                style={{ width: "210px" }}
+                className="btn btn-primary"
+                id="continue"
+                ref={submitBtnRef}
+                onClick={submitCode}
+              >
+                Continue
+              </button>
+              <div style={{ textAlign: "center" }} className="mt-5">
+                If you don't recieve the code within
+                <br />
+                1min, click below to re-send it.
+              </div>
+              <div style={{ marginTop: 15 }}>
+                <button
+                  className="re-sendbtn"
+                  style={{ color: disabled ? "grey" : "" }}
+                  id="re-send_code"
+                  onClick={requestVerificationCode}
+                  disabled={disabled}
+                >
+                  Resend Code<i className="fe fe-rotate-ccw ml-3"></i>
+                </button>
+                {countDown}
+              </div>
+            </div>
+          </form>
+        </div>
+      </MainLayout>
     </>
   );
 };

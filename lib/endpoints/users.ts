@@ -24,6 +24,14 @@ export class Users {
       method: "GET",
     });
   }
+
+  async getProfiles() {
+    //accounts/signed_in_user
+    return ufetch("/accounts/", {
+      method: "GET",
+    });
+  }
+
   async login(authentication_property: string, password: string) {
     //authentication_property: email or phone number for login
     const rs = await axios.post("http://51.116.114.155:8080/auth/token", {
@@ -53,10 +61,24 @@ export class Users {
   }
 
   async updateUserProfile(userData: any) {
-    const data = new URLSearchParams(userData).toString();
-    return await ufetch("/accounts/update", {
+    return await ufetch("/accounts/update/", {
       method: "PUT",
-      body: data,
+      body: JSON.stringify(userData),
+    });
+  }
+
+  async uplaodImage(formData: any) {
+    return await ufetch("/accounts/image_upload/", {
+      method: "PUT",
+      body: formData,
+      redirect: "follow",
+    });
+  }
+
+  async resendToken(authentication_property: string) {
+    return await ufetch("/auth/password-forgotten/", {
+      method: "POST",
+      body: JSON.stringify({ authentication_property, access_type: "a" }),
     });
   }
 

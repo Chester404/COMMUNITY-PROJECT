@@ -24,15 +24,33 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
+<<<<<<< HEAD
     "/editprofile": [
+=======
+    "/auth/login": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/editprofile.js"
+      "static/chunks/pages/auth/login.js"
+    ],
+    "/blog": [
+>>>>>>> 8cd57ddfbc443670a5d76c8359827fcfa80b5fcb
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/blog.js"
     ],
     "/memberlist": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
       "static/chunks/pages/memberlist.js"
+    ],
+    "/memberlist": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+<<<<<<< HEAD
+      "static/chunks/pages/memberlist.js"
+=======
+      "static/chunks/pages/profile.js"
+>>>>>>> 8cd57ddfbc443670a5d76c8359827fcfa80b5fcb
     ]
   },
   "ampFirstPages": []

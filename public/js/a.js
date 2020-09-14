@@ -1,4 +1,4 @@
 $("#password").password("toggle");
-var body = document.body;
+// var body = document.body;
 
-body.classList.add("parent");
+// body.classList.add("parent");
