@@ -5,7 +5,7 @@ import axios from "axios";
 import Prompt from "../../components/Prompt";
 import Head from "next/head";
 import { Store } from "../../contextStore";
-import LoginLayout from "../../components/LoginLayout";
+import MainLayout from "../../components/MainLayout";
 
 const Signup = () => {
   const [authentication_property, setAuthenticationProperty] = useState("");
@@ -155,7 +155,7 @@ const Signup = () => {
 
   return (
     <>
-      <LoginLayout>
+      <MainLayout>
         <Prompt
           title={prompt_title}
           linkTo={link_to}
@@ -201,30 +201,51 @@ const Signup = () => {
                 onChange={(e) => setAuthenticationProperty(e.target.value)}
               />
             </div>
+
             <div className="form-group">
-              <label htmlFor="exampleInputPassword1">Password</label>
-              <input
-                type="password"
-                className="form-control textbox"
-                id="InputPassword1"
-                placeholder="Password must be at least 8 characters"
-                data-toggle="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
+              <label htmlFor="InputPassword1" className="loginlabel">
+                Password
+              </label>
+              <div className="input-group show_hide_password">
+                <input
+                  type="password"
+                  className="form-control textbox"
+                  id="InputPassword1"
+                  placeholder="Password must be at least 8 characters"
+                  data-toggle="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <div className="input-group-addon">
+                  <a href="#.">
+                    <i className="fe fe-eye-off" aria-hidden="true" />
+                  </a>
+                </div>
+              </div>
             </div>
+
             <div className="form-group">
-              <label htmlFor="InputPassword2">Confirm Password</label>
-              <input
-                type="password"
-                className="form-control textbox"
-                id="InputPassword2"
-                placeholder="Re-Enter the same password as above"
-                data-toggle="password"
-                value={confirm_password}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-              />
+              <label htmlFor="InputPassword1" className="loginlabel">
+                Confirm Password
+              </label>
+              <div className="input-group show_hide_confpassword">
+                <input
+                  type="password"
+                  className="form-control textbox"
+                  id="InputPassword2"
+                  placeholder="Re-Enter the same password as above"
+                  data-toggle="password"
+                  value={confirm_password}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                />
+                <div className="input-group-addon">
+                  <a href="#.">
+                    <i className="fe fe-eye-off" aria-hidden="true" />
+                  </a>
+                </div>
+              </div>
             </div>
+
             <div style={{ textAlign: "center" }}>
               <input
                 type="radio"
@@ -264,18 +285,18 @@ const Signup = () => {
               By clicking sign up, you agree to the Market Circle
               <br />
               <b>
-                <a href="#" className="texthover" id="user_agreement">
+                <a href="#." className="texthover" id="user_agreement">
                   User Agreement,
                 </a>
               </b>{" "}
               <b>
-                <a href="#" className="texthover" id="privacy_policy">
+                <a href="#." className="texthover" id="privacy_policy">
                   Privacy Policy
                 </a>
               </b>{" "}
               and{" "}
               <b>
-                <a href="#" className="texthover" id="cookie_policy">
+                <a href="#." className="texthover" id="cookie_policy">
                   Cookie Policy.
                 </a>
               </b>
@@ -285,7 +306,7 @@ const Signup = () => {
 
           <b></b>
         </div>
-      </LoginLayout>
+      </MainLayout>
     </>
   );
 };

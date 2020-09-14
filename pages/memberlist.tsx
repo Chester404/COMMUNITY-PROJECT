@@ -122,7 +122,11 @@ export default function Home() {
           {/* End page-header */}
           <div
             className="table-responsive table-lg"
-            style={{ background: "#ffffff", marginBottom: "30px" }}
+            style={{
+              background: "#ffffff",
+              marginBottom: "30px",
+              height: "600px",
+            }}
           >
             <h5 className="mt-5 mb-5 ml-5 table-title">
               Market Circle Individuals

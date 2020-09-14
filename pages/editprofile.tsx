@@ -283,7 +283,12 @@ export default function Home() {
             <div className="col-md-3">
               <div className="userpic mb-4">
                 <div className="profile-pic">
-                  <img src={userImage} width={200} height={200} />
+                  <img
+                    src={userImage}
+                    width={200}
+                    height={200}
+                    style={{ borderRadius: "4px" }}
+                  />
                   <div
                     className="edit"
                     style={{

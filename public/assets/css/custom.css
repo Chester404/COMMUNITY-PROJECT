@@ -50,13 +50,13 @@ h3 {
 }
 
 .form-rounded {
-  border-radius: 10px;
-  border: 1px solid grey;
+  border-radius: 7px;
+  border: 0.2px solid grey;
 }
 
 .form-rounded:hover {
-  border-radius: 10px;
-  border: 2px solid #3863fc;
+  border-radius: 7px;
+  border: 1px solid #3863fc;
 }
 
 .pagination {
@@ -334,4 +334,7 @@ button.menu-button {
     display: block !important;
     font-size: 20px;
   }
+}
+body {
+  color: #3f3d56 !important;
 }

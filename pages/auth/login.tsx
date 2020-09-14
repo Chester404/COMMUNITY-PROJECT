@@ -4,7 +4,7 @@ import { useState, FormEvent, useEffect, useContext } from "react";
 import { Auth, Users } from "../../lib/endpoints";
 import { useRouter } from "next/router";
 import Prompt from "../../components/Prompt";
-import LoginLayout from "../../components/LoginLayout";
+import MainLayout from "../../components/MainLayout";
 import { Store } from "../../contextStore";
 
 const Login = () => {
@@ -100,7 +100,7 @@ const Login = () => {
 
   return (
     <>
-      <LoginLayout>
+      <MainLayout>
         <Prompt
           title={prompt_title}
           linkTo={link_to}
@@ -138,7 +138,7 @@ const Login = () => {
               <label htmlFor="InputPassword1" className="loginlabel">
                 Password
               </label>
-              <div className="input-group" id="show_hide_password">
+              <div className="input-group show_hide_password">
                 <input
                   type="password"
                   className="form-control textbox"
@@ -149,7 +149,7 @@ const Login = () => {
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 <div className="input-group-addon">
-                  <a href="#">
+                  <a href="#.">
                     <i className="fe fe-eye-off" aria-hidden="true" />
                   </a>
                 </div>
@@ -180,7 +180,7 @@ const Login = () => {
             </div>
           </form>
         </div>
-      </LoginLayout>
+      </MainLayout>
     </>
   );
 };

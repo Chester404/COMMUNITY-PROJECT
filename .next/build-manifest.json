@@ -29,15 +29,20 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/auth/login.js"
     ],
-    "/editprofile": [
+    "/blog": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/editprofile.js"
+      "static/chunks/pages/blog.js"
     ],
     "/memberlist": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
       "static/chunks/pages/memberlist.js"
+    ],
+    "/profile": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/profile.js"
     ]
   },
   "ampFirstPages": []
