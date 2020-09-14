@@ -1,14 +1,8 @@
 {
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
-<<<<<<< HEAD
-  "/editprofile": "pages/editprofile.js",
-  "/memberlist": "pages/memberlist.js"
-=======
   "/_error": "pages/_error.js",
-  "/memberlist": "pages/memberlist.js",
-  "/auth/login": "pages/auth/login.js",
-  "/profile": "pages/profile.js",
-  "/blog": "pages/blog.js"
->>>>>>> 8cd57ddfbc443670a5d76c8359827fcfa80b5fcb
+  "/auth/signup": "pages/auth/signup.js",
+  "/auth/confirmaccount": "pages/auth/confirmaccount.js",
+  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js"
 }

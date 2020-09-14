@@ -24,33 +24,20 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
-<<<<<<< HEAD
-    "/editprofile": [
-=======
-    "/auth/login": [
+    "/auth/confirmaccount": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/auth/login.js"
+      "static/chunks/pages/auth/confirmaccount.js"
     ],
-    "/blog": [
->>>>>>> 8cd57ddfbc443670a5d76c8359827fcfa80b5fcb
+    "/auth/signup": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/blog.js"
+      "static/chunks/pages/auth/signup.js"
     ],
-    "/memberlist": [
+    "/next/dist/pages/_error": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/memberlist.js"
-    ],
-    "/memberlist": [
-      "static/chunks/main.js",
-      "static/chunks/webpack.js",
-<<<<<<< HEAD
-      "static/chunks/pages/memberlist.js"
-=======
-      "static/chunks/pages/profile.js"
->>>>>>> 8cd57ddfbc443670a5d76c8359827fcfa80b5fcb
+      "static/chunks/pages/next/dist/pages/_error.js"
     ]
   },
   "ampFirstPages": []
