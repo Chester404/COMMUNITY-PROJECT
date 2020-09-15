@@ -24,15 +24,25 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
+    "/blog": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/blog.js"
+    ],
     "/editprofile": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
       "static/chunks/pages/editprofile.js"
     ],
-    "/memberlist": [
+    "/next/dist/pages/_error": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/memberlist.js"
+      "static/chunks/pages/next/dist/pages/_error.js"
+    ],
+    "/profile": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/profile.js"
     ]
   },
   "ampFirstPages": []
