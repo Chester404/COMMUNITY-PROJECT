@@ -45,10 +45,19 @@
 }
 
 .codebox {
-  border-radius: 10px;
-  border: 1px solid rgb(133, 133, 133);
   height: 37px;
   width: 37px;
+  background: #fff;
+  background-clip: padding-box;
+  border: 1px solid #e8ebf1;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out 0.15s,
+    -webkit-box-shadow ease-in-out 0.15s;
+  -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  border-radius: 10px;
+  /* border: 1px solid rgb(133, 133, 133); */
   margin: 7px;
 }
 .codebox:hover {
