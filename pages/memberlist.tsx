@@ -2,6 +2,7 @@ import MainLayout from "../components/MainLayout";
 import { Users } from "../lib/endpoints";
 import { useEffect, useState } from "react";
 
+const disabled = {};
 interface IPaginateProps {
   callback(i: number): void;
   recordsPerpage: number;
@@ -31,6 +32,7 @@ const Pagination = ({
               setCurrentPage(currentPage - 1);
             }
           }}
+          style={{ color: "gray", pointerEvents: "none" }}
         >
           « Prev
         </a>
@@ -108,25 +110,15 @@ export default function Home() {
           <div className="page-header">
             <h1 className="page-title">Member List</h1>
             <div className="ml-auto">
-              <div className="input-group">
+              <div className="inner-addon right-addon">
+                <i className="fe fe-search fa-lg" />
                 <input
                   id="searchmember"
-                  className="form-control border-right-0 form-rounded"
+                  className="form-control form-rounded"
                   type="text"
                   placeholder="Search..."
                   onChange={searchLocation}
                 />
-                <span
-                  className="input-group-append bg-white border-left-0"
-                  style={{
-                    borderTopRightRadius: "50%",
-                    borderBottomRightRadius: "50%",
-                  }}
-                >
-                  <span className="input-group-text bg-transparent">
-                    <i className="fe fe-search fa-lg" />
-                  </span>
-                </span>
               </div>
             </div>
           </div>
@@ -134,7 +126,11 @@ export default function Home() {
 
           <div
             className="table-responsive table-lg"
-            style={{ background: "#ffffff", marginBottom: "30px" }}
+            style={{
+              background: "#ffffff",
+              marginBottom: "30px",
+              height: "600px",
+            }}
           >
             <h5 className="mt-5 mb-5 ml-5 table-title">
               Market Circle Individuals
@@ -143,11 +139,36 @@ export default function Home() {
               <thead>
                 <tr>
                   <th scope="col" className="text-muted ml-5">
-                    <span className="ml-3">Name </span>
-                    <i
-                      className="fe fe-align-left"
-                      style={{ fontSize: "20px" }}
-                    ></i>
+                    {/*==================================*/}
+                    <div className="dropdown">
+                      <span>
+                        <span className="ml-3">Name </span>
+                        <i className="fa fa-sort-amount-asc"></i>
+                      </span>
+                      <div
+                        className="dropdown-content ml-8"
+                        style={{ width: 10 }}
+                      >
+                        <div>
+                          <div className="ml-2 mt-3">
+                            <span>Sort by</span>
+                          </div>
+                          <div
+                            className="ml-2 mt-3"
+                            style={{ color: "#3F3D56" }}
+                          >
+                            <span>Name (A-Z)</span>
+                          </div>
+                          <div
+                            className="ml-2 mt-3 mb-2"
+                            style={{ color: "#3F3D56" }}
+                          >
+                            <span>Location</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    {/*=================================*/}
                   </th>
                   <th scope="col" className="text-muted">
                     Location

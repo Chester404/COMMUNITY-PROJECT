@@ -1,7 +1,5 @@
 import { useContext } from "react";
 import { Store } from "../contextStore";
-import Link from "next/link";
-import Layout from "../components/Layout";
 import MainLayout from "../components/MainLayout";
 
 export default function Home() {

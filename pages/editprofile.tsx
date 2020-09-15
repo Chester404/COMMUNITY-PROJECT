@@ -96,13 +96,15 @@ export default function Home() {
     }
 
     let phoneno = /^\d{10}$/;
-    if (
-      !phone_number.match(phoneno) ||
-      phone_number.length > 10 ||
-      phone_number.length < 10
-    ) {
-      callPrompt("Edit Profile", "", "Close", "Invalid phone number");
-      return;
+    if (phone_number.length > 0) {
+      if (
+        !phone_number.match(phoneno) ||
+        phone_number.length > 10 ||
+        phone_number.length < 10
+      ) {
+        callPrompt("Edit Profile", "", "Close", "Invalid phone number");
+        return;
+      }
     }
 
     const allowedYear = new Date(
@@ -183,7 +185,7 @@ export default function Home() {
       const rs = await new Users().getUserProfile();
       setName(rs.name);
       setBirthDay(rs.birthday ? rs.birthday : "1999-12-12");
-      setGender(rs.gender ? rs.gender : "m");
+      setGender(rs.gender ? rs.gender : "");
       setStreetAddress(rs.street_address);
       setPhoneNumber(rs.phone_number);
       setRegion(rs.region ? rs.region : "wr");
@@ -283,7 +285,12 @@ export default function Home() {
             <div className="col-md-3">
               <div className="userpic mb-4">
                 <div className="profile-pic">
-                  <img src={userImage} width={200} height={200} />
+                  <img
+                    src={userImage}
+                    width={200}
+                    height={200}
+                    style={{ borderRadius: "4px" }}
+                  />
                   <div
                     className="edit"
                     style={{
@@ -510,7 +517,7 @@ export default function Home() {
                   </button>
                   <Link href="/profile">
                     <a
-                      className="btn  ml-5  mb-1 mt-5"
+                      className="btn ml-5 mb-1 mt-5"
                       style={{
                         background: "#818AA9 !important",
                         width: "160px !important",

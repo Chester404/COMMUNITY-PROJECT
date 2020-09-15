@@ -1,8 +1,7 @@
 import MainLayout from "../components/MainLayout";
-// import Link from "next/link";
 import { Users } from "../lib/endpoints";
 import { useState, useEffect, useContext } from "react";
-import Link from "next/link";
+// import Link from "next/link";
 import { Store } from "../contextStore";
 
 const REGIONS = [
@@ -33,13 +32,12 @@ export default function Home() {
   // const [statusMsg, setStatusMsg] = useState("");
   // const [statusColor, setStatusColor] = useState("blue");
   const { state } = useContext<any>(Store);
-  console.log("Somestate", state);
   useEffect(() => {
     (async () => {
       const rs = await new Users().getUserProfile();
       console.log("Profile", rs);
       const rIndex = REGIONS.findIndex((r) => r[0] == rs.region);
-      rs.region = rs.region.length > 0 ? REGIONS[rIndex][1] : "";
+      rs.region = rs.region?.length > 0 ? REGIONS[rIndex][1] : "";
       const pIndex = PRIVACY.findIndex((r) => r[0] == rs.privacy_level);
       rs.privacy_level = PRIVACY[pIndex][1];
       setProfileData(rs);
@@ -67,6 +65,7 @@ export default function Home() {
                   alt=""
                   width={200}
                   height={200}
+                  style={{ borderRadius: "4px" }}
                 />
               </div>
               <div className="text-center">
@@ -178,7 +177,9 @@ export default function Home() {
                         profileData?.gender
                           ? profileData.gender === "m"
                             ? "Male"
-                            : "Female"
+                            : profileData.gender === "f"
+                            ? "Female"
+                            : ""
                           : ""
                       }
                       readOnly

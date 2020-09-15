@@ -1,6 +1,6 @@
-import AuthHeader from "../../components/auth/AuthHeader";
-import { useState } from "react";
+/* import AuthHeader from "../../components/auth/AuthHeader"; */
 import MainLayout from "../../components/MainLayout";
+import { useState } from "react";
 
 export default function Blog({ allPostsData }) {
   const [username] = useState("no-name");

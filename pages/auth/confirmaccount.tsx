@@ -8,6 +8,7 @@ import Prompt from "../../components/Prompt";
 import Head from "next/head";
 import { Store } from "../../contextStore";
 import { Users } from "../../lib/endpoints";
+import MainLayout from "../../components/MainLayout";
 
 const ConfirmAccount = () => {
   const [code1, setCode1] = useState("");
@@ -79,8 +80,8 @@ const ConfirmAccount = () => {
     setPromptBody(message);
   };
 
-  const submitCode = async () => {
-    // e.preventDefault();
+  const submitCode = async (e) => {
+    e.preventDefault();
     try {
       const rs: any = await axios.post(
         "http://51.116.114.155:8080/auth/keyinput/",
@@ -121,144 +122,111 @@ const ConfirmAccount = () => {
   }, []);
   return (
     <>
-      <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/icon?family=Material+Icons"
-        />
-        <title>Account Verification</title>
-        <link
-          rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-          crossOrigin="anonymous"
-        />
-        <script
-          type="text/javascript"
-          src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"
-        ></script>
-        <script
-          type="text/javascript"
-          src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-show-password/1.0.3/bootstrap-show-password.min.js"
-        ></script>
+      <MainLayout>
+        <Prompt
+          title={prompt_title}
+          linkTo={link_to}
+          linkText={link_text}
+          show={show}
+          success={link_to.length > 0 ? true : false}
+          handleClose={handleClose}
+        >
+          <p>{prompt_body}</p>
+        </Prompt>
 
-        <link rel="stylesheet" href="/account_verification.css" />
-      </Head>
-      <Prompt
-        title={prompt_title}
-        linkTo={link_to}
-        linkText={link_text}
-        show={show}
-        success={link_to.length > 0 ? true : false}
-        handleClose={handleClose}
-      >
-        <p>{prompt_body}</p>
-      </Prompt>
-      <div>
-        <div className="row">
-          <div className="navbar">
-            <img className="logo" src="/images/Logo.png" />
+        <div className="logincontent">
+          <div style={{ textAlign: "center", paddingTop: "12%" }}>
+            <h3>
+              <b>
+                Enter code for
+                <br />
+                verification
+              </b>
+            </h3>
           </div>
-        </div>
-        <div className="content">
-          <div style={{ textAlign: "center" }}>
-            <div>
-              <h3>
-                <b>
-                  Enter code for
-                  <br />
-                  verification
-                </b>
-              </h3>
-            </div>
-            <br />
-          </div>
-          <div className="row">
-            {/* <form onSubmit={submitCode}> */}
+          <br />
+          <form className="needs-validation" onSubmit={submitCode}>
             <div className="form-group" style={{ textAlign: "center" }}>
-              <div id="form">
-                <input
-                  type="text"
-                  className="codebox"
-                  id="code1"
-                  maxLength={1}
-                  size={1}
-                  min={0}
-                  max={9}
-                  pattern="[0-9]{1}"
-                  value={code1}
-                  onChange={(e) => setCode1(e.target.value)}
-                  onKeyUp={() => code2Ref.current.focus()}
-                  style={{
-                    textAlign: "center",
-                  }}
-                />
-                <input
-                  type="text"
-                  className="codebox"
-                  id="code2"
-                  maxLength={1}
-                  size={1}
-                  min={0}
-                  max={9}
-                  pattern="[0-9]{1}"
-                  value={code2}
-                  onChange={(e) => setCode2(e.target.value)}
-                  style={{
-                    textAlign: "center",
-                  }}
-                  ref={code2Ref}
-                  onKeyUp={() => code3Ref.current.focus()}
-                />
-                <input
-                  type="text"
-                  className="codebox"
-                  id="code3"
-                  maxLength={1}
-                  size={1}
-                  min={0}
-                  max={9}
-                  pattern="[0-9]{1}"
-                  value={code3}
-                  onChange={(e) => setCode3(e.target.value)}
-                  style={{
-                    textAlign: "center",
-                  }}
-                  ref={code3Ref}
-                  onKeyUp={() => code4Ref.current.focus()}
-                />
-                <input
-                  type="text"
-                  className="codebox"
-                  id="code4"
-                  maxLength={1}
-                  size={1}
-                  min={0}
-                  max={9}
-                  pattern="[0-9]{1}"
-                  value={code4}
-                  onChange={(e) => setCode4(e.target.value)}
-                  style={{
-                    textAlign: "center",
-                  }}
-                  ref={code4Ref}
-                  onKeyUp={() => submitBtnRef.current.focus()}
-                />
-              </div>
-              <br />
-              <div style={{ textAlign: "center" }}>
-                <button
-                  className="btn btn-primary"
-                  id="continue"
-                  ref={submitBtnRef}
-                  onClick={submitCode}
-                >
-                  Continue
-                </button>
-              </div>
-              <br />
-              <div style={{ textAlign: "center" }}>
+              <input
+                type="text"
+                className="codebox"
+                id="code1"
+                maxLength={1}
+                size={1}
+                min={0}
+                max={9}
+                pattern="[0-9]{1}"
+                value={code1}
+                onChange={(e) => setCode1(e.target.value)}
+                onKeyUp={() => code2Ref.current.focus()}
+                style={{
+                  textAlign: "center",
+                }}
+              />
+              <input
+                type="text"
+                className="codebox"
+                id="code2"
+                maxLength={1}
+                size={1}
+                min={0}
+                max={9}
+                pattern="[0-9]{1}"
+                value={code2}
+                onChange={(e) => setCode2(e.target.value)}
+                style={{
+                  textAlign: "center",
+                }}
+                ref={code2Ref}
+                onKeyUp={() => code3Ref.current.focus()}
+              />
+              <input
+                type="text"
+                className="codebox"
+                id="code3"
+                maxLength={1}
+                size={1}
+                min={0}
+                max={9}
+                pattern="[0-9]{1}"
+                value={code3}
+                onChange={(e) => setCode3(e.target.value)}
+                style={{
+                  textAlign: "center",
+                }}
+                ref={code3Ref}
+                onKeyUp={() => code4Ref.current.focus()}
+              />
+              <input
+                type="text"
+                className="codebox"
+                id="code4"
+                maxLength={1}
+                size={1}
+                min={0}
+                max={9}
+                pattern="[0-9]{1}"
+                value={code4}
+                onChange={(e) => setCode4(e.target.value)}
+                style={{
+                  textAlign: "center",
+                }}
+                ref={code4Ref}
+                onKeyUp={() => submitBtnRef.current.focus()}
+              />
+            </div>
+
+            <div style={{ textAlign: "center" }}>
+              <button
+                style={{ width: "210px" }}
+                className="btn btn-primary"
+                id="continue"
+                ref={submitBtnRef}
+                onClick={submitCode}
+              >
+                Continue
+              </button>
+              <div style={{ textAlign: "center" }} className="mt-5">
                 If you don't recieve the code within
                 <br />
                 1min, click below to re-send it.
@@ -271,39 +239,14 @@ const ConfirmAccount = () => {
                   onClick={requestVerificationCode}
                   disabled={disabled}
                 >
-                  Resend Code<i className="material-icons">refresh</i>
+                  Resend Code<i className="fe fe-rotate-ccw ml-3"></i>
                 </button>
                 {countDown}
               </div>
-              {/* <table className="cell" style={{ width: "100%" }}>
-                  <tbody>
-                    <tr>
-                      <td style={{ width: "75%" }}>
-                        <button className="re-sendbtn" id="re-send_code">
-                          Resend Code<i className="material-icons">refresh</i>
-                        </button>
-                      </td>
-                      <td style={{ textAlign: "start" }} id="counter">
-                        {" "}
-                        {countDown}
-                      </td>
-                    </tr>
-                  </tbody>
-                </table> */}
             </div>
-            {/* </form> */}
-          </div>
+          </form>
         </div>
-      </div>
-
-      <script type="text/javascript" src="/js/a.js"></script>
-      <script
-        src="https://kit.fontawesome.com/3303a2a495.js"
-        crossOrigin="anonymous"
-      ></script>
-      <script src="/assets/js/jquery-3.4.1.min.js"></script>
-      <script src="/assets/js/popper.min.js"></script>
-      <script src="/assets/js/bootstrap.min.js"></script>
+      </MainLayout>
     </>
   );
 };
