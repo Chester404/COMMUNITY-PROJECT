@@ -518,7 +518,7 @@ export default function Home() {
                   </button>
                   <Link href="/profile">
                     <a
-                      className="btn  ml-5  mb-1 mt-5"
+                      className="btn ml-5 mb-1 mt-5"
                       style={{
                         background: "#818AA9 !important",
                         width: "160px !important",

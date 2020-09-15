@@ -80,8 +80,8 @@ const ConfirmAccount = () => {
     setPromptBody(message);
   };
 
-  const submitCode = async () => {
-    // e.preventDefault();
+  const submitCode = async (e) => {
+    e.preventDefault();
     try {
       const rs: any = await axios.post(
         "http://51.116.114.155:8080/auth/keyinput/",
@@ -145,7 +145,7 @@ const ConfirmAccount = () => {
             </h3>
           </div>
           <br />
-          <form className="needs-validation">
+          <form className="needs-validation" onSubmit={submitCode}>
             <div className="form-group" style={{ textAlign: "center" }}>
               <input
                 type="text"

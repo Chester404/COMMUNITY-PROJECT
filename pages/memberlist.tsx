@@ -2,6 +2,7 @@ import MainLayout from "../components/MainLayout";
 import { Users } from "../lib/endpoints";
 import { useEffect, useState } from "react";
 
+const disabled = {};
 interface IPaginateProps {
   callback(i: number): void;
   recordsPerpage: number;
@@ -31,6 +32,7 @@ const Pagination = ({
               setCurrentPage(currentPage - 1);
             }
           }}
+          style={{ color: "gray", pointerEvents: "none" }}
         >
           « Prev
         </a>
@@ -76,7 +78,7 @@ export default function Home() {
   useEffect(() => {
     (async () => {
       const rs = await new Users().getProfiles();
-      setTempList([...rs]);
+      setTempList(rs);
       setUserProfiles(rs.slice(0, recordsPerPage));
       // setIsLoading(false);
       settotalRecords(rs.length);
@@ -86,6 +88,7 @@ export default function Home() {
   const paginate = (page: number) => {
     const start = (page - 1) * recordsPerPage + 1;
     const end = start + recordsPerPage;
+    console.log(start, end);
     const ts = tempList.slice(start - 1, end - 1);
     setUserProfiles(ts);
   };
@@ -120,6 +123,7 @@ export default function Home() {
             </div>
           </div>
           {/* End page-header */}
+
           <div
             className="table-responsive table-lg"
             style={{
@@ -134,8 +138,36 @@ export default function Home() {
               <thead>
                 <tr>
                   <th scope="col" className="text-muted ml-5">
-                    <span className="ml-3">Name </span>
-                    <i className="fa fa-sort-amount-desc"></i>
+                    {/*==================================*/}
+                    <div className="dropdown">
+                      <span>
+                        <span className="ml-3">Name </span>
+                        <i className="fa fa-sort-amount-desc"></i>
+                      </span>
+                      <div
+                        className="dropdown-content ml-8"
+                        style={{ width: 10 }}
+                      >
+                        <div>
+                          <div className="ml-2 mt-3">
+                            <span>Sort by</span>
+                          </div>
+                          <div
+                            className="ml-2 mt-3"
+                            style={{ color: "#3F3D56" }}
+                          >
+                            <span>Name (A-Z)</span>
+                          </div>
+                          <div
+                            className="ml-2 mt-3 mb-2"
+                            style={{ color: "#3F3D56" }}
+                          >
+                            <span>Location</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    {/*=================================*/}
                   </th>
                   <th scope="col" className="text-muted">
                     Location
