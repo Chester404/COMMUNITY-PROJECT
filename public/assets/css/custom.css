@@ -342,3 +342,7 @@ body {
 .formlabel {
   font-weight: 600 !important;
 }
+
+.dropdown-menu.show {
+  width: 320px !important;
+}

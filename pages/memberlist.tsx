@@ -150,7 +150,10 @@ export default function Home() {
                   return (
                     <tr key={index}>
                       <td>
-                        <div className="dropdown">
+                        <div
+                          className="dropdown"
+                          style={{ marginLeft: "-40px" }}
+                        >
                           <a className="nav-link" data-toggle="dropdown">
                             <span
                               className="avatar avatar-md brround cover-image"
