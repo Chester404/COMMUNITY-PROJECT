@@ -353,10 +353,6 @@ body {
   font-weight: 600 !important;
 }
 
-<<<<<<< HEAD
-.dropdown-menu.show {
-=======
 .dropdown-menu.mldrop.show {
->>>>>>> isaac-ui
   width: 320px !important;
 }

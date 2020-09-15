@@ -52,7 +52,7 @@ const Login = () => {
           response.data.username = "No Name";
         }
         response.data.image = userInfo.image
-          ? userInfo
+          ? userInfo.image
           : "/assets/images/Profile_Icon.png";
         window.localStorage.setItem("cp-a", JSON.stringify(response.data));
         dispatch({

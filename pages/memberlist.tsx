@@ -32,7 +32,9 @@ const Pagination = ({
               setCurrentPage(currentPage - 1);
             }
           }}
-          style={{ color: "gray", pointerEvents: "none" }}
+          style={
+            currentPage == 1 ? { color: "gray", pointerEvents: "none" } : null
+          }
         >
           « Prev
         </a>
@@ -60,6 +62,11 @@ const Pagination = ({
               setCurrentPage(currentPage + 1);
             }
           }}
+          style={
+            currentPage >= Math.ceil(totalRecords / recordsPerpage)
+              ? { color: "gray", pointerEvents: "none" }
+              : null
+          }
         >
           Next »
         </a>
@@ -71,7 +78,8 @@ export default function Home() {
   const [userProfiles, setUserProfiles] = useState([]);
   const [tempList, setTempList] = useState([]);
   const [totalRecords, settotalRecords] = useState(0);
-  const [recordsPerPage] = useState(5);
+  const [recordsPerPage] = useState(30);
+  const [order, setOrder] = useState(false);
   // const [isLoading, setIsLoading] = useState(true);
   // const [sorted, setSorted] = useState(false);
 
@@ -103,6 +111,11 @@ export default function Home() {
   };
 
   const sortByName = () => {
+    if (order === true) {
+      setOrder(false);
+    } else if (order === false) {
+      setOrder(true);
+    }
     const sorted = [...userProfiles];
     setUserProfiles([...sorted].reverse());
   };
@@ -142,13 +155,36 @@ export default function Home() {
             <table className="table">
               <thead>
                 <tr>
-                  <th
-                    scope="col"
-                    className="text-muted ml-5"
-                    onClick={sortByName}
-                  >
-                    <span className="ml-3">Name </span>
-                    <i className="fa fa-sort-amount-asc"></i>
+                  <th scope="col" className="text-muted ml-5">
+                    <div className="dropdown">
+                      <span>
+                        <span className="ml-3">Name </span>
+                        <i
+                          className={`fa fa-sort-amount-${
+                            order ? "asc" : "desc"
+                          }`}
+                        ></i>
+                      </span>
+                      <div className="dropdown-content ml-8">
+                        <div>
+                          <div className="ml-2 mt-3">
+                            <span>Sort by</span>
+                          </div>
+                          <div
+                            className="ml-2 mt-3"
+                            style={{ color: "#3F3D56", cursor: "pointer" }}
+                          >
+                            <span onClick={sortByName}>Name (A-Z)</span>
+                          </div>
+                          <div
+                            className="ml-2 mt-3 mb-2"
+                            style={{ color: "#3F3D56" }}
+                          >
+                            <span>Location</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </th>
                   <th scope="col" className="text-muted">
                     Location

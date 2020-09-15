@@ -76,7 +76,7 @@ export class Users {
   }
 
   async resendToken(authentication_property: string) {
-    return await ufetch("/auth/password-forgotten/", {
+    return await ufetch("/auth/create-key/", {
       method: "POST",
       body: JSON.stringify({ authentication_property, access_type: "a" }),
     });
