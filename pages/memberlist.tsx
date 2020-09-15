@@ -151,27 +151,32 @@ export default function Home() {
                     <tr key={index}>
                       <td>
                         <div
-                          className="dropdown"
+                          className="dropdown header-profile"
                           style={{ position: "inherit" }}
                         >
-                          <img
-                            src={
-                              uprofile.image
-                                ? uprofile.image
-                                : "/assets/images/Profile_Icon.png"
-                            }
-                            className="brround ml-3"
-                            alt=""
-                            style={{
-                              width: "40px",
-                              height: "40px",
-                            }}
-                          />
-                          <span className="ml-5 column-color" id="memberid">
-                            {uprofile.name}
-                          </span>
-                          <div className="dropdown-content">
-                            <div>
+                          <a
+                            className="nav-link pr-0 leading-none d-flex pt-1"
+                            data-toggle="dropdown"
+                          >
+                            <img
+                              src={
+                                uprofile.image
+                                  ? uprofile.image
+                                  : "/assets/images/Profile_Icon.png"
+                              }
+                              className="brround ml-3"
+                              alt=""
+                              style={{
+                                width: "40px",
+                                height: "40px",
+                              }}
+                            />
+                            <span className="ml-5 column-color" id="memberid">
+                              {uprofile.name}
+                            </span>
+                          </a>
+                          <div className="dropdown-menu dropdown-menu-arrow">
+                            <div className="dropdown-content">
                               <div className="drop-heading">
                                 <img
                                   src={
@@ -213,7 +218,7 @@ export default function Home() {
                               </div>
                             </div>
                           </div>
-                        </div>{" "}
+                        </div>
                       </td>
                       <td>
                         <p className="mt-2">{uprofile.street_address}</p>
