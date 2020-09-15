@@ -103,6 +103,8 @@ const ConfirmAccount = () => {
   };
 
   const requestVerificationCode = async () => {
+    setCountDown(60);
+    setDisabled(true);
     callPrompt("Verification", "", "", "Requesting for verification code");
     const rs = await new Users().resendToken(state.emailaddress);
     if (rs.error) {
@@ -116,6 +118,7 @@ const ConfirmAccount = () => {
       );
     }
     console.log(rs);
+    countdown(1);
   };
   useEffect(() => {
     if (countDown == 60) countdown(1);
@@ -145,114 +148,114 @@ const ConfirmAccount = () => {
             </h3>
           </div>
           <br />
-          <form className="needs-validation" onSubmit={submitCode}>
-            <div className="form-group" style={{ textAlign: "center" }}>
-              <input
-                type="text"
-                className="codebox mr-3"
-                id="code1"
-                maxLength={1}
-                size={1}
-                min={0}
-                max={9}
-                pattern="[0-9]{1}"
-                value={code1}
-                onChange={(e) => setCode1(e.target.value)}
-                onKeyUp={() => code2Ref.current.focus()}
-                style={{
-                  textAlign: "center",
-                }}
-              />
-              <input
-                type="text"
-                className="codebox mr-3"
-                id="code2"
-                maxLength={1}
-                size={1}
-                min={0}
-                max={9}
-                pattern="[0-9]{1}"
-                value={code2}
-                onChange={(e) => setCode2(e.target.value)}
-                style={{
-                  textAlign: "center",
-                }}
-                ref={code2Ref}
-                onKeyUp={() => code3Ref.current.focus()}
-              />
-              <input
-                type="text"
-                className="codebox mr-3"
-                id="code3"
-                maxLength={1}
-                size={1}
-                min={0}
-                max={9}
-                pattern="[0-9]{1}"
-                value={code3}
-                onChange={(e) => setCode3(e.target.value)}
-                style={{
-                  textAlign: "center",
-                }}
-                ref={code3Ref}
-                onKeyUp={() => code4Ref.current.focus()}
-              />
-              <input
-                type="text"
-                className="codebox mr-3"
-                id="code4"
-                maxLength={1}
-                size={1}
-                min={0}
-                max={9}
-                pattern="[0-9]{1}"
-                value={code4}
-                onChange={(e) => setCode4(e.target.value)}
-                style={{
-                  textAlign: "center",
-                }}
-                ref={code4Ref}
-                onKeyUp={() => submitBtnRef.current.focus()}
-              />
-            </div>
+          {/* <form className="needs-validation" onSubmit={submitCode}> */}
+          <div className="form-group" style={{ textAlign: "center" }}>
+            <input
+              type="text"
+              className="codebox mr-3"
+              id="code1"
+              maxLength={1}
+              size={1}
+              min={0}
+              max={9}
+              pattern="[0-9]{1}"
+              value={code1}
+              onChange={(e) => setCode1(e.target.value)}
+              onKeyUp={() => code2Ref.current.focus()}
+              style={{
+                textAlign: "center",
+              }}
+            />
+            <input
+              type="text"
+              className="codebox mr-3"
+              id="code2"
+              maxLength={1}
+              size={1}
+              min={0}
+              max={9}
+              pattern="[0-9]{1}"
+              value={code2}
+              onChange={(e) => setCode2(e.target.value)}
+              style={{
+                textAlign: "center",
+              }}
+              ref={code2Ref}
+              onKeyUp={() => code3Ref.current.focus()}
+            />
+            <input
+              type="text"
+              className="codebox mr-3"
+              id="code3"
+              maxLength={1}
+              size={1}
+              min={0}
+              max={9}
+              pattern="[0-9]{1}"
+              value={code3}
+              onChange={(e) => setCode3(e.target.value)}
+              style={{
+                textAlign: "center",
+              }}
+              ref={code3Ref}
+              onKeyUp={() => code4Ref.current.focus()}
+            />
+            <input
+              type="text"
+              className="codebox mr-3"
+              id="code4"
+              maxLength={1}
+              size={1}
+              min={0}
+              max={9}
+              pattern="[0-9]{1}"
+              value={code4}
+              onChange={(e) => setCode4(e.target.value)}
+              style={{
+                textAlign: "center",
+              }}
+              ref={code4Ref}
+              onKeyUp={() => submitBtnRef.current.focus()}
+            />
+          </div>
 
-            <div style={{ textAlign: "center" }}>
-              <button
-                style={{ width: "205px" }}
-                className="btn btn-primary mr-1"
-                id="continue"
-                ref={submitBtnRef}
-                onClick={submitCode}
-              >
-                Continue
-              </button>
-              <div style={{ textAlign: "center" }} className="mt-5">
-                If you don't recieve the code within
-                <br />
-                1min, click below to re-send it.
-              </div>
-              <div style={{ marginTop: 15, textAlign: "center" }}>
-                <button
-                  className="re-sendbtn"
-                  style={{ marginLeft: "-1px", color: disabled ? "grey" : "" }}
-                  id="re-send_code"
-                  onClick={requestVerificationCode}
-                  disabled={disabled}
-                >
-                  Resend Code<i className="fe fe-rotate-ccw ml-3"></i>
-                </button>
-                <span
-                  style={{
-                    fontWeight: "bold",
-                    color: "#3964FC",
-                    marginLeft: "13px",
-                  }}
-                >
-                  {countDown}
-                </span>
-              </div>
+          <div style={{ textAlign: "center" }}>
+            <button
+              style={{ width: "205px" }}
+              className="btn btn-primary mr-1"
+              id="continue"
+              ref={submitBtnRef}
+              onClick={submitCode}
+            >
+              Continue
+            </button>
+            <div style={{ textAlign: "center" }} className="mt-5">
+              If you don't recieve the code within
+              <br />
+              1min, click below to re-send it.
             </div>
-          </form>
+            <div style={{ marginTop: 15, textAlign: "center" }}>
+              <button
+                className="re-sendbtn"
+                style={{ marginLeft: "-1px", color: disabled ? "grey" : "" }}
+                id="re-send_code"
+                onClick={requestVerificationCode}
+                disabled={disabled}
+              >
+                Resend Code<i className="fe fe-rotate-ccw ml-3"></i>
+              </button>
+              <span
+                style={{
+                  fontWeight: "bold",
+                  color: "#3964FC",
+                  marginLeft: "13px",
+                }}
+              >
+                {countDown}
+              </span>
+            </div>
+          </div>
+          {/* </form> */}
         </div>
       </MainLayout>
     </>

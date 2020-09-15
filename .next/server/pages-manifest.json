@@ -3,7 +3,5 @@
   "/_document": "pages/_document.js",
   "/_error": "pages/_error.js",
   "/blog": "pages/blog.js",
-  "/profile": "pages/profile.js",
-  "/editprofile": "pages/editprofile.js",
-  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js"
+  "/auth/confirmaccount": "pages/auth/confirmaccount.js"
 }
