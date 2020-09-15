@@ -17,6 +17,10 @@ const Signup = () => {
   const [prompt_body, setPromptBody] = useState("");
   const [link_to, setLinkTo] = useState("");
   const [link_text, setLinkText] = useState("");
+  const [togglepasswordeye, setTogglePasswordeye] = useState(false);
+  const [toggleconfirmpasswordeye, setToggleConfirmPasswordeye] = useState(
+    false
+  );
   const { dispatch } = useContext(Store);
   const handleClose = () => setShow(false);
 
@@ -190,7 +194,9 @@ const Signup = () => {
 
           <form onSubmit={register}>
             <div className="form-group">
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email" className="formlabel">
+                Email
+              </label>
               <input
                 type="email"
                 className="form-control textbox"
@@ -203,12 +209,12 @@ const Signup = () => {
             </div>
 
             <div className="form-group">
-              <label htmlFor="InputPassword1" className="loginlabel">
+              <label htmlFor="InputPassword1" className="formlabel">
                 Password
               </label>
-              <div className="input-group show_hide_password">
+              <div className="input-group">
                 <input
-                  type="password"
+                  type={togglepasswordeye ? "text" : "password"}
                   className="form-control textbox"
                   id="InputPassword1"
                   placeholder="Password must be at least 8 characters"
@@ -217,20 +223,25 @@ const Signup = () => {
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 <div className="input-group-addon">
-                  <a href="#.">
-                    <i className="fe fe-eye-off" aria-hidden="true" />
+                  <a href="#">
+                    <i
+                      className={`${
+                        togglepasswordeye ? "fe fe-eye" : "fe fe-eye-off"
+                      }`}
+                      onClick={() => setTogglePasswordeye(!togglepasswordeye)}
+                    />
                   </a>
                 </div>
               </div>
             </div>
 
             <div className="form-group">
-              <label htmlFor="InputPassword1" className="loginlabel">
+              <label htmlFor="InputPassword1" className="formlabel">
                 Confirm Password
               </label>
-              <div className="input-group show_hide_confpassword">
+              <div className="input-group">
                 <input
-                  type="password"
+                  type={toggleconfirmpasswordeye ? "text" : "password"}
                   className="form-control textbox"
                   id="InputPassword2"
                   placeholder="Re-Enter the same password as above"
@@ -239,8 +250,15 @@ const Signup = () => {
                   onChange={(e) => setConfirmPassword(e.target.value)}
                 />
                 <div className="input-group-addon">
-                  <a href="#.">
-                    <i className="fe fe-eye-off" aria-hidden="true" />
+                  <a href="#">
+                    <i
+                      className={`${
+                        toggleconfirmpasswordeye ? "fe fe-eye" : "fe fe-eye-off"
+                      }`}
+                      onClick={() =>
+                        setToggleConfirmPasswordeye(!toggleconfirmpasswordeye)
+                      }
+                    />
                   </a>
                 </div>
               </div>

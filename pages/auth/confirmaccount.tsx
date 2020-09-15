@@ -149,7 +149,7 @@ const ConfirmAccount = () => {
             <div className="form-group" style={{ textAlign: "center" }}>
               <input
                 type="text"
-                className="codebox"
+                className="codebox mr-3"
                 id="code1"
                 maxLength={1}
                 size={1}
@@ -165,7 +165,7 @@ const ConfirmAccount = () => {
               />
               <input
                 type="text"
-                className="codebox"
+                className="codebox mr-3"
                 id="code2"
                 maxLength={1}
                 size={1}
@@ -182,7 +182,7 @@ const ConfirmAccount = () => {
               />
               <input
                 type="text"
-                className="codebox"
+                className="codebox mr-3"
                 id="code3"
                 maxLength={1}
                 size={1}
@@ -199,7 +199,7 @@ const ConfirmAccount = () => {
               />
               <input
                 type="text"
-                className="codebox"
+                className="codebox mr-3"
                 id="code4"
                 maxLength={1}
                 size={1}
@@ -218,8 +218,8 @@ const ConfirmAccount = () => {
 
             <div style={{ textAlign: "center" }}>
               <button
-                style={{ width: "210px" }}
-                className="btn btn-primary"
+                style={{ width: "205px" }}
+                className="btn btn-primary mr-1"
                 id="continue"
                 ref={submitBtnRef}
                 onClick={submitCode}
@@ -231,17 +231,25 @@ const ConfirmAccount = () => {
                 <br />
                 1min, click below to re-send it.
               </div>
-              <div style={{ marginTop: 15 }}>
+              <div style={{ marginTop: 15, textAlign: "center" }}>
                 <button
                   className="re-sendbtn"
-                  style={{ color: disabled ? "grey" : "" }}
+                  style={{ marginLeft: "-1px", color: disabled ? "grey" : "" }}
                   id="re-send_code"
                   onClick={requestVerificationCode}
                   disabled={disabled}
                 >
                   Resend Code<i className="fe fe-rotate-ccw ml-3"></i>
                 </button>
-                {countDown}
+                <span
+                  style={{
+                    fontWeight: "bold",
+                    color: "#3964FC",
+                    marginLeft: "13px",
+                  }}
+                >
+                  {countDown}
+                </span>
               </div>
             </div>
           </form>

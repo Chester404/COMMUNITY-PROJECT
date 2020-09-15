@@ -250,6 +250,7 @@ export default function Home() {
           {/* End page-header */}
           <input
             type="file"
+            accept="image/*"
             style={{ display: "none" }}
             ref={fileRef}
             onChange={(e: any) => {

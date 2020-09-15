@@ -166,9 +166,13 @@ const Navbar = (props) => {
                 </div>
               </div>
             </>
+<<<<<<< HEAD
           ) : (
             ""
           )}
+=======
+          ) : null}
+>>>>>>> isaac-ui
         </div>
       </div>
     </div>
