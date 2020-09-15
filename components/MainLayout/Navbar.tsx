@@ -36,6 +36,16 @@ const Navbar = (props) => {
           <a className="animated-arrow hor-toggle horizontal-navtoggle">
             <span />
           </a>
+          {!isLoggedIn ? (
+            <a className="header-brand" href="#">
+              <img
+                src="/assets/images/Logo.png"
+                className="header-brand-img login-logo"
+                alt="logo"
+                style={{ marginLeft: "-1em" }}
+              />
+            </a>
+          ) : null}
           <a className="header-brand" href="#">
             <img
               src="/assets/images/Logo.png"

@@ -2,6 +2,7 @@ import MainLayout from "../components/MainLayout";
 import { Users } from "../lib/endpoints";
 import { useEffect, useState } from "react";
 
+const disabled = {};
 interface IPaginateProps {
   callback(i: number): void;
   recordsPerpage: number;
@@ -31,6 +32,7 @@ const Pagination = ({
               setCurrentPage(currentPage - 1);
             }
           }}
+          style={{ color: "gray", pointerEvents: "none" }}
         >
           « Prev
         </a>
@@ -76,7 +78,7 @@ export default function Home() {
   useEffect(() => {
     (async () => {
       const rs = await new Users().getProfiles();
-      setTempList([...rs]);
+      setTempList(rs);
       setUserProfiles(rs.slice(0, recordsPerPage));
       // setIsLoading(false);
       settotalRecords(rs.length);
@@ -86,6 +88,7 @@ export default function Home() {
   const paginate = (page: number) => {
     const start = (page - 1) * recordsPerPage + 1;
     const end = start + recordsPerPage;
+    console.log(start, end);
     const ts = tempList.slice(start - 1, end - 1);
     setUserProfiles(ts);
   };
@@ -101,7 +104,7 @@ export default function Home() {
 
   const sortByName = () => {
     const sorted = [...userProfiles];
-    setUserProfiles([...sorted].reverse());    
+    setUserProfiles([...sorted].reverse());
   };
 
   return (
@@ -125,12 +128,12 @@ export default function Home() {
             </div>
           </div>
           {/* End page-header */}
+
           <div
             className="table-responsive table-lg"
             style={{
               background: "#ffffff",
-              marginBottom: "30px",
-              height: "600px",
+              marginBottom: "100px",
             }}
           >
             <h5 className="mt-5 mb-5 ml-5 table-title">

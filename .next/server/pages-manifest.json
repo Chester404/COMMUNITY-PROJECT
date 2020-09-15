@@ -2,11 +2,7 @@
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
   "/_error": "pages/_error.js",
-<<<<<<< HEAD
-  "/auth/signup": "pages/auth/signup.js",
-  "/auth/confirmaccount": "pages/auth/confirmaccount.js",
-  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js"
-=======
+  "/": "pages/index.js",
+  "/blog": "pages/blog.js",
   "/memberlist": "pages/memberlist.js"
->>>>>>> 7799e5cc6731735f1d6a20cb6439639a0674a9a0
 }
