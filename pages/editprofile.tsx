@@ -290,7 +290,7 @@ export default function Home() {
                     src={userImage}
                     width={200}
                     height={200}
-                    style={{ borderRadius: "4px" }}
+                    style={{ borderRadius: "10px" }}
                   />
                   <div
                     className="edit"

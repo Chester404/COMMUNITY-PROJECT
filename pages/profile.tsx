@@ -65,7 +65,7 @@ export default function Home() {
                   alt=""
                   width={200}
                   height={200}
-                  style={{ borderRadius: "4px" }}
+                  style={{ borderRadius: "10px" }}
                 />
               </div>
               <div className="text-center">
