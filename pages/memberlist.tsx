@@ -124,8 +124,7 @@ export default function Home() {
             className="table-responsive table-lg"
             style={{
               background: "#ffffff",
-              marginBottom: "30px",
-              height: "600px",
+              marginBottom: "100px",
             }}
           >
             <h5 className="mt-5 mb-5 ml-5 table-title">
@@ -151,7 +150,10 @@ export default function Home() {
                   return (
                     <tr key={index}>
                       <td>
-                        <div className="dropdown">
+                        <div
+                          className="dropdown"
+                          style={{ position: "inherit" }}
+                        >
                           <img
                             src={
                               uprofile.image
@@ -160,7 +162,10 @@ export default function Home() {
                             }
                             className="brround ml-3"
                             alt=""
-                            style={{ width: "40px", height: "40px" }}
+                            style={{
+                              width: "40px",
+                              height: "40px",
+                            }}
                           />
                           <span className="ml-5 column-color" id="memberid">
                             {uprofile.name}
