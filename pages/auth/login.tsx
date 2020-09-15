@@ -15,6 +15,7 @@ const Login = () => {
   const [prompt_body, setPromptBody] = useState("");
   const [link_to, setLinkTo] = useState("");
   const [link_text, setLinkText] = useState("");
+  const [togglepasswordeye, setTogglePasswordeye] = useState(false);
   const { dispatch } = useContext(Store);
   const router = useRouter();
 
@@ -121,7 +122,7 @@ const Login = () => {
           </div>
           <form className="needs-validation" noValidate onSubmit={authenticate}>
             <div className="form-group">
-              <label htmlFor="InputEmail" className="loginlabel">
+              <label htmlFor="InputEmail" className="formlabel">
                 Email / Phone Number
               </label>
               <input
@@ -135,12 +136,12 @@ const Login = () => {
             </div>
 
             <div className="form-group">
-              <label htmlFor="InputPassword1" className="loginlabel">
+              <label htmlFor="InputPassword1" className="formlabel">
                 Password
               </label>
-              <div className="input-group show_hide_password">
+              <div className="input-group" id="show_hide_password">
                 <input
-                  type="password"
+                  type={togglepasswordeye ? "text" : "password"}
                   className="form-control textbox"
                   id="InputPassword1"
                   placeholder="Password must be at least 8 characters"
@@ -149,8 +150,13 @@ const Login = () => {
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 <div className="input-group-addon">
-                  <a href="#.">
-                    <i className="fe fe-eye-off" aria-hidden="true" />
+                  <a href="#">
+                    <i
+                      className={`${
+                        togglepasswordeye ? "fe fe-eye" : "fe fe-eye-off"
+                      }`}
+                      onClick={() => setTogglePasswordeye(!togglepasswordeye)}
+                    />
                   </a>
                 </div>
               </div>

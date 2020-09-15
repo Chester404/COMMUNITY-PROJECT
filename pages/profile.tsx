@@ -71,20 +71,20 @@ export default function Home() {
                 />
               </div>
               <div className="text-center">
-                {/* <Link href="/editprofile"> */}
-                <a
-                  onClick={() => (window.location.pathname = "/editprofile")}
-                  className="btn btn-primary btn-block mt-1"
-                  style={{
-                    borderRadius: "10px",
-                    width: "200px",
-                    backgroundColor: "#3964fc",
-                    color: "#FFF",
-                  }}
-                >
-                  Edit Information
-                </a>
-                {/* </Link> */}
+                <Link href="/editprofile">
+                  <a
+                    /* onClick={() => (window.location.pathname = "/editprofile")} */
+                    className="btn btn-primary btn-block mt-1"
+                    style={{
+                      borderRadius: "10px",
+                      width: "200px",
+                      backgroundColor: "#3964fc",
+                      color: "#FFF",
+                    }}
+                  >
+                    Edit Information
+                  </a>
+                </Link>
                 <br />
               </div>
             </div>
@@ -179,7 +179,9 @@ export default function Home() {
                         profileData?.gender
                           ? profileData.gender === "m"
                             ? "Male"
-                            : "Female"
+                            : profileData.gender === "f"
+                            ? "Female"
+                            : ""
                           : ""
                       }
                       readOnly

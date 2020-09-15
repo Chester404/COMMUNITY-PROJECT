@@ -56,7 +56,7 @@ const MainLayout = ({
           <div className="container content-area">{children}</div>
         </div>
       </div>
-      <Footer />
+      {/*<Footer /> */}
     </>
   );
 };
