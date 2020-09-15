@@ -99,6 +99,11 @@ export default function Home() {
     setUserProfiles(ts);
   };
 
+  const sortByName = () => {
+    const sorted = [...userProfiles];
+    setUserProfiles([...sorted].reverse());    
+  };
+
   return (
     <>
       <MainLayout>
@@ -134,7 +139,11 @@ export default function Home() {
             <table className="table">
               <thead>
                 <tr>
-                  <th scope="col" className="text-muted ml-5">
+                  <th
+                    scope="col"
+                    className="text-muted ml-5"
+                    onClick={sortByName}
+                  >
                     <span className="ml-3">Name </span>
                     <i className="fa fa-sort-amount-asc"></i>
                   </th>
