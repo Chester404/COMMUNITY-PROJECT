@@ -313,6 +313,10 @@ input[type="number"] {
   display: block !important;
 }
 
+.header-brand .header-brand-img.login-logo {
+  display: none !important;
+}
+
 button.menu-button {
   display: none !important;
 }
@@ -320,6 +324,9 @@ button.menu-button {
 @media screen and (max-width: 600px) {
   .header-brand .header-brand-img.main-logo {
     display: none !important;
+  }
+  .header-brand .header-brand-img.login-logo {
+    display: block !important;
   }
   button.menu-button {
     display: block !important;
@@ -329,6 +336,9 @@ button.menu-button {
 @media only screen and (max-width: 768px) {
   .header-brand .header-brand-img.main-logo {
     display: none !important;
+  }
+  .header-brand .header-brand-img.login-logo {
+    display: block !important;
   }
   button.menu-button {
     display: block !important;
@@ -343,6 +353,6 @@ body {
   font-weight: 600 !important;
 }
 
-.dropdown-menu.show {
+.dropdown-menu.mldrop.show {
   width: 320px !important;
 }

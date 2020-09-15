@@ -135,7 +135,7 @@ export default function Home() {
                 <tr>
                   <th scope="col" className="text-muted ml-5">
                     <span className="ml-3">Name </span>
-                    <i className="fa fa-sort-amount-asc"></i>
+                    <i className="fa fa-sort-amount-desc"></i>
                   </th>
                   <th scope="col" className="text-muted">
                     Location
@@ -177,7 +177,7 @@ export default function Home() {
                               {uprofile.name}
                             </span>
                           </a>
-                          <div className="dropdown-menu">
+                          <div className="dropdown-menu mldrop">
                             <div className="memberlistdropdown">
                               <div className="drop-heading">
                                 <img
