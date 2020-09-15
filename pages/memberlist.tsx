@@ -155,23 +155,35 @@ export default function Home() {
                     return (
                       <tr key={index}>
                         <td>
-                          <div className="dropdown">
-                            <img
-                              src={
-                                uprofile.image
-                                  ? uprofile.image
-                                  : "/assets/images/Profile_Icon.png"
-                              }
-                              className="brround ml-3"
-                              alt=""
-                              style={{ width: "40px", height: "40px" }}
-                            />
-                            <span className="ml-5 column-color" id="memberid">
-                              {uprofile.name}
-                            </span>
-                            <div className="dropdown-content">
-                              {/* Show on click */}
-                              <div>
+                          <div
+                            className="dropdown"
+                            style={{ marginLeft: "-40px" }}
+                          >
+                            <a className="nav-link" data-toggle="dropdown">
+                              <span
+                                className="avatar avatar-md brround cover-image"
+                                data-image-src="/images/blank_avatar.jpeg"
+                              ></span>
+
+                              <img
+                                src={
+                                  uprofile.image
+                                    ? uprofile.image
+                                    : "/assets/images/Profile_Icon.png"
+                                }
+                                className="brround"
+                                alt=""
+                                style={{
+                                  width: "40px",
+                                  height: "40px",
+                                }}
+                              />
+                              <span className="ml-5 column-color" id="memberid">
+                                {uprofile.name}
+                              </span>
+                            </a>
+                            <div className="dropdown-menu">
+                              <div className="memberlistdropdown">
                                 <div className="drop-heading">
                                   <img
                                     src={
