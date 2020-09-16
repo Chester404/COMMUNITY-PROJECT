@@ -263,12 +263,10 @@ input[type="number"] {
 .right-addon input {
   padding-right: 30px;
 }
-
 h5.table-title {
   font-family: "Open Sans", sans-serif;
   font-weight: 700;
 }
-
 .column-color {
   font-weight: 800;
 }
@@ -292,11 +290,9 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
-
 ::-webkit-scrollbar {
   width: 10px;
 }
-
 /* Track */
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
