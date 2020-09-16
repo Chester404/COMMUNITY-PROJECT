@@ -149,7 +149,7 @@ const ConfirmAccount = () => {
             <div className="form-group" style={{ textAlign: "center" }}>
               <input
                 type="text"
-                className="codebox mr-3"
+                className="codebox mr-3 form-rounded"
                 id="code1"
                 maxLength={1}
                 size={1}
@@ -165,7 +165,7 @@ const ConfirmAccount = () => {
               />
               <input
                 type="text"
-                className="codebox mr-3"
+                className="codebox mr-3 form-rounded"
                 id="code2"
                 maxLength={1}
                 size={1}
@@ -182,7 +182,7 @@ const ConfirmAccount = () => {
               />
               <input
                 type="text"
-                className="codebox mr-3"
+                className="codebox mr-3 form-rounded"
                 id="code3"
                 maxLength={1}
                 size={1}
@@ -199,7 +199,7 @@ const ConfirmAccount = () => {
               />
               <input
                 type="text"
-                className="codebox mr-3"
+                className="codebox mr-3 form-rounded"
                 id="code4"
                 maxLength={1}
                 size={1}

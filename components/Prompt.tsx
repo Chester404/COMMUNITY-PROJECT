@@ -31,8 +31,8 @@ const Prompt = (props: any) => {
           position: "absolute",
           left: "50%",
           top: "50%",
-          marginLeft: "-150px",
-          marginTop: "-150px",
+          marginLeft: "-200px",
+          marginTop: "-130px",
           padding: "20px",
           textAlign: "center",
         }}

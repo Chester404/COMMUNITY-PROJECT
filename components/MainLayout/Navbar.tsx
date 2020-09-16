@@ -42,7 +42,6 @@ const Navbar = (props) => {
                 src="/assets/images/Logo.png"
                 className="header-brand-img login-logo"
                 alt="logo"
-                style={{ marginLeft: "-1em" }}
               />
             </a>
           ) : null}
@@ -79,10 +78,29 @@ const Navbar = (props) => {
                       <a href="#">Forum</a>
                     </li>
                     <li>
-                      <a href="#">Blog</a>
+                      <Link href="/blog">
+                        <a
+                          className="nav-link"
+                          style={{
+                            color: router.pathname == "/blog" ? "" : "black",
+                          }}
+                        >
+                          <span className="lay-outstyle mt-1">Blog</span>
+                        </a>
+                      </Link>
                     </li>
                     <li>
-                      <a href="#">Members</a>
+                      <Link href="/memberlist">
+                        <a
+                          className="nav-link"
+                          style={{
+                            color:
+                              router.pathname == "/memberlist" ? "" : "black",
+                          }}
+                        >
+                          <span className="lay-outstyle mt-1">Members</span>
+                        </a>
+                      </Link>
                     </li>
                   </ul>
                 </div>

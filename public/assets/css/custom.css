@@ -356,3 +356,7 @@ body {
 .dropdown-menu.mldrop.show {
   width: 320px !important;
 }
+
+.nav-link {
+  color: #3f3d56 !important;
+}

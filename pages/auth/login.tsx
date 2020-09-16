@@ -127,7 +127,7 @@ const Login = () => {
               </label>
               <input
                 type="email"
-                className="form-control textbox"
+                className="form-control form-rounded"
                 id="InputEmail"
                 placeholder="Please enter a valid email or phone number"
                 value={authentication_property}
@@ -142,7 +142,7 @@ const Login = () => {
               <div className="input-group" id="show_hide_password">
                 <input
                   type={togglepasswordeye ? "text" : "password"}
-                  className="form-control textbox"
+                  className="form-control form-rounded"
                   id="InputPassword1"
                   placeholder="Password must be at least 8 characters"
                   data-toggle="password"
