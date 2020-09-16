@@ -155,7 +155,7 @@ const Navbar = (props) => {
                       }}
                     ></span>
                     <div className="ml-3">
-                      <span style={{ color: "#000000" }}>
+                      <span style={{ color: "#3f3d56", fontWeight: 700 }}>
                         {state.username.length <= 0
                           ? "No Name"
                           : state.username}
@@ -165,28 +165,32 @@ const Navbar = (props) => {
                   </a>
                   <div className="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                     <Link href="/profile">
-                      <a className="dropdown-item">
+                      <a className="dropdown-item itemname">
                         <i className="dropdown-icon fe fe-user" />
                         View Profile
                       </a>
                     </Link>
-                    <a className="dropdown-item" href="#">
+                    <a className="dropdown-item itemname" href="#">
                       <i className="dropdown-icon fe fe-edit" />
                       Account Setting
                     </a>
-                    <a className="dropdown-item" href="#" onClick={logout}>
+                    <a
+                      className="dropdown-item itemname"
+                      href="#"
+                      onClick={logout}
+                    >
                       <i className="dropdown-icon fe fe-power" /> Log Out
                     </a>
                     <div className="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                      <a className="dropdown-item" href="profile">
+                      <a className="dropdown-item itemname" href="profile">
                         <i className="dropdown-icon fe fe-user" />
                         View Profile
                       </a>
-                      <a className="dropdown-item" href="#">
+                      <a className="dropdown-item itemname" href="#">
                         <i className="dropdown-icon fe fe-edit" />
                         Account Setting
                       </a>
-                      <a className="dropdown-item" href="auth/login">
+                      <a className="dropdown-item itemname" href="auth/login">
                         <i className="dropdown-icon fe fe-power" /> Log Out
                       </a>
                     </div>

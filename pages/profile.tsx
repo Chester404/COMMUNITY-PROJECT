@@ -70,7 +70,17 @@ export default function Home() {
               </div>
               <div className="text-center">
                 {/* <Link href="/editprofile"> */}
-                <a
+
+                <button
+                  type="submit"
+                  className="btn btn-primary btn-block"
+                  id="editprofile_button"
+                  onClick={() => (window.location.pathname = "/editprofile")}
+                >
+                  Edit Information
+                </button>
+                {/*  <a
+                  id="editbutton"
                   onClick={() => (window.location.pathname = "/editprofile")}
                   className="btn btn-primary btn-block mt-1"
                   style={{
@@ -80,8 +90,8 @@ export default function Home() {
                     color: "#FFF",
                   }}
                 >
-                  Edit Information
-                </a>
+                  <span style={{ margin: "20px" }}>Edit Information</span>
+                </a> */}
                 {/* </Link> */}
                 <br />
               </div>

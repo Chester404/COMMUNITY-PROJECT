@@ -45,7 +45,7 @@
 }
 
 .codebox {
-  height: 37px;
+  height: 36.5px;
   width: 37px;
   background: #fff;
   border-radius: 7px;
@@ -126,6 +126,27 @@
   background: white;
   height: 80px;
   width: 101%;
+}
+
+#signup_button {
+  border-radius: 10px;
+  height: 36.5px;
+}
+
+#editprofile_button {
+  border-radius: 10px;
+  height: 36.5px;
+  width: 200px;
+}
+
+#signin_button {
+  border-radius: 10px;
+  height: 36.5px;
+}
+
+#continue {
+  border-radius: 10px;
+  height: 36.5px;
 }
 
 .logo {

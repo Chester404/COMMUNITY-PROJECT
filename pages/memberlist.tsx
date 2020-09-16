@@ -141,7 +141,7 @@ export default function Home() {
                     {/*==================================*/}
                     <div className="dropdown">
                       <span>
-                        <span className="ml-3">Name </span>
+                        <span className="ml-1 tablehead">Name </span>
                         <i className="fa fa-sort-amount-desc"></i>
                       </span>
                       <div
@@ -169,10 +169,10 @@ export default function Home() {
                     </div>
                     {/*=================================*/}
                   </th>
-                  <th scope="col" className="text-muted">
+                  <th scope="col" className="text-muted tablehead">
                     Location
                   </th>
-                  <th scope="col" className="text-muted">
+                  <th scope="col" className="text-muted tablehead">
                     Actions
                   </th>
                 </tr>
@@ -325,10 +325,10 @@ export default function Home() {
                       */}{" "}
                       </td>
                       <td>
-                        <p className="mt-2">{uprofile.street_address}</p>
+                        <p className="mt-3">{uprofile.street_address}</p>
                       </td>
                       <td>
-                        <p className="mt-2">
+                        <p className="mt-3">
                           <i
                             className="fe fe-alert-octagon"
                             style={{ fontSize: "large" }}

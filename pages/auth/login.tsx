@@ -163,7 +163,11 @@ const Login = () => {
             </div>
 
             <div style={{ textAlign: "center" }}>
-              <button type="submit" className="btn btn-primary btn-block">
+              <button
+                type="submit"
+                id="signin_button"
+                className="btn btn-primary btn-block"
+              >
                 Login
               </button>
             </div>
