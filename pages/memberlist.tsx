@@ -196,9 +196,11 @@ export default function Home() {
               </thead>
               <tbody>
                 {userProfiles
+                  /*
                   .filter((uprofile: any, index: number) => {
                     return uprofile.privacy_level !== "me";
                   })
+                  */
                   .map((uprofile: any, index: number) => {
                     return (
                       <tr key={index}>
@@ -230,49 +232,73 @@ export default function Home() {
                                 {uprofile.name}
                               </span>
                             </a>
-                            <div className="dropdown-menu">
-                              <div className="memberlistdropdown">
-                                <div className="drop-heading">
-                                  <img
-                                    src={
-                                      uprofile.image
-                                        ? uprofile.image
-                                        : "/assets/images/Profile_Icon.png"
-                                    }
-                                    className="brround"
-                                    alt=""
-                                    style={{ width: "40px", height: "40px" }}
-                                  />
-                                  <span className="ml-2">{uprofile.name}</span>
-                                </div>
-                                <div className="dropdown-divider m-0" />
-                                <div className="ml-3 mr-3 mt-5 mb-5">
-                                  <p>
-                                    <b>Telephone:</b>
-                                    <span style={{ float: "right" }}>
-                                      {uprofile.phone_number}
-                                    </span>
-                                  </p>
-                                  <p>
-                                    <b>Email:</b>
-                                    <span style={{ float: "right" }}>
-                                      {uprofile.user.email}
-                                    </span>
-                                  </p>
-                                  <p>
-                                    <b>Street Address:</b>
-                                    <span
-                                      style={{
-                                        float: "right",
-                                        textAlign: "right",
-                                      }}
-                                    >
-                                      {uprofile.street_address}
-                                    </span>
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
+                            {/* display conditionally */
+                              uprofile.privacy_level !== "me" ? (
+                                <div className="dropdown-menu">
+                                  <div className="memberlistdropdown">
+                                    <div className="drop-heading">
+                                      <img
+                                        src={
+                                          uprofile.image
+                                            ? uprofile.image
+                                            : "/assets/images/Profile_Icon.png"
+                                        }
+                                        className="brround"
+                                        alt=""
+                                        style={{ width: "40px", height: "40px" }}
+                                      />
+                                      <span className="ml-2">{uprofile.name}</span>
+                                    </div>
+                                    <div className="dropdown-divider m-0" />
+                                    <div className="ml-3 mr-3 mt-5 mb-5">
+                                      <p>
+                                        <b>Telephone:</b>
+                                        <span style={{ float: "right" }}>
+                                          {uprofile.phone_number}
+                                        </span>
+                                      </p>
+                                      <p>
+                                        <b>Email:</b>
+                                        <span style={{ float: "right" }}>
+                                          {uprofile.user.email}
+                                        </span>
+                                      </p>
+                                      <p>
+                                        <b>Street Address:</b>
+                                        <span
+                                          style={{
+                                            float: "right",
+                                            textAlign: "right",
+                                          }}
+                                        >
+                                          {uprofile.street_address}
+                                        </span>
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>                                
+                              ) : (
+                                  <div className="dropdown-menu">
+                                    <div className="memberlistdropdown">
+                                      <div className="drop-heading">
+                                        <img
+                                          src={
+                                            uprofile.image
+                                              ? uprofile.image
+                                              : "/assets/images/Profile_Icon.png"
+                                          }
+                                          className="brround"
+                                          alt=""
+                                          style={{ width: "40px", height: "40px" }}
+                                        />
+                                        <span className="ml-2">Private Profile</span>
+                                      </div>
+                                      <div className="dropdown-divider m-0" />
+                                    </div>
+                                  </div>                                
+                              )
+                            }
+
                           </div>{" "}
                         </td>
                         <td>
