@@ -288,7 +288,7 @@ export default function Home() {
                     src={!isReady ? "" : userImage}
                     width={200}
                     height={200}
-                    style={{ borderRadius: "4px" }}
+                    style={{ borderRadius: "10px" }}
                   />
                   <div
                     className="edit"
@@ -355,7 +355,7 @@ export default function Home() {
                     </label>
                     <input
                       type="text"
-                      className="form-control form-rounded"
+                      className="form-control form-rounded text-muted"
                       placeholder="your@email.com"
                       readOnly
                       value={email}
@@ -464,7 +464,7 @@ export default function Home() {
                     <input
                       type="text"
                       className="form-control form-rounded"
-                      placeholder="Executive Avenue Anaji"
+                      placeholder="eg. Anaji"
                       value={street_address}
                       onChange={(e) => setStreetAddress(e.target.value)}
                     />
@@ -497,36 +497,96 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div
-                className="btn-list"
-                style={{ marginLeft: "30%", marginRight: "30%" }}
-              >
-                <div className="row">
+              <div className="row">
+                <div className="col-md-3"></div>
+                <div className="col-md-3">
                   <button
-                    className="btn bnt-primary  mb-1 mt-5"
+                    className="btn btn-primary btn-block mb-1 mt-5"
                     style={{
                       background: "#3964FC !important",
-                      width: "160px !important",
+                      width: "200px !important",
                       color: "#ffffff !important",
                       borderRadius: "10px !important",
+                      height: "36.5px !important",
                     }}
                     onClick={() => submitData()}
                   >
                     Save
                   </button>
+                </div>
+                <div className="col-md-3">
                   <Link href="/profile">
-                    <a
+                    <button
+                      className="btn btn-primary btn-block mb-1 mt-5"
+                      style={{
+                        background: "#818AA9 !important",
+                        width: "200px !important",
+                        color: "#ffffff !important",
+                        borderRadius: "10px !important",
+                        height: "36.5px !important",
+                      }}
+                    >
+                      Cancel
+                    </button>
+                    {/* <a
                       className="btn ml-5 mb-1 mt-5"
                       style={{
                         background: "#818AA9 !important",
                         width: "160px !important",
                         color: "#ffffff !important",
                         borderRadius: "10px !important",
+                        height: "36.5px !important",
                       }}
                     >
                       Cancel
-                    </a>
+                    </a> */}
                   </Link>
+                </div>
+                <div className="col-md-3"></div>
+              </div>
+              <div
+                className="btn-list"
+                style={{ marginLeft: "23%", marginRight: "23%" }}
+              >
+                <div className="row">
+                  {/* <button
+                    className="btn bnt-primary mb-1 mt-5 mr-2"
+                    style={{
+                      background: "#3964FC !important",
+                      width: "200px !important",
+                      color: "#ffffff !important",
+                      borderRadius: "10px !important",
+                      height: "36.5px !important",
+                    }}
+                    onClick={() => submitData()}
+                  >
+                    Save
+                  </button> */}
+                  {/* <Link href="/profile"></Link> */}
+                  {/*  <button
+                      className="btn bnt-primary mb-1 mt-5 ml-2"
+                      style={{
+                        background: "#818AA9 !important",
+                        width: "200px !important",
+                        color: "#ffffff !important",
+                        borderRadius: "10px !important",
+                        height: "36.5px !important",
+                      }}
+                    >
+                      Cancel
+                    </button> */}
+                  {/* <a
+                      className="btn ml-5 mb-1 mt-5"
+                      style={{
+                        background: "#818AA9 !important",
+                        width: "160px !important",
+                        color: "#ffffff !important",
+                        borderRadius: "10px !important",
+                        height: "36.5px !important",
+                      }}
+                    >
+                      Cancel
+                    </a> */}
                 </div>
               </div>
               {/* </div> */}

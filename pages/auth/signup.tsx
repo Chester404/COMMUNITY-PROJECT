@@ -173,9 +173,6 @@ const Signup = () => {
 
         <div className="signupcontent">
           <div style={{ textAlign: "center" }} className="mb-5">
-            <div>
-              <img className="innerlogo" src="/images/Logo.png" />
-            </div>
             <br />
             <br />
             <div>
@@ -199,7 +196,7 @@ const Signup = () => {
               </label>
               <input
                 type="email"
-                className="form-control textbox"
+                className="form-control form-rounded"
                 id="InputEmail"
                 aria-describedby="emailHelp"
                 placeholder="Please enter a valid email"
@@ -215,7 +212,7 @@ const Signup = () => {
               <div className="input-group">
                 <input
                   type={togglepasswordeye ? "text" : "password"}
-                  className="form-control textbox"
+                  className="form-control form-rounded"
                   id="InputPassword1"
                   placeholder="Password must be at least 8 characters"
                   data-toggle="password"
@@ -242,7 +239,7 @@ const Signup = () => {
               <div className="input-group">
                 <input
                   type={toggleconfirmpasswordeye ? "text" : "password"}
-                  className="form-control textbox"
+                  className="form-control form-rounded"
                   id="InputPassword2"
                   placeholder="Re-Enter the same password as above"
                   data-toggle="password"
@@ -270,6 +267,7 @@ const Signup = () => {
                 id="organization"
                 name="account_type"
                 defaultValue="organization"
+                defaultChecked
               />
               <label htmlFor="organization" className="radio_spc ml-2">
                 Organization
@@ -281,7 +279,6 @@ const Signup = () => {
                   name="account_type"
                   defaultValue="individual"
                   className="radio_spc"
-                  defaultChecked
                 />
                 <label htmlFor="individual" className="ml-2">
                   Individual

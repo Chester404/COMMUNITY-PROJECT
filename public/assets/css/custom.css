@@ -50,7 +50,7 @@ h3 {
 }
 
 .form-rounded {
-  border-radius: 7px;
+  border-radius: 10px;
   border: 1px solid grey;
 }
 
@@ -137,7 +137,10 @@ h3 {
 .pagination a.active {
   background-color: #3863fc;
   color: white;
-  border-radius: 50px;
+  float: left;
+  border-radius: 10px;
+  padding: 8px 16px;
+  text-decoration: none;
 }
 
 .pagination a:hover:not(.active) {
@@ -260,12 +263,10 @@ input[type="number"] {
 .right-addon input {
   padding-right: 30px;
 }
-
 h5.table-title {
   font-family: "Open Sans", sans-serif;
   font-weight: 700;
 }
-
 .column-color {
   font-weight: 800;
 }
@@ -289,11 +290,9 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
-
 ::-webkit-scrollbar {
   width: 10px;
 }
-
 /* Track */
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
@@ -338,11 +337,35 @@ button.menu-button {
 body {
   color: #3f3d56 !important;
 }
-
 .formlabel {
   font-weight: 600 !important;
 }
+<<<<<<< HEAD
 
 .dropdown-menu.show {
+=======
+.dropdown-menu.mldrop.show {
+>>>>>>> merging_both_isaac_and_denis
   width: 320px !important;
+}
+.nav-link {
+  color: #3f3d56 !important;
+}
+.table td {
+  padding-top: 0.15rem !important;
+  padding-bottom: 0.15rem !important;
+  vertical-align: top;
+}
+.text-muted.tablehead {
+  color: #818aa9 !important;
+}
+.itemname {
+  font-size: 13px !important;
+}
+.dropdown-icon {
+  color: #3f3d56 !important;
+}
+#editbutton {
+  border-radius: 10px;
+  height: 36.5px;
 }

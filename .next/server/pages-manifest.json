@@ -4,5 +4,6 @@
   "/_error": "pages/_error.js",
   "/": "pages/index.js",
   "/blog": "pages/blog.js",
-  "/memberlist": "pages/memberlist.js"
+  "/memberlist": "pages/memberlist.js",
+  "/auth/login": "pages/auth/login.js"
 }

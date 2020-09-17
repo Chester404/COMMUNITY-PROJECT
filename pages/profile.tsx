@@ -49,6 +49,7 @@ export default function Home() {
   return (
     <>
       <MainLayout>
+<<<<<<< HEAD
         {!isReady ? (
           <h3>Loading...</h3>
         ) : (
@@ -56,6 +57,56 @@ export default function Home() {
             {/* page-header */}
             <div className="page-header mt-6">
               <h3 className="page-title ">Profile</h3>
+=======
+        <div>
+          {/* page-header */}
+          <div className="page-header mt-6">
+            <h3 className="page-title ">Profile</h3>
+          </div>
+          {/* End page-header */}
+          <div className="row ">
+            <div className="col-md-3 ">
+              <div className="userpic mb-4">
+                <img
+                  src={
+                    profileData.image
+                      ? profileData.image
+                      : "/assets/images/Profile_Icon.png"
+                  }
+                  alt=""
+                  width={200}
+                  height={200}
+                  style={{ borderRadius: "10px" }}
+                />
+              </div>
+              <div className="text-center">
+                {/* <Link href="/editprofile"> */}
+
+                <button
+                  type="submit"
+                  className="btn btn-primary btn-block"
+                  id="editprofile_button"
+                  onClick={() => (window.location.pathname = "/editprofile")}
+                >
+                  Edit Information
+                </button>
+                {/*  <a
+                  id="editbutton"
+                  onClick={() => (window.location.pathname = "/editprofile")}
+                  className="btn btn-primary btn-block mt-1"
+                  style={{
+                    borderRadius: "10px",
+                    width: "200px",
+                    backgroundColor: "#3964fc",
+                    color: "#FFF",
+                  }}
+                >
+                  <span style={{ margin: "20px" }}>Edit Information</span>
+                </a> */}
+                {/* </Link> */}
+                <br />
+              </div>
+>>>>>>> merging_both_isaac_and_denis
             </div>
             {/* End page-header */}
             <div className="row ">

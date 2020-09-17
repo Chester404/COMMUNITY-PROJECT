@@ -60,6 +60,11 @@ export class Users {
     });
   }
 
+  async getUserAccountDetails(id: number) {
+    return ufetch(`/accounts/${id}`, {
+      method: "GET",
+    });
+  }
   async updateUserProfile(userData: any) {
     return await ufetch("/accounts/update/", {
       method: "PUT",

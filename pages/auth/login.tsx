@@ -47,6 +47,7 @@ const Login = () => {
         window.localStorage.setItem("cp-a", JSON.stringify(response.data));
         const userInfo = await new Users().getUserProfile();
         if (userInfo.name.length > 0) {
+          window.localStorage.setItem("user-profile", JSON.stringify(userInfo));
           response.data.username = userInfo.name;
         } else {
           response.data.username = "No Name";
@@ -127,7 +128,7 @@ const Login = () => {
               </label>
               <input
                 type="email"
-                className="form-control textbox"
+                className="form-control form-rounded"
                 id="InputEmail"
                 placeholder="Please enter a valid email or phone number"
                 value={authentication_property}
@@ -142,7 +143,7 @@ const Login = () => {
               <div className="input-group" id="show_hide_password">
                 <input
                   type={togglepasswordeye ? "text" : "password"}
-                  className="form-control textbox"
+                  className="form-control form-rounded"
                   id="InputPassword1"
                   placeholder="Password must be at least 8 characters"
                   data-toggle="password"
@@ -163,7 +164,11 @@ const Login = () => {
             </div>
 
             <div style={{ textAlign: "center" }}>
-              <button type="submit" className="btn btn-primary btn-block">
+              <button
+                type="submit"
+                id="signin_button"
+                className="btn btn-primary btn-block"
+              >
                 Login
               </button>
             </div>
