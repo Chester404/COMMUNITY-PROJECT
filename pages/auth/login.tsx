@@ -47,6 +47,7 @@ const Login = () => {
         window.localStorage.setItem("cp-a", JSON.stringify(response.data));
         const userInfo = await new Users().getUserProfile();
         if (userInfo.name.length > 0) {
+          window.localStorage.setItem("user-profile", JSON.stringify(userInfo));
           response.data.username = userInfo.name;
         } else {
           response.data.username = "No Name";

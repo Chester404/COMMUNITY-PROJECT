@@ -1,4 +1,5 @@
 import MainLayout from "../components/MainLayout";
+import UserProfilePopup from "../components/UserProfilePopup";
 import { Users } from "../lib/endpoints";
 import { useEffect, useState } from "react";
 
@@ -32,7 +33,9 @@ const Pagination = ({
               setCurrentPage(currentPage - 1);
             }
           }}
-          style={{ color: "gray", pointerEvents: "none" }}
+          style={
+            currentPage == 1 ? { color: "gray", pointerEvents: "none" } : null
+          }
         >
           « Prev
         </a>
@@ -60,6 +63,11 @@ const Pagination = ({
               setCurrentPage(currentPage + 1);
             }
           }}
+          style={
+            currentPage >= Math.ceil(totalRecords / recordsPerpage)
+              ? { color: "gray", pointerEvents: "none" }
+              : null
+          }
         >
           Next »
         </a>
@@ -71,9 +79,22 @@ export default function Home() {
   const [userProfiles, setUserProfiles] = useState([]);
   const [tempList, setTempList] = useState([]);
   const [totalRecords, settotalRecords] = useState(0);
-  const [recordsPerPage] = useState(5);
+  const [recordsPerPage] = useState(30);
+  const [order, setOrder] = useState(false);
+  const [userProfile, setUserProfile] = useState();
+  const [readyPopupData, setReadyPopupData] = useState(false);
+
+  // console.log("USER PROFILE:", userProfile);
   // const [isLoading, setIsLoading] = useState(true);
   // const [sorted, setSorted] = useState(false);
+
+  const getUserDetails = async (id) => {
+    setReadyPopupData(false);
+    let rs = await new Users().getUserAccountDetails(id);
+    console.log("RES:", rs);
+    // check privacy
+    setReadyPopupData(true);
+  };
 
   useEffect(() => {
     (async () => {
@@ -83,6 +104,10 @@ export default function Home() {
       // setIsLoading(false);
       settotalRecords(rs.length);
     })();
+  }, []);
+
+  useEffect(() => {
+    setUserProfile(JSON.parse(window.localStorage.getItem("user-profile")));
   }, []);
 
   const paginate = (page: number) => {
@@ -100,6 +125,16 @@ export default function Home() {
         .includes(e.target.value.toLocaleLowerCase());
     });
     setUserProfiles(ts);
+  };
+
+  const sortByName = () => {
+    if (order === true) {
+      setOrder(false);
+    } else if (order === false) {
+      setOrder(true);
+    }
+    const sorted = [...userProfiles];
+    setUserProfiles([...sorted].reverse());
   };
 
   return (
@@ -138,25 +173,25 @@ export default function Home() {
               <thead>
                 <tr>
                   <th scope="col" className="text-muted ml-5">
-                    {/*==================================*/}
                     <div className="dropdown">
                       <span>
-                        <span className="ml-1 tablehead">Name </span>
-                        <i className="fa fa-sort-amount-desc"></i>
+                        <span className="ml-3">Name </span>
+                        <i
+                          className={`fa fa-sort-amount-${
+                            order ? "asc" : "desc"
+                          }`}
+                        ></i>
                       </span>
-                      <div
-                        className="dropdown-content ml-8"
-                        style={{ width: 10 }}
-                      >
+                      <div className="dropdown-content ml-8">
                         <div>
                           <div className="ml-2 mt-3">
                             <span>Sort by</span>
                           </div>
                           <div
                             className="ml-2 mt-3"
-                            style={{ color: "#3F3D56" }}
+                            style={{ color: "#3F3D56", cursor: "pointer" }}
                           >
-                            <span>Name (A-Z)</span>
+                            <span onClick={sortByName}>Name (A-Z)</span>
                           </div>
                           <div
                             className="ml-2 mt-3 mb-2"
@@ -167,12 +202,11 @@ export default function Home() {
                         </div>
                       </div>
                     </div>
-                    {/*=================================*/}
                   </th>
-                  <th scope="col" className="text-muted tablehead">
+                  <th scope="col" className="text-muted">
                     Location
                   </th>
-                  <th scope="col" className="text-muted tablehead">
+                  <th scope="col" className="text-muted">
                     Actions
                   </th>
                 </tr>
@@ -186,7 +220,11 @@ export default function Home() {
                           className="dropdown"
                           style={{ marginLeft: "-40px" }}
                         >
-                          <a className="nav-link" data-toggle="dropdown">
+                          <a
+                            className="nav-link"
+                            data-toggle="dropdown"
+                            onClick={() => getUserDetails(uprofile.id)}
+                          >
                             <span
                               className="avatar avatar-md brround cover-image"
                               data-image-src="/images/blank_avatar.jpeg"
@@ -209,126 +247,21 @@ export default function Home() {
                               {uprofile.name}
                             </span>
                           </a>
-                          <div className="dropdown-menu mldrop">
-                            <div className="memberlistdropdown">
-                              <div className="drop-heading">
-                                <img
-                                  src={
-                                    uprofile.image
-                                      ? uprofile.image
-                                      : "/assets/images/Profile_Icon.png"
-                                  }
-                                  className="brround"
-                                  alt=""
-                                  style={{ width: "40px", height: "40px" }}
-                                />
-                                <span className="ml-2">{uprofile.name}</span>
-                              </div>
-                              <div className="dropdown-divider m-0" />
-                              <div className="ml-3 mr-3 mt-5 mb-5">
-                                <p>
-                                  <b>Telephone:</b>
-                                  <span style={{ float: "right" }}>
-                                    {uprofile.phone_number}
-                                  </span>
-                                </p>
-                                <p>
-                                  <b>Email:</b>
-                                  <span style={{ float: "right" }}>
-                                    {uprofile.user.email}
-                                  </span>
-                                </p>
-                                <p>
-                                  <b>Street Address:</b>
-                                  <span
-                                    style={{
-                                      float: "right",
-                                      textAlign: "right",
-                                    }}
-                                  >
-                                    {uprofile.street_address}
-                                  </span>
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        {/*   <div
-                          className="dropdown header-profile"
-                          style={{ position: "inherit" }}
-                        >
-                          <a
-                            className="nav-link pr-0 leading-none d-flex pt-1"
-                            data-toggle="dropdown"
-                          >
-                            <img
-                              src={
-                                uprofile.image
-                                  ? uprofile.image
-                                  : "/assets/images/Profile_Icon.png"
-                              }
-                              className="brround ml-3"
-                              alt=""
-                              style={{
-                                width: "40px",
-                                height: "40px",
-                              }}
+                          {
+                            /* display conditionally */
+                            <UserProfilePopup
+                              loggedIn={userProfile}
+                              uprofile={uprofile}
+                              isReady={readyPopupData}
                             />
-                            <span className="ml-5 column-color" id="memberid">
-                              {uprofile.name}
-                            </span>
-                          </a>
-                          <div className="dropdown-menu dropdown-menu-arrow">
-                            <div className="dropdown-content">
-                              <div className="drop-heading">
-                                <img
-                                  src={
-                                    uprofile.image
-                                      ? uprofile.image
-                                      : "/assets/images/Profile_Icon.png"
-                                  }
-                                  className="brround"
-                                  alt=""
-                                  style={{ width: "40px", height: "40px" }}
-                                />
-                                <span className="ml-2">{uprofile.name}</span>
-                              </div>
-                              <div className="dropdown-divider m-0" />
-                              <div className="ml-3 mr-3 mt-5 mb-5">
-                                <p>
-                                  <b>Telephone:</b>
-                                  <span style={{ float: "right" }}>
-                                    {uprofile.phone_number}
-                                  </span>
-                                </p>
-                                <p>
-                                  <b>Email:</b>
-                                  <span style={{ float: "right" }}>
-                                    {uprofile.user.email}
-                                  </span>
-                                </p>
-                                <p>
-                                  <b>Street Address:</b>
-                                  <span
-                                    style={{
-                                      float: "right",
-                                      textAlign: "right",
-                                    }}
-                                  >
-                                    {uprofile.street_address}
-                                  </span>
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      */}{" "}
+                          }
+                        </div>{" "}
                       </td>
                       <td>
-                        <p className="mt-3">{uprofile.street_address}</p>
+                        <p className="mt-2">{uprofile.street_address}</p>
                       </td>
                       <td>
-                        <p className="mt-3">
+                        <p className="mt-2">
                           <i
                             className="fe fe-alert-octagon"
                             style={{ fontSize: "large" }}
