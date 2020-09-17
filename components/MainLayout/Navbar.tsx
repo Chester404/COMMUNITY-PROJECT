@@ -72,6 +72,9 @@ const Navbar = (props) => {
                       <a href="#">Market</a>
                     </li>
                     <li>
+                      <a href="#">Jobs</a>
+                    </li>
+                    <li>
                       <a href="#">Partnership</a>
                     </li>
                     <li>
@@ -111,7 +114,9 @@ const Navbar = (props) => {
                 <a className="nav-link">
                   <span className="lay-outstyle mt-1">Market</span>
                 </a>
-
+                <a className="nav-link">
+                  <span className="lay-outstyle mt-1">Jobs</span>
+                </a>
                 <a className="nav-link">
                   <span className="lay-outstyle mt-1">Partnership</span>
                 </a>
