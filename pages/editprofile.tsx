@@ -57,6 +57,7 @@ export default function Home() {
   const [doneUpdate, setDoneUpdate] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
   const [shouldUploadImage, setShouldUpalodImage] = useState(false);
+  const [isReady, setIsReady] = useState(false);
 
   const triggerUpload = () => {
     fileRef.current!.click();
@@ -196,14 +197,11 @@ export default function Home() {
         setImage(rs.image);
       }
       console.log("rsData", rs);
+      setIsReady(true);
     })();
   }, []);
 
   const saveImage = async () => {
-    // const formData = new FormData();
-    // formData.append("image", image);
-    // const rs = await new Users().uplaodImage(formData);
-    // console.log(rs);
     const lStorage: any = JSON.parse(window.localStorage.getItem("cp-a"));
     let myHeaders: any = new Headers();
     myHeaders.append("Authorization", "Bearer " + lStorage.access);
@@ -287,7 +285,7 @@ export default function Home() {
               <div className="userpic mb-4">
                 <div className="profile-pic">
                   <img
-                    src={userImage}
+                    src={!isReady ? "" : userImage}
                     width={200}
                     height={200}
                     style={{ borderRadius: "10px" }}

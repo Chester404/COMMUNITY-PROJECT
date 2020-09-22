@@ -60,6 +60,11 @@ export class Users {
     });
   }
 
+  async getUserAccountDetails(id: number) {
+    return ufetch(`/accounts/${id}`, {
+      method: "GET",
+    });
+  }
   async updateUserProfile(userData: any) {
     return await ufetch("/accounts/update/", {
       method: "PUT",
@@ -76,7 +81,7 @@ export class Users {
   }
 
   async resendToken(authentication_property: string) {
-    return await ufetch("/auth/password-forgotten/", {
+    return await ufetch("/auth/create-key/", {
       method: "POST",
       body: JSON.stringify({ authentication_property, access_type: "a" }),
     });
