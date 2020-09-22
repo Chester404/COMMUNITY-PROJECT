@@ -168,7 +168,7 @@ const Navbar = (props) => {
                       </span>
                     </div>
                   </a>
-                  <div className="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                  <div className="dropdown-menu profiledrop dropdown-menu-right dropdown-menu-arrow">
                     <Link href="/profile">
                       <a className="dropdown-item itemname">
                         <i className="dropdown-icon fe fe-user" />

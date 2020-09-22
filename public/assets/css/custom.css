@@ -312,6 +312,10 @@ input[type="number"] {
   display: block !important;
 }
 
+.header-brand .header-brand-img.login-logo {
+  display: none !important;
+}
+
 button.menu-button {
   display: none !important;
 }
@@ -319,6 +323,9 @@ button.menu-button {
 @media screen and (max-width: 600px) {
   .header-brand .header-brand-img.main-logo {
     display: none !important;
+  }
+  .header-brand .header-brand-img.login-logo {
+    display: block !important;
   }
   button.menu-button {
     display: block !important;
@@ -328,6 +335,9 @@ button.menu-button {
 @media only screen and (max-width: 768px) {
   .header-brand .header-brand-img.main-logo {
     display: none !important;
+  }
+  .header-brand .header-brand-img.login-logo {
+    display: block !important;
   }
   button.menu-button {
     display: block !important;
@@ -340,15 +350,14 @@ body {
 .formlabel {
   font-weight: 600 !important;
 }
-<<<<<<< HEAD
-
-.dropdown-menu.show {
-=======
-.dropdown-menu.mldrop.show {
->>>>>>> merging_both_isaac_and_denis
-  width: 320px !important;
+.dropdown-menu {
+  width: 325px !important;
 }
-.nav-link {
+
+.dropdown-menu.profiledrop {
+  width: 200px !important;
+}
+memberlistdrop .nav-link {
   color: #3f3d56 !important;
 }
 .table td {
