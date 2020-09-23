@@ -55,7 +55,12 @@ const Login = () => {
         response.data.image = userInfo.image
           ? userInfo.image
           : "/assets/images/Profile_Icon.png";
+        response.data.organization = userInfo.organization;
         window.localStorage.setItem("cp-a", JSON.stringify(response.data));
+        dispatch({
+          type: "SET_USER_INFO",
+          payload: userInfo,
+        });
         dispatch({
           type: "UPDATE_USERNAME",
           payload: userInfo.name,
@@ -67,6 +72,10 @@ const Login = () => {
         dispatch({
           type: "SET_IMAGE",
           payload: userInfo.image,
+        });
+        dispatch({
+          type: "SET_ORGANIZATION",
+          payload: userInfo.organization,
         });
 
         setShow(false);

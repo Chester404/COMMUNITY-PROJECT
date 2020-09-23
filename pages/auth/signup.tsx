@@ -267,7 +267,7 @@ const Signup = () => {
                 id="organization"
                 name="account_type"
                 defaultValue="organization"
-                defaultChecked
+                onChange={() => setIsOrganization(true)}
               />
               <label htmlFor="organization" className="radio_spc ml-2">
                 Organization
@@ -279,6 +279,7 @@ const Signup = () => {
                   name="account_type"
                   defaultValue="individual"
                   className="radio_spc"
+                  onChange={() => setIsOrganization(false)}
                 />
                 <label htmlFor="individual" className="ml-2">
                   Individual

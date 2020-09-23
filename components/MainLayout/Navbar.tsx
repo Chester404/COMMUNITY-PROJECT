@@ -9,6 +9,7 @@ const navFontSize = {
 const Navbar = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const router = useRouter();
+  const [isOrganization, setIsOrganization] = useState(false);
 
   const { state, dispatch } = useContext(Store);
   const logout = () => {
@@ -19,10 +20,18 @@ const Navbar = (props) => {
     let lStorage: any = window.localStorage.getItem("cp-a");
     lStorage = JSON.parse(lStorage);
     if (lStorage) {
+      let upr: any = JSON.stringify(
+        window.localStorage.getItem("user-profile")
+      );
       dispatch({ type: "UPDATE_USERNAME", payload: lStorage.username });
       dispatch({ type: "SET_EMAIL", payload: lStorage.emailaddress });
       dispatch({ type: "SET_IMAGE", payload: lStorage.image });
+      dispatch({ type: "SET_ORGANIZATION", payload: lStorage.organization });
+      dispatch({ type: "SET_USER_INFO", payload: upr });
       setIsLoggedIn(true);
+      setIsOrganization(state.userProfile.is_organization);
+      console.log("isOrganization", isOrganization);
+      console.log("from state", state.userProfile.is_organization);
     }
   }, []);
 
@@ -169,7 +178,9 @@ const Navbar = (props) => {
                     </div>
                   </a>
                   <div className="dropdown-menu profiledrop dropdown-menu-right dropdown-menu-arrow">
-                    <Link href="/profile">
+                    <Link
+                      href={isOrganization ? "/businessprofile" : "/profile"}
+                    >
                       <a className="dropdown-item itemname">
                         <i className="dropdown-icon fe fe-user" />
                         View Profile
@@ -187,10 +198,14 @@ const Navbar = (props) => {
                       <i className="dropdown-icon fe fe-power" /> Log Out
                     </a>
                     <div className="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                      <a className="dropdown-item itemname" href="profile">
-                        <i className="dropdown-icon fe fe-user" />
-                        View Profile
-                      </a>
+                      <Link
+                        href={isOrganization ? "/businessprofile" : "/profile"}
+                      >
+                        <a className="dropdown-item itemname">
+                          <i className="dropdown-icon fe fe-user" />
+                          View Profile
+                        </a>
+                      </Link>
                       <a className="dropdown-item itemname" href="#">
                         <i className="dropdown-icon fe fe-edit" />
                         Account Setting
