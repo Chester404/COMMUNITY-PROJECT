@@ -7,8 +7,13 @@
 }
 h1,
 h2,
-h3 {
+h3,
+strong,
+span {
   font-family: "Open Sans", sans-serif;
+}
+modal-title {
+  font-family: "Open Sans", sans-serif !important;
 }
 .page-title {
   font-family: "Open Sans", sans-serif;
@@ -70,6 +75,14 @@ h3 {
 .loginborder {
   text-align: center;
   padding-top: 12%;
+}
+.resetborder {
+  text-align: center;
+  padding-top: 20%;
+}
+.forgotborder {
+  text-align: center;
+  margin-top: 30%;
 }
 .center {
   text-align: center;
@@ -418,7 +431,6 @@ body {
 .dropdown-menu {
   width: 325px !important;
 }
-
 .dropdown-menu.profiledrop {
   width: 200px !important;
 }
@@ -452,7 +464,6 @@ memberlistdrop .nav-link {
   padding: 3%;
   height: 460px;
 }
-
 .signupcontent {
   margin: 0 auto;
   margin-top: 2.55%;
@@ -462,7 +473,6 @@ memberlistdrop .nav-link {
   padding: 3%;
   height: 610px;
 }
-
 @media screen and (max-width: 600px) {
   .logincontent {
     width: 90%;
@@ -475,7 +485,6 @@ memberlistdrop .nav-link {
     margin-bottom: 5%;
   }
 }
-
 @media screen and (max-width: 900px) {
   .logincontent {
     width: 85%;
@@ -488,7 +497,6 @@ memberlistdrop .nav-link {
     margin-bottom: 5%;
   }
 }
-
 .codebox {
   height: 36.5px;
   width: 37px;
@@ -533,7 +541,6 @@ memberlistdrop .nav-link {
   font-size: 15px;
   vertical-align: middle;
 }
-
 .formlabel {
   font-weight: 600 !important;
 }
@@ -557,7 +564,6 @@ memberlistdrop .nav-link {
   background-color: #ffffff;
   border-radius: 0px 10px 10px 0px;
 }
-
 .parent {
   position: relative;
   margin: 0;
@@ -565,35 +571,33 @@ memberlistdrop .nav-link {
   font-size: 13px;
   height: 70%;
 }
-
 .navbar {
   position: absolute;
   background: white;
   height: 80px;
   width: 101%;
 }
-
 #signup_button {
   border-radius: 10px;
   height: 36.5px;
 }
-
 #editprofile_button {
   border-radius: 10px;
   height: 36.5px;
   width: 200px;
 }
-
+.authbtn {
+  border-radius: 10px;
+  height: 36.5px;
+}
 #signin_button {
   border-radius: 10px;
   height: 36.5px;
 }
-
 #continue {
   border-radius: 10px;
   height: 36.5px;
 }
-
 .logo {
   position: relative;
   top: 20px;
@@ -615,7 +619,6 @@ memberlistdrop .nav-link {
   text-decoration: none;
   color: #355be1;
 }
-
 .form-control {
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
@@ -624,8 +627,78 @@ memberlistdrop .nav-link {
   -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 }
-
 .input-group-addon {
   padding: 0.45rem 0.6rem;
   border: 1px solid #e8ebf1 !important;
+}
+
+/* Account Settings */
+.card {
+  box-shadow: none;
+}
+.account-header {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+}
+.account-email-body {
+  justify-content: center;
+  display: flex;
+}
+.account-email-body .mail-pass-input {
+  width: 17rem;
+}
+.account-email-body-buttons {
+  justify-content: center;
+  display: flex;
+}
+.account-email-body-buttons .mail-pass-buttons {
+  width: 8rem;
+  height: 2.5rem;
+  margin: 0.5rem;
+}
+.account-email-body-buttons .pass-buttons {
+  width: 7.3rem;
+  height: 2.5rem;
+  margin-left: 30px;
+}
+.account-email-body-buttons .pass-modal-popup-button {
+  width: 6.5rem;
+  height: 2.5rem;
+  margin-left: 4.5rem;
+}
+.account-email-body .account-forgot {
+  margin-left: 7rem;
+}
+.password-modal-popup {
+  top: 11rem;
+}
+#account-pass-cancel {
+  background-color: #818aa9;
+}
+#account-mail-cancel {
+  background-color: #818aa9;
+}
+#account-modal-pass-cancel {
+  background-color: #818aa9;
+}
+@media screen and (max-width: 599px) {
+  .account-email-body-buttons {
+    padding-left: 0px !important;
+  }
+}
+@media screen and (max-width: 599px) {
+  .account-email-body-buttons .pass-buttons {
+    margin-left: 0px !important;
+  }
+}
+@media screen and (max-width: 599px) {
+  .account-email-body .account-forgot {
+    margin-left: 0rem !important;
+  }
+}
+@media screen and (max-width: 599px) {
+  .account-email-body-buttons .pass-modal-popup-button {
+    margin-left: 0.5rem !important;
+  }
 }

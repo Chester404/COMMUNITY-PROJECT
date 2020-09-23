@@ -170,7 +170,7 @@ const Login = () => {
               <button
                 type="submit"
                 id="signin_button"
-                className="btn btn-primary btn-block"
+                className="btn btn-primary btn-block authbtn"
               >
                 Login
               </button>
@@ -178,7 +178,7 @@ const Login = () => {
             <br />
             <div className="center">
               <div>
-                <a href="#" className="texthover">
+                <a href="/auth/forgottenpassword" className="texthover">
                   Forgot Password?
                 </a>
               </div>
