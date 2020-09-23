@@ -702,3 +702,25 @@ memberlistdrop .nav-link {
     margin-left: 0.5rem !important;
   }
 }
+
+/* Styling Memberlist component */
+.header-box {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+h5.table-title-market {
+  overflow: hidden;
+  white-space: nowrap;
+}
+.header-item-two {
+  flex: 1;
+  color: #3f3d56;
+  cursor: pointer;
+}
+.header-item-style {
+  color: #3f3d56;
+  cursor: pointer;
+}

@@ -183,7 +183,7 @@ const Acount = () => {
                         </label>
                         <input
                           id="password"
-                          type="text"
+                          type="password"
                           className="form-control form-rounded mail-pass-input"
                           placeholder="Enter password"
                           value={password}
@@ -198,7 +198,7 @@ const Acount = () => {
                         </label>
                         <input
                           id="newpassword"
-                          type="text"
+                          type="password"
                           className="form-control form-rounded mail-pass-input"
                           placeholder="Password must be atleast 8 characters"
                           value={newpassword}
@@ -211,7 +211,7 @@ const Acount = () => {
                         </label>
                         <input
                           id="confirmnewpassword"
-                          type="text"
+                          type="password"
                           className="form-control form-rounded mail-pass-input"
                           placeholder="Re-enter the same password as above"
                           value={confirmnewpassword}

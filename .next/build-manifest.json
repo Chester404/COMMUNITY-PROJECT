@@ -29,6 +29,11 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/auth/account-settings.js"
     ],
+    "/editprofile": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/editprofile.js"
+    ],
     "/memberlist": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
