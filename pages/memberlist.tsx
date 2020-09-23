@@ -159,13 +159,7 @@ export default function Home() {
           </div>
           {/* End page-header */}
 
-          <div
-            className="table-responsive table-lg"
-            style={{
-              background: "#ffffff",
-              marginBottom: "100px",
-            }}
-          >
+          <div className="table-responsive table-lg tabledt">
             <h5 className="mt-5 mb-5 ml-5 table-title">
               Market Circle Individuals
             </h5>
@@ -187,16 +181,10 @@ export default function Home() {
                           <div className="ml-2 mt-3">
                             <span>Sort by</span>
                           </div>
-                          <div
-                            className="ml-2 mt-3"
-                            style={{ color: "#3F3D56", cursor: "pointer" }}
-                          >
+                          <div className="ml-2 mt-3 sorticon">
                             <span onClick={sortByName}>Name (A-Z)</span>
                           </div>
-                          <div
-                            className="ml-2 mt-3 mb-2"
-                            style={{ color: "#3F3D56" }}
-                          >
+                          <div className="ml-2 mt-3 mb-2 tbtheadcolor">
                             <span>Location</span>
                           </div>
                         </div>
@@ -216,10 +204,7 @@ export default function Home() {
                   return (
                     <tr key={index}>
                       <td>
-                        <div
-                          className="dropdown"
-                          style={{ marginLeft: "-40px" }}
-                        >
+                        <div className="dropdown ddmargin">
                           <a
                             className="nav-link"
                             data-toggle="dropdown"
@@ -236,12 +221,8 @@ export default function Home() {
                                   ? uprofile.image
                                   : "/assets/images/Profile_Icon.png"
                               }
-                              className="brround"
+                              className="brround ddimg"
                               alt=""
-                              style={{
-                                width: "40px",
-                                height: "40px",
-                              }}
                             />
                             <span className="ml-5 column-color" id="memberid">
                               {uprofile.name}
@@ -262,14 +243,8 @@ export default function Home() {
                       </td>
                       <td>
                         <p className="mt-2">
-                          <i
-                            className="fe fe-alert-octagon"
-                            style={{ fontSize: "large" }}
-                          />
-                          <i
-                            className="fe fe-heart ml-1"
-                            style={{ fontSize: "large" }}
-                          />
+                          <i className="fe fe-alert-octagon large" />
+                          <i className="fe fe-heart ml-1 large" />
                         </p>
                       </td>
                     </tr>
@@ -278,29 +253,7 @@ export default function Home() {
               </tbody>
             </table>
 
-            <div
-              className="row"
-              style={{ margin: "10px", background: "#ffffff" }}
-            >
-              {/* <div className="col-md-5">
-                <label>
-                  Showing
-                  <select
-                    className="ml-3"
-                    style={{
-                      height: "30px !important",
-                      borderRadius: "6px",
-                    }}
-                  >
-                    <option>10</option>
-                    <option>25</option>
-                    <option selected>30</option>
-                    <option>50</option>
-                    <option>100</option>
-                  </select>{" "}
-                  entries
-                </label>
-              </div> */}
+            <div className="row paginationstyle">
               <Pagination
                 callback={paginate}
                 totalRecords={totalRecords}

@@ -115,7 +115,7 @@ const Login = () => {
         </Prompt>
 
         <div className="logincontent">
-          <div style={{ textAlign: "center", paddingTop: "12%" }}>
+          <div className="loginborder">
             <h3>
               <b>Login</b>
             </h3>
@@ -166,7 +166,7 @@ const Login = () => {
               </div>
             </div>
 
-            <div style={{ textAlign: "center" }}>
+            <div className="center">
               <button
                 type="submit"
                 id="signin_button"
@@ -176,7 +176,7 @@ const Login = () => {
               </button>
             </div>
             <br />
-            <div style={{ textAlign: "center" }}>
+            <div className="center">
               <div>
                 <a href="#" className="texthover">
                   Forgot Password?

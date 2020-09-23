@@ -172,7 +172,7 @@ const Signup = () => {
         </Prompt>
 
         <div className="signupcontent">
-          <div style={{ textAlign: "center" }} className="mb-5">
+          <div className="mb-5 center">
             <br />
             <br />
             <div>
@@ -261,7 +261,7 @@ const Signup = () => {
               </div>
             </div>
 
-            <div style={{ textAlign: "center" }}>
+            <div className="center">
               <input
                 type="radio"
                 id="organization"
@@ -286,7 +286,7 @@ const Signup = () => {
               </span>
             </div>
 
-            <div style={{ textAlign: "center" }}>
+            <div className="center">
               <button
                 type="submit"
                 className="btn btn-primary btn-block"
@@ -296,7 +296,7 @@ const Signup = () => {
               </button>
             </div>
             <br />
-            <div style={{ textAlign: "center" }}>
+            <div className="center">
               By clicking sign up, you agree to the Market Circle
               <br />
               <b>

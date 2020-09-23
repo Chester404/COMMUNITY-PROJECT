@@ -138,7 +138,7 @@ const ConfirmAccount = () => {
         </Prompt>
 
         <div className="logincontent">
-          <div style={{ textAlign: "center", paddingTop: "12%" }}>
+          <div className="loginborder">
             <h3>
               <b>
                 Enter code for
@@ -149,10 +149,10 @@ const ConfirmAccount = () => {
           </div>
           <br />
           {/*  <form className="needs-validation" onSubmit={submitCode}> */}
-          <div className="form-group" style={{ textAlign: "center" }}>
+          <div className="form-group center">
             <input
               type="text"
-              className="codebox mr-3 form-rounded"
+              className="center codebox mr-3 form-rounded"
               id="code1"
               maxLength={1}
               size={1}
@@ -162,13 +162,10 @@ const ConfirmAccount = () => {
               value={code1}
               onChange={(e) => setCode1(e.target.value)}
               onKeyUp={() => code2Ref.current.focus()}
-              style={{
-                textAlign: "center",
-              }}
             />
             <input
               type="text"
-              className="codebox mr-3 form-rounded"
+              className="center codebox mr-3 form-rounded"
               id="code2"
               maxLength={1}
               size={1}
@@ -177,15 +174,12 @@ const ConfirmAccount = () => {
               pattern="[0-9]{1}"
               value={code2}
               onChange={(e) => setCode2(e.target.value)}
-              style={{
-                textAlign: "center",
-              }}
               ref={code2Ref}
               onKeyUp={() => code3Ref.current.focus()}
             />
             <input
               type="text"
-              className="codebox mr-3 form-rounded"
+              className="center codebox mr-3 form-rounded"
               id="code3"
               maxLength={1}
               size={1}
@@ -194,15 +188,12 @@ const ConfirmAccount = () => {
               pattern="[0-9]{1}"
               value={code3}
               onChange={(e) => setCode3(e.target.value)}
-              style={{
-                textAlign: "center",
-              }}
               ref={code3Ref}
               onKeyUp={() => code4Ref.current.focus()}
             />
             <input
               type="text"
-              className="codebox mr-3 form-rounded"
+              className="center codebox mr-3 form-rounded"
               id="code4"
               maxLength={1}
               size={1}
@@ -211,15 +202,12 @@ const ConfirmAccount = () => {
               pattern="[0-9]{1}"
               value={code4}
               onChange={(e) => setCode4(e.target.value)}
-              style={{
-                textAlign: "center",
-              }}
               ref={code4Ref}
               onKeyUp={() => submitBtnRef.current.focus()}
             />
           </div>
 
-          <div style={{ textAlign: "center" }}>
+          <div className="center">
             <button
               style={{ width: "205px" }}
               className="btn btn-primary mr-1"
@@ -229,7 +217,7 @@ const ConfirmAccount = () => {
             >
               Continue
             </button>
-            <div style={{ textAlign: "center" }} className="mt-5">
+            <div className="mt-5 center">
               If you don't recieve the code within
               <br />
               1min, click below to re-send it.
@@ -244,15 +232,7 @@ const ConfirmAccount = () => {
               >
                 Resend Code<i className="fe fe-rotate-ccw ml-3"></i>
               </button>
-              <span
-                style={{
-                  fontWeight: "bold",
-                  color: "#3964FC",
-                  marginLeft: "13px",
-                }}
-              >
-                {countDown}
-              </span>
+              <span className="countdowntxt">{countDown}</span>
             </div>
           </div>
           {/*  </form> */}
