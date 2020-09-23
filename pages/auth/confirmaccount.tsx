@@ -148,12 +148,11 @@ const ConfirmAccount = () => {
             </h3>
           </div>
           <br />
-<<<<<<< HEAD
-          {/* <form className="needs-validation" onSubmit={submitCode}> */}
+          {/*  <form className="needs-validation" onSubmit={submitCode}> */}
           <div className="form-group" style={{ textAlign: "center" }}>
             <input
               type="text"
-              className="codebox mr-3"
+              className="codebox mr-3 form-rounded"
               id="code1"
               maxLength={1}
               size={1}
@@ -169,7 +168,7 @@ const ConfirmAccount = () => {
             />
             <input
               type="text"
-              className="codebox mr-3"
+              className="codebox mr-3 form-rounded"
               id="code2"
               maxLength={1}
               size={1}
@@ -186,7 +185,7 @@ const ConfirmAccount = () => {
             />
             <input
               type="text"
-              className="codebox mr-3"
+              className="codebox mr-3 form-rounded"
               id="code3"
               maxLength={1}
               size={1}
@@ -203,7 +202,7 @@ const ConfirmAccount = () => {
             />
             <input
               type="text"
-              className="codebox mr-3"
+              className="codebox mr-3 form-rounded"
               id="code4"
               maxLength={1}
               size={1}
@@ -219,78 +218,6 @@ const ConfirmAccount = () => {
               onKeyUp={() => submitBtnRef.current.focus()}
             />
           </div>
-=======
-          <form className="needs-validation" onSubmit={submitCode}>
-            <div className="form-group" style={{ textAlign: "center" }}>
-              <input
-                type="text"
-                className="codebox mr-3 form-rounded"
-                id="code1"
-                maxLength={1}
-                size={1}
-                min={0}
-                max={9}
-                pattern="[0-9]{1}"
-                value={code1}
-                onChange={(e) => setCode1(e.target.value)}
-                onKeyUp={() => code2Ref.current.focus()}
-                style={{
-                  textAlign: "center",
-                }}
-              />
-              <input
-                type="text"
-                className="codebox mr-3 form-rounded"
-                id="code2"
-                maxLength={1}
-                size={1}
-                min={0}
-                max={9}
-                pattern="[0-9]{1}"
-                value={code2}
-                onChange={(e) => setCode2(e.target.value)}
-                style={{
-                  textAlign: "center",
-                }}
-                ref={code2Ref}
-                onKeyUp={() => code3Ref.current.focus()}
-              />
-              <input
-                type="text"
-                className="codebox mr-3 form-rounded"
-                id="code3"
-                maxLength={1}
-                size={1}
-                min={0}
-                max={9}
-                pattern="[0-9]{1}"
-                value={code3}
-                onChange={(e) => setCode3(e.target.value)}
-                style={{
-                  textAlign: "center",
-                }}
-                ref={code3Ref}
-                onKeyUp={() => code4Ref.current.focus()}
-              />
-              <input
-                type="text"
-                className="codebox mr-3 form-rounded"
-                id="code4"
-                maxLength={1}
-                size={1}
-                min={0}
-                max={9}
-                pattern="[0-9]{1}"
-                value={code4}
-                onChange={(e) => setCode4(e.target.value)}
-                style={{
-                  textAlign: "center",
-                }}
-                ref={code4Ref}
-                onKeyUp={() => submitBtnRef.current.focus()}
-              />
-            </div>
->>>>>>> merging_both_isaac_and_denis
 
           <div style={{ textAlign: "center" }}>
             <button
@@ -328,7 +255,7 @@ const ConfirmAccount = () => {
               </span>
             </div>
           </div>
-          {/* </form> */}
+          {/*  </form> */}
         </div>
       </MainLayout>
     </>

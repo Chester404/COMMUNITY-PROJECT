@@ -1,7 +1,7 @@
 import MainLayout from "../components/MainLayout";
 import { Users } from "../lib/endpoints";
 import { useState, useEffect, useContext } from "react";
-// import Link from "next/link";
+import Link from "next/link";
 import { Store } from "../contextStore";
 
 const REGIONS = [
@@ -71,17 +71,16 @@ export default function Home() {
                 />
               </div>
               <div className="text-center">
-                {/* <Link href="/editprofile"> */}
-
-                <button
-                  type="submit"
-                  className="btn btn-primary btn-block"
-                  id="editprofile_button"
-                  onClick={() => (window.location.pathname = "/editprofile")}
-                >
-                  Edit Information
-                </button>
-
+                <Link href="/editprofile">
+                  <a
+                    /* type="submit" */
+                    className="btn btn-primary btn-block"
+                    id="editprofile_button"
+                    /* onClick={() => (window.location.pathname = "/editprofile")} */
+                  >
+                    Edit Information
+                  </a>
+                </Link>
                 <br />
               </div>
             </div>

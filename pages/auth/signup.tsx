@@ -209,10 +209,10 @@ const Signup = () => {
               <label htmlFor="InputPassword1" className="formlabel">
                 Password
               </label>
-              <div className="input-group">
+              <div className="input-group hasiconborder">
                 <input
                   type={togglepasswordeye ? "text" : "password"}
-                  className="form-control form-rounded"
+                  className="form-control hasicon"
                   id="InputPassword1"
                   placeholder="Password must be at least 8 characters"
                   data-toggle="password"
@@ -236,10 +236,10 @@ const Signup = () => {
               <label htmlFor="InputPassword1" className="formlabel">
                 Confirm Password
               </label>
-              <div className="input-group">
+              <div className="input-group hasiconborder">
                 <input
                   type={toggleconfirmpasswordeye ? "text" : "password"}
-                  className="form-control form-rounded"
+                  className="form-control hasicon"
                   id="InputPassword2"
                   placeholder="Re-Enter the same password as above"
                   data-toggle="password"
@@ -286,7 +286,7 @@ const Signup = () => {
               </span>
             </div>
 
-            <div style={{ textAlign: "center", paddingRight: "10px" }}>
+            <div style={{ textAlign: "center" }}>
               <button
                 type="submit"
                 className="btn btn-primary btn-block"

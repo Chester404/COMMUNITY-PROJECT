@@ -140,10 +140,13 @@ const Login = () => {
               <label htmlFor="InputPassword1" className="formlabel">
                 Password
               </label>
-              <div className="input-group" id="show_hide_password">
+              <div
+                className="input-group hasiconborder"
+                id="show_hide_password"
+              >
                 <input
                   type={togglepasswordeye ? "text" : "password"}
-                  className="form-control form-rounded"
+                  className="form-control hasicon"
                   id="InputPassword1"
                   placeholder="Password must be at least 8 characters"
                   data-toggle="password"
