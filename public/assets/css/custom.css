@@ -243,11 +243,51 @@ input[type="number"] {
     display: block;
   }
 }
+.bold {
+  font-weight: bold;
+}
 .bolder {
   font-weight: bolder;
 }
 .defbdraduis {
   border-radius: 10px;
+}
+.editbtnicon {
+  background: #443f4f !important;
+  color: #ffffff !important;
+  border-radius: 50%;
+}
+.editicon {
+  margin-top: 40% !important;
+  margin-right: 35% !important;
+}
+.editbtniconsize {
+  font-size: 25px;
+}
+.red {
+  color: red;
+}
+.formlabel {
+  color: grey;
+  font-weight: bold;
+}
+.savebtn {
+  background: #3964fc !important;
+  width: 200px !important;
+  color: #ffffff !important;
+  border-radius: 10px !important;
+  height: 36.5px !important;
+}
+.cancelbtn {
+  background: #818aa9 !important;
+  width: 200px !important;
+  color: #ffffff !important;
+  border-radius: 10px !important;
+  height: 36.5px !important;
+}
+.profilemargin {
+  margin-left: 23%;
+  margin-right: 23%;
 }
 .paginationstyle {
   margin: 10px;

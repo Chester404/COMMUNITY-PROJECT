@@ -288,45 +288,17 @@ export default function Home() {
                     src={!isReady ? "" : userImage}
                     width={200}
                     height={200}
-                    style={{ borderRadius: "10px" }}
+                    className="defbdraduis"
                   />
-                  <div
-                    className="edit"
-                    style={{
-                      marginTop: "40% !important",
-                      marginRight: "35% !important",
-                    }}
-                  >
+                  <div className="edit editicon">
                     <a href="#">
                       <button
                         type="button"
-                        className="btn btn-icon"
-                        style={{
-                          background: "#443F4F !important",
-                          color: "#ffffff !important",
-                          borderRadius: "50%",
-                        }}
+                        className="btn btn-icon editbtnicon"
                         onClick={triggerUpload}
                       >
-                        <i
-                          className="fe fe-edit-2 fa-lg"
-                          style={{ fontSize: "25px" }}
-                        />
+                        <i className="fe fe-edit-2 fa-lg editbtniconsize" />
                       </button>
-                      {/* <button
-                        type="button"
-                        className="btn btn-icon ml-2"
-                        style={{
-                          background: "#443F4F !important",
-                          color: "#ffffff !important",
-                          borderRadius: "50%",
-                        }}
-                      >
-                        <i
-                          className="fe fe-trash fa-lg"
-                          style={{ fontSize: "25px" }}
-                        />
-                      </button> */}
                     </a>
                   </div>
                 </div>
@@ -337,8 +309,8 @@ export default function Home() {
               <div className="row">
                 <div className="col-lg-5 col-md-12">
                   <div className="form-group">
-                    <label style={{ fontWeight: "bold" }}>
-                      Name <span style={{ color: "red" }}>*</span>
+                    <label className="bolder">
+                      Name <span className="red">*</span>
                     </label>
                     <input
                       type="text"
@@ -350,9 +322,7 @@ export default function Home() {
                     />
                   </div>
                   <div className="form-group">
-                    <label style={{ color: "grey", fontWeight: "bold" }}>
-                      Email Address
-                    </label>
+                    <label className="formlabel">Email Address</label>
                     <input
                       type="text"
                       className="form-control form-rounded text-muted"
@@ -362,7 +332,7 @@ export default function Home() {
                     />
                   </div>
                   <div className="form-group">
-                    <label style={{ fontWeight: "bolder" }}>Phone Number</label>
+                    <label className="bolder">Phone Number</label>
                     <input
                       type="number"
                       className="form-control form-rounded"
@@ -374,12 +344,7 @@ export default function Home() {
                     />
                   </div>
                   <div className="form-group">
-                    <label
-                      htmlFor="form-label"
-                      style={{ fontWeight: "bolder" }}
-                    >
-                      Date of Birth
-                    </label>
+                    <label className="bolder">Date of Birth</label>
                     <div className="form-group">
                       <div className="input-group-date">
                         <input
@@ -393,9 +358,7 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="form-group">
-                    <label style={{ fontWeight: "bolder" }}>
-                      Privacy Level
-                    </label>
+                    <label className="bolder">Privacy Level</label>
                     <select
                       className="form-control select2 form-rounded"
                       value={privacy_level}
@@ -413,10 +376,7 @@ export default function Home() {
                 <div className="col-lg-1"></div>
                 <div className="col-lg-5 col-md-12">
                   <div className="form-group mt-4">
-                    <label
-                      style={{ fontWeight: "bolder" }}
-                      htmlFor="exampleInput"
-                    >
+                    <label className="bolder" htmlFor="exampleInput">
                       Gender
                     </label>
                     <div className="row" style={{ marginLeft: 3 }}>
@@ -460,7 +420,7 @@ export default function Home() {
                   </div>
 
                   <div className="form-group">
-                    <label style={{ fontWeight: "bolder" }}>Town</label>
+                    <label className="bolder">Town</label>
                     <input
                       type="text"
                       className="form-control form-rounded"
@@ -470,7 +430,7 @@ export default function Home() {
                     />
                   </div>
                   <div className="form-group">
-                    <label style={{ fontWeight: "bolder" }}>Region</label>
+                    <label className="bolder">Region</label>
                     <select
                       className="form-control select2 form-rounded"
                       onChange={(e) => setRegion(e.target.value)}
@@ -484,9 +444,7 @@ export default function Home() {
                     </select>
                   </div>
                   <div className="form-group">
-                    <label style={{ fontWeight: "bolder" }}>
-                      Digital Address
-                    </label>
+                    <label className="bolder">Digital Address</label>
                     <input
                       type="text"
                       className="form-control form-rounded"
@@ -501,14 +459,7 @@ export default function Home() {
                 <div className="col-md-3"></div>
                 <div className="col-md-3">
                   <button
-                    className="btn btn-primary btn-block mb-1 mt-5"
-                    style={{
-                      background: "#3964FC !important",
-                      width: "200px !important",
-                      color: "#ffffff !important",
-                      borderRadius: "10px !important",
-                      height: "36.5px !important",
-                    }}
+                    className="btn btn-primary savebtn btn-block mb-1 mt-5"
                     onClick={() => submitData()}
                   >
                     Save
@@ -516,78 +467,15 @@ export default function Home() {
                 </div>
                 <div className="col-md-3">
                   <Link href="/profile">
-                    <button
-                      className="btn btn-primary btn-block mb-1 mt-5"
-                      style={{
-                        background: "#818AA9 !important",
-                        width: "200px !important",
-                        color: "#ffffff !important",
-                        borderRadius: "10px !important",
-                        height: "36.5px !important",
-                      }}
-                    >
+                    <button className="btn btn-primary cancelbtn btn-block mb-1 mt-5">
                       Cancel
                     </button>
-                    {/* <a
-                      className="btn ml-5 mb-1 mt-5"
-                      style={{
-                        background: "#818AA9 !important",
-                        width: "160px !important",
-                        color: "#ffffff !important",
-                        borderRadius: "10px !important",
-                        height: "36.5px !important",
-                      }}
-                    >
-                      Cancel
-                    </a> */}
                   </Link>
                 </div>
                 <div className="col-md-3"></div>
               </div>
-              <div
-                className="btn-list"
-                style={{ marginLeft: "23%", marginRight: "23%" }}
-              >
-                <div className="row">
-                  {/* <button
-                    className="btn bnt-primary mb-1 mt-5 mr-2"
-                    style={{
-                      background: "#3964FC !important",
-                      width: "200px !important",
-                      color: "#ffffff !important",
-                      borderRadius: "10px !important",
-                      height: "36.5px !important",
-                    }}
-                    onClick={() => submitData()}
-                  >
-                    Save
-                  </button> */}
-                  {/* <Link href="/profile"></Link> */}
-                  {/*  <button
-                      className="btn bnt-primary mb-1 mt-5 ml-2"
-                      style={{
-                        background: "#818AA9 !important",
-                        width: "200px !important",
-                        color: "#ffffff !important",
-                        borderRadius: "10px !important",
-                        height: "36.5px !important",
-                      }}
-                    >
-                      Cancel
-                    </button> */}
-                  {/* <a
-                      className="btn ml-5 mb-1 mt-5"
-                      style={{
-                        background: "#818AA9 !important",
-                        width: "160px !important",
-                        color: "#ffffff !important",
-                        borderRadius: "10px !important",
-                        height: "36.5px !important",
-                      }}
-                    >
-                      Cancel
-                    </a> */}
-                </div>
+              <div className="btn-list profilemargin">
+                <div className="row"></div>
               </div>
               {/* </div> */}
             </div>
