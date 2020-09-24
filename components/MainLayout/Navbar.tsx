@@ -27,12 +27,13 @@ const Navbar = (props) => {
       dispatch({ type: "UPDATE_USERNAME", payload: lStorage.username });
       dispatch({ type: "SET_EMAIL", payload: lStorage.emailaddress });
       dispatch({ type: "SET_IMAGE", payload: lStorage.image });
-      //dispatch({ type: "SET_ORGANIZATION", payload: lStorage.organization });
+      dispatch({ type: "SET_ORGANIZATION", payload: lStorage.organization });
       dispatch({ type: "SET_USER_INFO", payload: upr });
       setIsLoggedIn(true);
-      //setIsOrganization(state.userProfile.is_organization);
-      //console.log("isOrganization", isOrganization);
-      //console.log("from state", state.userProfile.is_organization);
+      setIsOrganization(upr.is_organization);
+      console.log(upr);
+      console.log("isOrganization", isOrganization);
+      console.log("from state", state.userProfile.is_organization);
     }
     if (
       router.pathname.includes("/login") ||
@@ -48,7 +49,7 @@ const Navbar = (props) => {
   return (
     <div
       className="hor-header header d-flex navbar-collapse sticky sticky-pin"
-      style={{ height: "80px !important" }}
+      style={{ height: "80px !important", zIndex: 99999 }}
     >
       <div className="container">
         <div className="d-flex">

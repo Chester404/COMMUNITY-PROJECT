@@ -1,3 +1,4 @@
 import { Auth } from "./auth";
 import { Users } from "./users";
-export { Auth, Users };
+import { Products } from "./products";
+export { Auth, Users, Products };
