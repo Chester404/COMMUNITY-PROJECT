@@ -251,9 +251,13 @@ export default function Home() {
                   <th scope="col" className="text-muted">
                     Location
                   </th>
-                  <th scope="col" className="text-muted">
-                    Actions
-                  </th>
+                  {togglelist ? null : (
+                    <>
+                      <th scope="col" className="text-muted">
+                        Actions
+                      </th>
+                    </>
+                  )}
                 </tr>
               </thead>
               <tbody>
@@ -298,12 +302,16 @@ export default function Home() {
                       <td>
                         <p className="mt-2">{uprofile.street_address}</p>
                       </td>
-                      <td>
-                        <p className="mt-2">
-                          <i className="fe fe-alert-octagon large" />
-                          <i className="fe fe-heart ml-1 large" />
-                        </p>
-                      </td>
+                      {togglelist ? null : (
+                        <>
+                          <td>
+                            <p className="mt-2">
+                              <i className="fe fe-alert-octagon large" />
+                              <i className="fe fe-heart ml-1 large" />
+                            </p>
+                          </td>
+                        </>
+                      )}
                     </tr>
                   );
                 })}

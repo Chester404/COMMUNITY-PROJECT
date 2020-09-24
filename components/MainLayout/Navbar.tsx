@@ -26,12 +26,12 @@ const Navbar = (props) => {
       dispatch({ type: "UPDATE_USERNAME", payload: lStorage.username });
       dispatch({ type: "SET_EMAIL", payload: lStorage.emailaddress });
       dispatch({ type: "SET_IMAGE", payload: lStorage.image });
-      dispatch({ type: "SET_ORGANIZATION", payload: lStorage.organization });
+      //dispatch({ type: "SET_ORGANIZATION", payload: lStorage.organization });
       dispatch({ type: "SET_USER_INFO", payload: upr });
       setIsLoggedIn(true);
-      setIsOrganization(state.userProfile.is_organization);
-      console.log("isOrganization", isOrganization);
-      console.log("from state", state.userProfile.is_organization);
+      //setIsOrganization(state.userProfile.is_organization);
+      //console.log("isOrganization", isOrganization);
+      //console.log("from state", state.userProfile.is_organization);
     }
   }, []);
 
