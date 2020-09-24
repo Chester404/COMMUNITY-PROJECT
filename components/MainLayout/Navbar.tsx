@@ -48,8 +48,11 @@ const Navbar = (props) => {
 
   return (
     <div
-      className="hor-header header d-flex navbar-collapse sticky sticky-pin"
-      style={{ height: "80px !important", zIndex: 99999 }}
+      className="hor-header header d-flex navbar-collapse"
+      style={{
+        height: "80px !important",
+        zIndex: 99999,
+      }}
     >
       <div className="container">
         <div className="d-flex">
