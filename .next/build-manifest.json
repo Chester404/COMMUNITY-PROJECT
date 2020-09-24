@@ -29,10 +29,10 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/auth/login.js"
     ],
-    "/editbusinessprofile": [
+    "/businessprofile": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/editbusinessprofile.js"
+      "static/chunks/pages/businessprofile.js"
     ]
   },
   "ampFirstPages": []
