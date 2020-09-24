@@ -1,11 +1,11 @@
-import MainLayout from "../components/MainLayout";
-
- function landingpage() {
+import MainLayout from "../components/MainLayout"
+function landingpage(){
     return(
-        // <MainLayout >
+        <MainLayout>
 
-        // <MainLayout />
+        </MainLayout>
+        
     )
 }
 
-export default landingpage;
+export default landingpage
