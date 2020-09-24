@@ -10,8 +10,7 @@ const Navbar = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const router = useRouter();
   const [isOrganization, setIsOrganization] = useState(false);
-  const [tempholder, setTempHolder] = useState(false)
-
+  const [tempholder, setTempHolder] = useState(false);
 
   const { state, dispatch } = useContext(Store);
   const logout = () => {
@@ -35,17 +34,20 @@ const Navbar = (props) => {
       //console.log("isOrganization", isOrganization);
       //console.log("from state", state.userProfile.is_organization);
     }
-    if (router.pathname.includes("/login") || router.pathname.includes("/signup") || router.pathname.includes("/confirmaccount") ){
-      setTempHolder(false)      
-    }else{
-      setTempHolder(true)
+    if (
+      router.pathname.includes("/login") ||
+      router.pathname.includes("/signup") ||
+      router.pathname.includes("/confirmaccount")
+    ) {
+      setTempHolder(false);
+    } else {
+      setTempHolder(true);
     }
-
   }, []);
 
   return (
     <div
-      className="hor-header header d-flex navbar-collapse"
+      className="hor-header header d-flex navbar-collapse sticky sticky-pin"
       style={{ height: "80px !important" }}
     >
       <div className="container">
@@ -226,60 +228,68 @@ const Navbar = (props) => {
                 </div>
               </div>
             </>
-          ) :tempholder ?
-          <>
-          <div className="navbar-list">
-            <div className="d-none dropdown d-md-flex">
-                <a className="nav-link">
-                  <span className="lay-outstyle mt-1">Market</span>
-                </a>
-                <a className="nav-link">
-                  <span className="lay-outstyle mt-1">Jobs</span>
-                </a>
+          ) : tempholder ? (
+            <>
+              <div className="navbar-list">
+                <div className="d-none dropdown d-md-flex">
+                  <a className="nav-link">
+                    <span className="lay-outstyle mt-1">Market</span>
+                  </a>
+                  <a className="nav-link">
+                    <span className="lay-outstyle mt-1">Jobs</span>
+                  </a>
 
-                <a className="nav-link">
-                  <span className="lay-outstyle mt-1">Partnership</span>
-                </a>
-                <a className="nav-link">
-                  <span className="lay-outstyle mt-1">Forum</span>
-                </a>
-                <Link href="/blog">
-                  <a
-                    className="nav-link"
-                    style={{ color: router.pathname == "/blog" ? "" : "#3f3d56" }}
-                  >
-                    <span className="lay-outstyle mt-1">Blog</span>
+                  <a className="nav-link">
+                    <span className="lay-outstyle mt-1">Partnership</span>
                   </a>
-                </Link>
-                <Link href="/memberlist">
-                  <a
-                    className="nav-link"
-                    style={{
-                      color: router.pathname == "/memberlist" ? "" : "#3f3d56",
-                    }}
-                  >
-                    <span className="lay-outstyle mt-1">Members</span>
+                  <a className="nav-link">
+                    <span className="lay-outstyle mt-1">Forum</span>
                   </a>
-                </Link>
-                
+                  <Link href="/blog">
+                    <a
+                      className="nav-link"
+                      style={{
+                        color: router.pathname == "/blog" ? "" : "#3f3d56",
+                      }}
+                    >
+                      <span className="lay-outstyle mt-1">Blog</span>
+                    </a>
+                  </Link>
+                  <Link href="/memberlist">
+                    <a
+                      className="nav-link"
+                      style={{
+                        color:
+                          router.pathname == "/memberlist" ? "" : "#3f3d56",
+                      }}
+                    >
+                      <span className="lay-outstyle mt-1">Members</span>
+                    </a>
+                  </Link>
+                </div>
+
+                {/*your paste ends here*/}
               </div>
 
-            {/*your paste ends here*/}
-              
-          </div>
-           
-           <div className="landingpage_login_signup_btns ">
-            <a className="landingpage_login_btn ml-6 mt-2" href="/auth/login" id="landingpage_login_btn">
-              Login
-            </a>
+              <div className="landingpage_login_signup_btns ">
+                <a
+                  className="landingpage_login_btn ml-6 mt-2"
+                  href="/auth/login"
+                  id="landingpage_login_btn"
+                >
+                  Login
+                </a>
 
-             <a className="btn btn-primary landingpage_signup_btn  ml-5" href="/auth/signup" id="landingpage_signup_btn">
-              Signup
-             </a>
-         </div>
-         </>
-
-          : null}
+                <a
+                  className="btn btn-primary landingpage_signup_btn  ml-5"
+                  href="/auth/signup"
+                  id="landingpage_signup_btn"
+                >
+                  Signup
+                </a>
+              </div>
+            </>
+          ) : null}
         </div>
       </div>
     </div>

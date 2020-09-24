@@ -586,6 +586,10 @@ memberlistdrop .nav-link {
   height: 36.5px;
   width: 200px;
 }
+a#editprofile_button {
+  text-align: center;
+  padding-top: 9px;
+}
 .authbtn {
   border-radius: 10px;
   height: 36.5px;
@@ -725,20 +729,20 @@ h5.table-title-market {
   cursor: pointer;
 }
 /*chester (landingpage) styling*/
-.landingpage_signup_btn{
-  width:100px;
+.landingpage_signup_btn {
+  width: 100px;
   height: 35px;
   font-weight: bold;
   color: white;
 }
-.landingpage_login_btn{
+.landingpage_login_btn {
   font-weight: bold;
   color: #3f3d56;
 }
 
-.landingpage_login_signup_btns{
+.landingpage_login_signup_btns {
   display: flex;
-  margin-top: 0.5rem;  
+  margin-top: 0.5rem;
 }
 
 .navbar-list {
@@ -748,3 +752,132 @@ h5.table-title-market {
 }
 
 /*chester (landingpage) styling ends here*/
+
+/*Azalia */
+/* CSS FOR ADMIN DASHBOARD AND USER LIST */
+.mpage {
+  background: #f7f7f7;
+  font-size: 13px;
+  overflow: hidden;
+}
+.sidenav {
+  height: 100%;
+  width: 60px;
+  position: fixed;
+  z-index: 1;
+  top: 80px;
+  left: 0;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 20px;
+  background: #818aa9;
+}
+.sidenavmenu {
+  position: relative;
+  right: 30px;
+  list-style: none;
+  padding: 10px;
+  color: white;
+  text-decoration: none;
+  width: 325px;
+  padding-left: 55px;
+}
+#list {
+  padding-left: 60px;
+  display: none;
+  color: white;
+}
+#list li {
+  padding: 7px;
+  color: white;
+}
+#list a :hover {
+  background: #3964fc;
+}
+.sidenavmenu a {
+  text-decoration: none;
+  color: white;
+  font-size: 13px;
+}
+.sidenavmenu a:hover {
+  text-decoration: none;
+  color: white;
+}
+.active,
+.sidenavmenu:hover {
+  text-decoration: none;
+  background: #3964fc;
+}
+.heading {
+  position: relative;
+  right: 31px;
+  list-style: none;
+  padding: 15px;
+  color: white;
+  width: 325px;
+  padding-left: 55px;
+}
+.heading a {
+  color: white;
+}
+.menuicons {
+  margin-right: 24px;
+  color: white;
+}
+#i {
+  position: absolute;
+  left: 235px;
+}
+.mng {
+  margin-left: 37px;
+}
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+#main {
+  transition: 0.5s;
+  margin-left: 30px;
+}
+.sidenav .closebtn {
+  position: absolute;
+  top: 37px;
+  left: 200px;
+  font-size: 36px;
+  font-size: 20px;
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
+}
+.open {
+  position: relative;
+  top: 20px;
+  left: -24px;
+  font-size: 20px;
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
+}
+.add-user-btn {
+  height: 2.2rem;
+  width: 7rem;
+  font-family: "Open Sans", sans-serif !important;
+}
+.gobtn {
+  background: #3964fc;
+}
+/* .userlist {
+  margin-left: 3px;
+} */
+.selectusers {
+  background-color: transparent;
+  margin-left: 12px;
+}
+.seluser {
+  background: white;
+}
+.userlistpage {
+  margin-top: 8% !important;
+}
+.openicon {
+  font-size: 20px;
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
+}

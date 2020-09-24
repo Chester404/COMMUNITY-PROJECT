@@ -148,7 +148,7 @@ module.exports = require("next/dist/next-server/server/utils.js");
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-var _jsxFileName = "C:\\Users\\AMALITECH\\Documents\\COMMUNITY-PROJECT\\cp-fe\\components\\MainLayout\\Footer.tsx";
+var _jsxFileName = "C:\\wamp64\\www\\cp-fe\\components\\MainLayout\\Footer.tsx";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
@@ -840,7 +840,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_document__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/document */ "./node_modules/next/document.js");
 /* harmony import */ var next_document__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_document__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _components_MainLayout_Footer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/MainLayout/Footer */ "./components/MainLayout/Footer.tsx");
-var _jsxFileName = "C:\\Users\\AMALITECH\\Documents\\COMMUNITY-PROJECT\\cp-fe\\pages\\_document.js";
+var _jsxFileName = "C:\\wamp64\\www\\cp-fe\\pages\\_document.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
