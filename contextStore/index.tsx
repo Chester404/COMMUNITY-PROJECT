@@ -12,6 +12,8 @@ interface IGState {
   emailaddress: string;
   image: string;
   tokens: TTokens;
+  organization: boolean;
+  userProfile: any;
 }
 
 const gState: IGState = {
@@ -19,6 +21,8 @@ const gState: IGState = {
   emailaddress: "",
   image: "",
   tokens: { accessToken: "", refreshToken: "" },
+  organization: false,
+  userProfile: {},
 };
 
 const reducer = (state, action) => {
@@ -31,6 +35,11 @@ const reducer = (state, action) => {
       return { ...state, image: action.payload };
     default:
       return state;
+      case "SET_ORGANIZATION":
+        return { ...state, organization: action.payload };
+      case "SET_USER_INFO":
+        return { ...state, userProfile: action.payload };
+
   }
 };
 
