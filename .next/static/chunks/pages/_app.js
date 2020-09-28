@@ -18,7 +18,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var _this = undefined,
-    _jsxFileName = "C:\\wamp64\\www\\cp-fe\\contextStore\\index.tsx",
+    _jsxFileName = "C:\\Users\\user\\Documents\\CommunityProject\\isaac-ui\\cp-fe\\contextStore\\index.tsx",
     _s = $RefreshSig$();
 
 
@@ -6556,7 +6556,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _contextStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../contextStore */ "./contextStore/index.tsx");
 
-var _jsxFileName = "C:\\wamp64\\www\\cp-fe\\pages\\_app.tsx";
+var _jsxFileName = "C:\\Users\\user\\Documents\\CommunityProject\\isaac-ui\\cp-fe\\pages\\_app.tsx";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
@@ -6655,7 +6655,7 @@ $RefreshReg$(_c, "MyApp");
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! next-client-pages-loader?page=%2F_app&absolutePagePath=private-next-pages%2F_app.tsx! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F_app&absolutePagePath=private-next-pages%2F_app.tsx!./");
-module.exports = __webpack_require__(/*! C:\wamp64\www\cp-fe\node_modules\next\dist\client\router.js */"./node_modules/next/dist/client/router.js");
+module.exports = __webpack_require__(/*! C:\Users\user\Documents\CommunityProject\isaac-ui\cp-fe\node_modules\next\dist\client\router.js */"./node_modules/next/dist/client/router.js");
 
 
 /***/ })

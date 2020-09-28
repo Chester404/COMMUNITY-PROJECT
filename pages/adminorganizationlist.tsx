@@ -100,7 +100,7 @@ export default function userList() {
       const rs = await new Users().getProfiles();
       // setRs(rs);
       let temp = rs.filter((uprofile: any) => {
-        return uprofile.is_organization === false;
+        return uprofile.is_organization === true;
       });
       setTempList(temp);
       setUserProfiles(temp.slice(0, recordsPerPage));
@@ -192,7 +192,7 @@ export default function userList() {
               id="toggle-title"
             >
               User List
-            </h5>            
+            </h5>
             <div className="ml-auto">
               <div className="dropdown">
                 <a
@@ -290,9 +290,13 @@ export default function userList() {
                   <tr key={index}>
                     <td scope="col" className="text-muted">
                       <div className="form-check">
-                        <input type="checkbox" className="form-check-input" id="check-all" />
+                        <input
+                          type="checkbox"
+                          className="form-check-input"
+                          id="check-all"
+                        />
                       </div>
-                    </td>                    
+                    </td>
                     <td>
                       <div className="dropdown ddmargin">
                         <a

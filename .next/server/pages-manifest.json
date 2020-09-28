@@ -2,6 +2,7 @@
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
   "/_error": "pages/_error.js",
-  "/auth/forgottenpassword": "pages/auth/forgottenpassword.js",
-  "/userList": "pages/userList.js"
+  "/userList": "pages/userList.js",
+  "/blog": "pages/blog.js",
+  "/adminorganizationlist": "pages/adminorganizationlist.js"
 }
