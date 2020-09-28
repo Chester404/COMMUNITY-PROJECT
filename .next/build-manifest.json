@@ -24,15 +24,15 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
-    "/auth/forgottenpassword": [
+    "/products/addproduct": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/auth/forgottenpassword.js"
+      "static/chunks/pages/products/addproduct.js"
     ],
-    "/userList": [
+    "/products/detailproduct": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/userList.js"
+      "static/chunks/pages/products/detailproduct.js"
     ]
   },
   "ampFirstPages": []

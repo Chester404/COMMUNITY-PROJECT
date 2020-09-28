@@ -881,3 +881,36 @@ h5.table-title-market {
   color: white;
   text-shadow: 2px 2px 4px #000000;
 }
+
+/*styling for add/edit product (peter)*/
+.addproduct-buttons {
+  background: #3964fc !important;
+  width: 240px !important;
+  color: #ffffff !important;
+  border-radius: 10px !important;
+  height: 36.5px !important;
+}
+.cancelproduct-buttons {
+  background: #818aa9 !important;
+  width: 240px !important;
+  color: #ffffff !important;
+  border-radius: 10px !important;
+  height: 36.5px !important;
+}
+
+div.borderimage:before {
+  content: "";
+  position: absolute;
+  border: 10.7px dashed #818aa9;
+  top: -7px;
+  bottom: -7px;
+  left: -7px;
+  right: -7px;
+}
+div.borderimage {
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  padding: 15px;
+  margin: 7px;
+}
