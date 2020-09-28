@@ -1,8 +1,4 @@
-import React, { useEffect, useState } from "react";
-
 const AdminSidebar = ({handleList}) => {
-  // const [list, setList] = useState("individual");
-
   return (
     <div>
       <div id="mySidenav" className="sidenav">
@@ -21,9 +17,14 @@ const AdminSidebar = ({handleList}) => {
             </li>
           </a>
         </div>
-        <a onClick={() => closeNav()}>
-          <i className="fa fa-chevron-circle-left closebtn" />
-        </a>
+        <div>
+          {/* <i className="fa fa-chevron-circle-left closebtn" /> */}
+          <i
+            className="fa fa-chevron-circle-left closebtn"            
+            onClick={() => closeNav()}
+            style={{ fontSize: "20px", cursor: "pointer" }}
+          />          
+        </div>
 
         <div className="sidenavmenu">
           <a href="#analytics">

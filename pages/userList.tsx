@@ -1,7 +1,6 @@
 import React from "react";
 import MainLayout from "../components/MainLayout";
 import AdminSidebar from "../components/admin-sidebar";
-import { Dropdown, DropdownButton, InputGroup } from "react-bootstrap";
 import { Users } from "../lib/endpoints";
 import { useEffect, useState } from "react";
 
@@ -81,28 +80,23 @@ export default function userList() {
   const [totalRecords, settotalRecords] = useState(0);
   const [recordsPerPage] = useState(30);
   const [order, setOrder] = useState(false);
-  const [userProfile, setUserProfile] = useState();
-  const [readyPopupData, setReadyPopupData] = useState(false);
-  const [userActive, setActivateUser] = useState(false);
-  const [rs, setRs] = useState([]);
-  // const [title, setTitle] = useState("Individuals");
+  // const [userActive,setActivateUser] = useState(null)
+  // const [userProfile, setUserProfile] = useState();
+  // const [readyPopupData, setReadyPopupData] = useState(false);
   const [list, setList] = useState("individual");
 
   const getUserDetails = async (id) => {
-    setReadyPopupData(false);
+    // setReadyPopupData(false);
     let rs = await new Users().getUserAccountDetails(id);
     console.log("RES:", rs);
     // check privacy
-    setReadyPopupData(true);
+    // setReadyPopupData(true);
   };
 
   useEffect(() => {
     (async () => {
       const rs = await new Users().getProfiles();
-      // setRs(rs);
       let temp = rs.filter((uprofile: any) => {
-        console.log("list", rs);
-        // list === "individual" ? uprofile.is_organization === false : uprofile.is_organization === true
         if (list === "individual") {
           return uprofile.is_organization === false;
         } else if (list === "organization") {
@@ -114,9 +108,9 @@ export default function userList() {
       settotalRecords(temp.length);
     })();
   }, [list]);
-  useEffect(() => {
-    setUserProfile(JSON.parse(window.localStorage.getItem("user-profile")));
-  }, []);
+  // useEffect(() => {
+  //   setUserProfile(JSON.parse(window.localStorage.getItem("user-profile")));
+  // }, []);
   const paginate = (page: number) => {
     const start = (page - 1) * recordsPerPage + 1;
     const end = start + recordsPerPage;
@@ -143,16 +137,15 @@ export default function userList() {
     setUserProfiles([...sorted].reverse());
   };
   const activateUser = () => {
-    setActivateUser(false);
+    // setActivateUser(false);
     // setTitle("Individuals");
   };
   const deactivateUser = () => {
-    setActivateUser(true);
+    // setActivateUser(true);
     // setTitle("Organizations");
   };
 
   const handleList = (str) => {
-    console.log("handle list fired")
     setList(str)
   }
 
