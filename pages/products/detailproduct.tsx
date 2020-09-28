@@ -32,23 +32,25 @@ export default function DetailProduct({}) {
 
   return (
     <MainLayout title={productData.name}>
-      <h1 style={{ marginTop: "20px" }}>My Product & Services</h1>
-      <div className="row">
-        <div className="col mt-2 full-image">
+      <div className="page-header">
+      <h1 className="page-title">My Products & Services</h1>
+      </div>     
+      <div className="row mb-6">
+        <div className="col mt-2 full-image ">
           <img
+          className="viewproduct-image1"
             src={
               productData.image_1
                 ? productData.image_1
                 : "https://picsum.photos/540/380"
             }
             alt={productData.name}
-            width={600}
-            height={400}
-            style={{ paddingBottom: "10px" }}
+            
           />
-          <div className="row">
-            <div className="col mt-2 sub-image" style={{ float: "inline-end" }}>
+          <div className="row sub-image">
+            <div className="col mt-2 sub-image">
               <img
+              className="viewproduct-image2"
                 src={
                   productData.image_2
                     ? productData.image_2
@@ -57,8 +59,9 @@ export default function DetailProduct({}) {
                 alt={productData.name}
               />
             </div>
-            <div className="col mt-2 sub-image" style={{ float: "inline-end" }}>
+            <div className="col mt-2 sub-image">
               <img
+              className="viewproduct-image2"
                 src={
                   productData.image_3
                     ? productData.image_3
@@ -81,26 +84,22 @@ export default function DetailProduct({}) {
           </Link>
 
           <div style={{ marginTop: "70px" }}>
-            <h2>
-              <b>
-                <span>{productData.name} </span>
-              </b>
-            </h2>
-            <h4>
-              <b>{productData.price}</b>
-              <b
-                className="disabled"
-                style={{ textDecoration: "line-through", marginLeft: "10px" }}
-              >
-                {productData.price}
-              </b>
+            {/* <h2> */}
+              
+            {/* </h2> */}
+            <h1 className="product_name"><b>{productData.name} </b></h1>
+            <span className="add_product_details">
+            
+                
+                <h5 className="product_details">GHS {productData.price}</h5>
+                <h5 className="disabled">{productData.price}</h5>
               <button
                 className="btn btn-primary btn-sm"
                 style={{ marginLeft: "10px" }}
               >
                 {productData.discount}% off
               </button>
-            </h4>
+            </span>
             <p>{productData.description}</p>
           </div>
         </div>
