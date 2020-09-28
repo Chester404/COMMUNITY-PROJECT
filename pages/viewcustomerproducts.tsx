@@ -1,6 +1,9 @@
 import MainLayout from "../components/MainLayout";
 import { Products } from "../lib/endpoints";
 import { useEffect, useState } from "react";
+import Link  from 'next/link';
+import ProductCard  from '../components/ProductCard';
+import ServiceCard from '../components/ServiceCard';
 
 const disabled = {};
 interface IPaginateProps {
@@ -141,11 +144,11 @@ export default function ProductsView() {
                     type="text"
                     placeholder="Search for product/service"
                     onChange={()=> {}}
-                    style={{zIndex:"2", paddingLeft:"35px", height: "2.6em"}}
+                    style={{zIndex:2, paddingLeft:"35px", height: "3.0em"}}
                   />
-                  <button class="btn btn-primary" type="button" style={{zIndex:"-1", marginTop: "-35px", marginRight: "200px", float: "right", borderRadius: "7px", paddingRight: "30px", paddingLeft:"30px",}}>All</button>
-                  <button class="btn btn-primary" type="button" style={{zIndex:"-1", marginTop: "-35px", marginRight: "108px", float: "right", borderRadius: "7px"}}>Products</button>
-                  <button class="btn btn-primary" type="button" style={{zIndex:"-1", marginTop: "-35px", marginRight: "20px", float: "right", borderRadius: "7px"}}>Services</button>
+                  <button className="btn btn-primary" type="button" style={{zIndex:-1, marginTop: "-37px", marginRight: "200px", float: "right", borderRadius: "7px", paddingRight: "30px", paddingLeft:"30px",}}>All</button>
+                  <button className="btn btn-light" type="button" style={{zIndex:-1, marginTop: "-37px", marginRight: "108px", float: "right", borderRadius: "7px"}}>Products</button>
+                  <button className="btn btn-light" type="button" style={{zIndex:-1, marginTop: "-37px", marginRight: "20px", float: "right", borderRadius: "7px"}}>Services</button>
               </div>
             </div>
             
@@ -154,12 +157,12 @@ export default function ProductsView() {
               <div className="col-sm-2">
                 <div className="dropdown">
                   <button 
-                    className="btn btn-primary dropdown-toggle" 
+                    className="btn btn-light dropdown-toggle" 
                     type="button" id="dropdownMenuButton" 
                     data-toggle="dropdown" 
                     aria-haspopup="true" 
                     aria-expanded="false"
-                    style={{background: "#f7f7f7", border:"0.5px solid #b7aeae", borderColor: "#e0e0e0 !important", color: "#000", borderRadius: "7px"}}
+                    style={{border:"0.5px solid #b7aeae", borderColor: "#e0e0e0 !important", color: "#000", borderRadius: "7px"}}
                     >
                     Category
                   </button>
@@ -173,13 +176,13 @@ export default function ProductsView() {
               <div className="col-sm-2">
                 <div className="dropdown">
                   <button 
-                    className="btn btn-primary dropdown-toggle" 
+                    className="btn btn-light dropdown-toggle" 
                     type="button" 
                     id="dropdownMenuButton" 
                     data-toggle="dropdown" 
                     aria-haspopup="true" 
                     aria-expanded="false"
-                    style={{background: "#f7f7f7", border:"0.5px solid #b7aeae", borderColor: "#e0e0e0 !important", color: "#000"}}
+                    style={{border:"0.5px solid #b7aeae", borderColor: "#e0e0e0 !important", color: "#000"}}
                     >
                     Location
                   </button>
@@ -193,13 +196,13 @@ export default function ProductsView() {
               <div className="col-sm-2">
                 <div className="dropdown">
                   <button 
-                    className="btn btn-primary dropdown-toggle" 
+                    className="btn btn-light dropdown-toggle" 
                     type="button" 
                     id="dropdownMenuButton" 
                     data-toggle="dropdown" 
                     aria-haspopup="true" 
                     aria-expanded="false"
-                    style={{background: "#f7f7f7", border:"0.5px solid #b7aeae", borderColor: "#e0e0e0 !important", color: "#000"}}
+                    style={{border:"0.5px solid #b7aeae", borderColor: "#e0e0e0 !important", color: "#000"}}
                     >
                     Prices
                   </button>
@@ -217,57 +220,13 @@ export default function ProductsView() {
             <div className="row">
               {allproducts.map((product: any, index: number) => {
                   return (
-                <div className="col-sm-3" >
-                  <div className="card">
-                      <button class="btn btn-info" style={{width: "2em", borderRadius: "2em", zIndex: "3", marginBottom: "-3.8em", marginLeft: "80%", marginTop: "1em"}}><i class="fa fa-shopping-cart"></i></button>
-                      <img src="/images/products/valeriia-miller-_42NKYROG7g-unsplash.jpg" className="card-img-top mx-auto" alt="..." style={{ height: "10rem", objectFit:"fill", zIndex: "1"}} />
-                      <div className="card-body">
-                        
-                        <div className="row">
-                          <div className="col-md-10" style={{paddingRight: "2em"}}>
-                            <div className="font-weight-bold row">{product.title}</div>
-                            <div className="row">{`GHS ${product.price}`}</div>
-                          </div>
-                          <div className="col-md-2 d-flex align-items-center">
-                            <div className="row float-right">
-                              
-                              {/* <div className="btn-group mr-1" role="group" aria-label="First group">
-                                <button type="button" className="btn btn-sm">-</button>
-                                <span className=""> 1 </span>
-                                <button type="button" className="btn btn-primary btn-sm">+</button>
-                              </div> */}
-
-                              <div className="qty mt-5 btn-group">
-                                  <span className="minus" style={{fontSize:"1.5em", zIndex:"2"}}>-</span>
-                                  <input type="number" className="count" name="qty" value="1" style={{width: "4.2em", textAlign: "center", zIndex:"1", marginLeft: "-15px", marginRight: "-15px"}}/>
-                                  <span className="plus" style={{fontSize:"1em", zIndex:"2", marginTop: "6px"}}>+</span>
-                              </div>
-                            </div>
-                          </div>
-                          
-                        </div>
-                        
-                      </div>
-                  </div>
-                </div>
+                   product.product_type === 'PR' ? 
+                      <ProductCard key={index} product={product}/>
+                    : 
+                      <ServiceCard key={index} service={product}/>
                 );
               })}  
-              <div className="col-sm-6" >
-                  <div className="card">
-                  <div className="row">
-                    <div className=" col-sm-6" style={{order: "2"}}>
-                    <img src="/images/products/valeriia-miller-_42NKYROG7g-unsplash.jpg" className="card-img-right" alt="..." style={{ width: "100%", height: "20em", objectFit:"fill", zIndex: "1", marginBottom: "-1.5em"}} />
-                      <button class="btn btn-info" style={{width: "2em", borderRadius: "3em", marginTop: "1em", zIndex: "-1", marginLeft: "80%", marginTop: "-33.5em",}}><i className="fa fa-shopping-cart"></i></button>
-                    </div>
-                      <div className="card-body col-sm-6" style={{order: "1", width: "50%", paddingLeft: "3em", }}>                        
-                          <div className="font-weight-bold row" style={{paddingBottom: "15px"}}>This is the title of the distin</div>
-                          <div className="row">Something nice, something loveley, beautiful and delicious. This is so wonderful and phantasmagorical. Perplexing yet bemusing. </div>
-                          <div className="font-weight-bold row" style={{position: "absolute", bottom: "15px"}}>Read More</div>
-                      </div>
-                      
-                  </div>
-                </div>
-                </div>
+              
             </div>
                   
             <div
