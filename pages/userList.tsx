@@ -86,6 +86,7 @@ export default function userList() {
   const [userActive, setActivateUser] = useState(false);
   const [rs, setRs] = useState([]);
   // const [title, setTitle] = useState("Individuals");
+  const [list, setList] = useState("individual");
 
   const getUserDetails = async (id) => {
     setReadyPopupData(false);
@@ -100,13 +101,19 @@ export default function userList() {
       const rs = await new Users().getProfiles();
       // setRs(rs);
       let temp = rs.filter((uprofile: any) => {
-        return uprofile.is_organization === false;
+        console.log("list", rs);
+        // list === "individual" ? uprofile.is_organization === false : uprofile.is_organization === true
+        if (list === "individual") {
+          return uprofile.is_organization === false;
+        } else if (list === "organization") {
+          return uprofile.is_organization === true;
+        }
       });
       setTempList(temp);
       setUserProfiles(temp.slice(0, recordsPerPage));
       settotalRecords(temp.length);
     })();
-  }, []);
+  }, [list]);
   useEffect(() => {
     setUserProfile(JSON.parse(window.localStorage.getItem("user-profile")));
   }, []);
@@ -144,9 +151,14 @@ export default function userList() {
     // setTitle("Organizations");
   };
 
+  const handleList = (str) => {
+    console.log("handle list fired")
+    setList(str)
+  }
+
   return (
     <MainLayout>
-      <AdminSidebar />
+      <AdminSidebar handleList={handleList} />
       <div id="main">
         <div className="page-header">
           <div>
@@ -192,7 +204,7 @@ export default function userList() {
               id="toggle-title"
             >
               User List
-            </h5>            
+            </h5>
             <div className="ml-auto">
               <div className="dropdown">
                 <a
@@ -283,16 +295,17 @@ export default function userList() {
             </thead>
             <tbody>
               {userProfiles.map((uprofile: any, index: number) => {
-                console.log("profile:", uprofile);
-              })}
-              {userProfiles.map((uprofile: any, index: number) => {
                 return (
                   <tr key={index}>
                     <td scope="col" className="text-muted">
                       <div className="form-check">
-                        <input type="checkbox" className="form-check-input" id="check-all" />
+                        <input
+                          type="checkbox"
+                          className="form-check-input"
+                          id="check-all"
+                        />
                       </div>
-                    </td>                    
+                    </td>
                     <td>
                       <div className="dropdown ddmargin">
                         <a

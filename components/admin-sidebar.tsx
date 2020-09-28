@@ -1,4 +1,8 @@
-const AdminSidebar = () => {
+import React, { useEffect, useState } from "react";
+
+const AdminSidebar = ({handleList}) => {
+  // const [list, setList] = useState("individual");
+
   return (
     <div>
       <div id="mySidenav" className="sidenav">
@@ -39,10 +43,14 @@ const AdminSidebar = () => {
           </a>
         </div>
         <ul id="list">
-          <a href="/userList">
+          <a href="#" onClick={() => {            
+            handleList("individual")
+          }}>
             <li>Individual List</li>
           </a>
-          <a href="#organizationallist">
+          <a href="#" onClick={() => {            
+            handleList("organization")
+          }}>
             <li>Organizational List</li>
           </a>
           <a href="#organizationalrequests">
