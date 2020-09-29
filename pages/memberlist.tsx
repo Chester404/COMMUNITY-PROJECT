@@ -84,9 +84,7 @@ export default function Home() {
   const [rs, setRs] = useState([]);
   const [title, setTitle] = useState("Individuals");
   const router = useRouter();
-  // console.log("USER PROFILE:", userProfile);
-  // const [isLoading, setIsLoading] = useState(true);
-  // const [sorted, setSorted] = useState(false);
+  
   const getUserDetails = async (id) => {
     setReadyPopupData(false);
     let rs = await new Users().getUserAccountDetails(id);

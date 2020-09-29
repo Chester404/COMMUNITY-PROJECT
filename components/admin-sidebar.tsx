@@ -1,4 +1,4 @@
-const AdminSidebar = () => {
+const AdminSidebar = ({handleList}) => {
   return (
     <div>
       <div id="mySidenav" className="sidenav">
@@ -17,9 +17,14 @@ const AdminSidebar = () => {
             </li>
           </a>
         </div>
-        <a onClick={() => closeNav()}>
-          <i className="fa fa-chevron-circle-left closebtn" />
-        </a>
+        <div>
+          {/* <i className="fa fa-chevron-circle-left closebtn" /> */}
+          <i
+            className="fa fa-chevron-circle-left closebtn"            
+            onClick={() => closeNav()}
+            style={{ fontSize: "20px", cursor: "pointer" }}
+          />          
+        </div>
 
         <div className="sidenavmenu">
           <a href="#analytics">
@@ -39,10 +44,14 @@ const AdminSidebar = () => {
           </a>
         </div>
         <ul id="list">
-          <a href="/userList">
+          <a href="#" onClick={() => {            
+            handleList("individual")
+          }}>
             <li>Individual List</li>
           </a>
-          <a href="#organizationallist">
+          <a href="#" onClick={() => {            
+            handleList("organization")
+          }}>
             <li>Organizational List</li>
           </a>
           <a href="#organizationalrequests">
