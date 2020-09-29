@@ -93,4 +93,18 @@ export class Users {
       ...ctx.options,
     });
   }
+
+  async getBusinessProfile() {
+    //accounts/signed_in_user
+    return ufetch(" ", {
+      method: "GET",
+    });
+  }
+
+  async updateBusinessProfile(userData: any) {
+    return await ufetch(" ", {
+      method: "PUT",
+      body: JSON.stringify(userData),
+    });
+  }
 }

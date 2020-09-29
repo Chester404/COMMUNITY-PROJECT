@@ -2,7 +2,7 @@ import MainLayout from "../components/MainLayout";
 import UserProfilePopup from "../components/UserProfilePopup";
 import { Users } from "../lib/endpoints";
 import { useEffect, useState } from "react";
-
+import { useRouter } from "next/router";
 const disabled = {};
 interface IPaginateProps {
   callback(i: number): void;
@@ -16,12 +16,10 @@ const Pagination = ({
 }: IPaginateProps) => {
   const [iter, setIter] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-
   useEffect(() => {
     const tr = Math.ceil(totalRecords / recordsPerpage);
     if (tr > 0) setIter(Array(tr).fill(0));
   }, [totalRecords]);
-
   return (
     <div className="col-md-12">
       <div className="pagination ml-auto" style={{ float: "right" }}>
@@ -39,7 +37,6 @@ const Pagination = ({
         >
           « Prev
         </a>
-
         {iter.map((_, index: number) => {
           return (
             <a
@@ -83,11 +80,13 @@ export default function Home() {
   const [order, setOrder] = useState(false);
   const [userProfile, setUserProfile] = useState();
   const [readyPopupData, setReadyPopupData] = useState(false);
-
+  const [togglelist, setTogglelist] = useState(false);
+  const [rs, setRs] = useState([]);
+  const [title, setTitle] = useState("Individuals");
+  const router = useRouter();
   // console.log("USER PROFILE:", userProfile);
   // const [isLoading, setIsLoading] = useState(true);
   // const [sorted, setSorted] = useState(false);
-
   const getUserDetails = async (id) => {
     setReadyPopupData(false);
     let rs = await new Users().getUserAccountDetails(id);
@@ -95,21 +94,24 @@ export default function Home() {
     // check privacy
     setReadyPopupData(true);
   };
-
+  const handleOpenIndividualOrganization = (id) => {
+    router.push("/individualorganizationprofile");
+  };
   useEffect(() => {
     (async () => {
       const rs = await new Users().getProfiles();
-      setTempList(rs);
-      setUserProfiles(rs.slice(0, recordsPerPage));
-      // setIsLoading(false);
-      settotalRecords(rs.length);
+      // setRs(rs);
+      let temp = rs.filter((uprofile: any) => {
+        return uprofile.is_organization === togglelist;
+      });
+      setTempList(temp);
+      setUserProfiles(temp.slice(0, recordsPerPage));
+      settotalRecords(temp.length);
     })();
-  }, []);
-
+  }, [togglelist]);
   useEffect(() => {
     setUserProfile(JSON.parse(window.localStorage.getItem("user-profile")));
   }, []);
-
   const paginate = (page: number) => {
     const start = (page - 1) * recordsPerPage + 1;
     const end = start + recordsPerPage;
@@ -117,7 +119,6 @@ export default function Home() {
     const ts = tempList.slice(start - 1, end - 1);
     setUserProfiles(ts);
   };
-
   const searchLocation = (e: any) => {
     const ts = tempList.filter((p) => {
       return p.street_address
@@ -126,7 +127,6 @@ export default function Home() {
     });
     setUserProfiles(ts);
   };
-
   const sortByName = () => {
     if (order === true) {
       setOrder(false);
@@ -136,7 +136,14 @@ export default function Home() {
     const sorted = [...userProfiles];
     setUserProfiles([...sorted].reverse());
   };
-
+  const toggleIndividual = () => {
+    setTogglelist(false);
+    setTitle("Individuals");
+  };
+  const toggleOrganization = () => {
+    setTogglelist(true);
+    setTitle("Organizations");
+  };
   return (
     <>
       <MainLayout>
@@ -158,23 +165,65 @@ export default function Home() {
             </div>
           </div>
           {/* End page-header */}
+          <div className="table-responsive tabledt">
+            <div className="row">
+              <h5
+                className="mt-4 mb-3 ml-5 table-title"
+                style={{
+                  overflow: "hidden",
+                  whiteSpace: "nowrap",
+                  marginLeft: "38px !important",
+                }}
+                id="toggle-title"
+              >
+                Market Circle {title}
+              </h5>
 
-          <div
-            className="table-responsive table-lg"
-            style={{
-              background: "#ffffff",
-              marginBottom: "100px",
-            }}
-          >
-            <h5 className="mt-5 mb-5 ml-5 table-title">
-              Market Circle Individuals
-            </h5>
+              <div className="ml-auto">
+                <div className="dropdown">
+                  <a
+                    className="nav-link pr-0 leading-none d-flex pt-1"
+                    data-toggle="dropdown"
+                  >
+                    <div className="mt-3 mb-3 mr-5 table-title">
+                      <span
+                        style={{
+                          color: "#3f3d56",
+                          fontSize: "13px",
+                          marginRight: "20px",
+                        }}
+                      >
+                        Toggle List
+                        <i className="fe fe-list fa-lg ml-1" />
+                      </span>
+                    </div>
+                  </a>
+                  <div className="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                    <a
+                      className="dropdown-item header-item-style"
+                      id="display-individuals"
+                      onClick={toggleIndividual}
+                    >
+                      Market Circle Individuals
+                    </a>
+                    <a
+                      className="dropdown-item header-item-style"
+                      id="display-organizations"
+                      onClick={toggleOrganization}
+                    >
+                      Market Circle Organizations
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <table className="table">
               <thead>
                 <tr>
                   <th scope="col" className="text-muted ml-5">
                     <div className="dropdown">
-                      <span>
+                      <span id="toggle-sort">
                         <span className="ml-3">Name </span>
                         <i
                           className={`fa fa-sort-amount-${
@@ -187,17 +236,13 @@ export default function Home() {
                           <div className="ml-2 mt-3">
                             <span>Sort by</span>
                           </div>
-                          <div
-                            className="ml-2 mt-3"
-                            style={{ color: "#3F3D56", cursor: "pointer" }}
-                          >
-                            <span onClick={sortByName}>Name (A-Z)</span>
+                          <div className="ml-2 mt-3 tbtheadcolor">
+                            <span onClick={sortByName} id="sort-by-name">
+                              Name (A-Z)
+                            </span>
                           </div>
-                          <div
-                            className="ml-2 mt-3 mb-2"
-                            style={{ color: "#3F3D56" }}
-                          >
-                            <span>Location</span>
+                          <div className="ml-2 mt-3 mb-2 tbtheadcolor">
+                            <span id="sort-by-location">Location</span>
                           </div>
                         </div>
                       </div>
@@ -206,9 +251,13 @@ export default function Home() {
                   <th scope="col" className="text-muted">
                     Location
                   </th>
-                  <th scope="col" className="text-muted">
-                    Actions
-                  </th>
+                  {togglelist ? null : (
+                    <>
+                      <th scope="col" className="text-muted">
+                        Actions
+                      </th>
+                    </>
+                  )}
                 </tr>
               </thead>
               <tbody>
@@ -216,10 +265,7 @@ export default function Home() {
                   return (
                     <tr key={index}>
                       <td>
-                        <div
-                          className="dropdown"
-                          style={{ marginLeft: "-40px" }}
-                        >
+                        <div className="dropdown ddmargin">
                           <a
                             className="nav-link"
                             data-toggle="dropdown"
@@ -236,12 +282,8 @@ export default function Home() {
                                   ? uprofile.image
                                   : "/assets/images/Profile_Icon.png"
                               }
-                              className="brround"
+                              className="brround ddimg"
                               alt=""
-                              style={{
-                                width: "40px",
-                                height: "40px",
-                              }}
                             />
                             <span className="ml-5 column-color" id="memberid">
                               {uprofile.name}
@@ -260,24 +302,21 @@ export default function Home() {
                       <td>
                         <p className="mt-2">{uprofile.street_address}</p>
                       </td>
-                      <td>
-                        <p className="mt-2">
-                          <i
-                            className="fe fe-alert-octagon"
-                            style={{ fontSize: "large" }}
-                          />
-                          <i
-                            className="fe fe-heart ml-1"
-                            style={{ fontSize: "large" }}
-                          />
-                        </p>
-                      </td>
+                      {togglelist ? null : (
+                        <>
+                          <td>
+                            <p className="mt-2">
+                              <i className="fe fe-alert-octagon large" />
+                              <i className="fe fe-heart ml-1 large" />
+                            </p>
+                          </td>
+                        </>
+                      )}
                     </tr>
                   );
                 })}
-              </tbody>
+              </tbody>{" "}
             </table>
-
             <div
               className="row"
               style={{ margin: "10px", background: "#ffffff" }}

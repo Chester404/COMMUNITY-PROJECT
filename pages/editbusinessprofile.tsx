@@ -6,46 +6,22 @@ import Prompt from "../components/Prompt";
 import { Store } from "../contextStore";
 import { useRouter } from "next/router";
 import moment from "moment";
-
-const REGIONS = [
-  ["wr", "Western Region"],
-  ["as", "Ashanti"],
-  ["ba", "Brong Ahafo Region"],
-  ["be", "Bono-East Region"],
-  ["ah", "Ahafo Region"],
-  ["cr", "Central Region"],
-  ["er", "Eastern Region"],
-  ["gr", "Greater Accra Region"],
-  ["nr", "Northern Region"],
-  ["sa", "Savannah Region"],
-  ["ne", "North East Region"],
-  ["ue", "Upper East Region"],
-  ["uw", "Upper West Region"],
-  ["ot", "Oti Region"],
-  ["wn", "Western-North Region"],
-];
-const PRIVACY = [
-  ["me", "Me"],
-  ["or", "Registered Organisation Only"],
-  ["orc", "Registered Organisation and Community members"],
-];
+import { REGIONS, CATEGORY } from "../public/assets/js/customData"
 
 export default function Home() {
   // const [id, setId] = useState("");
   const [name, setName] = useState("");
-  const [birthday, setBirthDay] = useState("");
-  const [gender, setGender] = useState("");
-  // const [reg_dat, setRegDate] = useState("");
-  const [street_address, setStreetAddress] = useState("");
-  const [phone_number, setPhoneNumber] = useState("");
+  const [location, setLocation] = useState("");
+  const [city, setCity] = useState("");
+  const [phone, setPhone] = useState("");
   const [region, setRegion] = useState("wr");
-  const [gps_location, setDigitalAddress] = useState("");
-  const [privacy_level, setPrivacyLevel] = useState("me");
+  const [category, setCategory] = useState("agr");
+  const [website, setWebsite] = useState("");
+  const [description, setDescription] = useState("")
+
   // const [image, setImage] = useState("");
   const [email, setEmail] = useState("");
-  // const [user_id, setUser] = useState("");
-  // const [statusMsg, setStatusMsg] = useState("");
-  // const [statusColor, setStatusColor] = useState("blue");
+
   const [show, setShow] = useState(false);
   const [prompt_title, setPromptTitle] = useState("");
   const [prompt_body, setPromptBody] = useState("");
@@ -67,7 +43,7 @@ export default function Home() {
 
   const handleClose = () => {
     if (doneUpdate) {
-      router.push("/profile");
+      router.push("/businessprofile");
     }
     setShow(false);
   };
@@ -97,45 +73,28 @@ export default function Home() {
     }
 
     let phoneno = /^\d{10}$/;
-    if (phone_number.length > 0) {
+    if (phone.length > 0) {
       if (
-        !phone_number.match(phoneno) ||
-        phone_number.length > 10 ||
-        phone_number.length < 10
+        !phone.match(phoneno) ||
+        phone.length > 10 ||
+        phone.length < 10
       ) {
         callPrompt("Edit Profile", "", "Close", "Invalid phone number");
         return;
       }
     }
 
-    const allowedYear = new Date(
-      moment().subtract(10, "years").toString()
-    ).getFullYear();
-    const userYear = new Date(birthday).getFullYear();
-
-    if (userYear > allowedYear) {
-      callPrompt(
-        "Edit Profile",
-        "",
-        "Close",
-        "Date should be at least equal to or more than 10 years"
-      );
-      return;
-    }
-
     callPrompt("Edit Profile", "", "", "Please wait...");
-    const [first, ...last] = name.split(" ");
-    const response = await new Users().updateUserProfile({
+    const response = await new Users().updateBusinessProfile({
       name: name,
-      first_name: first,
-      last_name: last.join(" "),
-      birthday: birthday,
-      gender: gender,
-      street_address: street_address,
-      phone_number: phone_number,
+      phone: phone,
+      website: website,
       region: region,
-      gps_location: gps_location,
-      privacy_level: privacy_level,
+      location: location,
+      category: category,
+      description: description,
+      city: city
+
     });
 
     if (response.error) {
@@ -178,25 +137,25 @@ export default function Home() {
       window.localStorage.setItem("cp-a", JSON.stringify(lStorage));
     }
     setDoneUpdate(true);
-    callPrompt("Edit Profile", "", "Close", "Success: User profile saved");
+    callPrompt("Edit Profile", "", "Close", "Success: Business profile saved");
   };
 
   useEffect(() => {
     (async () => {
-      const rs = await new Users().getUserProfile();
+      const rs = await new Users().getBusinessProfile();
       setName(rs.name);
-      setBirthDay(rs.birthday ? rs.birthday : "1999-12-12");
-      setGender(rs.gender ? rs.gender : "");
-      setStreetAddress(rs.street_address);
-      setPhoneNumber(rs.phone_number);
+      setPhone(rs.phone);
+      setCity(rs.city);
+      setCategory(rs.category ? rs.category : "agr")
       setRegion(rs.region ? rs.region : "wr");
-      setDigitalAddress(rs.gps_location);
-      setPrivacyLevel(rs.privacy_level ? rs.privacy_level : "me");
+      setLocation(rs.location);
+      setWebsite(rs.website)
+      setDescription(rs.description)
       setEmail(rs.user.email);
       if (rs.image) {
         setImage(rs.image);
       }
-      console.log("rsData", rs);
+      console.log("BusinessData", rs);
       setIsReady(true);
     })();
   }, []);
@@ -265,21 +224,7 @@ export default function Home() {
               };
               reader.readAsDataURL(file);
             }}
-            //setImage(e.target.files[0])}
-            // onChange={(evt: any) => {
-            //   var reader: any = new FileReader();
-            //   // const files: any = Array.from(event.target.files);
-            //   // reader.onload = async () => {
-            //   //   setImage(reader.result);
-            //   // };
-            //   // reader.readAsDataURL(event.target.files[0]);
-            //   reader.onload = function (event) {
-            //     setImage(event.target.result);
-            //   };
-            //   reader.readAsDataURL(evt.target.files[0]);
-            // }}
           />
-
           <div className="row">
             <div className="col-md-3">
               <div className="userpic mb-4">
@@ -288,17 +233,32 @@ export default function Home() {
                     src={!isReady ? "" : userImage}
                     width={200}
                     height={200}
-                    className="defbdraduis"
+                    style={{ borderRadius: "10px" }}
                   />
-                  <div className="edit editicon">
+                  <div
+                    className="edit"
+                    style={{
+                      marginTop: "40% !important",
+                      marginRight: "35% !important",
+                    }}
+                  >
                     <a href="#">
                       <button
                         type="button"
-                        className="btn btn-icon editbtnicon"
+                        className="btn btn-icon"
+                        style={{
+                          background: "#443F4F !important",
+                          color: "#ffffff !important",
+                          borderRadius: "50%",
+                        }}
                         onClick={triggerUpload}
                       >
-                        <i className="fe fe-edit-2 fa-lg editbtniconsize" />
-                      </button>
+                        <i
+                          className="fe fe-edit-2 fa-lg"
+                          style={{ fontSize: "25px" }}
+                        />
+                      </button> 
+                     
                     </a>
                   </div>
                 </div>
@@ -309,8 +269,8 @@ export default function Home() {
               <div className="row">
                 <div className="col-lg-5 col-md-12">
                   <div className="form-group">
-                    <label className="bolder">
-                      Name <span className="red">*</span>
+                    <label style={{ fontWeight: "bold" }}>
+                      Organization Title <span style={{ color: "red" }}>*</span>
                     </label>
                     <input
                       type="text"
@@ -322,7 +282,9 @@ export default function Home() {
                     />
                   </div>
                   <div className="form-group">
-                    <label className="formlabel">Email Address</label>
+                    <label style={{ color: "grey", fontWeight: "bold" }}>
+                      Email Address
+                    </label>
                     <input
                       type="text"
                       className="form-control form-rounded text-muted"
@@ -332,105 +294,67 @@ export default function Home() {
                     />
                   </div>
                   <div className="form-group">
-                    <label className="bolder">Phone Number</label>
-                    <input
-                      type="number"
-                      className="form-control form-rounded"
-                      placeholder="eg. 024 567 3456"
-                      value={phone_number}
-                      min={10}
-                      max={10}
-                      onChange={(e) => setPhoneNumber(e.target.value)}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label className="bolder">Date of Birth</label>
-                    <div className="form-group">
-                      <div className="input-group-date">
-                        <input
-                          type="date"
-                          id="dob"
-                          className="form-control form-rounded"
-                          value={birthday}
-                          onChange={(e) => setBirthDay(e.target.value)}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="form-group">
-                    <label className="bolder">Privacy Level</label>
+                    <label style={{ fontWeight: "bolder" }}>Category <span style={{ color: "red" }}>*</span></label>
                     <select
                       className="form-control select2 form-rounded"
-                      value={privacy_level}
-                      onChange={(e) => setPrivacyLevel(e.target.value)}
+                      onChange={(e) => setCategory(e.target.value)}
+                      value={category}
                     >
-                      {PRIVACY.map((p) => (
-                        <option key={p[0]} value={p[0]}>
-                          {p[1]}
+                      {CATEGORY.map((r, i) => (
+                        <option key={i} value={r[0]}>
+                          {r[1]}
                         </option>
                       ))}
                     </select>
                   </div>
-                </div>
-
-                <div className="col-lg-1"></div>
-                <div className="col-lg-5 col-md-12">
-                  <div className="form-group mt-4">
-                    <label className="bolder" htmlFor="exampleInput">
-                      Gender
-                    </label>
-                    <div className="row" style={{ marginLeft: 3 }}>
-                      <div className="form-check form-check-inline">
-                        <input
-                          className="form-check-input"
-                          type="radio"
-                          name="inlineRadioOptions"
-                          id="inlineRadio1"
-                          value="m"
-                          checked={gender == "m" ? true : false}
-                          onChange={(e) => setGender(e.target.value)}
-                        />
-                        <label
-                          style={{ fontWeight: "bolder" }}
-                          className="form-check-label"
-                          htmlFor="inlineRadio1"
-                        >
-                          Male
-                        </label>
-                      </div>
-                      <div className="form-check form-check-inline">
-                        <input
-                          className="form-check-input"
-                          type="radio"
-                          name="inlineRadioOptions"
-                          id="inlineRadio2"
-                          value="f"
-                          checked={gender == "f" ? true : false}
-                          onChange={(e) => setGender(e.target.value)}
-                        />
-                        <label
-                          style={{ fontWeight: "bolder" }}
-                          className="form-check-label"
-                          htmlFor="inlineRadio2"
-                        >
-                          Female
-                        </label>
+                  <div className="form-group">
+                    <label
+                      style={{ fontWeight: "bolder" }}
+                      htmlFor="form-label"
+                    >
+                      Description
+                      </label>
+                    <div className="form-group">
+                      <div className="input-group-date">
+                        <textarea style={{ resize: "none" }} className="form-control form-rounded " rows={4}
+                          onChange={(e) => setDescription(e.target.value)}
+                          value={description}></textarea>
                       </div>
                     </div>
                   </div>
 
+                </div>
+
+                <div className="col-lg-1"></div>
+                <div className="col-lg-5 col-md-12">
                   <div className="form-group">
-                    <label className="bolder">Town</label>
+                    <label style={{ fontWeight: "bolder" }}>
+                      Website
+                    </label>
                     <input
                       type="text"
                       className="form-control form-rounded"
-                      placeholder="eg. Anaji"
-                      value={street_address}
-                      onChange={(e) => setStreetAddress(e.target.value)}
+                      placeholder="www.amalitech.com"
+                      value={website}
+                      onChange={(e) => setWebsite(e.target.value)}
                     />
                   </div>
+
                   <div className="form-group">
-                    <label className="bolder">Region</label>
+                    <label style={{ fontWeight: "bolder" }}>Phone Number <span style={{ color: "red" }}>*</span></label>
+                    <input
+                      type="number"
+                      className="form-control form-rounded"
+                      placeholder="eg. 024 567 3456"
+                      value={phone}
+                      min={10}
+                      max={10}
+                      onChange={(e) => setPhone(e.target.value)}
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label style={{ fontWeight: "bolder" }}>Region <span style={{ color: "red" }}>*</span></label>
                     <select
                       className="form-control select2 form-rounded"
                       onChange={(e) => setRegion(e.target.value)}
@@ -444,13 +368,25 @@ export default function Home() {
                     </select>
                   </div>
                   <div className="form-group">
-                    <label className="bolder">Digital Address</label>
+                    <label style={{ fontWeight: "bolder" }}>
+                      Digital Address
+					  <span style={{ color: "red" }}>*</span></label>
                     <input
                       type="text"
                       className="form-control form-rounded"
                       placeholder="eg. AK-039-5028"
-                      value={gps_location}
-                      onChange={(e) => setDigitalAddress(e.target.value)}
+                      value={location}
+                      onChange={(e) => setLocation(e.target.value)}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label style={{ fontWeight: "bolder" }}>Town <span style={{ color: "red" }}>*</span></label>
+                    <input
+                      type="text"
+                      className="form-control form-rounded"
+                      placeholder="eg. Anaji"
+                      value={city}
+                      onChange={(e) => setCity(e.target.value)}
                     />
                   </div>
                 </div>
@@ -459,23 +395,44 @@ export default function Home() {
                 <div className="col-md-3"></div>
                 <div className="col-md-3">
                   <button
-                    className="btn btn-primary savebtn btn-block mb-1 mt-5"
+                    className="btn btn-primary btn-block mb-1 mt-5"
+                    style={{
+                      background: "#3964FC !important",
+                      width: "200px !important",
+                      color: "#ffffff !important",
+                      borderRadius: "10px !important",
+                      height: "36.5px !important",
+                    }}
                     onClick={() => submitData()}
                   >
                     Save
                   </button>
                 </div>
                 <div className="col-md-3">
-                  <Link href="/profile">
-                    <button className="btn btn-primary cancelbtn btn-block mb-1 mt-5">
+                  <Link href="/businessprofile">
+                    <button
+                      className="btn btn-primary btn-block mb-1 mt-5"
+                      style={{
+                        background: "#818AA9 !important",
+                        width: "200px !important",
+                        color: "#ffffff !important",
+                        borderRadius: "10px !important",
+                        height: "36.5px !important",
+                      }}
+                    >
                       Cancel
                     </button>
+
                   </Link>
                 </div>
                 <div className="col-md-3"></div>
               </div>
-              <div className="btn-list profilemargin">
-                <div className="row"></div>
+              <div
+                className="btn-list"
+                style={{ marginLeft: "23%", marginRight: "23%" }}
+              >
+                <div className="row">
+                </div>
               </div>
               {/* </div> */}
             </div>

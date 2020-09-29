@@ -172,7 +172,7 @@ const Signup = () => {
         </Prompt>
 
         <div className="signupcontent">
-          <div style={{ textAlign: "center" }} className="mb-5">
+          <div className="mb-5 center">
             <br />
             <br />
             <div>
@@ -209,10 +209,10 @@ const Signup = () => {
               <label htmlFor="InputPassword1" className="formlabel">
                 Password
               </label>
-              <div className="input-group">
+              <div className="input-group hasiconborder">
                 <input
                   type={togglepasswordeye ? "text" : "password"}
-                  className="form-control form-rounded"
+                  className="form-control hasicon"
                   id="InputPassword1"
                   placeholder="Password must be at least 8 characters"
                   data-toggle="password"
@@ -236,10 +236,10 @@ const Signup = () => {
               <label htmlFor="InputPassword1" className="formlabel">
                 Confirm Password
               </label>
-              <div className="input-group">
+              <div className="input-group hasiconborder">
                 <input
                   type={toggleconfirmpasswordeye ? "text" : "password"}
-                  className="form-control form-rounded"
+                  className="form-control hasicon"
                   id="InputPassword2"
                   placeholder="Re-Enter the same password as above"
                   data-toggle="password"
@@ -261,13 +261,13 @@ const Signup = () => {
               </div>
             </div>
 
-            <div style={{ textAlign: "center" }}>
+            <div className="center">
               <input
                 type="radio"
                 id="organization"
                 name="account_type"
                 defaultValue="organization"
-                defaultChecked
+                onChange={() => setIsOrganization(true)}
               />
               <label htmlFor="organization" className="radio_spc ml-2">
                 Organization
@@ -279,6 +279,7 @@ const Signup = () => {
                   name="account_type"
                   defaultValue="individual"
                   className="radio_spc"
+                  onChange={() => setIsOrganization(false)}
                 />
                 <label htmlFor="individual" className="ml-2">
                   Individual
@@ -286,7 +287,7 @@ const Signup = () => {
               </span>
             </div>
 
-            <div style={{ textAlign: "center", paddingRight: "10px" }}>
+            <div className="center">
               <button
                 type="submit"
                 className="btn btn-primary btn-block"
@@ -296,7 +297,7 @@ const Signup = () => {
               </button>
             </div>
             <br />
-            <div style={{ textAlign: "center" }}>
+            <div className="center">
               By clicking sign up, you agree to the Market Circle
               <br />
               <b>

@@ -1,7 +1,7 @@
 import MainLayout from "../components/MainLayout";
 import { Users } from "../lib/endpoints";
 import { useState, useEffect, useContext } from "react";
-// import Link from "next/link";
+import Link from "next/link";
 import { Store } from "../contextStore";
 
 const REGIONS = [
@@ -52,7 +52,7 @@ export default function Home() {
         <div>
           {/* page-header */}
           <div className="page-header mt-6">
-            <h3 className="page-title ">Profile</h3>
+            <h3 className="page-title">Profile</h3>
           </div>
           {/* End page-header */}
           <div className="row ">
@@ -64,24 +64,23 @@ export default function Home() {
                       ? profileData.image
                       : "/assets/images/Profile_Icon.png"
                   }
+                  className="defbdraduis"
                   alt=""
                   width={200}
                   height={200}
-                  style={{ borderRadius: "10px" }}
                 />
               </div>
               <div className="text-center">
-                {/* <Link href="/editprofile"> */}
-
-                <button
-                  type="submit"
-                  className="btn btn-primary btn-block"
-                  id="editprofile_button"
-                  onClick={() => (window.location.pathname = "/editprofile")}
-                >
-                  Edit Information
-                </button>
-
+                <Link href="/editprofile">
+                  <a
+                    /* type="submit" */
+                    className="btn btn-primary btn-block"
+                    id="editprofile_button"
+                    /* onClick={() => (window.location.pathname = "/editprofile")} */
+                  >
+                    Edit Information
+                  </a>
+                </Link>
                 <br />
               </div>
             </div>
@@ -92,7 +91,7 @@ export default function Home() {
               <div className="row">
                 <div className="col-lg-5 col-md-12">
                   <div className="form-group">
-                    <label style={{ fontWeight: "bolder" }}>Name</label>
+                    <label className="bolder">Name</label>
                     <input
                       type="text"
                       className="form-control form-rounded"
@@ -102,9 +101,7 @@ export default function Home() {
                   </div>
 
                   <div className="form-group">
-                    <label style={{ fontWeight: "bolder" }}>
-                      Email Address
-                    </label>
+                    <label className="bolder">Email Address</label>
                     <input
                       type="text"
                       className="form-control form-rounded"
@@ -117,7 +114,7 @@ export default function Home() {
                     />
                   </div>
                   <div className="form-group">
-                    <label style={{ fontWeight: "bolder" }}>Phone Number</label>
+                    <label className="bolder">Phone Number</label>
                     <input
                       type="text"
                       className="form-control form-rounded"
@@ -130,10 +127,7 @@ export default function Home() {
                     />
                   </div>
                   <div className="form-group">
-                    <label
-                      style={{ fontWeight: "bolder" }}
-                      htmlFor="form-label"
-                    >
+                    <label className="bolder" htmlFor="form-label">
                       Date of Birth
                     </label>
                     <div className="form-group">
@@ -151,9 +145,7 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="form-group">
-                    <label style={{ fontWeight: "bolder" }}>
-                      Privacy Level
-                    </label>
+                    <label className="bolder">Privacy Level</label>
                     <input
                       type="text"
                       className="form-control form-rounded"
@@ -170,7 +162,7 @@ export default function Home() {
                 <div className="col-lg-1"></div>
                 <div className="col-lg-5 col-md-12">
                   <div className="form-group">
-                    <label style={{ fontWeight: "bolder" }}>Gender</label>
+                    <label className="bolder">Gender</label>
                     <input
                       type="text"
                       className="form-control form-rounded"
@@ -187,7 +179,7 @@ export default function Home() {
                     />
                   </div>
                   <div className="form-group">
-                    <label style={{ fontWeight: "bolder" }}>Town</label>
+                    <label className="bolder">Town</label>
                     <input
                       type="text"
                       className="form-control form-rounded"
@@ -200,7 +192,7 @@ export default function Home() {
                     />
                   </div>
                   <div className="form-group">
-                    <label style={{ fontWeight: "bolder" }}>Region</label>
+                    <label className="bolder">Region</label>
                     <input
                       type="text"
                       className="form-control form-rounded"
@@ -211,9 +203,7 @@ export default function Home() {
                     />
                   </div>
                   <div className="form-group">
-                    <label style={{ fontWeight: "bolder" }}>
-                      Digital Address
-                    </label>
+                    <label className="bolder">Digital Address</label>
                     <input
                       type="text"
                       className="form-control form-rounded"

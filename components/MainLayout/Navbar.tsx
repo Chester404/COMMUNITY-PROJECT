@@ -9,6 +9,8 @@ const navFontSize = {
 const Navbar = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const router = useRouter();
+  const [isOrganization, setIsOrganization] = useState(false);
+  const [tempholder, setTempHolder] = useState(false);
 
   const { state, dispatch } = useContext(Store);
   const logout = () => {
@@ -19,17 +21,38 @@ const Navbar = (props) => {
     let lStorage: any = window.localStorage.getItem("cp-a");
     lStorage = JSON.parse(lStorage);
     if (lStorage) {
+      let upr: any = JSON.stringify(
+        window.localStorage.getItem("user-profile")
+      );
       dispatch({ type: "UPDATE_USERNAME", payload: lStorage.username });
       dispatch({ type: "SET_EMAIL", payload: lStorage.emailaddress });
       dispatch({ type: "SET_IMAGE", payload: lStorage.image });
+      dispatch({ type: "SET_ORGANIZATION", payload: lStorage.organization });
+      dispatch({ type: "SET_USER_INFO", payload: upr });
       setIsLoggedIn(true);
+      setIsOrganization(upr.is_organization);
+      console.log(upr);
+      console.log("isOrganization", isOrganization);
+      console.log("from state", state.userProfile.is_organization);
+    }
+    if (
+      router.pathname.includes("/login") ||
+      router.pathname.includes("/signup") ||
+      router.pathname.includes("/confirmaccount")
+    ) {
+      setTempHolder(false);
+    } else {
+      setTempHolder(true);
     }
   }, []);
 
   return (
     <div
       className="hor-header header d-flex navbar-collapse"
-      style={{ height: "80px !important" }}
+      style={{
+        height: "80px !important",
+        zIndex: 99999,
+      }}
     >
       <div className="container">
         <div className="d-flex">
@@ -169,7 +192,9 @@ const Navbar = (props) => {
                     </div>
                   </a>
                   <div className="dropdown-menu profiledrop dropdown-menu-right dropdown-menu-arrow">
-                    <Link href="/profile">
+                    <Link
+                      href={isOrganization ? "/businessprofile" : "/profile"}
+                    >
                       <a className="dropdown-item itemname">
                         <i className="dropdown-icon fe fe-user" />
                         View Profile
@@ -187,10 +212,14 @@ const Navbar = (props) => {
                       <i className="dropdown-icon fe fe-power" /> Log Out
                     </a>
                     <div className="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                      <a className="dropdown-item itemname" href="profile">
-                        <i className="dropdown-icon fe fe-user" />
-                        View Profile
-                      </a>
+                      <Link
+                        href={isOrganization ? "/businessprofile" : "/profile"}
+                      >
+                        <a className="dropdown-item itemname">
+                          <i className="dropdown-icon fe fe-user" />
+                          View Profile
+                        </a>
+                      </Link>
                       <a className="dropdown-item itemname" href="#">
                         <i className="dropdown-icon fe fe-edit" />
                         Account Setting
@@ -201,6 +230,67 @@ const Navbar = (props) => {
                     </div>
                   </div>
                 </div>
+              </div>
+            </>
+          ) : tempholder ? (
+            <>
+              <div className="navbar-list">
+                <div className="d-none dropdown d-md-flex">
+                  <a className="nav-link">
+                    <span className="lay-outstyle mt-1">Market</span>
+                  </a>
+                  <a className="nav-link">
+                    <span className="lay-outstyle mt-1">Jobs</span>
+                  </a>
+
+                  <a className="nav-link">
+                    <span className="lay-outstyle mt-1">Partnership</span>
+                  </a>
+                  <a className="nav-link">
+                    <span className="lay-outstyle mt-1">Forum</span>
+                  </a>
+                  <Link href="/blog">
+                    <a
+                      className="nav-link"
+                      style={{
+                        color: router.pathname == "/blog" ? "" : "#3f3d56",
+                      }}
+                    >
+                      <span className="lay-outstyle mt-1">Blog</span>
+                    </a>
+                  </Link>
+                  <Link href="/memberlist">
+                    <a
+                      className="nav-link"
+                      style={{
+                        color:
+                          router.pathname == "/memberlist" ? "" : "#3f3d56",
+                      }}
+                    >
+                      <span className="lay-outstyle mt-1">Members</span>
+                    </a>
+                  </Link>
+                </div>
+
+                {/*your paste ends here*/}
+              </div>
+
+              <div className="landingpage_login_signup_btns ">
+                <a
+                  className="landingpage_login_btn ml-6 mt-2"
+                  href="/auth/login"
+                  id="landingpage_login_btn"
+                >
+                  Login
+                </a>
+
+                <a
+                  className="btn btn-primary landingpage_signup_btn  ml-5"
+                  href="/auth/signup"
+                  id="landingpage_signup_btn"
+                >
+                  Signup
+                </a>
               </div>
             </>
           ) : null}

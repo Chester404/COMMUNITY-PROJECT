@@ -55,7 +55,12 @@ const Login = () => {
         response.data.image = userInfo.image
           ? userInfo.image
           : "/assets/images/Profile_Icon.png";
+        response.data.organization = userInfo.organization;
         window.localStorage.setItem("cp-a", JSON.stringify(response.data));
+        dispatch({
+          type: "SET_USER_INFO",
+          payload: userInfo,
+        });
         dispatch({
           type: "UPDATE_USERNAME",
           payload: userInfo.name,
@@ -67,6 +72,10 @@ const Login = () => {
         dispatch({
           type: "SET_IMAGE",
           payload: userInfo.image,
+        });
+        dispatch({
+          type: "SET_ORGANIZATION",
+          payload: userInfo.organization,
         });
 
         setShow(false);
@@ -115,7 +124,7 @@ const Login = () => {
         </Prompt>
 
         <div className="logincontent">
-          <div style={{ textAlign: "center", paddingTop: "12%" }}>
+          <div className="loginborder">
             <h3>
               <b>Login</b>
             </h3>
@@ -140,10 +149,13 @@ const Login = () => {
               <label htmlFor="InputPassword1" className="formlabel">
                 Password
               </label>
-              <div className="input-group" id="show_hide_password">
+              <div
+                className="input-group hasiconborder"
+                id="show_hide_password"
+              >
                 <input
                   type={togglepasswordeye ? "text" : "password"}
-                  className="form-control form-rounded"
+                  className="form-control hasicon"
                   id="InputPassword1"
                   placeholder="Password must be at least 8 characters"
                   data-toggle="password"
@@ -163,19 +175,19 @@ const Login = () => {
               </div>
             </div>
 
-            <div style={{ textAlign: "center" }}>
+            <div className="center">
               <button
                 type="submit"
                 id="signin_button"
-                className="btn btn-primary btn-block"
+                className="btn btn-primary btn-block authbtn"
               >
                 Login
               </button>
             </div>
             <br />
-            <div style={{ textAlign: "center" }}>
+            <div className="center">
               <div>
-                <a href="#" className="texthover">
+                <a href="/auth/forgottenpassword" className="texthover">
                   Forgot Password?
                 </a>
               </div>
