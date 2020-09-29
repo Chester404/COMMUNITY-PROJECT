@@ -5,8 +5,7 @@ import { profile } from "console";
 export class Products {
 
   async getProducts() {
-    const products = await axios.get("https://fakestoreapi.com/products");
-    return products.data;
+    return await ufetch("/marketplace/products/");
   }
 
   protected async generic_query(ctx: any) {
