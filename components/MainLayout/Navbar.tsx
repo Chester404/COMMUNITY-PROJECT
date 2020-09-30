@@ -18,20 +18,19 @@ const Navbar = (props) => {
     router.push("/auth/login");
   };
   useEffect(() => {
+    console.log("State", state);
     let lStorage: any = window.localStorage.getItem("cp-a");
     lStorage = JSON.parse(lStorage);
     if (lStorage) {
       let upr: any = JSON.stringify(
         window.localStorage.getItem("user-profile")
       );
-      dispatch({ type: "UPDATE_USERNAME", payload: lStorage.username });
-      dispatch({ type: "SET_EMAIL", payload: lStorage.emailaddress });
-      dispatch({ type: "SET_IMAGE", payload: lStorage.image });
-      dispatch({ type: "SET_ORGANIZATION", payload: lStorage.organization });
-      dispatch({ type: "SET_USER_INFO", payload: upr });
+      dispatch({
+        type: "SET_USERINFO",
+        payload: upr,
+      });
       setIsLoggedIn(true);
       setIsOrganization(upr.is_organization);
-      console.log(upr);
       console.log("isOrganization", isOrganization);
       console.log("from state", state.userProfile.is_organization);
     }
@@ -184,9 +183,9 @@ const Navbar = (props) => {
                     ></span>
                     <div className="ml-3">
                       <span style={{ color: "#3f3d56", fontWeight: 700 }}>
-                        {state.username.length <= 0
+                        {state.userProfile.name?.length <= 0
                           ? "No Name"
-                          : state.username}
+                          : state.userProfile.name}
                         <i className="fe fe-chevron-down ml-1" />
                       </span>
                     </div>

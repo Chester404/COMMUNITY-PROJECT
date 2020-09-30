@@ -95,7 +95,7 @@ export default function userList() {
 
   useEffect(() => {
     (async () => {
-      const rs = await new Users().getProfiles();
+      const rs = await new Users().getProfilesForAdmin();
       let temp = rs.filter((uprofile: any) => {
         if (list === "individual") {
           return uprofile.is_organization === false;
@@ -146,8 +146,8 @@ export default function userList() {
   };
 
   const handleList = (str) => {
-    setList(str)
-  }
+    setList(str);
+  };
 
   return (
     <MainLayout>

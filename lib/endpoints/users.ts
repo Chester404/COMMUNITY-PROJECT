@@ -24,6 +24,11 @@ export class Users {
       method: "GET",
     });
   }
+  async getAdminProfile() {
+    return ufetch("/accounts/user/", {
+      method: "GET",
+    });
+  }
 
   async getProfiles() {
     //accounts/signed_in_user
@@ -32,24 +37,11 @@ export class Users {
     });
   }
 
-  async login(authentication_property: string, password: string) {
-    //authentication_property: email or phone number for login
-    const rs = await axios.post("http://51.116.114.155:8080/auth/token", {
-      authentication_property: authentication_property,
-      password: password,
-      // authentication_property: "ogembodennis@gmail.com",
-      // password: "@Beloved2020",
+  async getProfilesForAdmin() {
+    //accounts/signed_in_user
+    return ufetch("/accounts/profile-list", {
+      method: "GET",
     });
-
-    return rs;
-    // const data = new URLSearchParams({
-    //   authentication_property,
-    //   password,
-    // }).toString();
-    // return await ufetch("/auth/token", {
-    //   method: "POST",
-    //   body: data,
-    // });
   }
 
   async forgotpassword(authentication_property: string) {

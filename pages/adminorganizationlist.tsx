@@ -97,10 +97,12 @@ export default function userList() {
 
   useEffect(() => {
     (async () => {
-      const rs = await new Users().getProfiles();
+      const rs = await new Users().getProfilesForAdmin();
+      console.log("List for admin", rs);
       // setRs(rs);
       let temp = rs.filter((uprofile: any) => {
-        return uprofile.is_organization === true;
+        // return uprofile.is_organization === true;
+        return uprofile;
       });
       setTempList(temp);
       setUserProfiles(temp.slice(0, recordsPerPage));
@@ -146,7 +148,7 @@ export default function userList() {
 
   return (
     <MainLayout>
-      <AdminSidebar />
+      <AdminSidebar handleList={() => {}} />
       <div id="main">
         <div className="page-header">
           <div>

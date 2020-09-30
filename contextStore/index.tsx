@@ -8,18 +8,12 @@ type TTokens = {
 };
 
 interface IGState {
-  username: string;
-  emailaddress: string;
-  image: string;
   tokens: TTokens;
   organization: boolean;
   userProfile: any;
 }
 
 const gState: IGState = {
-  username: "",
-  emailaddress: "",
-  image: "",
   tokens: { accessToken: "", refreshToken: "" },
   organization: false,
   userProfile: {},
@@ -27,19 +21,10 @@ const gState: IGState = {
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case "UPDATE_USERNAME":
-      return { ...state, username: action.payload };
-    case "SET_EMAIL":
-      return { ...state, emailaddress: action.payload };
-    case "SET_IMAGE":
-      return { ...state, image: action.payload };
-    default:
-      return state;
-      case "SET_ORGANIZATION":
-        return { ...state, organization: action.payload };
-      case "SET_USER_INFO":
-        return { ...state, userProfile: action.payload };
-
+    case "SET_ORGANIZATION":
+      return { ...state, organization: action.payload };
+    case "SET_USERINFO":
+      return { ...state, userProfile: action.payload };
   }
 };
 

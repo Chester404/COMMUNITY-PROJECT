@@ -11,31 +11,45 @@ export class Auth {
   }
 
   async confirmaccount(integer_key: number) {
-    const rs = await axios.post("http://51.116.114.155:8080/auth/keyinput/", {
-      integer_key,
-    });
+    try {
+      const rs = await axios.post("http://51.116.114.155:8080/auth/keyinput/", {
+        integer_key,
+      });
 
-    return rs;
+      return rs;
+    } catch (e) {
+      console.log("error,", e);
+    }
   }
 
   async login(authentication_property: string, password: string) {
     //authentication_property: email or phone number for login
-    const rs = await axios.post("http://51.116.114.155:8080/auth/token", {
-      authentication_property: authentication_property,
-      password: password,
-      // authentication_property: "ogembodennis@gmail.com",
-      // password: "@Beloved2020",
-    });
-
-    return rs;
-    // const data = new URLSearchParams({
-    //   authentication_property,
-    //   password,
-    // }).toString();
-    // return await ufetch("/auth/token", {
-    //   method: "POST",
-    //   body: data,
+    // const rs = await axios.post("http://51.116.114.155:8080/auth/token/", {
+    //   authentication_property: authentication_property,
+    //   password: password,
     // });
+    // console.log("Login", rs);
+
+    // return rs;
+    let myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+    let urlencoded = new URLSearchParams();
+    urlencoded.append("authentication_property", authentication_property);
+    urlencoded.append("password", password);
+
+    let requestOptions: any = {
+      method: "POST",
+      headers: myHeaders,
+      body: urlencoded,
+      redirect: "follow",
+    };
+
+    const rs = await fetch(
+      "http://b0dfd5db797e.ngrok.io/auth/token/",
+      requestOptions
+    );
+    return await rs.json();
   }
 
   async forgotpassword(authentication_property: string) {

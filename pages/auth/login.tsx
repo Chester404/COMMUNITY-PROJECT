@@ -19,6 +19,20 @@ const Login = () => {
   const { dispatch } = useContext(Store);
   const router = useRouter();
 
+  const userProfile = (userInfo) => {
+    if (userInfo.name.length > 0) {
+      window.localStorage.setItem("user-profile", JSON.stringify(userInfo));
+    }
+
+    dispatch({
+      type: "SET_USERINFO",
+      payload: userInfo,
+    });
+
+    setShow(false);
+    router.push("/blog");
+  };
+
   const handleClose = () => setShow(false);
 
   const callPrompt = (
@@ -36,54 +50,28 @@ const Login = () => {
 
   const authenticate = async (e: FormEvent) => {
     e.preventDefault();
+    let userInfo: any = {};
     callPrompt("Login", "", "", "Please wait...");
     try {
       const response = await new Auth().login(
         authentication_property,
         password
       );
-      if (response.status === 200) {
-        response.data.emailaddress = authentication_property;
-        window.localStorage.setItem("cp-a", JSON.stringify(response.data));
-        const userInfo = await new Users().getUserProfile();
-        if (userInfo.name.length > 0) {
-          window.localStorage.setItem("user-profile", JSON.stringify(userInfo));
-          response.data.username = userInfo.name;
-        } else {
-          response.data.username = "No Name";
-        }
-        response.data.image = userInfo.image
-          ? userInfo.image
-          : "/assets/images/Profile_Icon.png";
-        response.data.organization = userInfo.organization;
-        window.localStorage.setItem("cp-a", JSON.stringify(response.data));
-        dispatch({
-          type: "SET_USER_INFO",
-          payload: userInfo,
-        });
-        dispatch({
-          type: "UPDATE_USERNAME",
-          payload: userInfo.name,
-        });
-        dispatch({
-          type: "SET_EMAIL",
-          payload: authentication_property,
-        });
-        dispatch({
-          type: "SET_IMAGE",
-          payload: userInfo.image,
-        });
-        dispatch({
-          type: "SET_ORGANIZATION",
-          payload: userInfo.organization,
-        });
 
-        setShow(false);
-        router.push("/blog");
+      if (response.user) {
+        window.localStorage.setItem("cp-a", JSON.stringify(response));
+        if (response.user.is_organization) {
+          userInfo = await new Users().getAdminProfile();
+        } else {
+          userInfo = await new Users().getUserProfile();
+        }
+        console.log("UserInfo", userInfo);
+        userProfile(userInfo);
       } else {
         callPrompt("Login", "", "Close", "An error occured.");
       }
     } catch (err) {
+      console.log(err);
       if (err.message === "Request failed with status code 401") {
         // bad credentials
         callPrompt(
@@ -104,7 +92,7 @@ const Login = () => {
           "Please check your network connection and try again."
         );
       } else {
-        callPrompt("Login", "", "Close", "An error occured.");
+        callPrompt("Login", "", "Close", "Login failed.");
       }
     }
   };
