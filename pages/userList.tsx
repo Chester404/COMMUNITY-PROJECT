@@ -81,7 +81,8 @@ export default function userList() {
   const [recordsPerPage] = useState(30);
   const [order, setOrder] = useState(false);
   const [checkedUsers, setCheckedUsers] = useState([]);
-  const [isActive, setIsActive] = useState([]);
+  const [isActive, setIsActive] = useState();
+  const [inActive, setInActive] = useState();
   const [listview, setListview] = useState("active");
   // const [userActive,setActivateUser] = useState(null)
   // const [userProfile, setUserProfile] = useState();
@@ -99,8 +100,11 @@ export default function userList() {
   useEffect(() => {
     (async () => {
       const rs = await new Users().getProfilesForAdmin();
-      console.log("RS:", rs);
+      // console.log("RS:", rs);
       let temp = rs
+        .filter((uprofile: any) => {
+          return uprofile.user.is_staff === false;
+        })
         .filter((uprofile: any) => {
           if (listview === "active") {
             return uprofile.user.is_activated === true;
@@ -115,6 +119,12 @@ export default function userList() {
             return uprofile.is_organization === true;
           }
         });
+
+      if (listview === "active") {
+        setIsActive(temp);
+      } else if (listview === "inactive") {
+        setInActive(temp);
+      }
       setTempList(temp);
       setUserProfiles(temp.slice(0, recordsPerPage));
       settotalRecords(temp.length);
@@ -148,28 +158,40 @@ export default function userList() {
     const sorted = [...userProfiles];
     setUserProfiles([...sorted].reverse());
   };
-  const activateDeactivate = async (listview) => {
-    console.log();
-    /*
+  const activateDeactivate = async () => {
+    let activate;
+    if (listview === "active") {
+      activate = false;
+    } else if (listview === "inactive") {
+      activate = true;
+    }
+
     checkedUsers.map(async (pk) => {
       let rs = await new Users().activateDeactivate({
         pk,
-        is_active: listview === "active" ? false : true,
+        activate,
       });
-      setIsActive([...isActive, rs]);
-    });
-    */
 
-    for (let i = 0; i < checkedUsers.length; i++) {
-      let current_user = checkedUsers[i];
-      console.log("current user", current_user);
-      let rs = await new Users().activateDeactivate({
-        pk:current_user,
-        is_active: listview === "active" ? false : true,
-      });
-      setIsActive([...isActive, rs]);
-      console.log(rs);
-    }
+      let toFilter = pk;
+
+      if (listview === "active") {
+        let filteredOut = isActive.filter((user) => {
+          return user.id !== toFilter;
+        });
+        console.log(filteredOut);
+        setIsActive(filteredOut);
+        setUserProfiles(filteredOut.slice(0, recordsPerPage));
+        settotalRecords(filteredOut.length);
+
+      } else if (listview === "inactive") {
+        let filteredOut = inActive.filter((user) => {
+          return user.id !== toFilter;
+        });        
+        setInActive(filteredOut);
+        setUserProfiles(filteredOut.slice(0, recordsPerPage));
+        settotalRecords(filteredOut.length);
+      }
+    });
   };
 
   const handleList = (str) => {
@@ -194,6 +216,9 @@ export default function userList() {
               style={{ fontSize: "20px", cursor: "pointer" }}
             />
           </div>
+          <h1 className="page-title page-title-userlist" id="page-title">
+            User List
+          </h1>
           {/* <h3 className="userlist" style={{ marginLeft: "-60% !important" }}>
             <b id="opentexticon">User List</b>
           </h3> */}
@@ -228,7 +253,11 @@ export default function userList() {
               }}
               id="toggle-title"
             >
-              User List
+              {listview === "active" ? (
+                <>Activated Users</>
+              ) : (
+                <>Deactivated Users</>
+              )}
             </h5>
             <div className="ml-auto">
               <div className="dropdown">
@@ -336,7 +365,6 @@ export default function userList() {
                           className="form-check-input"
                           id={uprofile.id}
                           onChange={() => {
-                            console.log(checkedUsers);
                             setCheckedUsers([...checkedUsers, uprofile.id]);
                           }}
                         />

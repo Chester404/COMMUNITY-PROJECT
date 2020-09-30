@@ -118,10 +118,11 @@ export class Users {
   }
 
   async activateDeactivate(body: any) {
+    console.log("activate body:", body);
     return await ufetch(`auth/activate_deactivate/${body.pk}/`, {
       method: "PUT",
       // body: JSON.stringify(body.is_active),
-      body: JSON.stringify({ is_active: body.is_active }),
+      body: JSON.stringify({ is_activated: body.activate }),
     });
   }
 }
