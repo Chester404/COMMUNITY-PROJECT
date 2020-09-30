@@ -1,4 +1,9 @@
-const AdminSidebar = ({ handleList, handleListView }) => {
+interface IAdminProps {
+  handleList(str: any): void;
+  handleListView(str: any): void;
+}
+
+const AdminSidebar = ({ handleList, handleListView }: IAdminProps) => {
   return (
     <div>
       <div id="mySidenav" className="sidenav">
