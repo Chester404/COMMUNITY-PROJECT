@@ -290,7 +290,7 @@ const Signup = () => {
             <div className="center">
               <button
                 type="submit"
-                className="btn btn-primary btn-block"
+                className="btn btn-primary btn-block authbtn"
                 id="signup_button"
               >
                 Sign Up

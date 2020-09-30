@@ -2,5 +2,6 @@
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
   "/_error": "pages/_error.js",
-  "/viewcustomerproducts": "pages/viewcustomerproducts.js"
+  "/products/addproduct": "pages/products/addproduct.js",
+  "/editbusinessprofile": "pages/editbusinessprofile.js"
 }
