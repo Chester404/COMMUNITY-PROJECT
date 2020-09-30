@@ -24,10 +24,17 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
+<<<<<<< HEAD
     "/adminorganizationlist": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
       "static/chunks/pages/adminorganizationlist.js"
+=======
+    "/memberlist": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/memberlist.js"
+>>>>>>> ab3a6ca83198dc984afa204cbdb12087e40091e3
     ],
     "/auth/login": [
       "static/chunks/main.js",

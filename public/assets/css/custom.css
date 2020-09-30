@@ -881,3 +881,10 @@ h5.table-title-market {
   color: white;
   text-shadow: 2px 2px 4px #000000;
 }
+
+/* Dennis super admin styling */
+
+.page-title-userlist {
+  margin: 0px;
+  float: left;
+}

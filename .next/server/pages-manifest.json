@@ -2,6 +2,11 @@
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
   "/_error": "pages/_error.js",
+<<<<<<< HEAD
   "/auth/login": "pages/auth/login.js",
   "/adminorganizationlist": "pages/adminorganizationlist.js"
+=======
+  "/userList": "pages/userList.js",
+  "/memberlist": "pages/memberlist.js"
+>>>>>>> ab3a6ca83198dc984afa204cbdb12087e40091e3
 }
