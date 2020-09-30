@@ -209,17 +209,17 @@ export default function userList() {
   return (
     <MainLayout>
       <AdminSidebar handleList={handleList} handleListView={handleListView} />
-      <div id="main">
-        <div className="page-header">
-          <div>
+      <div>
             <i
-              className="fa fa-chevron-circle-right openicon mr-5"
+              className="fa fa-chevron-circle-right openicon mr-9"
               id="openicon"
               onClick={() => openNav()}
               style={{ fontSize: "20px", cursor: "pointer" }}
             />
           </div>
-          <h1 className="page-title page-title-userlist" id="page-title">
+      <div id="main">
+        <div className="page-header">
+          <h1 className="page-title page-title-userlist mb-2" id="page-title">
             User List
           </h1>
           {/* <h3 className="userlist" style={{ marginLeft: "-60% !important" }}>

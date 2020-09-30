@@ -19,6 +19,7 @@ modal-title {
   font-family: "Open Sans", sans-serif;
   font-weight: bold;
   font-size: 34px;
+  margin-left: 0px !important;
 }
 .formgr {
   border-radius: 50px;
@@ -981,6 +982,5 @@ button {
   float: bottom;
 }
 .page-title-userlist {
-  margin: 0px;
-  float: left;
+  margin-right: auto !important;
 }

@@ -64,7 +64,7 @@ const Login = () => {
 
         setShow(false);
         if (response.user.is_staff) {
-          router.push("/adminorganizationlist");
+          router.push("/userList");
         } else {
           router.push("/blog");
         }
