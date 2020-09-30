@@ -1,9 +1,9 @@
-import MainLayout from "../components/MainLayout";
-import { Products } from "../lib/endpoints";
+import MainLayout from "../../components/MainLayout";
+import { Products } from "../../lib/endpoints";
 import { useEffect, useState } from "react";
 import Link  from 'next/link';
-import ProductCard  from '../components/ProductCard';
-import ServiceCard from '../components/ServiceCard';
+import ProductCard  from '../../components/ProductCard';
+import ServiceCard from '../../components/ServiceCard';
 
 const disabled = {};
 interface IPaginateProps {

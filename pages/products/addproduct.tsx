@@ -223,23 +223,30 @@ export default function addProduct() {
                     />
                   </div>
 
-                  <div className="col-12 form-group" style={{ paddingTop: "15px" }}>
-                <button
-                  type="submit"
-                  className="btn btn-primary  addproduct-buttons btn-block mb-1 mt-3"
-                  style={{ width: "230px", float: "left" }}
-                >
-                  Add
-                </button>
+                  <div
+                    className="col-12 form-group"
+                    style={{ paddingTop: "15px" }}
+                  >
+                    <button
+                      type="submit"
+                      className="btn btn-primary  addproduct-buttons btn-block mb-1 mt-3"
+                      style={{ width: "253px", float: "left" }}
+                    >
+                      Add
+                    </button>
 
-                <button
-                  type="submit"
-                  className="btn btn-primary cancelproduct-buttons btn-block mb-1 mt-3"
-                  style={{ width: "230px", marginLeft: "20px", float: "right" }}
-                >
-                  Cancel
-                </button>
-              </div>
+                    <button
+                      type="submit"
+                      className="btn btn-primary cancelproduct-buttons btn-block mb-1 mt-3"
+                      style={{
+                        width: "253px",
+                        marginLeft: "20px",
+                        float: "right",
+                      }}
+                    >
+                      Cancel
+                    </button>
+                  </div>
 
                   {/* <div className="row col-md-12 justify-content-center"> */}
 

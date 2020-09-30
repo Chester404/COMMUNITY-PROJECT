@@ -24,15 +24,15 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
-    "/editbusinessprofile": [
-      "static/chunks/main.js",
-      "static/chunks/webpack.js",
-      "static/chunks/pages/editbusinessprofile.js"
-    ],
     "/products/addproduct": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
       "static/chunks/pages/products/addproduct.js"
+    ],
+    "/products/editproduct": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/products/editproduct.js"
     ]
   },
   "ampFirstPages": []

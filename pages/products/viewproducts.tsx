@@ -1,5 +1,5 @@
-import MainLayout from "../components/MainLayout";
-import { Products } from "../lib/endpoints";
+import MainLayout from "../../components/MainLayout";
+import { Products } from "../../lib/endpoints";
 import { useEffect, useState } from "react";
 
 const disabled = {};
