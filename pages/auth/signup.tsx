@@ -110,7 +110,7 @@ const Signup = () => {
     callPrompt("Sign Up", "", "", "Please wait...");
     try {
       const response = await axios.post(
-        "http://51.116.114.155:8080/auth/registration/",
+        process.env.URL + "/auth/registration/",
         {
           email: authentication_property,
           password: password,

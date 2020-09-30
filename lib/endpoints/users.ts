@@ -11,7 +11,7 @@ export class Users {
   }
 
   async confirmaccount(integer_key: number) {
-    const rs = await axios.post("http://51.116.114.155:8080/auth/keyinput/", {
+    const rs = await axios.post(process.env.URL + "/auth/keyinput/", {
       integer_key,
     });
 
@@ -32,14 +32,23 @@ export class Users {
     });
   }
 
+  async getProfilesForAdmin() {
+    //accounts/signed_in_user
+    return ufetch("accounts/profile-list", {
+      method: "GET",
+    });
+  }
+
   async login(authentication_property: string, password: string) {
     //authentication_property: email or phone number for login
-    const rs = await axios.post("http://51.116.114.155:8080/auth/token", {
+    const rs = await axios.post(process.env.URL + "/auth/token/", {
       authentication_property: authentication_property,
       password: password,
       // authentication_property: "ogembodennis@gmail.com",
       // password: "@Beloved2020",
     });
+
+    console.log("RS", rs);
 
     return rs;
     // const data = new URLSearchParams({
@@ -105,6 +114,14 @@ export class Users {
     return await ufetch(" ", {
       method: "PUT",
       body: JSON.stringify(userData),
+    });
+  }
+
+  async activateDeactivate(body: any) {
+    return await ufetch(`auth/activate_deactivate/${body.pk}/`, {
+      method: "PUT",
+      // body: JSON.stringify(body.is_active),
+      body: JSON.stringify({ is_active: body.is_active }),
     });
   }
 }

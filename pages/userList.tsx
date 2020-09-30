@@ -80,6 +80,9 @@ export default function userList() {
   const [totalRecords, settotalRecords] = useState(0);
   const [recordsPerPage] = useState(30);
   const [order, setOrder] = useState(false);
+  const [checkedUsers, setCheckedUsers] = useState([]);
+  const [isActive, setIsActive] = useState([]);
+  const [listview, setListview] = useState("active");
   // const [userActive,setActivateUser] = useState(null)
   // const [userProfile, setUserProfile] = useState();
   // const [readyPopupData, setReadyPopupData] = useState(false);
@@ -95,19 +98,28 @@ export default function userList() {
 
   useEffect(() => {
     (async () => {
-      const rs = await new Users().getProfiles();
-      let temp = rs.filter((uprofile: any) => {
-        if (list === "individual") {
-          return uprofile.is_organization === false;
-        } else if (list === "organization") {
-          return uprofile.is_organization === true;
-        }
-      });
+      const rs = await new Users().getProfilesForAdmin();
+      console.log("RS:", rs);
+      let temp = rs
+        .filter((uprofile: any) => {
+          if (listview === "active") {
+            return uprofile.user.is_activated === true;
+          } else if (listview === "inactive") {
+            return uprofile.user.is_activated === false;
+          }
+        })
+        .filter((uprofile: any) => {
+          if (list === "individual") {
+            return uprofile.is_organization === false;
+          } else if (list === "organization") {
+            return uprofile.is_organization === true;
+          }
+        });
       setTempList(temp);
       setUserProfiles(temp.slice(0, recordsPerPage));
       settotalRecords(temp.length);
     })();
-  }, [list]);
+  }, [list, listview]);
   // useEffect(() => {
   //   setUserProfile(JSON.parse(window.localStorage.getItem("user-profile")));
   // }, []);
@@ -136,22 +148,42 @@ export default function userList() {
     const sorted = [...userProfiles];
     setUserProfiles([...sorted].reverse());
   };
-  const activateUser = () => {
-    // setActivateUser(false);
-    // setTitle("Individuals");
-  };
-  const deactivateUser = () => {
-    // setActivateUser(true);
-    // setTitle("Organizations");
+  const activateDeactivate = async (listview) => {
+    console.log();
+    /*
+    checkedUsers.map(async (pk) => {
+      let rs = await new Users().activateDeactivate({
+        pk,
+        is_active: listview === "active" ? false : true,
+      });
+      setIsActive([...isActive, rs]);
+    });
+    */
+
+    for (let i = 0; i < checkedUsers.length; i++) {
+      let current_user = checkedUsers[i];
+      console.log("current user", current_user);
+      let rs = await new Users().activateDeactivate({
+        pk:current_user,
+        is_active: listview === "active" ? false : true,
+      });
+      setIsActive([...isActive, rs]);
+      console.log(rs);
+    }
   };
 
   const handleList = (str) => {
-    setList(str)
-  }
+    setList(str);
+    setListview("active");
+  };
+
+  const handleListView = (str) => {
+    setListview(str);
+  };
 
   return (
     <MainLayout>
-      <AdminSidebar handleList={handleList} />
+      <AdminSidebar handleList={handleList} handleListView={handleListView} />
       <div id="main">
         <div className="page-header">
           <div>
@@ -202,7 +234,7 @@ export default function userList() {
               <div className="dropdown">
                 <a
                   className="nav-link pr-0 leading-none d-flex pt-1"
-                  data-toggle="dropdown"
+                  onClick={activateDeactivate}
                 >
                   <div className="mt-3 mb-3 mr-5 table-title">
                     <span
@@ -212,12 +244,19 @@ export default function userList() {
                         marginRight: "20px",
                       }}
                     >
-                      Aactivate/Deactivate
-                      <i className="fe fe-list fa-lg ml-1" />
+                      {listview === "active" ? (
+                        <>
+                          Deactivate <i className="fa fa-lock fa-lg ml-1" />
+                        </>
+                      ) : (
+                        <>
+                          Activate <i className="fa fa-unlock-alt fa-lg ml-1" />
+                        </>
+                      )}
                     </span>
                   </div>
                 </a>
-                <div className="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                {/* <div className="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                   <a
                     className="dropdown-item header-item-style"
                     id="display-individuals"
@@ -232,7 +271,7 @@ export default function userList() {
                   >
                     Deactivate Users
                   </a>
-                </div>
+                </div> */}
               </div>
             </div>
             {/* <div>
@@ -295,7 +334,11 @@ export default function userList() {
                         <input
                           type="checkbox"
                           className="form-check-input"
-                          id="check-all"
+                          id={uprofile.id}
+                          onChange={() => {
+                            console.log(checkedUsers);
+                            setCheckedUsers([...checkedUsers, uprofile.id]);
+                          }}
                         />
                       </div>
                     </td>
