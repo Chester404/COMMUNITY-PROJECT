@@ -20,17 +20,12 @@ const Login = () => {
   const router = useRouter();
 
   const userProfile = (userInfo) => {
-    if (userInfo.name.length > 0) {
-      window.localStorage.setItem("user-profile", JSON.stringify(userInfo));
-    }
-
+    window.localStorage.setItem("user-profile", JSON.stringify(userInfo));
+    console.log("throat", userInfo);
     dispatch({
       type: "SET_USERINFO",
       payload: userInfo,
     });
-
-    setShow(false);
-    router.push("/blog");
   };
 
   const handleClose = () => setShow(false);
@@ -65,8 +60,14 @@ const Login = () => {
         } else {
           userInfo = await new Users().getUserProfile();
         }
-        console.log("UserInfo", userInfo);
         userProfile(userInfo);
+
+        setShow(false);
+        if (response.user.is_staff) {
+          router.push("/adminorganizationlist");
+        } else {
+          router.push("/blog");
+        }
       } else {
         callPrompt("Login", "", "Close", "An error occured.");
       }

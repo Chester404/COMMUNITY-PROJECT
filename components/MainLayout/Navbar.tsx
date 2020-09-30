@@ -18,21 +18,23 @@ const Navbar = (props) => {
     router.push("/auth/login");
   };
   useEffect(() => {
-    console.log("State", state);
+    console.log("State", state.userProfile);
     let lStorage: any = window.localStorage.getItem("cp-a");
     lStorage = JSON.parse(lStorage);
-    if (lStorage) {
-      let upr: any = JSON.stringify(
-        window.localStorage.getItem("user-profile")
-      );
-      dispatch({
-        type: "SET_USERINFO",
-        payload: upr,
-      });
+
+    if (state.userProfile.name == undefined) {
+      if (lStorage) {
+        let upr: any = JSON.parse(window.localStorage.getItem("user-profile"));
+        dispatch({
+          type: "SET_USERINFO",
+          payload: upr,
+        });
+        setIsLoggedIn(true);
+        setIsOrganization(state.userProfile.is_organization);
+      }
+    } else if (state.userProfile) {
       setIsLoggedIn(true);
-      setIsOrganization(upr.is_organization);
-      console.log("isOrganization", isOrganization);
-      console.log("from state", state.userProfile.is_organization);
+      setIsOrganization(state.userProfile.is_organization);
     }
     if (
       router.pathname.includes("/login") ||
