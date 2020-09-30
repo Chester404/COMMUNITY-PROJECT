@@ -183,7 +183,7 @@ const Navbar = (props) => {
                     ></span>
                     <div className="ml-3">
                       <span style={{ color: "#3f3d56", fontWeight: 700 }}>
-                        {state.userProfile.name?.length <= 0
+                        {state.userProfile.name == ""
                           ? "No Name"
                           : state.userProfile.name}
                         <i className="fe fe-chevron-down ml-1" />

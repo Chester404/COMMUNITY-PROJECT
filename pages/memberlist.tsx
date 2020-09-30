@@ -84,7 +84,7 @@ export default function Home() {
   const [rs, setRs] = useState([]);
   const [title, setTitle] = useState("Individuals");
   const router = useRouter();
-  
+
   const getUserDetails = async (id) => {
     setReadyPopupData(false);
     let rs = await new Users().getUserAccountDetails(id);
@@ -99,6 +99,7 @@ export default function Home() {
     (async () => {
       const rs = await new Users().getProfiles();
       // setRs(rs);
+      console.log("rs:",rs);
       let temp = rs.filter((uprofile: any) => {
         return uprofile.is_organization === togglelist;
       });

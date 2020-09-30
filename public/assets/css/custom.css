@@ -864,9 +864,9 @@ h5.table-title-market {
 .gobtn {
   background: #3964fc;
 }
-/* .userlist {
-  margin-left: 3px;
-} */
+.userlist {
+  margin-top: 20px;
+}
 .selectusers {
   background-color: transparent;
   margin-left: 12px;
@@ -875,12 +875,34 @@ h5.table-title-market {
   background: white;
 }
 .userlistpage {
-  margin-top: 8% !important;
+  /* margin-top: 8% !important; */
 }
 .openicon {
+  position: absolute;
   font-size: 20px;
   color: white;
   text-shadow: 2px 2px 4px #000000;
+  margin-top: 10px;
+}
+.requestbtn {
+  border-radius: 10px;
+}
+.requestheader {
+  text-align: center;
+}
+.checkbox-round {
+  width: 1em;
+  height: 1em;
+  background-color: white;
+  border-radius: 30%;
+  vertical-align: middle;
+  border: 1px solid black;
+  -webkit-appearance: none;
+  outline: none;
+  cursor: pointer;
+}
+.checkbox-round:checked {
+  background-color: #3964fc;
 }
 
 /*styling for add/edit product (peter)*/
@@ -890,7 +912,7 @@ h5.table-title-market {
   color: #ffffff !important;
   border-radius: 10px !important;
   height: 36.5px !important;
-  margin: 0px; 
+  margin: 0px;
 }
 .cancelproduct-buttons {
   background: #818aa9 !important;
@@ -917,41 +939,48 @@ div.borderimage {
   padding: 15px;
   margin: 7px;
 }
-.product_details{
+.product_details {
   margin-left: 0px;
   font-weight: bold;
   color: black;
   font-family: "Open Sans", sans-serif !important;
 }
-.disabled{
-  color:#818aa9 ;
+.disabled {
+  color: #818aa9;
   text-decoration: line-through;
-   margin-Left: 10px;
+  margin-left: 10px;
 }
-.viewproduct-image1{
+.viewproduct-image1 {
   border-radius: 10px 10px 20px 20px !important;
   width: 600px;
   height: 350px;
-  padding-Bottom: 10px;
+  padding-bottom: 10px;
   border-bottom-left-radius: 10px;
-} 
-.viewproduct-image2{
+}
+.viewproduct-image2 {
   border-radius: 10px !important;
 }
-.sub-image{
+.sub-image {
   float: inline-end;
 }
-.product_name{
+.product_name {
   margin-left: 0px;
   font-weight: bolder;
-    color: black;
+  color: black;
 }
-.add_product_details{
+.add_product_details {
   display: flex;
   flex-direction: row;
   align-items: baseline;
 }
-.add_product_details h4,h5,h2,button{
+.add_product_details h4,
+h5,
+h2,
+button {
   margin-left: 20px;
   float: bottom;
+}
+.page-title-userlist {
+  margin: 0px;
+  float: left;
 }

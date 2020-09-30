@@ -1,7 +1,7 @@
 import React from "react";
 import MainLayout from "../components/MainLayout";
 import AdminSidebar from "../components/admin-sidebar";
-import { Dropdown, DropdownButton, InputGroup } from "react-bootstrap";
+// import { Dropdown, DropdownButton, InputGroup } from "react-bootstrap";
 import { Users } from "../lib/endpoints";
 import { useEffect, useState } from "react";
 
@@ -97,7 +97,7 @@ export default function userList() {
 
   useEffect(() => {
     (async () => {
-      const rs = await new Users().getProfilesForAdmin();
+      const rs: any = await new Users().getProfilesForAdmin();
       console.log("List for admin", rs);
       // setRs(rs);
       let temp = rs.filter((uprofile: any) => {
@@ -148,7 +148,7 @@ export default function userList() {
 
   return (
     <MainLayout>
-      <AdminSidebar handleList={() => {}} />
+      <AdminSidebar handleList={() => {}} handleListView={() => {}} />
       <div id="main">
         <div className="page-header">
           <div>

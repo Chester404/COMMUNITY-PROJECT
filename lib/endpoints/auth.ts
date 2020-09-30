@@ -12,7 +12,7 @@ export class Auth {
 
   async confirmaccount(integer_key: number) {
     try {
-      const rs = await axios.post("http://51.116.114.155:8080/auth/keyinput/", {
+      const rs = await axios.post(process.env.URL + "/auth/keyinput/", {
         integer_key,
       });
 

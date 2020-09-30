@@ -11,7 +11,7 @@ export class Users {
   }
 
   async confirmaccount(integer_key: number) {
-    const rs = await axios.post("http://51.116.114.155:8080/auth/keyinput/", {
+    const rs = await axios.post(process.env.URL + "/auth/keyinput/", {
       integer_key,
     });
 
@@ -97,6 +97,15 @@ export class Users {
     return await ufetch(" ", {
       method: "PUT",
       body: JSON.stringify(userData),
+    });
+  }
+
+  async activateDeactivate(body: any) {
+    console.log("activate body:", body);
+    return await ufetch(`auth/activate_deactivate/${body.pk}/`, {
+      method: "PUT",
+      // body: JSON.stringify(body.is_active),
+      body: JSON.stringify({ is_activated: body.activate }),
     });
   }
 }

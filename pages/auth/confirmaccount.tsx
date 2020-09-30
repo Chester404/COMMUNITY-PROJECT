@@ -84,7 +84,7 @@ const ConfirmAccount = () => {
     e.preventDefault();
     try {
       const rs: any = await axios.post(
-        "http://51.116.114.155:8080/auth/keyinput/",
+        process.env.URL + "/auth/keyinput/",
         {
           integer_key: parseInt(`${code1}${code2}${code3}${code4}`),
         }

@@ -1,4 +1,13 @@
-const AdminSidebar = ({handleList}) => {
+interface IAdminProps {
+  handleList(str: any): void;
+  handleListView(str: any): void;
+}
+
+const AdminSidebar = (props) => {
+  const recall = (args) => {
+    console.log(args);
+    props.handleList(args);
+  };
   return (
     <div>
       <div id="mySidenav" className="sidenav">
@@ -20,10 +29,10 @@ const AdminSidebar = ({handleList}) => {
         <div>
           {/* <i className="fa fa-chevron-circle-left closebtn" /> */}
           <i
-            className="fa fa-chevron-circle-left closebtn"            
+            className="fa fa-chevron-circle-left closebtn"
             onClick={() => closeNav()}
             style={{ fontSize: "20px", cursor: "pointer" }}
-          />          
+          />
         </div>
 
         <div className="sidenavmenu">
@@ -44,20 +53,32 @@ const AdminSidebar = ({handleList}) => {
           </a>
         </div>
         <ul id="list">
-          <a href="#" onClick={() => {            
-            handleList("individual")
-          }}>
+          <a
+            href="#individuals"
+            onClick={() => {
+              console.log(props.handleList());
+              props.handleList("individual");
+            }}
+          >
             <li>Individual List</li>
           </a>
-          <a href="#" onClick={() => {            
-            handleList("organization")
-          }}>
+          <a
+            href="#organizations"
+            onClick={() => {
+              recall("organization");
+            }}
+          >
             <li>Organizational List</li>
           </a>
           <a href="#organizationalrequests">
             <li>Organizational Requests</li>
           </a>
-          <a href="#deactivatedaccounts">
+          <a
+            href="#deactivated_users"
+            onClick={() => {
+              props.handleListView("inactive");
+            }}
+          >
             <li>Deactivated Accounts</li>
           </a>
         </ul>
