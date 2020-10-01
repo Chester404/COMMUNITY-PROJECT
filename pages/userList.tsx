@@ -3,7 +3,6 @@ import MainLayout from "../components/MainLayout";
 import AdminSidebar from "../components/admin-sidebar";
 import { Users } from "../lib/endpoints";
 import { useEffect, useState } from "react";
-import { Router, useRouter } from "next/router";
 
 interface IPaginateProps {
   callback(i: number): void;
@@ -85,17 +84,6 @@ export default function userList() {
   const [checkedUsers, setCheckedUsers] = useState([]);
   const [checkuser, setCheckuser] = useState(false);
 
-  const router = useRouter();
-  // List management
-
-  const [allindividuals, setAllindividuals] = useState([]);
-  const [allorganizations, setAllorganizations] = useState([]);
-  const [allactiveindividuals, setAllactiveindividuals] = useState([]);
-  const [allactiveorganizations, setAllactiveorganizations] = useState([]);
-  const [allinactiveindividuals, setAllinactiveindividuals] = useState([]);
-  const [allinactiveorganizations, setAllinactiveorganizations] = useState([]);
-  const [checked, setChecked] = useState({});
-
   const [list, setList] = useState("individuals");
 
   const getUserDetails = async (id) => {
@@ -116,11 +104,9 @@ export default function userList() {
 
   useEffect(() => {
     (async () => {
-      console.log(router)
       const rs = await new Users().getProfilesForAdmin();
       setTempprofile(rs);
       const temp_active_inactive = individuals(rs);
-      setAllindividuals(temp_active_inactive);
       setTempList(temp_active_inactive);
       setUserProfiles(temp_active_inactive.slice(0, recordsPerPage));
       settotalRecords(temp_active_inactive.length);
@@ -214,6 +200,14 @@ export default function userList() {
         settotalRecords(temp.length);
         console.log("deactivated_users");
         break;
+      case "organizationalrequests":
+        temp = organizations(tempprofile).filter((uprofile: any) => {
+          return uprofile.user.is_activated === true;
+        });
+
+        setUserProfiles(temp.slice(0, recordsPerPage));
+        settotalRecords(temp.length);
+        break;
       case "deactivated_organizations":
         temp = organizations(tempprofile).filter((uprofile: any) => {
           return uprofile.user.is_activated === false;
@@ -230,16 +224,16 @@ export default function userList() {
   return (
     <MainLayout>
       <AdminSidebar handleList={handleList} />
+      <div>
+        <i
+          className="fa fa-chevron-circle-right openicon mr-5"
+          id="openicon"
+          onClick={() => openNav()}
+          style={{ fontSize: "20px", cursor: "pointer" }}
+        />
+      </div>
       <div id="main">
         <div className="page-header">
-          <div>
-            <i
-              className="fa fa-chevron-circle-right openicon mr-5"
-              id="openicon"
-              onClick={() => openNav()}
-              style={{ fontSize: "20px", cursor: "pointer" }}
-            />
-          </div>
           <h1 className="page-title page-title-userlist" id="page-title">
             User List
           </h1>
@@ -283,6 +277,8 @@ export default function userList() {
                 <>Deactivated Users</>
               ) : list === "deactivated_organizations" ? (
                 <>Deactivated Organizations</>
+              ) : list === "organizationalrequests" ? (
+                <>Organizational Requests</>
               ) : null}
             </h5>
             <div className="ml-auto">
@@ -303,11 +299,12 @@ export default function userList() {
                         <>
                           Deactivate <i className="fa fa-lock fa-lg ml-1" />
                         </>
-                      ) : (
+                      ) : list === "deactivated_users" ||
+                        list === "deactivated_organizations" ? (
                         <>
                           Activate <i className="fa fa-unlock-alt fa-lg ml-1" />
                         </>
-                      )}
+                      ) : null}
                     </span>
                   </div>
                 </a>
@@ -319,10 +316,9 @@ export default function userList() {
             <thead>
               <tr>
                 <th scope="col" className="text-muted">
-                  <div className="form-check">
-                    {/* <input type="checkbox" className="form-check-input" id="check-all"/> */}
-                  </div>
+                  <div className="form-check"></div>
                 </th>
+
                 <th scope="col" className="text-muted ml-5">
                   <div className="dropdown">
                     <span id="toggle-sort">
@@ -350,18 +346,33 @@ export default function userList() {
                     </div>
                   </div>
                 </th>
-                <th scope="col" className="text-muted">
-                  Email
-                </th>
+
+                {list !== "organizationalrequests" ? (
+                  <>
+                    <th scope="col" className="text-muted">
+                      Email
+                    </th>
+                  </>
+                ) : null}
+
                 <th scope="col" className="text-muted">
                   Telephone
                 </th>
                 <th scope="col" className="text-muted">
                   Town
                 </th>
+
+                {list === "organizationalrequests" ? (
+                  <>
+                    <th scope="col" className="text-muted">
+                      Requests
+                    </th>
+                  </>
+                ) : null}
               </tr>
             </thead>
             <tbody>
+              {console.log("uprofiles:",userProfiles)}
               {userProfiles.map((uprofile: any, index: number) => {
                 return (
                   <tr key={index}>
@@ -408,15 +419,34 @@ export default function userList() {
                         </a>
                       </div>{" "}
                     </td>
-                    <td>
-                      <p className="mt-2">{uprofile.user.email}</p>
-                    </td>
+
+                    {list !== "organizationalrequests" ? (
+                      <>
+                        <td>
+                          <p className="mt-2">{uprofile.user.email}</p>
+                        </td>
+                      </>
+                    ) : null}
+
                     <td>
                       <p className="mt-2">{uprofile.phone_number}</p>
                     </td>
                     <td>
                       <p className="mt-2">{uprofile.street_address}</p>
                     </td>
+
+                    {list === "organizationalrequests" ? (
+                      <>
+                        <td>
+                          <button className="btn btn-success mr-2 requestbtn">
+                            Approve
+                          </button>
+                          <button className="btn btn-danger requestbtn">
+                            Disapprove
+                          </button>
+                        </td>
+                      </>
+                    ) : null}
                   </tr>
                 );
               })}
