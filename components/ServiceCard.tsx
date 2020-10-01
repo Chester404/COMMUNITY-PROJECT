@@ -4,7 +4,6 @@ const ServiceCard = ({service}) => {
     }
 
     return (
-        <div className="row">
             <div className="col-md-6">
                 <div className="card">
                     <div className="card-body">
@@ -24,7 +23,6 @@ const ServiceCard = ({service}) => {
                     </div>    
                 </div> 
             </div>
-    </div>
     );
 
 }

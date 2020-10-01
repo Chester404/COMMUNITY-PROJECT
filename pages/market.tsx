@@ -117,6 +117,11 @@ const Pagination = ({
 };
 export default function ProductsView() {
   const [allproducts, setAllProducts] = useState([]);
+  const [categoryFilterName, setCategoryFilterName] = useState("Category");
+  const [typeFilterName, setTypeFilterName] = useState("Type");
+  const [locationFilterName, setLocationFilterName] = useState("Location");
+  const [minPriceFilterName, setMinPriceFilterName] = useState("Minimum Price");
+  const [maxPriceFilterName, setMaxPriceFilterName] = useState("Maximum Price");
   const [altProductsList, setAltProductsList] = useState([]);
   const [tempList, setTempList] = useState([]);
   const [totalRecords, settotalRecords] = useState(0);
@@ -236,38 +241,7 @@ export default function ProductsView() {
             </div>
 
             <div className="row" style={{margin:"0 auto", padding: "30px",}}>
-              <div className="col-sm-2">
-                <div className="form-group">
-                    <select className="form-control" id="selectCategory">
-                    <option>Category</option>
-                      {categoryData.map((category: any, index: number) => {
-                        return (
-                          <option onChange={()=> categoryFilter(category.key)}>{category.name}</option>
-                        );
-                      })}  
-                    </select>
-                  </div>
-                {/* <div className="dropdown">
-                  <button 
-                    className="btn btn-light dropdown-toggle" 
-                    type="button" id="dropdownMenuButton" 
-                    data-toggle="dropdown" 
-                    aria-haspopup="true" 
-                    aria-expanded="false"
-                    style={{}}
-                    >
-                    Category
-                  </button>
-                  <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    {categoryData.map((category: any, index: number) => {
-                      return (
-                        <a className="dropdown-item" href="#" onClick={()=> categoryFilter(category.key)}>{category.name}</a>
-                      );
-                    })}   
-                  </div>
-                </div> */}
-              </div>
-              <div className="col-sm-2">
+              <div className="col-md-2">
                 <div className="dropdown">
                   <button 
                     className="btn btn-light dropdown-toggle" 
@@ -277,16 +251,37 @@ export default function ProductsView() {
                     aria-expanded="false"
                     style={{}}
                     >
-                    Type
+                    {categoryFilterName}
                   </button>
                   <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a className="dropdown-item" href="#" onClick={()=> typeFilter('ALL')}>All</a>
-                    <a className="dropdown-item" href="#" onClick={()=> typeFilter('PR')}>Products</a>
-                    <a className="dropdown-item" href="#" onClick={()=> typeFilter('SE')}>Services</a>
+                    {categoryData.map((category: any, index: number) => {
+                      return (
+                        <a className="dropdown-item" href="#" key = {index}  onClick={()=> { setCategoryFilterName(category.name); categoryFilter(category.key)}}>{category.name}</a>
+                      );
+                    })}   
                   </div>
                 </div>
               </div>
-              <div className="col-sm-2">
+              <div className="col-md-2">
+                <div className="dropdown">
+                  <button 
+                    className="btn btn-light dropdown-toggle" 
+                    type="button" id="dropdownMenuButton" 
+                    data-toggle="dropdown" 
+                    aria-haspopup="true" 
+                    aria-expanded="false"
+                    style={{}}
+                    >
+                    {typeFilterName}
+                  </button>
+                  <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a className="dropdown-item" href="#" onClick={()=> {setTypeFilterName('All'); typeFilter('ALL')}}>All</a>
+                    <a className="dropdown-item" href="#" onClick={()=> { setTypeFilterName('Products'); typeFilter('PR')}}>Products</a>
+                    <a className="dropdown-item" href="#" onClick={()=> {setTypeFilterName('Services'); typeFilter('SE')}}>Services</a>
+                  </div>
+                </div>
+              </div>
+              <div className="col-md-2">
                 <div className="dropdown">
                   <button 
                     className="btn btn-light dropdown-toggle" 
@@ -297,7 +292,7 @@ export default function ProductsView() {
                     aria-expanded="false"
                     style={{}}
                     >
-                    Location
+                    {locationFilterName}
                   </button>
                   <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a className="dropdown-item" href="#">Action</a>
@@ -306,7 +301,7 @@ export default function ProductsView() {
                   </div>
                 </div>
               </div>
-              <div className="col-sm-2">
+              <div className="col-md-2">
                 <div className="dropdown">
                   <button 
                     className="btn btn-light dropdown-toggle" 
@@ -317,18 +312,18 @@ export default function ProductsView() {
                     aria-expanded="false"
                     style={{}}
                     >
-                    Minimum Price
+                    {minPriceFilterName}
                   </button>
                   <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                   {minPriceFilters.map((price: any, index: number) => {
                       return (
-                        <a className="dropdown-item" href="#" onClick={()=> minPriceFilter(price.key)}>{price.value}</a>
+                        <a className="dropdown-item" key={index} href="#" onClick={()=> {setMinPriceFilterName(price.value); minPriceFilter(price.key)}}>{price.value}</a>
                       );
                     })}   
                   </div>
                 </div>
               </div>
-              <div className="col-sm-2">
+              <div className="col-md-2">
                 <div className="dropdown">
                   <button 
                     className="btn btn-light dropdown-toggle" 
@@ -339,22 +334,19 @@ export default function ProductsView() {
                     aria-expanded="false"
                     style={{}}
                     >
-                    Maximum Price
+                    {maxPriceFilterName}
                   </button>
                   <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                   {maxPriceFilters.map((price: any, index: number) => {
                       return (
-                        <a className="dropdown-item" href="#" onClick={()=> maxPriceFilter(price.key)}>{price.value}</a>
+                        <a className="dropdown-item" key = {index} href="#" onClick={()=> {setMaxPriceFilterName(price.value); maxPriceFilter(price.key)}}>{price.value}</a>
                       );
                     })}  
                   </div>
                 </div>
               </div>
             </div>
-        </div>
-          
-
-            
+        </div>  
             <div className="row">
               {allproducts.map((product: any, index: number) => {
                   return (
