@@ -1,12 +1,14 @@
 import MainLayout from "../../components/MainLayout";
 import { Accordion, Card } from "react-bootstrap";
-import AccountPasswordPopup from "../../components/auth/AccountPasswordPopup";
-import { useState, FormEvent } from "react";
+import React, { useContext, useState } from "react";
 import { Users, Auth } from "../../lib/endpoints";
 import Prompt from "../../components/Prompt";
+import Link from "next/link";
+import { Store } from "../../contextStore";
 
 const Acount = () => {
-  const [isemail, setIsEmail] = useState("");
+  const [newEmail, setNewEmail] = useState("");
+  const [mailpassword, setMailPassword] = useState("");
   const [show, setShow] = useState(false);
   const [prompt_title, setPromptTitle] = useState("");
   const [prompt_body, setPromptBody] = useState("");
@@ -16,7 +18,7 @@ const Acount = () => {
   const [password, setPassword] = useState("");
   const [newpassword, setNewPassword] = useState("");
   const [confirmnewpassword, setConfirmNewPassword] = useState("");
-
+  const { dispatch } = useContext(Store);
   const auth_api = new Auth();
 
   const handleClose = () => setShow(false);
@@ -33,30 +35,152 @@ const Acount = () => {
     setPromptBody(message);
   };
 
-  const submitChangeEmail = async () => {
-    callPrompt("Change Email", "", "", "Please wait...");
+  const submitChangeEmail = async (e) => {
+	e.preventDefault();
+	if (
+		/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
+		 newEmail
+		)
+	  ) {
+		//email vaild
+	  } else {
+		callPrompt(
+		  "Change Email",
+		  "",
+		  "Close",
+		  "Check E-mail: Please enter the correct email address"
+		);
+		return;
+	  }
 
-    const response = await new Users().changeEmail({
-      email: isemail,
-    });
-    setDoneUpdate(true);
-    callPrompt("Edit Profile", "", "Close", "Success: User profile saved");
+    if (newEmail.length < 1) {
+      callPrompt("Change Email", "", "Close", "New email field can not empty");
+      return;
+    }
+    if (mailpassword.length < 1) {
+      callPrompt("Change Email", "", "Close", "Password field can not empty");
+      return;
+    }
+      const response = await new Users().changeEmail({
+        email: newEmail,
+        password: mailpassword,
+      });
+      if (response.password) {
+        // bad credentials
+        callPrompt(
+          "Change Email",
+          "",
+          "Close",
+         response.password
+		);
+		return
+	  }
+	  if (response.email) {
+        //
+        callPrompt(
+          "Change Email",
+          "",
+		  "Close",
+		  "Email changed successfully"
+		);
+
+		setNewEmail("");
+		setMailPassword("");
+	  }
   };
 
-  const submitChangePassword = async (e: FormEvent) => {
+  const submitChangePassword = async (e) => {
     e.preventDefault();
-    callPrompt("Change Password", "", "", "Please wait...");
+    if (password.length < 1) {
+      callPrompt(
+        "Change Password",
+        "",
+        "Close",
+        "Current password field can not be empty"
+      );
+      return;
+    }
+    if (newpassword.length < 1) {
+      callPrompt(
+        "Change Password",
+        "",
+        "Close",
+        "New password field can not be empty"
+      );
+      return;
+    }
+    if (confirmnewpassword.length < 1) {
+      callPrompt(
+        "Change Password",
+        "",
+        "Close",
+        "Confirm password field can not be empty"
+      );
+      return;
+    }
+    if (newpassword !== confirmnewpassword) {
+      callPrompt("Change Password", "", "Close", "Password does not match");
+      return;
+    }
+    //Not an optimized way of coding. But as a temporal fix
+    // Validate lowercase letters
+    // let lowerCaseLetters = /[a-z]/g;
+    // if (!newpassword.match(lowerCaseLetters)) {
+    //   callPrompt(
+    //     "Sign Up",
+    //     "",
+    //     "Close",
+    //     "Check Password: There should be at least one lowercase character"
+    //   );
+    //   return;
+    // }
+
+    // Validate capital letters
+    let upperCaseLetters = /[A-Z]/g;
+    if (!newpassword.match(upperCaseLetters)) {
+      callPrompt(
+        "Sign Up",
+        "",
+        "Close",
+        "Check Password: There should be at least one uppercase character"
+      );
+      return;
+    }
+
+    // Validate numbers
+    let numbers = /[0-9]/g;
+    if (!newpassword.match(numbers)) {
+      callPrompt(
+        "Sign Up",
+        "",
+        "Close",
+        "Check Password: There should be at least one numeric character"
+      );
+      return;
+    }
+
+    // Validate length
+    if (newpassword.length < 8) {
+      callPrompt(
+        "Sign Up",
+        "",
+        "Close",
+        "Check Password: Password should be eight or more characters long"
+      );
+      return;
+    }
     const result = await auth_api.changePassword(
       password,
       newpassword,
       confirmnewpassword
     );
-    if (result.new_password) {
+
+    /*  if (result.new_password) {
       callPrompt(
         "Change Password",
         "",
         "Close",
-        "Both fields can not ne blank"
+        "Fields can not be empty"
       );
       return;
     }
@@ -67,12 +191,18 @@ const Acount = () => {
     if (result.confirm_password) {
       callPrompt("Change Password", "", "Close", result.confirm_password);
       return;
-    }
+	} */
+
     if (result.password) {
       callPrompt("Change Password", "", "Close", result.password);
       return;
     }
     console.log("Changing password", result);
+
+    callPrompt("Change Password", "", "Close", "Password changed successfully");
+    setPassword("");
+    setNewPassword("");
+    setConfirmNewPassword("");
   };
 
   return (
@@ -119,29 +249,42 @@ const Acount = () => {
                 </Accordion.Toggle>
                 <Accordion.Collapse eventKey="email-toggle">
                   <Card.Body>
-                    <form>
-                      <div className="row form-group account-email-body">
-                        <label className="pr-2 mt-2">
-                          <strong>Email Address</strong>
-                        </label>
-                        <input
-                          type="text"
-                          id="account-input-mail"
-                          className="form-control form-rounded mail-pass-input"
-                          placeholder="loisewurama@yahoo.com"
-                          onChange={(e) => setIsEmail(e.target.value)}
-                        ></input>
-                      </div>
-                      <div className="row account-email-body-buttons pl-9  mb-2">
-                        <AccountPasswordPopup />
-                        <button
-                          className="btn btn-primary mail-pass-buttons"
-                          id="account-mail-cancel"
-                        >
-                          Cancel
-                        </button>
-                      </div>
-                    </form>
+                    <div className="row form-group account-email-body">
+                      <label className="pr-2 mt-2">
+                        <strong>Email Address</strong>
+                      </label>
+                      <input
+                        type="text"
+                        id="account-input-mail"
+                        className="form-control form-rounded mail-pass-input"
+						placeholder="New email"
+						value={newEmail}
+                        onChange={(e) => setNewEmail(e.target.value)}
+                      ></input>
+                    </div>
+                    <div className="row form-group account-email-body">
+                      <label className="pr-6 mt-2">
+                        <strong>Password</strong>
+                      </label>
+                      <input
+                        type="text"
+                        id="account-input-password"
+                        className="form-control form-rounded mail-pass-input"
+						placeholder="Confirm password"
+						value={mailpassword}
+                        onChange={(e) => setMailPassword(e.target.value)}
+                      ></input>
+                    </div>
+                    <div className="row account-email-body-buttons pl-9  mb-2">
+                      {/*  <AccountPasswordPopup /> */}
+                      <button
+                        className="btn btn-primary mail-pass-buttons"
+                        id="account-mail-save"
+                        onClick={submitChangeEmail}
+                      >
+                        Save
+                      </button>
+                    </div>
                     <div className="account-email-body">
                       <p className="pl-5">
                         <strong>Note:</strong> Your email address is linked to
@@ -176,78 +319,61 @@ const Acount = () => {
                 </Accordion.Toggle>
                 <Accordion.Collapse eventKey="password-toggle">
                   <Card.Body>
-                    <form onSubmit={submitChangePassword}>
-                      <div className="row form-group account-email-body">
-                        <label className="pr-3 mt-2">
-                          <strong>Current Password</strong>
-                        </label>
-                        <input
-                          id="password"
-                          type="password"
-                          className="form-control form-rounded mail-pass-input"
-                          placeholder="Enter password"
-                          value={password}
-                          onChange={(e) => {
-                            setPassword(e.target.value);
-                          }}
-                        ></input>
-                      </div>
-                      <div className="row form-group account-email-body">
-                        <label className="pr-6 mt-2">
-                          <strong>New Password</strong>
-                        </label>
-                        <input
-                          id="newpassword"
-                          type="password"
-                          className="form-control form-rounded mail-pass-input"
-                          placeholder="Password must be atleast 8 characters"
-                          value={newpassword}
-                          onChange={(e) => setNewPassword(e.target.value)}
-                        ></input>
-                      </div>
-                      <div className="row form-group account-email-body">
-                        <label className="pr-2 mt-2">
-                          <strong>Confirm Password</strong>
-                        </label>
-                        <input
-                          id="confirmnewpassword"
-                          type="password"
-                          className="form-control form-rounded mail-pass-input"
-                          placeholder="Re-enter the same password as above"
-                          value={confirmnewpassword}
-                          onChange={(e) =>
-                            setConfirmNewPassword(e.target.value)
-                          }
-                        ></input>
-                      </div>
-                      {/* <div className="row account-email-body mt-5">
-                        <div>
-                          <a
-                            href="/auth/forgottenpassword"
-                            className="texthover account-forgot"
-                          >
-                            Forgot Password?
-                          </a>
-                        </div>
-                      </div> */}
-                      {/*Buttons for saving of password starts here*/}
+                    <div className="row form-group account-email-body">
+                      <label className="pr-3 mt-2">
+                        <strong>Current Password</strong>
+                      </label>
+                      <input
+                        id="password"
+                        type="text"
+                        className="form-control form-rounded mail-pass-input"
+                        placeholder="Enter password"
+                        value={password}
+                        onChange={(e) => {
+                          setPassword(e.target.value);
+                        }}
+                      ></input>
+                    </div>
+                    <div className="row form-group account-email-body">
+                      <label className="pr-6 mt-2">
+                        <strong>New Password</strong>
+                      </label>
+                      <input
+                        id="newpassword"
+                        type="text"
+                        className="form-control form-rounded mail-pass-input"
+                        placeholder="Password must be atleast 8 characters"
+                        value={newpassword}
+                        onChange={(e) => setNewPassword(e.target.value)}
+                      ></input>
+                    </div>
+                    <div className="row form-group account-email-body">
+                      <label className="pr-2 mt-2">
+                        <strong>Confirm Password</strong>
+                      </label>
+                      <input
+                        id="confirmnewpassword"
+                        type="text"
+                        className="form-control form-rounded mail-pass-input"
+                        placeholder="Re-enter the same password as above"
+                        value={confirmnewpassword}
+                        onChange={(e) => setConfirmNewPassword(e.target.value)}
+                      ></input>
+                    </div>
+                    {/*Buttons for saving of password starts here*/}
 
-                      <div className="row account-email-body-buttons pl-9 mt-5  mb-2">
-                        <button
-                          id="account-pass-save"
-                          className="btn btn-primary pass-buttons mr-1 mb-2 "
-                        >
-                          Save
-                        </button>
-                        <button
-                          id="account-pass-cancel"
-                          className="btn btn-primary pass-buttons mb-2"
-                        >
-                          Cancel
-                        </button>
-                      </div>
-                      {/*Buttons for saving of password ends here*/}
-                    </form>
+                    <div className="row account-email-body-buttons pl-9 mt-5  mb-2">
+                      <button
+                        type="submit"
+                        id="account-pass-save"
+                        className="btn btn-primary pass-buttons mr-1 mb-2 "
+                        onClick={submitChangePassword}
+                      >
+                        Save
+                      </button>
+                     
+                    </div>
+                    {/*Buttons for saving of password ends here*/}
                   </Card.Body>
                 </Accordion.Collapse>
               </Card>

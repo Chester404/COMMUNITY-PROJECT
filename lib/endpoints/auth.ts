@@ -23,33 +23,26 @@ export class Auth {
   }
 
   async login(authentication_property: string, password: string) {
-    //authentication_property: email or phone number for login
-    // const rs = await axios.post("http://51.116.114.155:8080/auth/token/", {
-    //   authentication_property: authentication_property,
-    //   password: password,
-    // });
-    // console.log("Login", rs);
-
-    // return rs;
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-
     let urlencoded = new URLSearchParams();
     urlencoded.append("authentication_property", authentication_property);
     urlencoded.append("password", password);
-
     let requestOptions: any = {
       method: "POST",
       headers: myHeaders,
       body: urlencoded,
       redirect: "follow",
     };
-
-    const rs = await fetch(
-      process.env.URL+"/auth/token/",
-      requestOptions
-    );
+    const rs = await fetch(`${process.env.URL}/auth/token/`, requestOptions);
     return await rs.json();
+  }
+  
+  async verifyemail(authentication_property) {
+    return await ufetch('/auth/create-key/',{
+      method:"POST",
+      body: JSON.stringify({authentication_property:authentication_property,access_type:'pw'})
+    })
   }
 
   async forgotpassword(authentication_property: string) {
@@ -59,6 +52,55 @@ export class Auth {
       body: data,
     });
   }
+
+  // reset-password
+  async resetPassword( password: string ) {
+    let ta:any = window.localStorage.getItem('ta');
+      try{
+        ta = JSON.parse(ta);
+        console.log('TAACCESS',ta.ta.data.access)
+      }catch(e){}
+      const fd = new FormData();
+      fd.append('password',password)
+        return await fetch( process.env.URL +"/auth/reset-password/", {
+          method: "PUT",
+          body: JSON.stringify({password}),
+          headers:{
+            Authorization:`Bearer ${ta.ta.data.access}`,
+            "Content-Type": "application/json",
+          }
+  });
+}
+//auth/change-profile/
+  //verifypassword
+  async verifyPassword(password: string) {
+    const result = await ufetch();
+  }
+  ///auth/ch'ange-password/
+  async changePassword(
+    password: string,
+    new_password: string,
+    confirm_password: string
+  ) {
+    return await ufetch("/auth/change-password/", {
+      method: "PUT",
+      body: JSON.stringify({
+        password,
+        new_password,
+        confirm_password,
+      }),
+    });
+  }
+  async changeEmail(email: string, password: string) {
+    const result = await ufetch("/auth/change-profile/", {
+      method: "PUT",
+      body: JSON.stringify({
+        email,
+        password
+      }), 
+    });
+  }
+
 
   async updateUserProfile(userData: any) {
     const data = new URLSearchParams(userData).toString();

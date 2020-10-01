@@ -1,13 +1,5 @@
-interface IAdminProps {
-  handleList(str: any): void;
-  handleListView(str: any): void;
-}
-
-const AdminSidebar = (props) => {
-  const recall = (args) => {
-    console.log(args);
-    props.handleList(args);
-  };
+import Link from "next/link"
+const AdminSidebar = ({ handleList }) => {
   return (
     <div>
       <div id="mySidenav" className="sidenav">
@@ -53,34 +45,50 @@ const AdminSidebar = (props) => {
           </a>
         </div>
         <ul id="list">
+          <Link href="/userList?individual">
           <a
-            href="#individuals"
             onClick={() => {
-              console.log(props.handleList());
-              props.handleList("individual");
+              handleList("individuals");
             }}
           >
             <li>Individual List</li>
           </a>
+          </Link>
+          <Link  href="/userList">
           <a
-            href="#organizations"
             onClick={() => {
-              recall("organization");
+              handleList("organizations");
             }}
           >
             <li>Organizational List</li>
           </a>
-          <a href="#organizationalrequests">
+          </Link>
+
+          <Link href="/organizationrequest">
+          <a >
             <li>Organizational Requests</li>
           </a>
+          </Link>
+          <Link href="/userList">
+            <a
+              onClick={() => {
+                // handleListView("inactive");
+                handleList("deactivated_users");
+              }}
+            >
+              <li>Deactivated Users</li>
+            </a>
+          </Link>
+          <Link  href="/userList">
           <a
-            href="#deactivated_users"
             onClick={() => {
-              props.handleListView("inactive");
+              // handleListView("inactive");
+              handleList("deactivated_organizations");
             }}
           >
-            <li>Deactivated Accounts</li>
+            <li>Deactivated Organizations</li>
           </a>
+          </Link>
         </ul>
 
         <div className="sidenavmenu">

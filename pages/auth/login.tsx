@@ -21,7 +21,6 @@ const Login = () => {
 
   const userProfile = (userInfo) => {
     window.localStorage.setItem("user-profile", JSON.stringify(userInfo));
-    console.log("throat", userInfo);
     dispatch({
       type: "SET_USERINFO",
       payload: userInfo,
@@ -52,7 +51,7 @@ const Login = () => {
         authentication_property,
         password
       );
-
+        console.log(response);
       if (response.user) {
         window.localStorage.setItem("cp-a", JSON.stringify(response));
         if (response.user.is_organization) {
@@ -69,7 +68,7 @@ const Login = () => {
           router.push("/blog");
         }
       } else {
-        callPrompt("Login", "", "Close", "An error occured.");
+        callPrompt("Login", "", "Close", "No active account found with the given credentials.");
       }
     } catch (err) {
       console.log(err);

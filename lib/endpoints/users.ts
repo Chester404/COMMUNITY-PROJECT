@@ -9,6 +9,16 @@ export class Users {
       body: query_params,
     });
   }
+  
+  async changeEmail(userData: any) {
+    //authentication_property: email or phone number for login
+    return await ufetch("/auth/change-profile/", {
+        method: "PUT",
+        body: JSON.stringify(userData),
+    });
+  }
+
+
 
   async confirmaccount(integer_key: number) {
     const rs = await axios.post(process.env.URL + "/auth/keyinput/", {

@@ -39,7 +39,9 @@ const Navbar = (props) => {
     if (
       router.pathname.includes("/login") ||
       router.pathname.includes("/signup") ||
-      router.pathname.includes("/confirmaccount")
+      router.pathname.includes("/confirmaccount") ||
+      router.pathname.includes("/forgottenpassword")||
+      router.pathname.includes("/resetpassword")
     ) {
       setTempHolder(false);
     } else {
@@ -201,10 +203,13 @@ const Navbar = (props) => {
                         View Profile
                       </a>
                     </Link>
-                    <a className="dropdown-item itemname" href="#">
-                      <i className="dropdown-icon fe fe-edit" />
-                      Account Setting
-                    </a>
+                    <Link  href="/auth/account-settings">
+                      <a className="dropdown-item itemname">
+                        <i className="dropdown-icon fe fe-edit" />
+                        Account Setting
+                      </a>
+                    </Link>
+                   
                     <a
                       className="dropdown-item itemname"
                       href="#"

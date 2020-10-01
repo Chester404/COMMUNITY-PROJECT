@@ -4,9 +4,10 @@ import AdminSidebar from "../components/admin-sidebar";
 import { Dropdown, DropdownButton, InputGroup } from "react-bootstrap";
 
 export default function organizationrequest() {
+
   return (
     <MainLayout>
-      <AdminSidebar />
+      <AdminSidebar   handleList={()=>{}}/>
       <div>
         <i
           className="fa fa-chevron-circle-right openicon mr-5"
