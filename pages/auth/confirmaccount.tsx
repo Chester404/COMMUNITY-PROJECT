@@ -141,7 +141,7 @@ const ConfirmAccount = () => {
   }, []);
   return (
     <>
-      <MainLayout isLandingPage="none">
+      <MainLayout >
         <Prompt
           title={prompt_title}
           linkTo={link_to}
