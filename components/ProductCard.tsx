@@ -1,9 +1,9 @@
 const ProductCard = ({product}) => {
     return (
-        <div className="col-sm-3" >
+        <div className="col-md-3" >
             <div className="card">
             <button className="btn btn-info" style={{width: "2em", borderRadius: "2em", zIndex: 3, marginBottom: "-3.8em", marginLeft: "80%", marginTop: "1em"}}><i className="fa fa-shopping-cart"></i></button>
-            <img src="/images/products/valeriia-miller-_42NKYROG7g-unsplash.jpg" className="card-img-top mx-auto" alt="..." style={{ height: "10rem", objectFit:"fill", zIndex: 1}} />
+            <img src={product.image_1} className="card-img-top mx-auto" alt="..." style={{ height: "10rem", objectFit:"fill", zIndex: 1}} />
             <div className="card-body">
             
             <div className="row">

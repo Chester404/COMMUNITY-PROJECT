@@ -93,7 +93,14 @@ const Navbar = (props) => {
                   </button>
                   <ul className="dropdown-menu" role="menu">
                     <li>
-                      <a href="#">Market</a>
+                    <Link href="/market">
+                      <a className="nav-link"
+                      style={{
+                            color: router.pathname == "/market" ? "" : "black",
+                          }}>
+                        <span className="lay-outstyle mt-1">Market</span>
+                      </a>
+                      </Link>
                     </li>
                     <li>
                       <a href="#">Jobs</a>
@@ -135,9 +142,11 @@ const Navbar = (props) => {
 
               {/* logo*/}
               <div className="d-none dropdown d-md-flex header-settings ml-auto">
-                <a className="nav-link">
+                <Link href="/market">
+                <a className="nav-link" style={{ color: router.pathname == "/market" ? "" : "black" }}>
                   <span className="lay-outstyle mt-1">Market</span>
                 </a>
+                </Link>
                 <a className="nav-link">
                   <span className="lay-outstyle mt-1">Jobs</span>
                 </a>
@@ -237,9 +246,15 @@ const Navbar = (props) => {
             <>
               <div className="navbar-list">
                 <div className="d-none dropdown d-md-flex">
-                  <a className="nav-link">
+                <Link href="/market">
+                  <a className="nav-link"
+                    style={{
+                      color: router.pathname == "/market" ? "" : "#3f3d56",
+                    }}
+                  >
                     <span className="lay-outstyle mt-1">Market</span>
                   </a>
+                  </Link>
                   <a className="nav-link">
                     <span className="lay-outstyle mt-1">Jobs</span>
                   </a>
