@@ -46,7 +46,7 @@ export class Auth {
     };
 
     const rs = await fetch(
-      "http://b0dfd5db797e.ngrok.io/auth/token/",
+      process.env.URL+"/auth/token/",
       requestOptions
     );
     return await rs.json();
