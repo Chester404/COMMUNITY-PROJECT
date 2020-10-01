@@ -3,21 +3,22 @@ import MainLayout from "../components/MainLayout";
 import AdminSidebar from "../components/admin-sidebar";
 import { Dropdown, DropdownButton, InputGroup } from "react-bootstrap";
 
-export default function organizationRequest() {
+export default function organizationrequest() {
   return (
     <MainLayout>
       <AdminSidebar />
       <div>
-      <i className="fa fa-chevron-circle-right openicon mr-5"
-                id="openicon"
-                onClick={() => openNav()}
-                style={{ fontSize: "20px", cursor: "pointer" }}
-              />
+        <i
+          className="fa fa-chevron-circle-right openicon mr-5"
+          id="openicon"
+          onClick={() => openNav()}
+          style={{ fontSize: "20px", cursor: "pointer" }}
+        />
       </div>
       <div className="userlistpage" id="main">
         <div>
           <div className="page-header">
-            <h3 className="page-title" >Organization Requests</h3>
+            <h3 className="page-title">Organization Requests</h3>
             <div className="mt-0 row">
               <div className="inner-addon right-addon mr-2">
                 <i className="fe fe-search fa-lg" />
@@ -36,7 +37,7 @@ export default function organizationRequest() {
             </div>
           </div>
         </div>
-​
+        ​
         <div
           className="table-responsive table-lg"
           style={{
@@ -63,7 +64,12 @@ export default function organizationRequest() {
           <table className="table">
             <thead>
               <tr>
-                <th scope="col" className="text-muted"><input type="checkbox" id="select-All" className="checkbox-round mr-2"></input>
+                <th scope="col" className="text-muted">
+                  <input
+                    type="checkbox"
+                    id="select-All"
+                    className="checkbox-round mr-2"
+                  ></input>
                   Name<i className="fe fe-align-left"></i>
                 </th>
                 <th scope="col" className="text-muted">
@@ -79,116 +85,232 @@ export default function organizationRequest() {
             </thead>
             <tbody>
               <tr>
-                <td><input type="checkbox" name="selectAll" className="checkbox-round mr-2"></input><img src="/assets/images/pic.png"
-                className="header-brand-img login-logo"
-              />
-              AB Jones Ent </td>
+                <td>
+                  <input
+                    type="checkbox"
+                    name="selectAll"
+                    className="checkbox-round mr-2"
+                  ></input>
+                  <img
+                    src="/assets/images/pic.png"
+                    className="header-brand-img login-logo"
+                  />
+                  AB Jones Ent{" "}
+                </td>
                 <td>050001234</td>
                 <td>Anaji</td>
                 <td align="center">
-                  <button className="btn btn-success mr-2 requestbtn">Approve</button>
-                  <button className="btn btn-danger requestbtn">Disapprove</button>
+                  <button className="btn btn-success mr-2 requestbtn">
+                    Approve
+                  </button>
+                  <button className="btn btn-danger requestbtn">
+                    Disapprove
+                  </button>
                 </td>
               </tr>
-​
+              ​
               <tr>
-                <td><input type="checkbox" name="selectAll" className="checkbox-round mr-2"></input><img src="/assets/images/pic.png"
-                className="header-brand-img login-logo"
-              />Abdul Salam</td>
+                <td>
+                  <input
+                    type="checkbox"
+                    name="selectAll"
+                    className="checkbox-round mr-2"
+                  ></input>
+                  <img
+                    src="/assets/images/pic.png"
+                    className="header-brand-img login-logo"
+                  />
+                  Abdul Salam
+                </td>
                 <td>**********</td>
                 <td>Lagos Town</td>
                 <td align="center">
-                  <button className="btn btn-success mr-2 requestbtn">Approve</button>
-                  <button className="btn btn-danger requestbtn">Disapprove</button>
+                  <button className="btn btn-success mr-2 requestbtn">
+                    Approve
+                  </button>
+                  <button className="btn btn-danger requestbtn">
+                    Disapprove
+                  </button>
                 </td>
               </tr>
-​
+              ​
               <tr>
-                <td><input type="checkbox" name="selectAll" className="checkbox-round mr-2"></input><img src="/assets/images/pic.png"
-                className="header-brand-img login-logo"
-              />Amalitech Services</td>
+                <td>
+                  <input
+                    type="checkbox"
+                    name="selectAll"
+                    className="checkbox-round mr-2"
+                  ></input>
+                  <img
+                    src="/assets/images/pic.png"
+                    className="header-brand-img login-logo"
+                  />
+                  Amalitech Services
+                </td>
                 <td>0575679860</td>
                 <td>Sekondi</td>
                 <td align="center">
-                  <button className="btn btn-success mr-2 requestbtn">Approve</button>
-                  <button className="btn btn-danger requestbtn">Disapprove</button>
+                  <button className="btn btn-success mr-2 requestbtn">
+                    Approve
+                  </button>
+                  <button className="btn btn-danger requestbtn">
+                    Disapprove
+                  </button>
                 </td>
               </tr>
-​
+              ​
               <tr>
-                <td><input type="checkbox" name="selectAll" className="checkbox-round mr-2"></input><img src="/assets/images/pic.png"
-                className="header-brand-img login-logo"
-              />Bagels LTD</td>
+                <td>
+                  <input
+                    type="checkbox"
+                    name="selectAll"
+                    className="checkbox-round mr-2"
+                  ></input>
+                  <img
+                    src="/assets/images/pic.png"
+                    className="header-brand-img login-logo"
+                  />
+                  Bagels LTD
+                </td>
                 <td>0508739843</td>
                 <td>Daboase</td>
                 <td align="center">
-                  <button className="btn btn-success mr-2 requestbtn">Approve</button>
-                  <button className="btn btn-danger requestbtn">Disapprove</button>
+                  <button className="btn btn-success mr-2 requestbtn">
+                    Approve
+                  </button>
+                  <button className="btn btn-danger requestbtn">
+                    Disapprove
+                  </button>
                 </td>
               </tr>
-​
+              ​
               <tr>
-                <td><input type="checkbox" name="selectAll" className="checkbox-round mr-2"></input><img src="/assets/images/pic.png"
-                className="header-brand-img login-logo"
-              />Dennis Bran</td>
+                <td>
+                  <input
+                    type="checkbox"
+                    name="selectAll"
+                    className="checkbox-round mr-2"
+                  ></input>
+                  <img
+                    src="/assets/images/pic.png"
+                    className="header-brand-img login-logo"
+                  />
+                  Dennis Bran
+                </td>
                 <td>050001234</td>
                 <td>Anaji</td>
                 <td align="center">
-                  <button className="btn btn-success mr-2 requestbtn">Approve</button>
-                  <button className="btn btn-danger requestbtn">Disapprove</button>
+                  <button className="btn btn-success mr-2 requestbtn">
+                    Approve
+                  </button>
+                  <button className="btn btn-danger requestbtn">
+                    Disapprove
+                  </button>
                 </td>
               </tr>
-​
+              ​
               <tr>
-                <td><input type="checkbox" name="selectAll" className="checkbox-round mr-2"></input><img src="/assets/images/pic.png"
-                className="header-brand-img login-logo"
-              />Fiby & Moby Ent</td>
+                <td>
+                  <input
+                    type="checkbox"
+                    name="selectAll"
+                    className="checkbox-round mr-2"
+                  ></input>
+                  <img
+                    src="/assets/images/pic.png"
+                    className="header-brand-img login-logo"
+                  />
+                  Fiby & Moby Ent
+                </td>
                 <td>0549847321</td>
                 <td>Anaji</td>
                 <td align="center">
-                  <button className="btn btn-success mr-2 requestbtn">Approve</button>
-                  <button className="btn btn-danger requestbtn">Disapprove</button>
+                  <button className="btn btn-success mr-2 requestbtn">
+                    Approve
+                  </button>
+                  <button className="btn btn-danger requestbtn">
+                    Disapprove
+                  </button>
                 </td>
               </tr>
-​
+              ​
               <tr>
-                <td><input type="checkbox" name="selectAll" className="checkbox-round mr-2"></input><img src="/assets/images/pic.png"
-                className="header-brand-img login-logo"
-              />Planet Hub</td>
+                <td>
+                  <input
+                    type="checkbox"
+                    name="selectAll"
+                    className="checkbox-round mr-2"
+                  ></input>
+                  <img
+                    src="/assets/images/pic.png"
+                    className="header-brand-img login-logo"
+                  />
+                  Planet Hub
+                </td>
                 <td>050001234</td>
                 <td>Anaji</td>
                 <td align="center">
-                  <button className="btn btn-success mr-2 requestbtn">Approve</button>
-                  <button className="btn btn-danger requestbtn">Disapprove</button>
+                  <button className="btn btn-success mr-2 requestbtn">
+                    Approve
+                  </button>
+                  <button className="btn btn-danger requestbtn">
+                    Disapprove
+                  </button>
                 </td>
               </tr>
-​
+              ​
               <tr>
-                <td><input type="checkbox" name="selectAll" className="checkbox-round mr-2"></input><img src="/assets/images/pic.png"
-                className="header-brand-img login-logo"
-              />AB Jones Ent </td>
+                <td>
+                  <input
+                    type="checkbox"
+                    name="selectAll"
+                    className="checkbox-round mr-2"
+                  ></input>
+                  <img
+                    src="/assets/images/pic.png"
+                    className="header-brand-img login-logo"
+                  />
+                  AB Jones Ent{" "}
+                </td>
                 <td>050001234</td>
                 <td>Anaji</td>
                 <td align="center">
-                  <button className="btn btn-success mr-2 requestbtn">Approve</button>
-                  <button className="btn btn-danger requestbtn">Disapprove</button>
+                  <button className="btn btn-success mr-2 requestbtn">
+                    Approve
+                  </button>
+                  <button className="btn btn-danger requestbtn">
+                    Disapprove
+                  </button>
                 </td>
               </tr>
-​
+              ​
               <tr>
-                <td><input type="checkbox" name="selectAll" className="checkbox-round mr-2"></input><img src="/assets/images/pic.png"
-                className="header-brand-img login-logo"
-              />Abdul Salam</td>
+                <td>
+                  <input
+                    type="checkbox"
+                    name="selectAll"
+                    className="checkbox-round mr-2"
+                  ></input>
+                  <img
+                    src="/assets/images/pic.png"
+                    className="header-brand-img login-logo"
+                  />
+                  Abdul Salam
+                </td>
                 <td>**********</td>
                 <td>Lagos Town</td>
                 <td align="center">
-                  <button className="btn btn-success mr-2 requestbtn">Approve</button>
-                  <button className="btn btn-danger requestbtn">Disapprove</button>
+                  <button className="btn btn-success mr-2 requestbtn">
+                    Approve
+                  </button>
+                  <button className="btn btn-danger requestbtn">
+                    Disapprove
+                  </button>
                 </td>
               </tr>
             </tbody>
           </table>
-​
+          ​
           <div
             className="row"
             style={{ margin: "10px", background: "#ffffff" }}
@@ -196,9 +318,8 @@ export default function organizationRequest() {
         </div>
       </div>
     </MainLayout>
-  )
+  );
 }
-​
 function openNav() {
   document.getElementById("mySidenav").style.width = "250px";
   document.getElementById("main").style.marginLeft = "220px";
