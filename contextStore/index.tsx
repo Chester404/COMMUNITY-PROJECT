@@ -25,6 +25,17 @@ const reducer = (state, action) => {
       return { ...state, organization: action.payload };
     case "SET_USERINFO":
       return { ...state, userProfile: action.payload };
+      case "UPDATE_USERNAME":
+        const temp = state.userProfile
+        temp.name = action.payload
+        return { ...state, userProfile:temp};
+    case "SET_IMAGE":
+const temps = state.userProfile
+        temps.image = action.payload
+        return { ...state, userProfile:temps};
+    return
+    default:
+      return state
   }
 };
 

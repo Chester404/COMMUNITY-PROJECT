@@ -17,6 +17,21 @@ export const REGIONS = [
   ];
   
  export const CATEGORY = [
-	["agr", "Agriculture"],
-	["hcm", "Hospitality Management"],
-  ];
+	['FI', 'Finance'],
+    ['HO', 'Hospitality'],
+    ['ME', 'Media'],
+    ['PS', 'Public Service'],
+    ['FA', 'Fashion'],
+    ['RW', 'Retail and Wholesale '],
+    ['ED', 'Education'],
+    ['CT', 'Construction'],
+    ['OG', 'Oil & Gas'],
+    ['IT', 'Information Technology'],
+    ['EN', 'Engineering'],
+    ['AFP', 'Agric Food Processing'],
+    ['SS', 'Security Services'],
+    ['MN', 'Mining'],
+    ['LG', 'Logistics'],
+    ['EN', 'Energy'],
+    ['HC', 'HealthCare']
+]

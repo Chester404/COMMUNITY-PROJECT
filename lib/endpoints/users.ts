@@ -35,7 +35,13 @@ export class Users {
     });
   }
   async getAdminProfile() {
-    return ufetch("/accounts/user/", {
+    return ufetch("/accounts/signed_in_user/", {
+      method: "GET",
+    });
+  }
+
+  async getBusinessProfile() {
+    return ufetch("/accounts/self_bus_details/", {
       method: "GET",
     });
   }
@@ -46,6 +52,15 @@ export class Users {
       method: "GET",
     });
   }
+
+  async getUnregisteredUsersProfile() {
+    //accounts/signed_in_user
+    return ufetch("/accounts/list-of-unregisterd-users/", {
+      method: "GET",
+    });
+  }
+
+  
 
   async getProfilesForAdmin() {
     //accounts/signed_in_user
@@ -96,15 +111,8 @@ export class Users {
     });
   }
 
-  async getBusinessProfile() {
-    //accounts/signed_in_user
-    return ufetch(" ", {
-      method: "GET",
-    });
-  }
-
   async updateBusinessProfile(userData: any) {
-    return await ufetch(" ", {
+    return await ufetch("/accounts/self_bus_update/ ", {
       method: "PUT",
       body: JSON.stringify(userData),
     });
@@ -112,7 +120,7 @@ export class Users {
 
   async activateDeactivate(body: any) {
     console.log("activate body:", body);
-    return await ufetch(`auth/activate_deactivate/${body.pk}/`, {
+    return await ufetch(`/auth/activate_deactivate/${body.pk}/`, {
       method: "PUT",
       // body: JSON.stringify(body.is_active),
       body: JSON.stringify({ is_activated: body.activate }),

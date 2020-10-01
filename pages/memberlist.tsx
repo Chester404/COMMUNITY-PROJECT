@@ -1,8 +1,9 @@
 import MainLayout from "../components/MainLayout";
 import UserProfilePopup from "../components/UserProfilePopup";
 import { Users } from "../lib/endpoints";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/router";
+import { Store } from "../contextStore";
 const disabled = {};
 interface IPaginateProps {
   callback(i: number): void;
@@ -81,8 +82,9 @@ export default function Home() {
   const [userProfile, setUserProfile] = useState();
   const [readyPopupData, setReadyPopupData] = useState(false);
   const [togglelist, setTogglelist] = useState(false);
-  const [rs, setRs] = useState([]);
+  // const [rs, setRs] = useState([]);
   const [title, setTitle] = useState("Individuals");
+  const { state } = useContext(Store);
   const router = useRouter();
 
   const getUserDetails = async (id) => {
@@ -97,7 +99,13 @@ export default function Home() {
   };
   useEffect(() => {
     (async () => {
-      const rs = await new Users().getProfiles();
+      let rs=null;
+      if (state.userProfile.name == undefined) {
+        rs=await new Users().getUnregisteredUsersProfile();
+      }else{
+        rs = await new Users().getProfiles();
+        }
+      
       // setRs(rs);
       console.log("rs:",rs);
       let temp = rs.filter((uprofile: any) => {

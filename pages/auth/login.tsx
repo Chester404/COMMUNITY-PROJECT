@@ -54,18 +54,26 @@ const Login = () => {
         console.log(response);
       if (response.user) {
         window.localStorage.setItem("cp-a", JSON.stringify(response));
-        if (response.user.is_organization) {
+        if (response.user.is_staff) {
           userInfo = await new Users().getAdminProfile();
         } else {
-          userInfo = await new Users().getUserProfile();
+          if(response.user.is_organization) {
+            userInfo = await new Users().getBusinessProfile();
+          } else {
+            userInfo = await new Users().getUserProfile();
+          }
         }
+
         userProfile(userInfo);
 
         setShow(false);
         if (response.user.is_staff) {
           router.push("/userList");
         } else {
-          router.push("/blog");
+          if (response.user.is_organization) 
+            router.push("/businessprofile"); 
+            else 
+            router.push("/blog");
         }
       } else {
         callPrompt("Login", "", "Close", "No active account found with the given credentials.");
