@@ -24,15 +24,15 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
+    "/landingpage": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/landingpage.js"
+    ],
     "/market": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
       "static/chunks/pages/market.js"
-    ],
-    "/memberlist": [
-      "static/chunks/main.js",
-      "static/chunks/webpack.js",
-      "static/chunks/pages/memberlist.js"
     ]
   },
   "ampFirstPages": []

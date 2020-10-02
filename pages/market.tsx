@@ -1,8 +1,8 @@
 import MainLayout from "../components/MainLayout";
 import { Products } from "../lib/endpoints";
 import { useEffect, useState } from "react";
-import ProductCard  from '../components/ProductCard';
-import ServiceCard from '../components/ServiceCard';
+import ProductCard from "../components/ProductCard";
+import ServiceCard from "../components/ServiceCard";
 
 const locationData = [
   "Airport Ridge",
@@ -24,12 +24,12 @@ const locationData = [
   "Ntankoful",
   "Sekondi",
   "Tanokrom",
-  "Whindo"
-]
+  "Whindo",
+];
 
 const categoryData = [
-  {'key':'SP', 'name': 'Sport Wears'},
-  {'key':'EL', 'name':'Electronics'},
+  { key: "SP", name: "Sport Wears" },
+  { key: "EL", name: "Electronics" },
   // {'key':'FTF', 'name': 'Fashion, Textiles and Fabrics'},
   // {'key':'JGP', 'name':'Jewellery, Gifts and Parcels'},
   // {'key':'SSF', 'name':'Shoes, Sandals and Footwears'},
@@ -47,24 +47,24 @@ const categoryData = [
   // {'key':'REP', 'name':'Real Estates and Properties'},
   // {'key':'HeP', 'name':'Health and Pharmaceuticals'},
   // {'key':'PlP','name':'Plastics and Rubbers'}
-]
+];
 
 const maxPriceFilters = [
-      {'key':'100000', 'value':'100,000'},
-      {'key':'10000', 'value':'10,000'},
-      {'key':'1000', 'value':'1,000'},
-      {'key':'100', 'value':'100'},
-      {'key':'10', 'value':'10'},  
-  ]
+  { key: "100000", value: "100,000" },
+  { key: "10000", value: "10,000" },
+  { key: "1000", value: "1,000" },
+  { key: "100", value: "100" },
+  { key: "10", value: "10" },
+];
 
-  const minPriceFilters = [
-    {'key':'1', 'value':'1'},
-    {'key':'10', 'value':'10'},
-    {'key':'100', 'value':'100'},
-    {'key':'1000', 'value':'1,000'},
-    {'key':'10000', 'value':'10,000'},
-    {'key':'100000', 'value':'100,000'}, 
-]
+const minPriceFilters = [
+  { key: "1", value: "1" },
+  { key: "10", value: "10" },
+  { key: "100", value: "100" },
+  { key: "1000", value: "1,000" },
+  { key: "10000", value: "10,000" },
+  { key: "100000", value: "100,000" },
+];
 
 const disabled = {};
 interface IPaginateProps {
@@ -165,7 +165,7 @@ export default function ProductsView() {
   const typeFilter = (type: string) => {
     let products = altProductsList;
     let rs: any[];
-    if (type == 'ALL') {
+    if (type == "ALL") {
       setTempList(products);
       setAllProducts(products.slice(0, recordsPerPage));
     } else {
@@ -173,43 +173,42 @@ export default function ProductsView() {
       setTempList(rs);
       setAllProducts(rs.slice(0, recordsPerPage));
     }
-  }
+  };
 
   const categoryFilter = (type: string) => {
-      let products = altProductsList;
-      let rs: any[];
-      rs = products.filter((item) => item.category === type);
-      setTempList(rs);
-      setAllProducts(rs.slice(0, recordsPerPage));
-  }
+    let products = altProductsList;
+    let rs: any[];
+    rs = products.filter((item) => item.category === type);
+    setTempList(rs);
+    setAllProducts(rs.slice(0, recordsPerPage));
+  };
 
   const locationFilter = (type: string) => {
     let rs = altProductsList;
-    if (type == 'ALL') {
+    if (type == "ALL") {
       rs = allproducts;
       setAllProducts(rs.slice(0, recordsPerPage));
     } else {
       rs = allproducts.filter((item) => item.product_type === type);
       setAllProducts(rs.slice(0, recordsPerPage));
     }
-  }
+  };
 
   const minPriceFilter = (price: string) => {
-      let products = altProductsList;
-      let rs: any[];
-      rs = products.filter((item) => item.price >= parseFloat(price));
-      setTempList(rs);
-      setAllProducts(rs.slice(0, recordsPerPage));
-  }
+    let products = altProductsList;
+    let rs: any[];
+    rs = products.filter((item) => item.price >= parseFloat(price));
+    setTempList(rs);
+    setAllProducts(rs.slice(0, recordsPerPage));
+  };
 
   const maxPriceFilter = (price: string) => {
-      let products = altProductsList;
-      let rs: any[];
-      rs = products.filter((item) => item.product_type <= parseFloat(price));
-      setTempList(rs);
-      setAllProducts(rs.slice(0, recordsPerPage));
-  }
-  
+    let products = altProductsList;
+    let rs: any[];
+    rs = products.filter((item) => item.product_type <= parseFloat(price));
+    setTempList(rs);
+    setAllProducts(rs.slice(0, recordsPerPage));
+  };
 
   const paginate = (page: number) => {
     const start = (page - 1) * recordsPerPage + 1;
@@ -222,179 +221,404 @@ export default function ProductsView() {
   return (
     <>
       <MainLayout>
-      <div>
-        <div className="container" id= "header__container" style={{width: "100%"}}>
-              <div id="marketCarouselIndicators" className="carousel slide" data-ride="carousel" style={{padding: "20px"}}>
-                <ol className="carousel-indicators" id="carousel-indicators">
-                  <li id="market-carousel-item-1" data-target="#marketCarouselIndicators" data-slide-to="0" className="active"></li>
-                  <li id="market-carousel-item-2" data-target="#marketCarouselIndicators" data-slide-to="1"></li>
-                  <li id="market-carousel-item-3" data-target="#marketCarouselIndicators" data-slide-to="2"></li>
-                </ol>
-                <div className="carousel-inner" id="carousel-inner">
-                  <div className="carousel-item active" id="carousel-item-1" data-interval="2000">
-                    <img id="carousel-item-1__image" src="/assets/images/slider_image.jpg" className="d-block w-100" alt="..." />
-                    {/* <div className="carousel-caption d-none d-md-block">
-                      <h5>First slide label</h5>
-                      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                    </div> */}
-                  </div>
-                  <div className="carousel-item" id="carousel-item-2" data-interval="2000">
-                    <img id="carousel-item-2__image" src="/assets/images/slider_image.jpg" className="d-block w-100" alt="..." />
-                    {/* <div className="carousel-caption d-none d-md-block">
-                      <h5>Second slide label</h5>
-                      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                    </div> */}
-                  </div>
-                  <div className="carousel-item" id="carousel-item-3" data-interval="2000">
-                    <img id="carousel-item-3__image" src="/assets/images/slider_image.jpg" className="d-block w-100" alt="..." />
-                    {/* <div className="carousel-caption d-none d-md-block">
-                      <h5>Third slide label</h5>
-                      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                    </div> */}
+        <div>
+          <div
+            className="container"
+            id="header__container"
+            style={{ width: "100%" }}
+          >
+            <div
+              id="marketCarouselIndicators"
+              className="carousel slide"
+              data-ride="carousel"
+              style={{ padding: "20px" }}
+            >
+              <ol className="carousel-indicators" id="carousel-indicators">
+                <li
+                  id="market-carousel-item-1"
+                  data-target="#marketCarouselIndicators"
+                  data-slide-to="0"
+                  className="active"
+                ></li>
+                <li
+                  id="market-carousel-item-2"
+                  data-target="#marketCarouselIndicators"
+                  data-slide-to="1"
+                ></li>
+                <li
+                  id="market-carousel-item-3"
+                  data-target="#marketCarouselIndicators"
+                  data-slide-to="2"
+                ></li>
+              </ol>
+              <div className="carousel-inner" id="carousel-inner">
+                <div
+                  className="carousel-item active"
+                  id="carousel-item-1"
+                  data-interval="2000"
+                >
+                  <img
+                    id="carousel-item-1__image"
+                    src="/assets/images/slider_image.jpg"
+                    className="d-block w-100"
+                    alt="..."
+                  />
+                  <div
+                    className="carousel-caption d-none d-md-block"
+                    style={{
+                      position: "absolute",
+                      top: "137px",
+                    }}
+                  >
+                    <h6
+                      style={{
+                        fontWeight: "700",
+                        fontSize: "30px",
+                        textAlign: "left",
+                        fontFamily: "'Open Sans', sans-serif",
+                      }}
+                    >
+                      One Stop Online Market
+                    </h6>
+                    <p style={{ width: "350px" }}>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat
+                    </p>
                   </div>
                 </div>
-                <a id="carousel-control-prev" className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                  <span className="carousel-control-prev-icon" id="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span id="prev" className="sr-only">Previous</span>
-                </a>
-                <a id="carousel-control-next" className="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                  <span id="carousel-control-next-icon" className="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span id ="next" className="sr-only">Next</span>
-                </a>
+
+                <div
+                  className="carousel-item"
+                  id="carousel-item-2"
+                  data-interval="2000"
+                >
+                  <img
+                    id="carousel-item-2__image"
+                    src="/assets/images/slider_image.jpg"
+                    className="d-block w-100"
+                    alt="..."
+                  />
+                  <div
+                    className="carousel-caption d-none d-md-block"
+                    style={{
+                      position: "absolute",
+                      top: "137px",
+                    }}
+                  >
+                    <h6
+                      style={{
+                        fontWeight: "700",
+                        fontSize: "30px",
+                        textAlign: "left",
+                        fontFamily: "'Open Sans', sans-serif",
+                      }}
+                    >
+                      One Stop Online Market
+                    </h6>
+                    <p style={{ width: "350px" }}>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat
+                    </p>
+                  </div>
+                </div>
+                <div
+                  className="carousel-item"
+                  id="carousel-item-3"
+                  data-interval="2000"
+                >
+                  <img
+                    id="carousel-item-3__image"
+                    src="/assets/images/slider_image.jpg"
+                    className="d-block w-100"
+                    alt="..."
+                  />
+                  <div
+                    className="carousel-caption d-none d-md-block"
+                    style={{
+                      position: "absolute",
+                      top: "137px",
+                    }}
+                  >
+                    <h6
+                      style={{
+                        fontWeight: "700",
+                        fontSize: "30px",
+                        textAlign: "left",
+                        fontFamily: "'Open Sans', sans-serif",
+                      }}
+                    >
+                      One Stop Online Market
+                    </h6>
+                    <p style={{ width: "350px" }}>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <a
+                id="carousel-control-prev"
+                className="carousel-control-prev"
+                href="#carouselExampleIndicators"
+                role="button"
+                data-slide="prev"
+              >
+                <span
+                  className="carousel-control-prev-icon"
+                  id="carousel-control-prev-icon"
+                  aria-hidden="true"
+                ></span>
+                <span id="prev" className="sr-only">
+                  Previous
+                </span>
+              </a>
+              <a
+                id="carousel-control-next"
+                className="carousel-control-next"
+                href="#carouselExampleIndicators"
+                role="button"
+                data-slide="next"
+              >
+                <span
+                  id="carousel-control-next-icon"
+                  className="carousel-control-next-icon"
+                  aria-hidden="true"
+                ></span>
+                <span id="next" className="sr-only">
+                  Next
+                </span>
+              </a>
             </div>
 
-            <div className="row" id="filtersrow" style={{margin:"0 auto", padding: "30px",}}>
+            <div
+              className="row"
+              id="filtersrow"
+              style={{ margin: "0 auto", padding: "30px" }}
+            >
               <div className="col-md-2" id="categoryfilter__div">
                 <div className="dropdown" id="categoryfilter">
-                  <button 
-                    className="btn btn-light dropdown-toggle" 
-                    type="button" id="categoryDropdownMenuButton" 
-                    data-toggle="dropdown" 
-                    aria-haspopup="true" 
+                  <button
+                    className="btn btn-light dropdown-toggle"
+                    type="button"
+                    id="categoryDropdownMenuButton"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
                     aria-expanded="false"
                     style={{}}
-                    >
+                  >
                     {categoryFilterName}
                   </button>
-                  <div className="dropdown-menu" id="categoryDropdown__items"  aria-labelledby="dropdownMenuButton">
+                  <div
+                    className="dropdown-menu"
+                    id="categoryDropdown__items"
+                    aria-labelledby="dropdownMenuButton"
+                  >
                     {categoryData.map((category: any, index: number) => {
                       return (
-                        <a className="dropdown-item" href="#" key = {index}  onClick={()=> { setCategoryFilterName(category.name); categoryFilter(category.key)}}>{category.name}</a>
+                        <a
+                          className="dropdown-item"
+                          href="#"
+                          key={index}
+                          onClick={() => {
+                            setCategoryFilterName(category.name);
+                            categoryFilter(category.key);
+                          }}
+                        >
+                          {category.name}
+                        </a>
                       );
-                    })}   
+                    })}
                   </div>
                 </div>
               </div>
               <div className="col-md-2" id="typefilterdiv">
                 <div className="dropdown" id="typefilter">
-                  <button 
-                    className="btn btn-light dropdown-toggle" 
-                    type="button" id="typeDropdownMenuButton" 
-                    data-toggle="dropdown" 
-                    aria-haspopup="true" 
+                  <button
+                    className="btn btn-light dropdown-toggle"
+                    type="button"
+                    id="typeDropdownMenuButton"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
                     aria-expanded="false"
                     style={{}}
-                    >
+                  >
                     {typeFilterName}
                   </button>
-                  <div className="dropdown-menu" id="typeDropdown__items" aria-labelledby="dropdownMenuButton">
-                    <a className="dropdown-item" href="#" onClick={()=> {setTypeFilterName('All'); typeFilter('ALL')}}>All</a>
-                    <a className="dropdown-item" href="#" onClick={()=> { setTypeFilterName('Products'); typeFilter('PR')}}>Products</a>
-                    <a className="dropdown-item" href="#" onClick={()=> {setTypeFilterName('Services'); typeFilter('SE')}}>Services</a>
+                  <div
+                    className="dropdown-menu"
+                    id="typeDropdown__items"
+                    aria-labelledby="dropdownMenuButton"
+                  >
+                    <a
+                      className="dropdown-item"
+                      href="#"
+                      onClick={() => {
+                        setTypeFilterName("All");
+                        typeFilter("ALL");
+                      }}
+                    >
+                      All
+                    </a>
+                    <a
+                      className="dropdown-item"
+                      href="#"
+                      onClick={() => {
+                        setTypeFilterName("Products");
+                        typeFilter("PR");
+                      }}
+                    >
+                      Products
+                    </a>
+                    <a
+                      className="dropdown-item"
+                      href="#"
+                      onClick={() => {
+                        setTypeFilterName("Services");
+                        typeFilter("SE");
+                      }}
+                    >
+                      Services
+                    </a>
                   </div>
                 </div>
               </div>
               <div className="col-md-2" id="locationfilter__div">
                 <div className="dropdown" id="locationfilter">
-                  <button 
-                    className="btn btn-light dropdown-toggle" 
-                    type="button" 
-                    id="locationDropdownMenuButton" 
-                    data-toggle="dropdown" 
-                    aria-haspopup="true" 
+                  <button
+                    className="btn btn-light dropdown-toggle"
+                    type="button"
+                    id="locationDropdownMenuButton"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
                     aria-expanded="false"
                     style={{}}
-                    >
+                  >
                     {locationFilterName}
                   </button>
-                  <div className="dropdown-menu" id="locationdropdown__items" aria-labelledby="dropdownMenuButton">
-                  {locationData.map((location: any, index: number) => {
+                  <div
+                    className="dropdown-menu"
+                    id="locationdropdown__items"
+                    aria-labelledby="dropdownMenuButton"
+                  >
+                    {locationData.map((location: any, index: number) => {
                       return (
-                        <a className="dropdown-item" key={index} href="#" onClick={()=> {setLocationFilterName(location);}}>{location}</a>
+                        <a
+                          className="dropdown-item"
+                          key={index}
+                          href="#"
+                          onClick={() => {
+                            setLocationFilterName(location);
+                          }}
+                        >
+                          {location}
+                        </a>
                       );
-                    })}  
+                    })}
                   </div>
                 </div>
               </div>
               <div className="col-md-2" id="minpricefilter__div">
                 <div className="dropdown" id="minpricefilter">
-                  <button 
-                    className="btn btn-light dropdown-toggle" 
-                    type="button" 
-                    id="minPriceDropdownMenuButton" 
-                    data-toggle="dropdown" 
-                    aria-haspopup="true" 
+                  <button
+                    className="btn btn-light dropdown-toggle"
+                    type="button"
+                    id="minPriceDropdownMenuButton"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
                     aria-expanded="false"
                     style={{}}
-                    >
+                  >
                     {minPriceFilterName}
                   </button>
-                  <div className="dropdown-menu" id="minpricedropdown__items" aria-labelledby="dropdownMenuButton">
-                  {minPriceFilters.map((price: any, index: number) => {
+                  <div
+                    className="dropdown-menu"
+                    id="minpricedropdown__items"
+                    aria-labelledby="dropdownMenuButton"
+                  >
+                    {minPriceFilters.map((price: any, index: number) => {
                       return (
-                        <a className="dropdown-item" key={index} href="#" onClick={()=> {setMinPriceFilterName(price.value); minPriceFilter(price.key)}}>{price.value}</a>
+                        <a
+                          className="dropdown-item"
+                          key={index}
+                          href="#"
+                          onClick={() => {
+                            setMinPriceFilterName(price.value);
+                            minPriceFilter(price.key);
+                          }}
+                        >
+                          {price.value}
+                        </a>
                       );
-                    })}   
+                    })}
                   </div>
                 </div>
               </div>
               <div className="col-md-2" id="maxpricefilter__div">
-                <div className="dropdown" id="maxpricefilter"> 
-                  <button 
-                    className="btn btn-light dropdown-toggle" 
-                    type="button" 
-                    id="maxPriceDropdownMenuButton" 
-                    data-toggle="dropdown" 
-                    aria-haspopup="true" 
+                <div className="dropdown" id="maxpricefilter">
+                  <button
+                    className="btn btn-light dropdown-toggle"
+                    type="button"
+                    id="maxPriceDropdownMenuButton"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
                     aria-expanded="false"
                     style={{}}
-                    >
+                  >
                     {maxPriceFilterName}
                   </button>
-                  <div className="dropdown-menu" id="maxpricedropdown_items" aria-labelledby="dropdownMenuButton">
-                  {maxPriceFilters.map((price: any, index: number) => {
+                  <div
+                    className="dropdown-menu"
+                    id="maxpricedropdown_items"
+                    aria-labelledby="dropdownMenuButton"
+                  >
+                    {maxPriceFilters.map((price: any, index: number) => {
                       return (
-                        <a className="dropdown-item" key = {index} href="#" onClick={()=> {setMaxPriceFilterName(price.value); maxPriceFilter(price.key)}}>{price.value}</a>
+                        <a
+                          className="dropdown-item"
+                          key={index}
+                          href="#"
+                          onClick={() => {
+                            setMaxPriceFilterName(price.value);
+                            maxPriceFilter(price.key);
+                          }}
+                        >
+                          {price.value}
+                        </a>
                       );
-                    })}  
+                    })}
                   </div>
                 </div>
               </div>
             </div>
-        </div>  
-            <div className="row" id="product-row">
-              {allproducts.map((product: any, index: number) => {
-                  return (
-                   product.product_type === 'PR' ? 
-                      <ProductCard key={index} product={product}/>
-                    : 
-                      <ServiceCard key={index} service={product}/>
-                );
-              })}  
-              
-            </div>
-                  
-            <div
-              className="row" id="paginate-row"
-              style={{ margin: "10px", background: "#ffffff" }}
-            >
-              <Pagination
-                callback={paginate}
-                totalRecords={totalRecords}
-                recordsPerpage={recordsPerPage}
-              />
-            </div>
           </div>
+          <div className="row" id="product-row">
+            {allproducts.map((product: any, index: number) => {
+              return product.product_type === "PR" ? (
+                <ProductCard key={index} product={product} />
+              ) : (
+                <ServiceCard key={index} service={product} />
+              );
+            })}
+          </div>
+
+          <div
+            className="row"
+            id="paginate-row"
+            style={{ margin: "10px", background: "#ffffff" }}
+          >
+            <Pagination
+              callback={paginate}
+              totalRecords={totalRecords}
+              recordsPerpage={recordsPerPage}
+            />
+          </div>
+        </div>
       </MainLayout>
     </>
   );
