@@ -4,6 +4,29 @@ import { useEffect, useState } from "react";
 import ProductCard  from '../components/ProductCard';
 import ServiceCard from '../components/ServiceCard';
 
+const locationData = [
+  "Airport Ridge",
+  "Anaji",
+  "Apowa",
+  "Apremdo",
+  "Beach Road",
+  "Effiakuma",
+  "I Adu",
+  "Kansaworodo",
+  "Kwesimintsim",
+  "Lagos Town",
+  "Market Circle",
+  "Mpatado",
+  "New Site",
+  "New Takoradi",
+  "Nkotompo",
+  "Nkroful",
+  "Ntankoful",
+  "Sekondi",
+  "Tanokrom",
+  "Whindo"
+]
+
 const categoryData = [
   {'key':'SP', 'name': 'Sport Wears'},
   {'key':'EL', 'name':'Electronics'},
@@ -295,9 +318,11 @@ export default function ProductsView() {
                     {locationFilterName}
                   </button>
                   <div className="dropdown-menu" id="locationdropdown__items" aria-labelledby="dropdownMenuButton">
-                    <a className="dropdown-item" href="#">Action</a>
-                    <a className="dropdown-item" href="#">Another action</a>
-                    <a className="dropdown-item" href="#">Something else here</a>
+                  {locationData.map((location: any, index: number) => {
+                      return (
+                        <a className="dropdown-item" key={index} href="#" onClick={()=> {setLocationFilterName(location);}}>{location}</a>
+                      );
+                    })}  
                   </div>
                 </div>
               </div>
