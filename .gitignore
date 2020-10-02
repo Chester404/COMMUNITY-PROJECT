@@ -23,7 +23,7 @@ dist/
 target/
 dist/
 /.next/
-
+.env
 # JetBrains IDE
 .idea/
 

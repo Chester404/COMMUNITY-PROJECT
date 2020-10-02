@@ -88,11 +88,12 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 26);
 /******/ })
 /************************************************************************/
 /******/ ({
 
+<<<<<<< HEAD
 /***/ "../next-server/lib/head":
 /*!****************************************************!*\
   !*** external "next/dist/next-server/lib/head.js" ***!
@@ -101,16 +102,15 @@ module.exports =
 /***/ (function(module, exports) {
 
 module.exports = require("next/dist/next-server/lib/head.js");
+=======
+/***/ "/a9y":
+/***/ (function(module, exports, __webpack_require__) {
+>>>>>>> 7a57978b5fd4cf8f0fc00e3e6309bd2842c2951e
 
-/***/ }),
+"use strict";
 
-/***/ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js":
-/*!**********************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/interopRequireDefault.js ***!
-  \**********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
 
+<<<<<<< HEAD
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {
     "default": obj
@@ -118,16 +118,109 @@ function _interopRequireDefault(obj) {
 }
 
 module.exports = _interopRequireDefault;
+=======
+var _interopRequireDefault = __webpack_require__("TqRt");
+
+exports.__esModule = true;
+exports.default = void 0;
+
+var _react = _interopRequireDefault(__webpack_require__("cDcd"));
+
+var _head = _interopRequireDefault(__webpack_require__("UlpK"));
+
+const statusCodes = {
+  400: 'Bad Request',
+  404: 'This page could not be found',
+  405: 'Method Not Allowed',
+  500: 'Internal Server Error'
+};
+
+function _getInitialProps({
+  res,
+  err
+}) {
+  const statusCode = res && res.statusCode ? res.statusCode : err ? err.statusCode : 404;
+  return {
+    statusCode
+  };
+}
+/**
+* `Error` component used for handling errors.
+*/
+
+
+class Error extends _react.default.Component {
+  render() {
+    const {
+      statusCode
+    } = this.props;
+    const title = this.props.title || statusCodes[statusCode] || 'An unexpected error has occurred';
+    return /*#__PURE__*/_react.default.createElement("div", {
+      style: styles.error
+    }, /*#__PURE__*/_react.default.createElement(_head.default, null, /*#__PURE__*/_react.default.createElement("title", null, statusCode, ": ", title)), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("style", {
+      dangerouslySetInnerHTML: {
+        __html: 'body { margin: 0 }'
+      }
+    }), statusCode ? /*#__PURE__*/_react.default.createElement("h1", {
+      style: styles.h1
+    }, statusCode) : null, /*#__PURE__*/_react.default.createElement("div", {
+      style: styles.desc
+    }, /*#__PURE__*/_react.default.createElement("h2", {
+      style: styles.h2
+    }, title, "."))));
+  }
+
+}
+
+exports.default = Error;
+Error.displayName = 'ErrorPage';
+Error.getInitialProps = _getInitialProps;
+Error.origGetInitialProps = _getInitialProps;
+const styles = {
+  error: {
+    color: '#000',
+    background: '#fff',
+    fontFamily: '-apple-system, BlinkMacSystemFont, Roboto, "Segoe UI", "Fira Sans", Avenir, "Helvetica Neue", "Lucida Grande", sans-serif',
+    height: '100vh',
+    textAlign: 'center',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  desc: {
+    display: 'inline-block',
+    textAlign: 'left',
+    lineHeight: '49px',
+    height: '49px',
+    verticalAlign: 'middle'
+  },
+  h1: {
+    display: 'inline-block',
+    borderRight: '1px solid rgba(0, 0, 0,.3)',
+    margin: 0,
+    marginRight: '20px',
+    padding: '10px 23px 10px 0',
+    fontSize: '24px',
+    fontWeight: 500,
+    verticalAlign: 'top'
+  },
+  h2: {
+    fontSize: '14px',
+    fontWeight: 'normal',
+    lineHeight: 'inherit',
+    margin: 0,
+    padding: 0
+  }
+};
+>>>>>>> 7a57978b5fd4cf8f0fc00e3e6309bd2842c2951e
 
 /***/ }),
 
-/***/ "./node_modules/next/dist/pages/_error.js":
-/*!************************************************!*\
-  !*** ./node_modules/next/dist/pages/_error.js ***!
-  \************************************************/
-/*! no static exports found */
+/***/ 26:
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 "use strict";
 
 
@@ -225,26 +318,34 @@ const styles = {
     padding: 0
   }
 };
+=======
+module.exports = __webpack_require__("/a9y");
+
+>>>>>>> 7a57978b5fd4cf8f0fc00e3e6309bd2842c2951e
 
 /***/ }),
 
-/***/ 2:
-/*!************************************!*\
-  !*** multi next/dist/pages/_error ***!
-  \************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "TqRt":
+/***/ (function(module, exports) {
 
-module.exports = __webpack_require__(/*! next/dist/pages/_error */"./node_modules/next/dist/pages/_error.js");
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    "default": obj
+  };
+}
 
+module.exports = _interopRequireDefault;
 
 /***/ }),
 
-/***/ "react":
-/*!************************!*\
-  !*** external "react" ***!
-  \************************/
-/*! no static exports found */
+/***/ "UlpK":
+/***/ (function(module, exports) {
+
+module.exports = require("next/dist/next-server/lib/head.js");
+
+/***/ }),
+
+/***/ "cDcd":
 /***/ (function(module, exports) {
 
 module.exports = require("react");

@@ -1,1 +1,0 @@
-{"ast":null,"code":"export default function phoneValidation(str) {\n  const phoneNumberValidation = phoneNumber => {\n    // return phoneNumber.match(/\\d/g).length === 10;\n    return phoneNumber.length === 10;\n  };\n\n  return phoneNumberValidation(str) === true;\n}","map":null,"metadata":{},"sourceType":"module"}

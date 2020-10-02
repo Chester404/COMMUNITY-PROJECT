@@ -12,18 +12,26 @@ const Navbar = (props) => {
   const [isOrganization, setIsOrganization] = useState(false);
   const [tempholder, setTempHolder] = useState(false);
   const [userimage, setUserImage] = useState("");
-
+  const [memberlistlink, setMemberListLink] = useState("memberlist");
+  const [username, setUsername] = useState("");
   const { state, dispatch } = useContext(Store);
+
   const logout = () => {
     window.localStorage.removeItem("cp-a");
+    window.localStorage.removeItem("user-profile");
+    setIsLoggedIn(false);
     router.push("/auth/login");
   };
   useEffect(() => {
-    console.log("State", state.userProfile);
     let lStorage: any = window.localStorage.getItem("cp-a");
     lStorage = JSON.parse(lStorage);
 
-    if (state.userProfile.name == undefined) {
+    if (
+      !(
+        state.userProfile.name == undefined ||
+        state.userProfile.title == undefined
+      )
+    ) {
       setUserImage(state.userProfile.image);
       if (lStorage) {
         let upr: any = JSON.parse(window.localStorage.getItem("user-profile"));
@@ -31,14 +39,21 @@ const Navbar = (props) => {
           type: "SET_USERINFO",
           payload: upr,
         });
+        upr.name || upr.title ? setUsername(upr.name || upr.title) : "";
         setIsLoggedIn(true);
         setIsOrganization(lStorage.user.is_organization);
       }
-    } else if (state.userProfile) {
+    } else if (lStorage) {
       setIsLoggedIn(true);
+      state.userProfile.name || state.userProfile.title
+        ? setUsername(state.userProfile.name || state.userProfile.title)
+        : "";
       try {
+        if (lStorage.user.is_staff) setMemberListLink("userList");
         setIsOrganization(lStorage.user.is_organization);
       } catch (e) {}
+    } else {
+      setIsLoggedIn(false);
     }
 
     if (
@@ -100,13 +115,15 @@ const Navbar = (props) => {
                   </button>
                   <ul className="dropdown-menu" role="menu">
                     <li>
-                    <Link href="/market">
-                      <a className="nav-link"
-                      style={{
+                      <Link href="/market">
+                        <a
+                          className="nav-link"
+                          style={{
                             color: router.pathname == "/market" ? "" : "black",
-                          }}>
-                        <span className="lay-outstyle mt-1">Market</span>
-                      </a>
+                          }}
+                        >
+                          <span className="lay-outstyle mt-1">Market</span>
+                        </a>
                       </Link>
                     </li>
                     <li>
@@ -150,9 +167,14 @@ const Navbar = (props) => {
               {/* logo*/}
               <div className="d-none dropdown d-md-flex header-settings ml-auto">
                 <Link href="/market">
-                <a className="nav-link" style={{ color: router.pathname == "/market" ? "" : "black" }}>
-                  <span className="lay-outstyle mt-1">Market</span>
-                </a>
+                  <a
+                    className="nav-link"
+                    style={{
+                      color: router.pathname == "/market" ? "" : "black",
+                    }}
+                  >
+                    <span className="lay-outstyle mt-1">Market</span>
+                  </a>
                 </Link>
                 <a className="nav-link">
                   <span className="lay-outstyle mt-1">Jobs</span>
@@ -171,7 +193,7 @@ const Navbar = (props) => {
                     <span className="lay-outstyle mt-1">Blog</span>
                   </a>
                 </Link>
-                <Link href="/memberlist">
+                <Link href={`/${memberlistlink}`}>
                   <a
                     className="nav-link"
                     style={{
@@ -201,9 +223,7 @@ const Navbar = (props) => {
                     ></span>
                     <div className="ml-3">
                       <span style={{ color: "#3f3d56", fontWeight: 700 }}>
-                        {state.userProfile.name == ""
-                          ? "No Name"
-                          : state.userProfile.name}
+                        {username == "" ? "No Name" : username}
                         <i className="fe fe-chevron-down ml-1" />
                       </span>
                     </div>
@@ -244,7 +264,11 @@ const Navbar = (props) => {
                         <i className="dropdown-icon fe fe-edit" />
                         Account Setting
                       </a>
-                      <a className="dropdown-item itemname" href="auth/login">
+                      <a
+                        className="dropdown-item itemname"
+                        href="#"
+                        onClick={logout}
+                      >
                         <i className="dropdown-icon fe fe-power" /> Log Out
                       </a>
                     </div>
@@ -256,14 +280,15 @@ const Navbar = (props) => {
             <>
               <div className="navbar-list">
                 <div className="d-none dropdown d-md-flex">
-                <Link href="/market">
-                  <a className="nav-link"
-                    style={{
-                      color: router.pathname == "/market" ? "" : "#3f3d56",
-                    }}
-                  >
-                    <span className="lay-outstyle mt-1">Market</span>
-                  </a>
+                  <Link href="/market">
+                    <a
+                      className="nav-link"
+                      style={{
+                        color: router.pathname == "/market" ? "" : "#3f3d56",
+                      }}
+                    >
+                      <span className="lay-outstyle mt-1">Market</span>
+                    </a>
                   </Link>
                   <a className="nav-link">
                     <span className="lay-outstyle mt-1">Jobs</span>
