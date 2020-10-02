@@ -71,7 +71,7 @@ const Navbar = (props) => {
 
   return (
     <div
-      className="hor-header header d-flex navbar-collapse"
+      className="hor-header header d-flex navbar-collapse sticky sticky-pin"
       style={{
         height: "80px !important",
         zIndex: 99999,
@@ -166,9 +166,16 @@ const Navbar = (props) => {
 
               {/* logo*/}
               <div className="d-none dropdown d-md-flex header-settings ml-auto">
-                <a className="nav-link">
-                  <span className="lay-outstyle mt-1">Market</span>
-                </a>
+                <Link href="/market">
+                  <a
+                    className="nav-link"
+                    style={{
+                      color: router.pathname == "/market" ? "" : "black",
+                    }}
+                  >
+                    <span className="lay-outstyle mt-1">Market</span>
+                  </a>
+                </Link>
                 <a className="nav-link">
                   <span className="lay-outstyle mt-1">Jobs</span>
                 </a>
@@ -273,9 +280,16 @@ const Navbar = (props) => {
             <>
               <div className="navbar-list">
                 <div className="d-none dropdown d-md-flex">
-                  <a className="nav-link">
-                    <span className="lay-outstyle mt-1">Market</span>
-                  </a>
+                  <Link href="/market">
+                    <a
+                      className="nav-link"
+                      style={{
+                        color: router.pathname == "/market" ? "" : "#3f3d56",
+                      }}
+                    >
+                      <span className="lay-outstyle mt-1">Market</span>
+                    </a>
+                  </Link>
                   <a className="nav-link">
                     <span className="lay-outstyle mt-1">Jobs</span>
                   </a>

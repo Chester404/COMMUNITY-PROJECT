@@ -79,6 +79,43 @@ const ProductCard = ({ product }) => {
               </div>
             </div>
           </div>
+          <div
+            className="col-md-2 d-flex align-items-center"
+            id="product-card__quantity-div"
+          >
+            <div className="row float-right" id="product-card__quantity-row">
+              <div className="qty mt-5 btn-group" id="product-card-qty">
+                <span
+                  id="product-card-qty-minus"
+                  className="minus"
+                  style={{ fontSize: "1.5em", zIndex: 2 }}
+                >
+                  -
+                </span>
+                <input
+                  id="product-card-qty-value"
+                  type="number"
+                  className="count"
+                  name="qty"
+                  defaultValue="1"
+                  style={{
+                    width: "4.2em",
+                    textAlign: "center",
+                    zIndex: 1,
+                    marginLeft: "-15px",
+                    marginRight: "-15px",
+                  }}
+                />
+                <span
+                  id="product-card-qty-plus"
+                  className="plus"
+                  style={{ fontSize: "1em", zIndex: 2, marginTop: "6px" }}
+                >
+                  +
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

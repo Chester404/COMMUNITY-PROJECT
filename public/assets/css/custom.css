@@ -908,8 +908,6 @@ h5.table-title-market {
   background-color: #3964fc;
 }
 
-
-
 /*styling for add/edit product (peter)*/
 .addproduct-buttons {
   background: #3964fc !important;
@@ -987,4 +985,8 @@ button {
 }
 .page-title-userlist {
   margin-right: auto !important;
+}
+
+.sticky-pin {
+  position: sticky !important;
 }
