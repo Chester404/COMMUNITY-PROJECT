@@ -96,7 +96,7 @@ export default function Home() {
       city: city
 
     });
-
+  console.log('updateprofile',response)
     if (response.error) {
       callPrompt("Edit Profile", "", "Close", "An error occured");
     }
@@ -119,7 +119,7 @@ export default function Home() {
         return;
       }
     }
-
+  
     dispatch({
       type: "UPDATE_USERNAME",
       payload: name,

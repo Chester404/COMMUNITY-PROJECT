@@ -880,64 +880,17 @@ h5.table-title-market {
 }
 .openicon {
   position: absolute;
+  left: 50px;
   font-size: 20px;
   color: white;
   text-shadow: 2px 2px 4px #000000;
   margin-top: 10px;
+  z-index: 10;
 }
 .requestbtn {
   border-radius: 10px;
 }
 .requestheader {
-  text-align: center;
-}
-.checkbox-round {
-  width: 1em;
-  height: 1em;
-  background-color: white;
-  border-radius: 30%;
-  vertical-align: middle;
-  border: 1px solid black;
-  -webkit-appearance: none;
-  outline: none;
-  cursor: pointer;
-}
-.checkbox-round:checked {
-  background-color: #3964fc;
-}
-
-.add-user-btn {
-  height: 2.2rem;
-  width: 7rem;
-  font-family: "Open Sans", sans-serif !important;
-}
-.gobtn {
-  background: #3964fc;
-}
-.userlist {
-  margin-top: 20px;
-}
-.selectusers {
-  background-color: transparent;
-  margin-left: 12px;
-}
-.seluser {
-  background: white;
-}
-.userlistpage {
-  margin-top: 8% !important;
-}
-.openicon {
-  position: absolute;
-  font-size: 20px;
-  color: white;
-  text-shadow: 2px 2px 4px #000000;
-  margin-top: -60px;
-}
-.requestbtn{
-  border-radius: 10px;
-}
-.requestheader{
   text-align: center;
 }
 .checkbox-round {
@@ -1032,4 +985,8 @@ button {
 }
 .page-title-userlist {
   margin-right: auto !important;
+}
+
+.sticky-pin {
+  position: sticky !important;
 }

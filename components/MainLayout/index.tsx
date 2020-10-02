@@ -42,7 +42,7 @@ const MainLayout = ({
   useEffect(() => {
     const rs = verifyLogin(router);
     if (!rs.verified) {
-      router.push("/auth/login");
+      router.push("/landingpage");
     } else if (router.pathname === "/") {
       router.push("/blog");
     }

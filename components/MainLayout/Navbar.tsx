@@ -11,6 +11,7 @@ const Navbar = (props) => {
   const router = useRouter();
   const [isOrganization, setIsOrganization] = useState(false);
   const [tempholder, setTempHolder] = useState(false);
+  const [userimage, setUserImage] = useState("");
 
   const { state, dispatch } = useContext(Store);
   const logout = () => {
@@ -23,6 +24,7 @@ const Navbar = (props) => {
     lStorage = JSON.parse(lStorage);
 
     if (state.userProfile.name == undefined) {
+      setUserImage(state.userProfile.image);
       if (lStorage) {
         let upr: any = JSON.parse(window.localStorage.getItem("user-profile"));
         dispatch({
@@ -30,16 +32,21 @@ const Navbar = (props) => {
           payload: upr,
         });
         setIsLoggedIn(true);
-        setIsOrganization(state.userProfile.is_organization);
+        setIsOrganization(lStorage.user.is_organization);
       }
     } else if (state.userProfile) {
       setIsLoggedIn(true);
-      setIsOrganization(state.userProfile.is_organization);
+      try {
+        setIsOrganization(lStorage.user.is_organization);
+      } catch (e) {}
     }
+
     if (
       router.pathname.includes("/login") ||
       router.pathname.includes("/signup") ||
-      router.pathname.includes("/confirmaccount")
+      router.pathname.includes("/confirmaccount") ||
+      router.pathname.includes("/forgottenpassword") ||
+      router.pathname.includes("/resetpassword")
     ) {
       setTempHolder(false);
     } else {
@@ -49,7 +56,7 @@ const Navbar = (props) => {
 
   return (
     <div
-      className="hor-header header d-flex navbar-collapse"
+      className="hor-header header d-flex navbar-collapse sticky sticky-pin"
       style={{
         height: "80px !important",
         zIndex: 99999,
@@ -189,7 +196,7 @@ const Navbar = (props) => {
                       className="avatar avatar-md brround cover-image"
                       data-image-src="/images/blank_avatar.jpeg"
                       style={{
-                        background: `url(${state.image}) center center`,
+                        background: `url(${userimage}) center center`,
                       }}
                     ></span>
                     <div className="ml-3">
@@ -210,10 +217,13 @@ const Navbar = (props) => {
                         View Profile
                       </a>
                     </Link>
-                    <a className="dropdown-item itemname" href="#">
-                      <i className="dropdown-icon fe fe-edit" />
-                      Account Setting
-                    </a>
+                    <Link href="/auth/account-settings">
+                      <a className="dropdown-item itemname">
+                        <i className="dropdown-icon fe fe-edit" />
+                        Account Setting
+                      </a>
+                    </Link>
+
                     <a
                       className="dropdown-item itemname"
                       href="#"
