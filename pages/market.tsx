@@ -272,7 +272,7 @@ export default function ProductsView() {
                   >
                     <h6
                       style={{
-                        fontWeight: "700",
+                        fontWeight: 700,
                         fontSize: "30px",
                         textAlign: "left",
                         fontFamily: "'Open Sans', sans-serif",
@@ -309,7 +309,7 @@ export default function ProductsView() {
                   >
                     <h6
                       style={{
-                        fontWeight: "700",
+                        fontWeight: 700,
                         fontSize: "30px",
                         textAlign: "left",
                         fontFamily: "'Open Sans', sans-serif",
@@ -345,7 +345,7 @@ export default function ProductsView() {
                   >
                     <h6
                       style={{
-                        fontWeight: "700",
+                        fontWeight: 700,
                         fontSize: "30px",
                         textAlign: "left",
                         fontFamily: "'Open Sans', sans-serif",
