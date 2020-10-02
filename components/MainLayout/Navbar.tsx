@@ -23,7 +23,6 @@ const Navbar = (props) => {
     router.push("/auth/login");
   };
   useEffect(() => {
-    console.log("State", state.userProfile);
     let lStorage: any = window.localStorage.getItem("cp-a");
     lStorage = JSON.parse(lStorage);
 
@@ -45,7 +44,6 @@ const Navbar = (props) => {
         setIsOrganization(lStorage.user.is_organization);
       }
     } else if (lStorage) {
-      console.log("Why this");
       setIsLoggedIn(true);
       state.userProfile.name || state.userProfile.title
         ? setUsername(state.userProfile.name || state.userProfile.title)
@@ -55,7 +53,6 @@ const Navbar = (props) => {
         setIsOrganization(lStorage.user.is_organization);
       } catch (e) {}
     } else {
-      console.log("WHy");
       setIsLoggedIn(false);
     }
 
@@ -118,7 +115,16 @@ const Navbar = (props) => {
                   </button>
                   <ul className="dropdown-menu" role="menu">
                     <li>
-                      <a href="#">Market</a>
+                      <Link href="/market">
+                        <a
+                          className="nav-link"
+                          style={{
+                            color: router.pathname == "/market" ? "" : "black",
+                          }}
+                        >
+                          <span className="lay-outstyle mt-1">Market</span>
+                        </a>
+                      </Link>
                     </li>
                     <li>
                       <a href="#">Jobs</a>
