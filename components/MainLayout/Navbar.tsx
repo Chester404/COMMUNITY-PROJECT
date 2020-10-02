@@ -11,11 +11,15 @@ const Navbar = (props) => {
   const router = useRouter();
   const [isOrganization, setIsOrganization] = useState(false);
   const [tempholder, setTempHolder] = useState(false);
-  const [userimage,setUserImage] = useState("");
-
+  const [userimage, setUserImage] = useState("");
+  const [memberlistlink, setMemberListLink] = useState("memberlist");
+  const [username, setUsername] = useState("");
   const { state, dispatch } = useContext(Store);
+
   const logout = () => {
     window.localStorage.removeItem("cp-a");
+    window.localStorage.removeItem("user-profile");
+    setIsLoggedIn(false);
     router.push("/auth/login");
   };
   useEffect(() => {
@@ -23,29 +27,43 @@ const Navbar = (props) => {
     let lStorage: any = window.localStorage.getItem("cp-a");
     lStorage = JSON.parse(lStorage);
 
-    if (state.userProfile.name == undefined) {
-      setUserImage(state.userProfile.image)
+    if (
+      !(
+        state.userProfile.name == undefined ||
+        state.userProfile.title == undefined
+      )
+    ) {
+      setUserImage(state.userProfile.image);
       if (lStorage) {
         let upr: any = JSON.parse(window.localStorage.getItem("user-profile"));
         dispatch({
           type: "SET_USERINFO",
           payload: upr,
         });
+        upr.name || upr.title ? setUsername(upr.name || upr.title) : "";
         setIsLoggedIn(true);
         setIsOrganization(lStorage.user.is_organization);
       }
-    } else if (state.userProfile) {
+    } else if (lStorage) {
+      console.log("Why this");
       setIsLoggedIn(true);
-      try{
-      setIsOrganization(lStorage.user.is_organization);
-      }catch(e){}
+      state.userProfile.name || state.userProfile.title
+        ? setUsername(state.userProfile.name || state.userProfile.title)
+        : "";
+      try {
+        if (lStorage.user.is_staff) setMemberListLink("userList");
+        setIsOrganization(lStorage.user.is_organization);
+      } catch (e) {}
+    } else {
+      console.log("WHy");
+      setIsLoggedIn(false);
     }
 
     if (
       router.pathname.includes("/login") ||
       router.pathname.includes("/signup") ||
       router.pathname.includes("/confirmaccount") ||
-      router.pathname.includes("/forgottenpassword")||
+      router.pathname.includes("/forgottenpassword") ||
       router.pathname.includes("/resetpassword")
     ) {
       setTempHolder(false);
@@ -162,7 +180,7 @@ const Navbar = (props) => {
                     <span className="lay-outstyle mt-1">Blog</span>
                   </a>
                 </Link>
-                <Link href="/memberlist">
+                <Link href={`/${memberlistlink}`}>
                   <a
                     className="nav-link"
                     style={{
@@ -192,9 +210,7 @@ const Navbar = (props) => {
                     ></span>
                     <div className="ml-3">
                       <span style={{ color: "#3f3d56", fontWeight: 700 }}>
-                        {state.userProfile.name == ""
-                          ? "No Name"
-                          : state.userProfile.name}
+                        {username == "" ? "No Name" : username}
                         <i className="fe fe-chevron-down ml-1" />
                       </span>
                     </div>
@@ -208,13 +224,13 @@ const Navbar = (props) => {
                         View Profile
                       </a>
                     </Link>
-                    <Link  href="/auth/account-settings">
+                    <Link href="/auth/account-settings">
                       <a className="dropdown-item itemname">
                         <i className="dropdown-icon fe fe-edit" />
                         Account Setting
                       </a>
                     </Link>
-                   
+
                     <a
                       className="dropdown-item itemname"
                       href="#"
@@ -235,7 +251,11 @@ const Navbar = (props) => {
                         <i className="dropdown-icon fe fe-edit" />
                         Account Setting
                       </a>
-                      <a className="dropdown-item itemname" href="auth/login">
+                      <a
+                        className="dropdown-item itemname"
+                        href="#"
+                        onClick={logout}
+                      >
                         <i className="dropdown-icon fe fe-power" /> Log Out
                       </a>
                     </div>
