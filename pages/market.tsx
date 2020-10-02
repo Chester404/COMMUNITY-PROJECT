@@ -200,52 +200,52 @@ export default function ProductsView() {
     <>
       <MainLayout>
       <div>
-        <div className="container" style={{width: "100%"}}>
-              <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel" style={{padding: "20px"}}>
-                <ol className="carousel-indicators">
-                  <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        <div className="container" id= "header__container" style={{width: "100%"}}>
+              <div id="marketCarouselIndicators" className="carousel slide" data-ride="carousel" style={{padding: "20px"}}>
+                <ol className="carousel-indicators" id="carousel-indicators">
+                  <li id="market-carousel-item-1" data-target="#marketCarouselIndicators" data-slide-to="0" className="active"></li>
+                  <li id="market-carousel-item-2" data-target="#marketCarouselIndicators" data-slide-to="1"></li>
+                  <li id="market-carousel-item-3" data-target="#marketCarouselIndicators" data-slide-to="2"></li>
                 </ol>
-                <div className="carousel-inner">
-                  <div className="carousel-item active" data-interval="2000">
-                    <img src="/assets/images/slider_image.jpg" className="d-block w-100" alt="..." />
+                <div className="carousel-inner" id="carousel-inner">
+                  <div className="carousel-item active" id="carousel-item-1" data-interval="2000">
+                    <img id="carousel-item-1__image" src="/assets/images/slider_image.jpg" className="d-block w-100" alt="..." />
                     {/* <div className="carousel-caption d-none d-md-block">
                       <h5>First slide label</h5>
                       <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
                     </div> */}
                   </div>
-                  <div className="carousel-item" data-interval="2000">
-                    <img src="/assets/images/slider_image.jpg" className="d-block w-100" alt="..." />
+                  <div className="carousel-item" id="carousel-item-2" data-interval="2000">
+                    <img id="carousel-item-2__image" src="/assets/images/slider_image.jpg" className="d-block w-100" alt="..." />
                     {/* <div className="carousel-caption d-none d-md-block">
                       <h5>Second slide label</h5>
                       <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
                     </div> */}
                   </div>
-                  <div className="carousel-item" data-interval="2000">
-                    <img src="/assets/images/slider_image.jpg" className="d-block w-100" alt="..." />
+                  <div className="carousel-item" id="carousel-item-3" data-interval="2000">
+                    <img id="carousel-item-3__image" src="/assets/images/slider_image.jpg" className="d-block w-100" alt="..." />
                     {/* <div className="carousel-caption d-none d-md-block">
                       <h5>Third slide label</h5>
                       <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
                     </div> */}
                   </div>
                 </div>
-                <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                  <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span className="sr-only">Previous</span>
+                <a id="carousel-control-prev" className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                  <span className="carousel-control-prev-icon" id="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span id="prev" className="sr-only">Previous</span>
                 </a>
-                <a className="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                  <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span className="sr-only">Next</span>
+                <a id="carousel-control-next" className="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                  <span id="carousel-control-next-icon" className="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span id ="next" className="sr-only">Next</span>
                 </a>
             </div>
 
-            <div className="row" style={{margin:"0 auto", padding: "30px",}}>
-              <div className="col-md-2">
-                <div className="dropdown">
+            <div className="row" id="filtersrow" style={{margin:"0 auto", padding: "30px",}}>
+              <div className="col-md-2" id="categoryfilter__div">
+                <div className="dropdown" id="categoryfilter">
                   <button 
                     className="btn btn-light dropdown-toggle" 
-                    type="button" id="dropdownMenuButton" 
+                    type="button" id="categoryDropdownMenuButton" 
                     data-toggle="dropdown" 
                     aria-haspopup="true" 
                     aria-expanded="false"
@@ -253,7 +253,7 @@ export default function ProductsView() {
                     >
                     {categoryFilterName}
                   </button>
-                  <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <div className="dropdown-menu" id="categoryDropdown__items"  aria-labelledby="dropdownMenuButton">
                     {categoryData.map((category: any, index: number) => {
                       return (
                         <a className="dropdown-item" href="#" key = {index}  onClick={()=> { setCategoryFilterName(category.name); categoryFilter(category.key)}}>{category.name}</a>
@@ -262,11 +262,11 @@ export default function ProductsView() {
                   </div>
                 </div>
               </div>
-              <div className="col-md-2">
-                <div className="dropdown">
+              <div className="col-md-2" id="typefilterdiv">
+                <div className="dropdown" id="typefilter">
                   <button 
                     className="btn btn-light dropdown-toggle" 
-                    type="button" id="dropdownMenuButton" 
+                    type="button" id="typeDropdownMenuButton" 
                     data-toggle="dropdown" 
                     aria-haspopup="true" 
                     aria-expanded="false"
@@ -274,19 +274,19 @@ export default function ProductsView() {
                     >
                     {typeFilterName}
                   </button>
-                  <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <div className="dropdown-menu" id="typeDropdown__items" aria-labelledby="dropdownMenuButton">
                     <a className="dropdown-item" href="#" onClick={()=> {setTypeFilterName('All'); typeFilter('ALL')}}>All</a>
                     <a className="dropdown-item" href="#" onClick={()=> { setTypeFilterName('Products'); typeFilter('PR')}}>Products</a>
                     <a className="dropdown-item" href="#" onClick={()=> {setTypeFilterName('Services'); typeFilter('SE')}}>Services</a>
                   </div>
                 </div>
               </div>
-              <div className="col-md-2">
-                <div className="dropdown">
+              <div className="col-md-2" id="locationfilter__div">
+                <div className="dropdown" id="locationfilter">
                   <button 
                     className="btn btn-light dropdown-toggle" 
                     type="button" 
-                    id="dropdownMenuButton" 
+                    id="locationDropdownMenuButton" 
                     data-toggle="dropdown" 
                     aria-haspopup="true" 
                     aria-expanded="false"
@@ -294,19 +294,19 @@ export default function ProductsView() {
                     >
                     {locationFilterName}
                   </button>
-                  <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <div className="dropdown-menu" id="locationdropdown__items" aria-labelledby="dropdownMenuButton">
                     <a className="dropdown-item" href="#">Action</a>
                     <a className="dropdown-item" href="#">Another action</a>
                     <a className="dropdown-item" href="#">Something else here</a>
                   </div>
                 </div>
               </div>
-              <div className="col-md-2">
-                <div className="dropdown">
+              <div className="col-md-2" id="minpricefilter__div">
+                <div className="dropdown" id="minpricefilter">
                   <button 
                     className="btn btn-light dropdown-toggle" 
                     type="button" 
-                    id="dropdownMenuButton" 
+                    id="minPriceDropdownMenuButton" 
                     data-toggle="dropdown" 
                     aria-haspopup="true" 
                     aria-expanded="false"
@@ -314,7 +314,7 @@ export default function ProductsView() {
                     >
                     {minPriceFilterName}
                   </button>
-                  <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <div className="dropdown-menu" id="minpricedropdown__items" aria-labelledby="dropdownMenuButton">
                   {minPriceFilters.map((price: any, index: number) => {
                       return (
                         <a className="dropdown-item" key={index} href="#" onClick={()=> {setMinPriceFilterName(price.value); minPriceFilter(price.key)}}>{price.value}</a>
@@ -323,12 +323,12 @@ export default function ProductsView() {
                   </div>
                 </div>
               </div>
-              <div className="col-md-2">
-                <div className="dropdown">
+              <div className="col-md-2" id="maxpricefilter__div">
+                <div className="dropdown" id="maxpricefilter"> 
                   <button 
                     className="btn btn-light dropdown-toggle" 
                     type="button" 
-                    id="dropdownMenuButton" 
+                    id="maxPriceDropdownMenuButton" 
                     data-toggle="dropdown" 
                     aria-haspopup="true" 
                     aria-expanded="false"
@@ -336,7 +336,7 @@ export default function ProductsView() {
                     >
                     {maxPriceFilterName}
                   </button>
-                  <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <div className="dropdown-menu" id="maxpricedropdown_items" aria-labelledby="dropdownMenuButton">
                   {maxPriceFilters.map((price: any, index: number) => {
                       return (
                         <a className="dropdown-item" key = {index} href="#" onClick={()=> {setMaxPriceFilterName(price.value); maxPriceFilter(price.key)}}>{price.value}</a>
@@ -347,7 +347,7 @@ export default function ProductsView() {
               </div>
             </div>
         </div>  
-            <div className="row">
+            <div className="row" id="product-row">
               {allproducts.map((product: any, index: number) => {
                   return (
                    product.product_type === 'PR' ? 
@@ -360,7 +360,7 @@ export default function ProductsView() {
             </div>
                   
             <div
-              className="row"
+              className="row" id="paginate-row"
               style={{ margin: "10px", background: "#ffffff" }}
             >
               <Pagination

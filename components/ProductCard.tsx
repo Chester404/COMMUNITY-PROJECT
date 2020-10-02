@@ -11,8 +11,8 @@ const ProductCard = ({product}) => {
                 <div className="font-weight-bold row" id="product-card__inner-row-name">{product.name}</div>
                 <div className="row" id="product-card__inner-row-price">{`GHS ${product.price}`}</div>
                 </div>
-                <div className="col-md-2 d-flex align-items-center">
-                <div className="row float-right">
+                <div className="col-md-2 d-flex align-items-center" id="product-card__quantity-div">
+                <div className="row float-right" id="product-card__quantity-row">
 
                     <div className="qty mt-5 btn-group" id="product-card-qty">
                         <span id="product-card-qty-minus" className="minus" style={{fontSize:"1.5em", zIndex:2}}>-</span>
