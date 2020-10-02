@@ -38,19 +38,15 @@ export default function addProduct() {
   const [price, setPrice] = useState<number>(0);
   const [category, setCategory] = useState("");
   const [discount, setDiscount] = useState<number>(0);
-  const [message, setMessage] = useState(null);
   const [image_1, setImage1] = useState("");
   const [image_2, setImage2] = useState("");
   const [image_3, setImage3] = useState("");
-
-  const [selectedFiles, setSelectedFiles] = useState(undefined);
-  const [fileInfo, setFileInfos] = useState(undefined);
+  const [fileArray, setFileArray] = useState([]);
+  const [fileObj, setFileObj] = useState([]);
   const [statusMsg, setStatusMsg] = useState("");
   const [statusColor, setStatusColor] = useState("blue");
-  const [productData, setProductData] = useState<any>({});
   const [file, setFile] = useState([]);
   const [fileName, setFilename] = useState("Upload Image");
-  const [uploadedFiles, setUploadedFiles] = useState({});
   const [show, setShow] = useState(false);
   const [prompt_title, setPromptTitle] = useState("");
   const [prompt_body, setPromptBody] = useState("");
@@ -81,13 +77,20 @@ export default function addProduct() {
     setShow(false);
   };
 
+
   const onChange = (e) => {
+    // e.preventDefault()
+    
+    setFileObj[fileObj.push(e.target.files)]
     for (var i = 0; i < e.target.files.length; i++) {
       //3 images for file upload
       setFile([...file, e.target.files[i]]);
+      // setFileArray[fileArray.push(URL.createObjectURL(fileObj[0][i]))];
+      
       // setFilename(e.target.files[i].name);
       console.log(e.target.files[i]);
     }
+    
   };
 
   const submitData = async (e) => {
@@ -109,21 +112,17 @@ export default function addProduct() {
     });
     console.log("The is the create product response", rs);
     if (rs.status === 401) {
-      callPrompt(
-        "Add Product",
-        "",
-        "Close",
-        "You're not authorized to add product, Please login with organizational account"
-      );
-      console.log("Not authorized to add product: ", rs);
-      router.push("/detailproduct");
-    } else if (rs.status === 400) {
-      callPrompt("Add Product", "", "Close", "Sorry, An error occurred");
-    } else {
-      callPrompt("Add Product", "", "Close", "Product Added Successfully");
-      router.push("/products/");
-      console.log(rs);
-    }
+      callPrompt("Add Product", "", "Close", "You're not authorized to add product, Please login with organizational account");
+        console.log("Not authorized to add product: ", rs);
+        router.push("/auth/login/");
+    } else if (rs.status === 400){
+    callPrompt("Add Product", "", "Close", "Sorry, An error occurred");
+    
+  } else {
+    callPrompt("Add Product", "", "Close", "Product Added Successfully");
+    router.push("/products/");
+    console.log(rs);
+  }
 
     return;
   };
@@ -155,51 +154,41 @@ export default function addProduct() {
                   borderRadius: "7px",
                 }}
               >
-                <div style={{ border: "5px dashed #818aa9" }}>
-                  {/* div.borderimage:before {
-                content: "";
-                position: absolute;
-                border: 10.7px dashed #818aa9;
-                top: -7px;
-                bottom: -7px;
-                left: -7px;
-                right: -7px;
-              }
-              div.borderimage {
-                overflow: hidden;
-                position: relative;
-                text-align: center;
-                padding: 15px;
-                margin: 7px;
-              } */}
-                  <img
-                    src={
-                      fileName
-                        ? fileName
-                        : "https://ecex.s3.eu-west-2.amazonaws.com/img.JPG"
-                    }
-                    alt={name}
-                    width={80}
-                    height={100}
-                    style={{ borderRadius: "4px", margin: "35px" }}
-                    className="rounded mx-auto d-block"
-                  />
+                <div style={{ border: "6px dashed #818aa9" }}>
+                  <div className="form-group multi-preview">
+
+                 {(file || []).map(image => (
+                   <img
+                   src={
+                     image
+                       ? image
+                       : "https://ecex.s3.eu-west-2.amazonaws.com/img.JPG"
+                   }
+                   alt={name}
+                   width={80}
+                   height={100}
+                   style={{ borderRadius: "4px", margin: "35px" }}
+                   className="rounded mx-auto d-block"
+                 />              
+
+                 ))}
+                 </div>
+                  
 
                   <input
                     type="file"
                     ref={inputRef}
                     value={image_1}
-                    id="file"
+                    // id="file"
                     accept="image/*"
                     style={{ display: "none" }}
                     onChange={onChange}
-                    name={fileName}
+                    // name={fileName}
                     // ref={fileInput => this.fileInput = fileInput}
                     multiple
                   />
                   <button
                     className="btn btn-primary savebtn mb-2 mx-auto d-block"
-                    style={{ zIndex: 9999 }}
                     onClick={() => {
                       inputRef.current.click();
                     }}
@@ -255,7 +244,7 @@ export default function addProduct() {
                       className="form-control form-rounded"
                       placeholder="GHS 50"
                       value={price}
-                      onChange={(e: any) => setPrice(e.target.value)}
+                      onChange={(e) => setPrice(e.target.value)}
                       required
                     />
                   </div>
@@ -292,8 +281,8 @@ export default function addProduct() {
                       value={discount}
                       // min="0"
                       // max="100"
-                      onChange={(e: any) => setDiscount(e.target.value)}
-                      onBlur={(e: any) => {
+                      onChange={(e) => setDiscount(e.target.value)}
+                      onBlur={(e) => {
                         e.preventDefault();
                         setPrice(price - (e.target.value / 100) * price);
                       }}

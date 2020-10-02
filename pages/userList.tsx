@@ -83,6 +83,7 @@ export default function userList() {
   const [order, setOrder] = useState(false);
   const [checkedUsers, setCheckedUsers] = useState([]);
   const [checkuser, setCheckuser] = useState(false);
+  const [activate, setActivate] = useState(false);
 
   const [list, setList] = useState("individuals");
 
@@ -138,15 +139,54 @@ export default function userList() {
     const sorted = [...userProfiles];
     setUserProfiles([...sorted].reverse());
   };
+
+  const activate_ = async () => {
+    let temp_profile = tempprofile;
+    for (let i = 0; i < checkedUsers.length; i++) {
+      let rs = await new Users().activateDeactivate({
+        pk: checkedUsers[i],
+        activate: true,
+      });
+
+      temp_profile = temp_profile.map((uprofile) => {
+        if (uprofile.id === checkedUsers[i]) {
+          uprofile.user.is_activated = !uprofile.user.is_activated;
+        }
+        return uprofile;
+      });
+    }
+    setTempprofile(temp_profile);
+    setCheckuser(false);
+    handleList(list);
+  };
+
+  const deactivate_ = async () => {
+    let temp_profile = tempprofile;
+    for (let i = 0; i < checkedUsers.length; i++) {
+      let rs = await new Users().activateDeactivate({
+        pk: checkedUsers[i],
+        activate: false,
+      });
+
+      temp_profile = temp_profile.map((uprofile) => {
+        if (uprofile.id === checkedUsers[i]) {
+          uprofile.user.is_activated = !uprofile.user.is_activated;
+        }
+        return uprofile;
+      });
+    }
+    setTempprofile(temp_profile);
+    setCheckuser(false);
+    handleList(list);
+  };
   const activateDeactivate = async () => {
-    let activate;
     if (list === "individuals" || list === "organizations") {
-      activate = false;
+      setActivate(false);
     } else if (
       list === "deactivated_users" ||
       list === "deactivated_organizations"
     ) {
-      activate = true;
+      setActivate(true);
     }
 
     let temp_profile = tempprofile;
@@ -170,6 +210,7 @@ export default function userList() {
   };
 
   const handleList = (str) => {
+    console.log(str);
     setList(str);
     setCheckuser(false);
 
@@ -285,7 +326,7 @@ export default function userList() {
               <div className="dropdown">
                 <a
                   className="nav-link pr-0 leading-none d-flex pt-1"
-                  onClick={activateDeactivate}
+                  onClick={() => activateDeactivate}
                 >
                   <div className="mt-3 mb-3 mr-5 table-title">
                     <span
@@ -372,7 +413,7 @@ export default function userList() {
               </tr>
             </thead>
             <tbody>
-              {console.log("uprofiles:",userProfiles)}
+              {console.log("uprofiles:", userProfiles)}
               {userProfiles.map((uprofile: any, index: number) => {
                 return (
                   <tr key={index}>
@@ -438,10 +479,16 @@ export default function userList() {
                     {list === "organizationalrequests" ? (
                       <>
                         <td>
-                          <button className="btn btn-success mr-2 requestbtn">
+                          <button
+                            className="btn btn-success mr-2 requestbtn"
+                            onClick={deactivate_}
+                          >
                             Approve
                           </button>
-                          <button className="btn btn-danger requestbtn">
+                          <button
+                            className="btn btn-danger mr-2 requestbtn"
+                            onClick={activate_}
+                          >
                             Disapprove
                           </button>
                         </td>

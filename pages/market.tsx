@@ -263,11 +263,32 @@ export default function ProductsView() {
                     className="d-block w-100"
                     alt="..."
                   />
-                  {/* <div className="carousel-caption d-none d-md-block">
-                      <h5>First slide label</h5>
-                      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                    </div> */}
+                  <div
+                    className="carousel-caption d-none d-md-block"
+                    style={{
+                      position: "absolute",
+                      top: "137px",
+                    }}
+                  >
+                    <h6
+                      style={{
+                        fontWeight: "700",
+                        fontSize: "30px",
+                        textAlign: "left",
+                        fontFamily: "'Open Sans', sans-serif",
+                      }}
+                    >
+                      One Stop Online Market
+                    </h6>
+                    <p style={{ width: "350px" }}>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat
+                    </p>
+                  </div>
                 </div>
+
                 <div
                   className="carousel-item"
                   id="carousel-item-2"
@@ -279,10 +300,30 @@ export default function ProductsView() {
                     className="d-block w-100"
                     alt="..."
                   />
-                  {/* <div className="carousel-caption d-none d-md-block">
-                      <h5>Second slide label</h5>
-                      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                    </div> */}
+                  <div
+                    className="carousel-caption d-none d-md-block"
+                    style={{
+                      position: "absolute",
+                      top: "137px",
+                    }}
+                  >
+                    <h6
+                      style={{
+                        fontWeight: "700",
+                        fontSize: "30px",
+                        textAlign: "left",
+                        fontFamily: "'Open Sans', sans-serif",
+                      }}
+                    >
+                      One Stop Online Market
+                    </h6>
+                    <p style={{ width: "350px" }}>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat
+                    </p>
+                  </div>
                 </div>
                 <div
                   className="carousel-item"
@@ -295,10 +336,30 @@ export default function ProductsView() {
                     className="d-block w-100"
                     alt="..."
                   />
-                  {/* <div className="carousel-caption d-none d-md-block">
-                      <h5>Third slide label</h5>
-                      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                    </div> */}
+                  <div
+                    className="carousel-caption d-none d-md-block"
+                    style={{
+                      position: "absolute",
+                      top: "137px",
+                    }}
+                  >
+                    <h6
+                      style={{
+                        fontWeight: "700",
+                        fontSize: "30px",
+                        textAlign: "left",
+                        fontFamily: "'Open Sans', sans-serif",
+                      }}
+                    >
+                      One Stop Online Market
+                    </h6>
+                    <p style={{ width: "350px" }}>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat
+                    </p>
+                  </div>
                 </div>
               </div>
               <a
@@ -340,7 +401,7 @@ export default function ProductsView() {
               id="filtersrow"
               style={{ margin: "0 auto", padding: "30px" }}
             >
-              <div className="col-md-2" id="categoryfilter__div">
+              <div id="categoryfilter__div">
                 <div className="dropdown" id="categoryfilter">
                   <button
                     className="btn btn-light dropdown-toggle"
@@ -349,7 +410,7 @@ export default function ProductsView() {
                     data-toggle="dropdown"
                     aria-haspopup="true"
                     aria-expanded="false"
-                    style={{}}
+                    style={{ width: "190px" }}
                   >
                     {categoryFilterName}
                   </button>
@@ -376,7 +437,7 @@ export default function ProductsView() {
                   </div>
                 </div>
               </div>
-              <div className="col-md-2" id="typefilterdiv">
+              <div id="typefilterdiv">
                 <div className="dropdown" id="typefilter">
                   <button
                     className="btn btn-light dropdown-toggle"
@@ -385,7 +446,7 @@ export default function ProductsView() {
                     data-toggle="dropdown"
                     aria-haspopup="true"
                     aria-expanded="false"
-                    style={{}}
+                    style={{ width: "190px" }}
                   >
                     {typeFilterName}
                   </button>
@@ -427,7 +488,7 @@ export default function ProductsView() {
                   </div>
                 </div>
               </div>
-              <div className="col-md-2" id="locationfilter__div">
+              <div id="locationfilter__div">
                 <div className="dropdown" id="locationfilter">
                   <button
                     className="btn btn-light dropdown-toggle"
@@ -436,7 +497,7 @@ export default function ProductsView() {
                     data-toggle="dropdown"
                     aria-haspopup="true"
                     aria-expanded="false"
-                    style={{}}
+                    style={{ width: "190px" }}
                   >
                     {locationFilterName}
                   </button>
@@ -462,7 +523,7 @@ export default function ProductsView() {
                   </div>
                 </div>
               </div>
-              <div className="col-md-2" id="minpricefilter__div">
+              <div id="minpricefilter__div">
                 <div className="dropdown" id="minpricefilter">
                   <button
                     className="btn btn-light dropdown-toggle"
@@ -471,7 +532,7 @@ export default function ProductsView() {
                     data-toggle="dropdown"
                     aria-haspopup="true"
                     aria-expanded="false"
-                    style={{}}
+                    style={{ width: "190px" }}
                   >
                     {minPriceFilterName}
                   </button>
@@ -498,7 +559,7 @@ export default function ProductsView() {
                   </div>
                 </div>
               </div>
-              <div className="col-md-2" id="maxpricefilter__div">
+              <div id="maxpricefilter__div">
                 <div className="dropdown" id="maxpricefilter">
                   <button
                     className="btn btn-light dropdown-toggle"
@@ -507,7 +568,7 @@ export default function ProductsView() {
                     data-toggle="dropdown"
                     aria-haspopup="true"
                     aria-expanded="false"
-                    style={{}}
+                    style={{ width: "190px" }}
                   >
                     {maxPriceFilterName}
                   </button>
