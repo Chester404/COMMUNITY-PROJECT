@@ -8,50 +8,41 @@ const navFontSize = {
 };
 const Navbar = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const router = useRouter();
   const [isOrganization, setIsOrganization] = useState(false);
   const [tempholder, setTempHolder] = useState(false);
   const [userimage, setUserImage] = useState("");
   const [memberlistlink, setMemberListLink] = useState("memberlist");
   const [username, setUsername] = useState("");
+
+  const router = useRouter();
   const { state, dispatch } = useContext(Store);
 
   const logout = () => {
     window.localStorage.removeItem("cp-a");
     window.localStorage.removeItem("user-profile");
     setIsLoggedIn(false);
-    router.push("/auth/login");
+    router.push("/");
   };
   useEffect(() => {
     let lStorage: any = window.localStorage.getItem("cp-a");
     lStorage = JSON.parse(lStorage);
+    if (lStorage) {
+      let userprofile: any = JSON.parse(
+        window.localStorage.getItem("user-profile")
+      );
 
-    if (
-      !(
-        state.userProfile.name == undefined ||
-        state.userProfile.title == undefined
-      )
-    ) {
-      setUserImage(state.userProfile.image);
-      if (lStorage) {
-        let upr: any = JSON.parse(window.localStorage.getItem("user-profile"));
-        dispatch({
-          type: "SET_USERINFO",
-          payload: upr,
-        });
-        upr.name || upr.title ? setUsername(upr.name || upr.title) : "";
-        setIsLoggedIn(true);
-        setIsOrganization(lStorage.user.is_organization);
-      }
-    } else if (lStorage) {
-      setIsLoggedIn(true);
+      dispatch({
+        type: "SET_USERINFO",
+        payload: userprofile,
+      });
+      setUserImage(state.userProfile.image || "/images/Profile_Icon.png");
       state.userProfile.name || state.userProfile.title
         ? setUsername(state.userProfile.name || state.userProfile.title)
-        : "";
-      try {
-        if (lStorage.user.is_staff) setMemberListLink("userList");
-        setIsOrganization(lStorage.user.is_organization);
-      } catch (e) {}
+        : setUsername("No Name");
+      setIsLoggedIn(true);
+      setIsOrganization(lStorage.user.is_organization);
+
+      if (lStorage.user.is_staff) setMemberListLink("userList");
     } else {
       setIsLoggedIn(false);
     }
@@ -83,22 +74,26 @@ const Navbar = (props) => {
             <span />
           </a>
           {!isLoggedIn ? (
-            <a className="header-brand" href="#">
+            <Link href="/">
+              <a className="header-brand">
+                <img
+                  src="/assets/images/Logo.png"
+                  className="header-brand-img login-logo"
+                  alt="logo"
+                />
+              </a>
+            </Link>
+          ) : null}
+          <Link href="/">
+            <a className="header-brand">
               <img
                 src="/assets/images/Logo.png"
-                className="header-brand-img login-logo"
+                className="header-brand-img main-logo"
                 alt="logo"
+                style={{ marginLeft: "-1em" }}
               />
             </a>
-          ) : null}
-          <a className="header-brand" href="#">
-            <img
-              src="/assets/images/Logo.png"
-              className="header-brand-img main-logo"
-              alt="logo"
-              style={{ marginLeft: "-1em" }}
-            />
-          </a>
+          </Link>
           {isLoggedIn ? (
             <>
               <div>
@@ -223,7 +218,7 @@ const Navbar = (props) => {
                     ></span>
                     <div className="ml-3">
                       <span style={{ color: "#3f3d56", fontWeight: 700 }}>
-                        {username == "" ? "No Name" : username}
+                        {username}
                         <i className="fe fe-chevron-down ml-1" />
                       </span>
                     </div>
@@ -327,21 +322,22 @@ const Navbar = (props) => {
               </div>
 
               <div className="landingpage_login_signup_btns ">
-                <a
-                  className="landingpage_login_btn ml-6 mt-2"
-                  href="/auth/login"
-                  id="landingpage_login_btn"
-                >
-                  Login
-                </a>
-
-                <a
-                  className="btn btn-primary landingpage_signup_btn  ml-5"
-                  href="/auth/signup"
-                  id="landingpage_signup_btn"
-                >
-                  Signup
-                </a>
+                <Link href="/auth/login">
+                  <a
+                    className="landingpage_login_btn ml-6 mt-2"
+                    id="landingpage_login_btn"
+                  >
+                    Login
+                  </a>
+                </Link>
+                <Link href="/auth/signup">
+                  <a
+                    className="btn btn-primary landingpage_signup_btn  ml-5"
+                    id="landingpage_signup_btn"
+                  >
+                    Signup
+                  </a>
+                </Link>
               </div>
             </>
           ) : null}

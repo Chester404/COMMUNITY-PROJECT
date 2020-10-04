@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import MainLayout from "../components/MainLayout";
 import AdminSidebar from "../components/admin-sidebar";
 import { Users } from "../lib/endpoints";
 import { useEffect, useState } from "react";
+import { Store } from "../contextStore";
 
 interface IPaginateProps {
   callback(i: number): void;
@@ -85,7 +86,9 @@ export default function userList() {
   const [checkuser, setCheckuser] = useState(false);
   const [activate, setActivate] = useState(false);
 
-  const [list, setList] = useState("individuals");
+  const { state } = useContext(Store);
+  const [list, setList] = useState("inital");
+  const [title, setTitle] = useState("All individual users");
 
   const getUserDetails = async (id) => {
     let rs = await new Users().getUserAccountDetails(id);
@@ -93,13 +96,19 @@ export default function userList() {
 
   const individuals = (rs) => {
     return rs.filter((uprofile: any) => {
-      return uprofile.user.is_organization === false;
+      return (
+        uprofile.user.is_organization === false &&
+        uprofile.user.email !== state.userProfile.user.email
+      );
     });
   };
 
   const organizations = (rs) => {
     return rs.filter((uprofile: any) => {
-      return uprofile.user.is_organization === true;
+      return (
+        uprofile.user.is_organization === true &&
+        uprofile.user.email !== state.userProfile.user.email
+      );
     });
   };
 
@@ -117,7 +126,6 @@ export default function userList() {
   const paginate = (page: number) => {
     const start = (page - 1) * recordsPerPage + 1;
     const end = start + recordsPerPage;
-    console.log(start, end);
     const ts = tempList.slice(start - 1, end - 1);
     setUserProfiles(ts);
   };
@@ -150,7 +158,7 @@ export default function userList() {
 
       temp_profile = temp_profile.map((uprofile) => {
         if (uprofile.id === checkedUsers[i]) {
-          uprofile.user.is_activated = !uprofile.user.is_activated;
+          uprofile.user.is_active = !uprofile.user.is_active;
         }
         return uprofile;
       });
@@ -170,7 +178,7 @@ export default function userList() {
 
       temp_profile = temp_profile.map((uprofile) => {
         if (uprofile.id === checkedUsers[i]) {
-          uprofile.user.is_activated = !uprofile.user.is_activated;
+          uprofile.user.is_active = !uprofile.user.is_active;
         }
         return uprofile;
       });
@@ -198,7 +206,7 @@ export default function userList() {
 
       temp_profile = temp_profile.map((uprofile) => {
         if (uprofile.id === checkedUsers[i]) {
-          uprofile.user.is_activated = !uprofile.user.is_activated;
+          uprofile.user.is_active = !uprofile.user.is_active;
         }
         return uprofile;
       });
@@ -210,50 +218,49 @@ export default function userList() {
   };
 
   const handleList = (str) => {
-    console.log(str);
     setList(str);
     setCheckuser(false);
 
-    let temp;
+    let temp: any;
     switch (str) {
       case "individuals":
-        console.log("individuals");
         temp = individuals(tempprofile).filter((uprofile: any) => {
-          return uprofile.user.is_activated === true;
+          return uprofile.user.is_active === true;
         });
+        setTitle("Activated Users");
 
         setUserProfiles(temp.slice(0, recordsPerPage));
         settotalRecords(temp.length);
         break;
       case "organizations":
         temp = organizations(tempprofile).filter((uprofile: any) => {
-          return uprofile.user.is_activated === true;
+          return uprofile.user.is_active === true;
         });
-
+        setTitle("Organizations List");
         setUserProfiles(temp.slice(0, recordsPerPage));
         settotalRecords(temp.length);
         break;
       case "deactivated_users":
         temp = individuals(tempprofile).filter((uprofile: any) => {
-          return uprofile.user.is_activated === false;
+          return uprofile.user.is_active === false;
         });
+        setTitle("Deactivated Users");
         setUserProfiles(temp.slice(0, recordsPerPage));
         settotalRecords(temp.length);
-        console.log("deactivated_users");
         break;
       case "organizationalrequests":
         temp = organizations(tempprofile).filter((uprofile: any) => {
-          return uprofile.user.is_activated === true;
+          return uprofile.user.is_active === true;
         });
-
+        setTitle("Organizational Requests");
         setUserProfiles(temp.slice(0, recordsPerPage));
         settotalRecords(temp.length);
         break;
       case "deactivated_organizations":
         temp = organizations(tempprofile).filter((uprofile: any) => {
-          return uprofile.user.is_activated === false;
+          return uprofile.user.is_active === false;
         });
-
+        setTitle("Deactivated Organizations");
         setUserProfiles(temp.slice(0, recordsPerPage));
         settotalRecords(temp.length);
         break;
@@ -310,17 +317,7 @@ export default function userList() {
               }}
               id="toggle-title"
             >
-              {list === "individuals" ? (
-                <>Activated Users</>
-              ) : list === "organizations" ? (
-                <>Activated Organizations</>
-              ) : list === "deactivated_users" ? (
-                <>Deactivated Users</>
-              ) : list === "deactivated_organizations" ? (
-                <>Deactivated Organizations</>
-              ) : list === "organizationalrequests" ? (
-                <>Organizational Requests</>
-              ) : null}
+              {title}
             </h5>
             <div className="ml-auto">
               <div className="dropdown">
@@ -413,24 +410,25 @@ export default function userList() {
               </tr>
             </thead>
             <tbody>
-              {console.log("uprofiles:", userProfiles)}
               {userProfiles.map((uprofile: any, index: number) => {
                 return (
                   <tr key={index}>
                     <td scope="col" className="text-muted">
                       <div className="form-check">
-                        <input
-                          type="checkbox"
-                          name="check_user"
-                          className="form-check-input"
-                          id={uprofile.id}
-                          value={uprofile.name}
-                          onClick={(e) => setCheckuser(true)}
-                          onChange={(e) => {
-                            e.target.checked === checkuser;
-                            setCheckedUsers([...checkedUsers, uprofile.id]);
-                          }}
-                        />
+                        {list !== "inital" ? (
+                          <input
+                            type="checkbox"
+                            name="check_user"
+                            className="form-check-input"
+                            id={uprofile.id}
+                            value={uprofile.name}
+                            onClick={(e) => setCheckuser(true)}
+                            onChange={(e) => {
+                              e.target.checked === checkuser;
+                              setCheckedUsers([...checkedUsers, uprofile.id]);
+                            }}
+                          />
+                        ) : null}
                       </div>
                     </td>
                     <td>
