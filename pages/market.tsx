@@ -401,7 +401,7 @@ export default function ProductsView() {
               id="filtersrow"
               style={{ margin: "0 auto", padding: "30px" }}
             >
-              <div className="col-md-2" id="categoryfilter__div">
+              <div id="categoryfilter__div">
                 <div className="dropdown" id="categoryfilter">
                   <button
                     className="btn btn-light dropdown-toggle"
@@ -410,7 +410,7 @@ export default function ProductsView() {
                     data-toggle="dropdown"
                     aria-haspopup="true"
                     aria-expanded="false"
-                    style={{}}
+                    style={{ width: "190px" }}
                   >
                     {categoryFilterName}
                   </button>
@@ -437,7 +437,7 @@ export default function ProductsView() {
                   </div>
                 </div>
               </div>
-              <div className="col-md-2" id="typefilterdiv">
+              <div id="typefilterdiv">
                 <div className="dropdown" id="typefilter">
                   <button
                     className="btn btn-light dropdown-toggle"
@@ -446,7 +446,7 @@ export default function ProductsView() {
                     data-toggle="dropdown"
                     aria-haspopup="true"
                     aria-expanded="false"
-                    style={{}}
+                    style={{ width: "190px" }}
                   >
                     {typeFilterName}
                   </button>
@@ -488,7 +488,7 @@ export default function ProductsView() {
                   </div>
                 </div>
               </div>
-              <div className="col-md-2" id="locationfilter__div">
+              <div id="locationfilter__div">
                 <div className="dropdown" id="locationfilter">
                   <button
                     className="btn btn-light dropdown-toggle"
@@ -497,7 +497,7 @@ export default function ProductsView() {
                     data-toggle="dropdown"
                     aria-haspopup="true"
                     aria-expanded="false"
-                    style={{}}
+                    style={{ width: "190px" }}
                   >
                     {locationFilterName}
                   </button>
@@ -523,7 +523,7 @@ export default function ProductsView() {
                   </div>
                 </div>
               </div>
-              <div className="col-md-2" id="minpricefilter__div">
+              <div id="minpricefilter__div">
                 <div className="dropdown" id="minpricefilter">
                   <button
                     className="btn btn-light dropdown-toggle"
@@ -532,7 +532,7 @@ export default function ProductsView() {
                     data-toggle="dropdown"
                     aria-haspopup="true"
                     aria-expanded="false"
-                    style={{}}
+                    style={{ width: "190px" }}
                   >
                     {minPriceFilterName}
                   </button>
@@ -559,7 +559,7 @@ export default function ProductsView() {
                   </div>
                 </div>
               </div>
-              <div className="col-md-2" id="maxpricefilter__div">
+              <div id="maxpricefilter__div">
                 <div className="dropdown" id="maxpricefilter">
                   <button
                     className="btn btn-light dropdown-toggle"
@@ -568,7 +568,7 @@ export default function ProductsView() {
                     data-toggle="dropdown"
                     aria-haspopup="true"
                     aria-expanded="false"
-                    style={{}}
+                    style={{ width: "190px" }}
                   >
                     {maxPriceFilterName}
                   </button>
