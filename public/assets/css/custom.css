@@ -731,6 +731,19 @@ h5.table-title-market {
   cursor: pointer;
 }
 /*chester (landingpage) styling*/
+
+@media screen and (max-width: 600px) {
+  .landingpage_signup_btn {
+    width: 70px !important;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .landingpage_signup_btn {
+    width: 70px !important;
+  }
+}
+
 .landingpage_signup_btn {
   width: 100px;
   height: 35px;
