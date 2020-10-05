@@ -73,14 +73,18 @@ const Acount = () => {
       password: mailpassword,
     });
 
-    
+    console.log("heya", response)
+    if(Array.isArray(response.email)) {
+      callPrompt("Change Email", "", "Close", "User with this email already exist");
+      return;
+    }
+  
     if (response.password) {
       // bad credentials
       callPrompt("Change Email", "", "Close", "No active account found with the given credentials.");
       return;
-    } else {
-      callPrompt("Change Email", "", "Close", "User.");
     }
+
     if (response.email) {
       //
       callPrompt("Change Email", "", "Close", "Email changed successfully");
