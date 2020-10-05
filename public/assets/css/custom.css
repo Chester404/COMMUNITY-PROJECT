@@ -654,6 +654,10 @@ a#editprofile_button {
 .account-email-body .mail-pass-input {
   width: 17rem;
 }
+
+.account-email-body .mail-pass-input1 {
+  width: 19.5rem;
+}
 .account-email-body-buttons {
   justify-content: center;
   display: flex;

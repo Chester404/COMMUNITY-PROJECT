@@ -18,6 +18,17 @@ const Acount = () => {
   const [password, setPassword] = useState("");
   const [newpassword, setNewPassword] = useState("");
   const [confirmnewpassword, setConfirmNewPassword] = useState("");
+
+  const [togglemailpasswordeye, setToggleMailPasswordeye] = useState(false);
+  const [togglepasswordeye, setTogglePasswordeye] = useState(false);
+  const [togglenewpasswordeye, setToggleNewPasswordeye] = useState(
+    false
+  );
+  const [toggleconfirmpasswordeye, setToggleConfirmPasswordeye] = useState(
+    false
+  );
+
+
   const { dispatch } = useContext(Store);
   const auth_api = new Auth();
 
@@ -36,22 +47,18 @@ const Acount = () => {
   };
 
   const submitChangeEmail = async (e) => {
-	e.preventDefault();
-	if (
-		/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
-		 newEmail
-		)
-	  ) {
-		//email vaild
-	  } else {
-		callPrompt(
-		  "Change Email",
-		  "",
-		  "Close",
-		  "Check E-mail: Please enter the correct email address"
-		);
-		return;
-	  }
+    e.preventDefault();
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(newEmail)) {
+      //email vaild
+    } else {
+      callPrompt(
+        "Change Email",
+        "",
+        "Close",
+        "Check E-mail: Please enter the correct email address"
+      );
+      return;
+    }
 
     if (newEmail.length < 1) {
       callPrompt("Change Email", "", "Close", "New email field can not empty");
@@ -61,32 +68,26 @@ const Acount = () => {
       callPrompt("Change Email", "", "Close", "Password field can not empty");
       return;
     }
-      const response = await new Users().changeEmail({
-        email: newEmail,
-        password: mailpassword,
-      });
-      if (response.password) {
-        // bad credentials
-        callPrompt(
-          "Change Email",
-          "",
-          "Close",
-         response.password
-		);
-		return
-	  }
-	  if (response.email) {
-        //
-        callPrompt(
-          "Change Email",
-          "",
-		  "Close",
-		  "Email changed successfully"
-		);
+    const response = await new Users().changeEmail({
+      email: newEmail,
+      password: mailpassword,
+    });
 
-		setNewEmail("");
-		setMailPassword("");
-	  }
+    
+    if (response.password) {
+      // bad credentials
+      callPrompt("Change Email", "", "Close", "No active account found with the given credentials.");
+      return;
+    } else {
+      callPrompt("Change Email", "", "Close", "User.");
+    }
+    if (response.email) {
+      //
+      callPrompt("Change Email", "", "Close", "Email changed successfully");
+
+      setNewEmail("");
+      setMailPassword("");
+    }
   };
 
   const submitChangePassword = async (e) => {
@@ -256,9 +257,9 @@ const Acount = () => {
                       <input
                         type="text"
                         id="account-input-mail"
-                        className="form-control form-rounded mail-pass-input"
-						placeholder="New email"
-						value={newEmail}
+                        className="form-control form-rounded mail-pass-input1"
+                        placeholder="New email"
+                        value={newEmail}
                         onChange={(e) => setNewEmail(e.target.value)}
                       ></input>
                     </div>
@@ -267,13 +268,25 @@ const Acount = () => {
                         <strong>Password</strong>
                       </label>
                       <input
-                        type="text"
+                        type={ togglemailpasswordeye ? "text" : "password"}
                         id="account-input-password"
                         className="form-control form-rounded mail-pass-input"
-						placeholder="Confirm password"
-						value={mailpassword}
+                        placeholder="Confirm password"
+                        value={mailpassword}
                         onChange={(e) => setMailPassword(e.target.value)}
-                      ></input>
+                      >
+
+                      </input>
+                      <div className="input-group-addon">
+                        <a href="#">
+                          <i
+                            className={`${
+                              togglemailpasswordeye ? "fe fe-eye" : "fe fe-eye-off"
+                            }`}
+                            onClick={() => setToggleMailPasswordeye(!togglemailpasswordeye)}
+                          />
+                        </a>
+                      </div>
                     </div>
                     <div className="row account-email-body-buttons pl-9  mb-2">
                       {/*  <AccountPasswordPopup /> */}
@@ -325,14 +338,25 @@ const Acount = () => {
                       </label>
                       <input
                         id="password"
-                        type="text"
+                        type={togglepasswordeye ? "text" : "password"}
                         className="form-control form-rounded mail-pass-input"
                         placeholder="Enter password"
                         value={password}
                         onChange={(e) => {
                           setPassword(e.target.value);
                         }}
-                      ></input>
+                      >
+                      </input>
+                      <div className="input-group-addon">
+                        <a href="#">
+                          <i
+                            className={`${
+                              togglepasswordeye ? "fe fe-eye" : "fe fe-eye-off"
+                            }`}
+                            onClick={() => setTogglePasswordeye(!togglepasswordeye)}
+                          />
+                        </a>
+                      </div>
                     </div>
                     <div className="row form-group account-email-body">
                       <label className="pr-6 mt-2">
@@ -340,12 +364,22 @@ const Acount = () => {
                       </label>
                       <input
                         id="newpassword"
-                        type="text"
+                        type={ togglenewpasswordeye ? "text" : "password"}
                         className="form-control form-rounded mail-pass-input"
                         placeholder="Password must be atleast 8 characters"
                         value={newpassword}
                         onChange={(e) => setNewPassword(e.target.value)}
                       ></input>
+                      <div className="input-group-addon">
+                        <a href="#">
+                          <i
+                            className={`${
+                              togglenewpasswordeye ? "fe fe-eye" : "fe fe-eye-off"
+                            }`}
+                            onClick={() => setToggleNewPasswordeye(!togglenewpasswordeye)}
+                          />
+                        </a>
+                      </div>
                     </div>
                     <div className="row form-group account-email-body">
                       <label className="pr-2 mt-2">
@@ -353,12 +387,22 @@ const Acount = () => {
                       </label>
                       <input
                         id="confirmnewpassword"
-                        type="text"
+                        type={ toggleconfirmpasswordeye ? "text" : "password"}
                         className="form-control form-rounded mail-pass-input"
                         placeholder="Re-enter the same password as above"
                         value={confirmnewpassword}
                         onChange={(e) => setConfirmNewPassword(e.target.value)}
                       ></input>
+                      <div className="input-group-addon">
+                        <a href="#">
+                          <i
+                            className={`${
+                              toggleconfirmpasswordeye ? "fe fe-eye" : "fe fe-eye-off"
+                            }`}
+                            onClick={() => setToggleConfirmPasswordeye(!toggleconfirmpasswordeye)}
+                          />
+                        </a>
+                      </div>
                     </div>
                     {/*Buttons for saving of password starts here*/}
 
@@ -371,7 +415,6 @@ const Acount = () => {
                       >
                         Save
                       </button>
-                     
                     </div>
                     {/*Buttons for saving of password ends here*/}
                   </Card.Body>
