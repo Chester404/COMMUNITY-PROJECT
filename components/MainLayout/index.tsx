@@ -42,11 +42,11 @@ const MainLayout = ({
   useEffect(() => {
     const rs = verifyLogin(router);
     if (!rs.verified) {
-      router.push("/landingpage");
+      router.push("/");
     } else if (router.pathname === "/") {
       router.push("/blog");
     }
-  });
+  }, []);
   return (
     <>
       <Header title={title} />

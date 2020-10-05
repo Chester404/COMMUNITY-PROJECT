@@ -1,6 +1,7 @@
 import MainLayout from "../../components/MainLayout";
 import { Products } from "../../lib/endpoints";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 const disabled = {};
 interface IPaginateProps {
@@ -75,7 +76,7 @@ const Pagination = ({
   );
 };
 export default function ProductsView() {
-  const [allproducts, setAllProducts] = useState([]);
+  const [products, setProducts] = useState([]);
 //   const [tempList, setTempList] = useState([]);
 //   const [totalRecords, settotalRecords] = useState(0);
 //   const [recordsPerPage] = useState(15);
@@ -83,7 +84,7 @@ export default function ProductsView() {
   useEffect(() => {
     (async () => {
       const rs = await new Products().getProducts();
-      setAllProducts(rs);
+      setProducts(rs);
       // setTempList(rs);
       // setAllProducts(rs.slice(0, recordsPerPage));
       // setIsLoading(false);
@@ -317,16 +318,20 @@ export default function ProductsView() {
 
           {/* Products row mapping of products*/}
           <div className="row">
-            {allproducts.map(product => {
-              <div className="card" style={{width: 18}}>
+            {products.map(product => (
+              <div className="card col" style={{width: 18}}>
               <img className="card-img-top" src="..." alt="Card image cap"/>
               <div className="card-body">
                 <h5 className="card-title">{product.name}</h5>
                 <p className="card-text">{product.description}</p>
-                <a href="#" className="btn btn-primary">Go somewhere</a>
+                <p className="card-text">{product.price}</p>
+                <Link href="/products/[id]" as={`/products/${product.owner.id}`}>
+                  <a className="btn btn-primary">View Details</a>
+                </Link>
+                
               </div>
               </div>
-            })}
+            ))}
           </div>
           {/* <div className="row">
             {allproducts.map((product: any, index: number) => {

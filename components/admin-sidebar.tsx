@@ -1,4 +1,4 @@
-import Link from "next/link"
+import Link from "next/link";
 const AdminSidebar = ({ handleList }) => {
   return (
     <div>
@@ -45,29 +45,34 @@ const AdminSidebar = ({ handleList }) => {
           </a>
         </div>
         <ul id="list">
-          <Link href="/userList?individual">
-          <a
-            onClick={() => {
-              handleList("individuals");
-            }}
-          >
-            <li>Individual List</li>
-          </a>
+          <Link href="/userList">
+            <a
+              onClick={() => {
+                handleList("individuals");
+              }}
+            >
+              <li>Individual List</li>
+            </a>
           </Link>
-          <Link  href="/userList">
-          <a
-            onClick={() => {
-              handleList("organizations");
-            }}
-          >
-            <li>Organizational List</li>
-          </a>
+          <Link href="/userList">
+            <a
+              onClick={() => {
+                handleList("organizations");
+              }}
+            >
+              <li>Organizational List</li>
+            </a>
           </Link>
 
-          <Link href="/organizationrequest">
-          <a >
-            <li>Organizational Requests</li>
-          </a>
+          <Link href="/userList">
+            <a
+              onClick={() => {
+                // handleListView("inactive");
+                handleList("organizationalrequests");
+              }}
+            >
+              <li>Organizational Requests</li>
+            </a>
           </Link>
           <Link href="/userList">
             <a
@@ -79,15 +84,15 @@ const AdminSidebar = ({ handleList }) => {
               <li>Deactivated Users</li>
             </a>
           </Link>
-          <Link  href="/userList">
-          <a
-            onClick={() => {
-              // handleListView("inactive");
-              handleList("deactivated_organizations");
-            }}
-          >
-            <li>Deactivated Organizations</li>
-          </a>
+          <Link href="/userList">
+            <a
+              onClick={() => {
+                // handleListView("inactive");
+                handleList("deactivated_organizations");
+              }}
+            >
+              <li>Deactivated Organizations</li>
+            </a>
           </Link>
         </ul>
 

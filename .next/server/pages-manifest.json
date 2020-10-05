@@ -1,6 +1,31 @@
 {
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
+<<<<<<< HEAD
   "/_error": "pages/_error.js",
   "/market": "pages/market.js"
+=======
+  "/about": "pages/about.html",
+  "/admin": "pages/admin.html",
+  "/auth/account-settings": "pages/auth/account-settings.html",
+  "/auth/confirmaccount": "pages/auth/confirmaccount.html",
+  "/auth/forgottenpassword": "pages/auth/forgottenpassword.html",
+  "/auth/login": "pages/auth/login.html",
+  "/auth/resetpassword": "pages/auth/resetpassword.html",
+  "/auth/signup": "pages/auth/signup.html",
+  "/blog": "pages/blog.html",
+  "/businessprofile": "pages/businessprofile.html",
+  "/editbusinessprofile": "pages/editbusinessprofile.html",
+  "/editprofile": "pages/editprofile.html",
+  "/": "pages/index.html",
+  "/landingpage": "pages/landingpage.html",
+  "/market": "pages/market.html",
+  "/memberlist": "pages/memberlist.html",
+  "/membersigned": "pages/membersigned.html",
+  "/organizationRequest": "pages/organizationRequest.html",
+  "/profile": "pages/profile.html",
+  "/userList": "pages/userList.html",
+  "/_error": "pages/_error.js",
+  "/404": "pages/404.html"
+>>>>>>> 1d6ed24896b00e86593ec795ee4d2d3adaabbcf3
 }
