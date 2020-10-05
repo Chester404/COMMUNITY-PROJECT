@@ -244,12 +244,12 @@ const Acount = () => {
                     <h4>
                       <strong>Change Email</strong>
                     </h4>
-                    <p>Link your account to a new email address, click edit.</p>
+                    <p className="account-para">Link your account to a new email address, click edit.</p>
                   </div>
                   <div>
-                    <p id="account-edit-mail">
+                    <h4 id="account-edit-mail">
                       <strong> Edit</strong>
-                    </p>
+                    </h4>
                   </div>
                 </Accordion.Toggle>
                 <Accordion.Collapse eventKey="email-toggle">
@@ -275,7 +275,7 @@ const Acount = () => {
                         type={ togglemailpasswordeye ? "text" : "password"}
                         id="account-input-password"
                         className="form-control form-rounded mail-pass-input"
-                        placeholder="Confirm password"
+                        placeholder="Confirm change with password"
                         value={mailpassword}
                         onChange={(e) => setMailPassword(e.target.value)}
                       >
@@ -326,12 +326,12 @@ const Acount = () => {
                     <h4>
                       <strong>Change Password</strong>
                     </h4>
-                    <p>Keep your account secured, dont share password.</p>
+                    <p className="account-para">Keep your account secured, dont share password.</p>
                   </div>
                   <div>
-                    <p id="account-edit-pass">
+                    <h4 id="account-edit-pass">
                       <strong> Edit</strong>
-                    </p>
+                    </h4>
                   </div>
                 </Accordion.Toggle>
                 <Accordion.Collapse eventKey="password-toggle">

@@ -2,6 +2,6 @@
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
   "/_error": "pages/_error.js",
-  "/profile": "pages/profile.js",
-  "/auth/account-settings": "pages/auth/account-settings.js"
+  "/products1/editproducts": "pages/products1/editproducts.js",
+  "/marketnew": "pages/marketnew.js"
 }

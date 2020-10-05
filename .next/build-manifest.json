@@ -24,15 +24,15 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
-    "/auth/account-settings": [
+    "/marketnew": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/auth/account-settings.js"
+      "static/chunks/pages/marketnew.js"
     ],
-    "/profile": [
+    "/products1/editproducts": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/profile.js"
+      "static/chunks/pages/products1/editproducts.js"
     ]
   },
   "ampFirstPages": []

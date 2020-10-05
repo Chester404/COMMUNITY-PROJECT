@@ -639,6 +639,7 @@ a#editprofile_button {
 }
 
 /* Account Settings */
+
 .card {
   box-shadow: none;
 }
@@ -710,6 +711,12 @@ a#editprofile_button {
 @media screen and (max-width: 599px) {
   .account-email-body-buttons .pass-modal-popup-button {
     margin-left: 0.5rem !important;
+  }
+}
+
+@media screen and (max-width: 599px) {
+  .account-para {
+    display: none;
   }
 }
 
@@ -809,7 +816,7 @@ h5.table-title-market {
   text-decoration: none;
   color: white;
 }
-.active,
+
 .sidenavmenu:hover {
   text-decoration: none;
   background: #3964fc;
@@ -994,3 +1001,107 @@ button {
 .sticky-pin {
   position: sticky !important;
 }
+
+/* STYLING FOR MARKET PLACE */
+
+.market-header-caption {
+  margin-right: 25rem;
+}
+
+.market-header-dropdowns {
+  display: flex;
+}
+
+.product-increament {
+  height: 2.5rem;
+  width: 4rem;
+}
+
+
+.overlay {
+	position: absolute; 
+	top: 4%; 
+	left: 75%;
+	background: rgb(0, 0, 0);
+	background: rgba(0, 0, 0, 0.5); /* Black see-through */ 
+	width: 20%;
+	border-radius: 35px;
+	transition: .5s ease;
+  opacity:0;
+	font-size: 20px;
+	padding: 11px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #C0C4D4;
+  }
+
+  .productCard {
+    border-radius: 3%;
+  }
+
+  
+  .productCard:hover .overlay {
+	  opacity: 1;
+  }
+  .overlay a i {
+    color: white;
+  }
+
+.overlay:hover {
+  background-color: #3964fc;
+}
+
+.filter-dropdown {
+  width: 13.4rem;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+}
+
+hr {
+  margin-top: 0px !important;
+}
+
+.MarketCardBackground {
+  background-color: transparent;
+}
+
+.nav-link {
+  font-size: 1rem;
+}
+
+.nav-link.active {
+  color: #3863fc !important;
+  font-weight: bold;
+}
+
+.discount-price {
+  text-decoration: line-through;
+}
+
+input,
+input::-webkit-input-placeholder {
+    font-size: 85%;
+    line-height: 3;
+}
+
+.myproducts-header{
+	position: fixed;
+	top: 80px;
+	z-index: 10;
+	font-size: 18px;
+	margin-left: 0px;
+	font-weight: bold;
+	background-color: #f7f7f7;
+	padding-left: 90px;
+	padding-top:10px ;
+	padding-bottom:5px ;
+	margin-bottom: -5px;
+}
+.tabToggler{
+	margin-top: 60px;
+	margin-left: 3px;
+}
+
+/* STYLING FOR MARKET PLACE */
+
+
