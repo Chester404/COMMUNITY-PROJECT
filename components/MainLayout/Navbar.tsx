@@ -285,16 +285,37 @@ const Navbar = (props) => {
                       <span className="lay-outstyle mt-1">Market</span>
                     </a>
                   </Link>
-                  <a className="nav-link">
-                    <span className="lay-outstyle mt-1">Jobs</span>
-                  </a>
+                  <Link href="/jobs">
+                    <a
+                      className="nav-link"
+                      style={{
+                        color: router.pathname == "/jobs" ? "" : "#3f3d56",
+                      }}
+                    >
+                      <span className="lay-outstyle mt-1">Jobs</span>
+                    </a>
+                  </Link>
 
-                  <a className="nav-link">
-                    <span className="lay-outstyle mt-1">Partnership</span>
-                  </a>
-                  <a className="nav-link">
-                    <span className="lay-outstyle mt-1">Forum</span>
-                  </a>
+                  <Link href="/partnership">
+                    <a
+                      className="nav-link"
+                      style={{
+                        color: router.pathname == "/partnership" ? "" : "#3f3d56",
+                      }}
+                    >
+                      <span className="lay-outstyle mt-1">Partnership</span>
+                    </a>
+                  </Link>
+                  <Link href="/forum">
+                    <a
+                      className="nav-link"
+                      style={{
+                        color: router.pathname == "/forum" ? "" : "#3f3d56",
+                      }}
+                    >
+                      <span className="lay-outstyle mt-1">Forum</span>
+                    </a>
+                  </Link>
                   <Link href="/blog">
                     <a
                       className="nav-link"
