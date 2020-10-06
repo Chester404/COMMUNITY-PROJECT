@@ -85,6 +85,8 @@ export default function userList() {
   const [checkedUsers, setCheckedUsers] = useState([]);
   const [checkuser, setCheckuser] = useState(false);
   const [activate, setActivate] = useState(false);
+  const [orglist, setOrglist] = useState([]);
+  const [temporgprofile, setTemporgprofile] = useState([]);
 
   const { state } = useContext(Store);
   const [list, setList] = useState("inital");
@@ -97,6 +99,7 @@ export default function userList() {
   const individuals = (rs) => {
     return rs.filter((uprofile: any) => {
       return (
+        uprofile.user.is_staff === false &&
         uprofile.user.is_organization === false &&
         uprofile.user.email !== state.userProfile.user.email
       );
@@ -106,16 +109,21 @@ export default function userList() {
   const organizations = (rs) => {
     return rs.filter((uprofile: any) => {
       return (
+        uprofile.user.is_staff === false &&
         uprofile.user.is_organization === true &&
         uprofile.user.email !== state.userProfile.user.email
       );
     });
   };
 
+  // const getActiveIndividuals = (rs)
+
   useEffect(() => {
     (async () => {
-      const rs = await new Users().getProfilesForAdmin();
+      const rs = await new Users().getIndividualProfilesForAdmin();
+      const orgs = await new Users().getOrganizationProfilesForAdmin();
       setTempprofile(rs);
+      setTemporgprofile(orgs);
       const temp_active_inactive = individuals(rs);
       setTempList(temp_active_inactive);
       setUserProfiles(temp_active_inactive.slice(0, recordsPerPage));
@@ -148,73 +156,75 @@ export default function userList() {
     setUserProfiles([...sorted].reverse());
   };
 
-  const activate_ = async () => {
-    let temp_profile = tempprofile;
-    for (let i = 0; i < checkedUsers.length; i++) {
-      let rs = await new Users().activateDeactivate({
-        pk: checkedUsers[i],
-        activate: true,
-      });
-
-      temp_profile = temp_profile.map((uprofile) => {
-        if (uprofile.id === checkedUsers[i]) {
-          uprofile.user.is_active = !uprofile.user.is_active;
-        }
-        return uprofile;
-      });
-    }
-    setTempprofile(temp_profile);
-    setCheckuser(false);
-    handleList(list);
-  };
-
-  const deactivate_ = async () => {
-    let temp_profile = tempprofile;
-    for (let i = 0; i < checkedUsers.length; i++) {
-      let rs = await new Users().activateDeactivate({
-        pk: checkedUsers[i],
-        activate: false,
-      });
-
-      temp_profile = temp_profile.map((uprofile) => {
-        if (uprofile.id === checkedUsers[i]) {
-          uprofile.user.is_active = !uprofile.user.is_active;
-        }
-        return uprofile;
-      });
-    }
-    setTempprofile(temp_profile);
-    setCheckuser(false);
-    handleList(list);
-  };
   const activateDeactivate = async () => {
-    if (list === "individuals" || list === "organizations") {
-      setActivate(false);
-    } else if (
-      list === "deactivated_users" ||
-      list === "deactivated_organizations"
-    ) {
-      setActivate(true);
+    let temp_profile: any;
+    let iterateandactivate = async (temp, list_type) => {
+      // console.log("activate:",activate)
+      let active: any;
+
+      if (list === "individuals" || list === "organizations") {
+        active = false;
+      } else if (
+        list === "deactivated_users" ||
+        list === "deactivated_organizations"
+      ) {
+        active = true;
+      }
+      console.log({ list, active });
+      for (let i = 0; i < checkedUsers.length; i++) {
+        let rs = await new Users().activateDeactivate({
+          pk: checkedUsers[i],
+          active,
+        });
+
+        console.log("RS:", rs);
+
+        temp_profile = temp.map((uprofile) => {
+          console.log("id:", checkedUsers[i]);
+          if (uprofile.id === checkedUsers[i]) {
+            uprofile.user.is_active = !uprofile.user.is_active;
+          }
+          return uprofile;
+        });
+      }
+      if (list_type === "individuals") {
+        setTempprofile(temp_profile);
+        console.log("temp profile after act/deact:", temp_profile);
+      } else if (list_type === "organizations") {
+        setTemporgprofile(temp_profile);
+      }
+      setCheckuser(false);
+      handleList(list_type);
+      setCheckedUsers(checkedUsers.splice(0, checkedUsers.length));
+    };
+    // check view
+    switch (list) {
+      case "individuals":
+        temp_profile = tempprofile;
+        setActivate(false);
+        iterateandactivate(temp_profile, "individuals");
+        break;
+      case "organizations":
+        temp_profile = temporgprofile;
+        setActivate(false);
+        iterateandactivate(temp_profile, "organizations");
+        break;
+      case "deactivated_users":
+        temp_profile = tempprofile;
+        setActivate(true);
+        iterateandactivate(temp_profile, "individuals");
+        break;
+      case "deactivated_organizations":
+        temp_profile = temporgprofile;
+        setActivate(true);
+        iterateandactivate(temp_profile, "organizations");
+        break;
+      case "organizationalrequests":
+        temp_profile = temporgprofile;
+        break;
+      default:
+        break;
     }
-
-    let temp_profile = tempprofile;
-    for (let i = 0; i < checkedUsers.length; i++) {
-      let rs = await new Users().activateDeactivate({
-        pk: checkedUsers[i],
-        activate,
-      });
-
-      temp_profile = temp_profile.map((uprofile) => {
-        if (uprofile.id === checkedUsers[i]) {
-          uprofile.user.is_active = !uprofile.user.is_active;
-        }
-        return uprofile;
-      });
-    }
-
-    setTempprofile(temp_profile);
-    setCheckuser(false);
-    handleList(list);
   };
 
   const handleList = (str) => {
@@ -224,18 +234,23 @@ export default function userList() {
     let temp: any;
     switch (str) {
       case "individuals":
+        console.log("TEMP_PROFILE:", tempprofile);
         temp = individuals(tempprofile).filter((uprofile: any) => {
           return uprofile.user.is_active === true;
         });
+
+        console.log("TEMP:",temp)
         setTitle("Activated Users");
 
         setUserProfiles(temp.slice(0, recordsPerPage));
         settotalRecords(temp.length);
         break;
       case "organizations":
-        temp = organizations(tempprofile).filter((uprofile: any) => {
+        
+        temp = organizations(temporgprofile).filter((uprofile: any) => {
           return uprofile.user.is_active === true;
         });
+        console.log("TEMP:", temp);
         setTitle("Organizations List");
         setUserProfiles(temp.slice(0, recordsPerPage));
         settotalRecords(temp.length);
@@ -244,22 +259,25 @@ export default function userList() {
         temp = individuals(tempprofile).filter((uprofile: any) => {
           return uprofile.user.is_active === false;
         });
+        console.log("TEMP:", temp);
         setTitle("Deactivated Users");
         setUserProfiles(temp.slice(0, recordsPerPage));
         settotalRecords(temp.length);
         break;
       case "organizationalrequests":
-        temp = organizations(tempprofile).filter((uprofile: any) => {
+        temp = organizations(temporgprofile).filter((uprofile: any) => {
           return uprofile.user.is_active === true;
         });
+        console.log("TEMP:", temp);
         setTitle("Organizational Requests");
         setUserProfiles(temp.slice(0, recordsPerPage));
         settotalRecords(temp.length);
         break;
       case "deactivated_organizations":
-        temp = organizations(tempprofile).filter((uprofile: any) => {
+        temp = organizations(temporgprofile).filter((uprofile: any) => {
           return uprofile.user.is_active === false;
         });
+        console.log("TEMP:", temp);
         setTitle("Deactivated Organizations");
         setUserProfiles(temp.slice(0, recordsPerPage));
         settotalRecords(temp.length);
@@ -323,7 +341,7 @@ export default function userList() {
               <div className="dropdown">
                 <a
                   className="nav-link pr-0 leading-none d-flex pt-1"
-                  onClick={() => activateDeactivate}
+                  onClick={activateDeactivate}
                 >
                   <div className="mt-3 mb-3 mr-5 table-title">
                     <span
@@ -422,10 +440,23 @@ export default function userList() {
                             className="form-check-input"
                             id={uprofile.id}
                             value={uprofile.name}
-                            onClick={(e) => setCheckuser(true)}
+                            // onClick={(e) => setCheckuser(true)}
                             onChange={(e) => {
-                              e.target.checked === checkuser;
-                              setCheckedUsers([...checkedUsers, uprofile.id]);
+                              // e.target.checked === checkuser;
+                              uprofile.is_active = e.target.checked
+                              // setUserProfiles((prev)=>[...prev])
+                              const user_id = tempprofile.reduce((prev:any,acc:any)=>{
+                                // console.log("prev:",prev,acc)
+                                if(acc.user.id === uprofile.id){
+                                  acc.user.is_active = !e.target.checked
+                                }
+                                return acc
+                              },[])
+                              console.log(user_id)
+                              setCheckedUsers([
+                                ...checkedUsers,
+                                uprofile.user.id,
+                              ]);
                             }}
                           />
                         ) : null}

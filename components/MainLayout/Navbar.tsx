@@ -122,13 +122,43 @@ const Navbar = (props) => {
                       </Link>
                     </li>
                     <li>
-                      <a href="#">Jobs</a>
+                      <Link href="/jobs">
+                        <a
+                          className="nav-link"
+                          style={{
+                            color: router.pathname == "/jobs" ? "" : "black",
+                          }}
+                        >
+                          <span className="lay-outstyle mt-1">Jobs</span>
+                        </a>
+                      </Link>
                     </li>
                     <li>
-                      <a href="#">Partnership</a>
+                      <Link href="/partnerships">
+                        <a
+                          className="nav-link"
+                          style={{
+                            color:
+                              router.pathname == "/partnerships" ? "" : "black",
+                          }}
+                        >
+                          <span className="lay-outstyle mt-1">
+                            Partnerships
+                          </span>
+                        </a>
+                      </Link>
                     </li>
                     <li>
-                      <a href="#">Forum</a>
+                      <Link href="/forum">
+                        <a
+                          className="nav-link"
+                          style={{
+                            color: router.pathname == "/forum" ? "" : "black",
+                          }}
+                        >
+                          <span className="lay-outstyle mt-1">Forum</span>
+                        </a>
+                      </Link>
                     </li>
                     <li>
                       <Link href="/blog">
@@ -171,15 +201,39 @@ const Navbar = (props) => {
                     <span className="lay-outstyle mt-1">Market</span>
                   </a>
                 </Link>
-                <a className="nav-link">
-                  <span className="lay-outstyle mt-1">Jobs</span>
-                </a>
-                <a className="nav-link">
-                  <span className="lay-outstyle mt-1">Partnership</span>
-                </a>
-                <a className="nav-link">
-                  <span className="lay-outstyle mt-1">Forum</span>
-                </a>
+                <Link href="/jobs">
+                  <a
+                    className="nav-link"
+                    style={{
+                      color: router.pathname == "/jobs" ? "" : "black",
+                    }}
+                  >
+                    <span className="lay-outstyle mt-1">Jobs</span>
+                  </a>
+                </Link>
+                {isLoggedIn ? (
+                  <Link href="/partnerships">
+                    <a
+                      className="nav-link"
+                      style={{
+                        color:
+                          router.pathname == "/partnerships" ? "" : "black",
+                      }}
+                    >
+                      <span className="lay-outstyle mt-1">Partnerships</span>
+                    </a>
+                  </Link>
+                ) : null}
+                <Link href="/forum">
+                  <a
+                    className="nav-link"
+                    style={{
+                      color: router.pathname == "/forum" ? "" : "black",
+                    }}
+                  >
+                    <span className="lay-outstyle mt-1">Forum</span>
+                  </a>
+                </Link>
                 <Link href="/blog">
                   <a
                     className="nav-link"
