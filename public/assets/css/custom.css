@@ -731,19 +731,6 @@ h5.table-title-market {
   cursor: pointer;
 }
 /*chester (landingpage) styling*/
-
-@media screen and (max-width: 600px) {
-  .landingpage_signup_btn {
-    width: 70px !important;
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .landingpage_signup_btn {
-    width: 70px !important;
-  }
-}
-
 .landingpage_signup_btn {
   width: 100px;
   height: 35px;
@@ -757,13 +744,27 @@ h5.table-title-market {
 
 .landingpage_login_signup_btns {
   display: flex;
-  margin-top: 0.5rem;
+  margin-top: 0.4rem;
 }
 
 .navbar-list {
   display: flex;
+  width:100%;
   margin-left: 10rem;
   margin-right: 10rem;
+}
+@media screen and (max-width: 800px){
+  .userpic{
+    width: 200px;
+  }
+
+  @media screen and (max-width: 800px){
+    .businessProfilebtn{
+      margin: auto;
+    }
+  .businessProfilebtn{
+   justify-content: center;
+  }
 }
 
 /*chester (landingpage) styling ends here*/

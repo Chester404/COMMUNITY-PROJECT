@@ -48,7 +48,7 @@ export default function Home() {
 											alt=""
 											width={200}
 											height={200}
-											style={{ borderRadius: "4px" }}
+											style={{ borderRadius: "10px" }}
 										/>
 									</div>
 									<div className="text-center">
@@ -59,8 +59,10 @@ export default function Home() {
 											style={{
 												borderRadius: "10px",
 												width: "200px",
+												height: "36px",
 												backgroundColor: "#3964fc",
 												color: "#FFF",
+												textAlign:"center",
 											}}
 										>
 											Edit Profile

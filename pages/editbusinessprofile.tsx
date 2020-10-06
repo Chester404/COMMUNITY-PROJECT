@@ -334,7 +334,7 @@ export default function Home() {
                     <input
                       type="text"
                       className="form-control form-rounded"
-                      placeholder="www.amalitech.com"
+                      placeholder="“eg.www.yourwebsite.com”"
                       value={website}
                       onChange={(e) => setWebsite(e.target.value)}
                     />
@@ -370,7 +370,7 @@ export default function Home() {
                   <div className="form-group">
                     <label style={{ fontWeight: "bolder" }}>
                       Digital Address
-					  <span style={{ color: "red" }}>*</span></label>
+					  <span style={{ color: "red" }}> *</span></label>
                     <input
                       type="text"
                       className="form-control form-rounded"
@@ -391,11 +391,12 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className="row">
-                <div className="col-md-3"></div>
-                <div className="col-md-3">
+              <div className="row justify-content-center businessProfilebtn">
+               
+
+               <div>
                   <button
-                    className="btn btn-primary btn-block mb-1 mt-5"
+                    className="btn btn-primary btn-block  mb-1 mt-5"
                     style={{
                       background: "#3964FC !important",
                       width: "200px !important",
@@ -408,10 +409,11 @@ export default function Home() {
                     Save
                   </button>
                 </div>
+                
                 <div className="col-md-3">
                   <Link href="/businessprofile">
                     <button
-                      className="btn btn-primary btn-block mb-1 mt-5"
+                      className="btn btn-primary btn-block businessProfilebtn  mb-1 mt-5"
                       style={{
                         background: "#818AA9 !important",
                         width: "200px !important",
@@ -425,16 +427,11 @@ export default function Home() {
 
                   </Link>
                 </div>
-                <div className="col-md-3"></div>
-              </div>
-              <div
-                className="btn-list"
-                style={{ marginLeft: "23%", marginRight: "23%" }}
-              >
-                <div className="row">
-                </div>
-              </div>
-              {/* </div> */}
+
+               </div>           
+                
+            
+              
             </div>
           </div>
         </div>
