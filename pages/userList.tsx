@@ -239,14 +239,13 @@ export default function userList() {
           return uprofile.user.is_active === true;
         });
 
-        console.log("TEMP:",temp)
+        console.log("TEMP:", temp);
         setTitle("Activated Users");
 
         setUserProfiles(temp.slice(0, recordsPerPage));
         settotalRecords(temp.length);
         break;
       case "organizations":
-        
         temp = organizations(temporgprofile).filter((uprofile: any) => {
           return uprofile.user.is_active === true;
         });
@@ -439,20 +438,19 @@ export default function userList() {
                             name="check_user"
                             className="form-check-input"
                             id={uprofile.id}
-                            value={uprofile.name}
+                            // value={uprofile.name}
+
                             // onClick={(e) => setCheckuser(true)}
                             onChange={(e) => {
                               // e.target.checked === checkuser;
-                              uprofile.is_active = e.target.checked
-                              // setUserProfiles((prev)=>[...prev])
-                              const user_id = tempprofile.reduce((prev:any,acc:any)=>{
-                                // console.log("prev:",prev,acc)
-                                if(acc.user.id === uprofile.id){
-                                  acc.user.is_active = !e.target.checked
+                              // uprofile.is_active = e.target.checked;
+                              const user_id = tempprofile.map((prev: any) => {
+                                if (prev.user.id === uprofile.user.id) {
+                                  prev.user.is_active = !e.target.checked;
                                 }
-                                return acc
-                              },[])
-                              console.log(user_id)
+                                return prev;
+                              });
+                              console.log(user_id);
                               setCheckedUsers([
                                 ...checkedUsers,
                                 uprofile.user.id,
