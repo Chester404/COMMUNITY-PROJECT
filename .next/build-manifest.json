@@ -24,22 +24,20 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
-<<<<<<< HEAD
-    "/next/dist/pages/_error": [
-      "static/chunks/main.js",
-      "static/chunks/webpack.js",
-      "static/chunks/pages/next/dist/pages/_error.js"
-=======
     "/businessprofile": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
       "static/chunks/pages/businessprofile.js"
->>>>>>> 4bd9e00532be413507138577ca9e3e9ebb6f84bc
     ],
-    "/userList": [
+    "/editbusinessprofile": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/userList.js"
+      "static/chunks/pages/editbusinessprofile.js"
+    ],
+    "/next/dist/pages/_error": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/next/dist/pages/_error.js"
     ]
   },
   "ampFirstPages": []
