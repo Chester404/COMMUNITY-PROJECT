@@ -1120,6 +1120,26 @@ button {
   background-color: #C0C4D4;
   }
 
+  .card-shopping {
+    width: 1.5rem;
+    height: 2.3rem;
+    border-radius: 2rem;
+    z-index: 3;
+    margin-bottom: -3.8rem;
+    margin-left: 80%;
+    margin-top: 0.5rem;
+    background-color: #e8ebf1;
+    border: none;
+  }
+
+  .cart-icon {
+    font-weight: 3000;
+  }
+
+  .card-shopping:hover {
+    background-color: #3964fc;
+  }
+
   .productCard {
     border-radius: 10px;
   }

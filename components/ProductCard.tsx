@@ -6,17 +6,9 @@ const ProductCard = ({ product }) => {
       <div className="card" id="product-card" style={{borderRadius:"1em"}}>
         <button
           id="cart-button"
-          className="btn btn-info"
-          style={{
-            width: "2em",
-            borderRadius: "1em",
-            zIndex: 3,
-            marginBottom: "-3.8em",
-            marginLeft: "80%",
-            marginTop: "1em",
-          }}
+          className="btn btn-info card-shopping"
         >
-          <i className="fe fe-shopping-bag"></i>
+          <i className="fe fe-shopping-bag cart-icon"></i>
         </button>
         <img
           src={product.image_1}
