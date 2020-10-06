@@ -2,6 +2,11 @@
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
   "/_error": "pages/_error.js",
+<<<<<<< HEAD
   "/next/dist/pages/_error": "pages/next/dist/pages/_error.js",
   "/": "pages/index.js"
+=======
+  "/editbusinessprofile": "pages/editbusinessprofile.js",
+  "/businessprofile": "pages/businessprofile.js"
+>>>>>>> de9ff1e73ad9acf5f7dd0de4b886cdd983abf8fc
 }
