@@ -980,9 +980,6 @@ h5.table-title-market {
   background: white;
 }
 
-<<<<<<< HEAD
-.requestbtn{
-=======
 .openicon {
   position: absolute;
   left: 50px;
@@ -993,7 +990,6 @@ h5.table-title-market {
   z-index: 10;
 }
 .requestbtn {
->>>>>>> im
   border-radius: 10px;
 }
 
@@ -1146,7 +1142,6 @@ button {
 
 .sticky-pin {
   position: sticky !important;
-<<<<<<< HEAD
 }
 
 /* STYLING FOR MARKET PLACE */
@@ -1268,6 +1263,4 @@ input::-webkit-input-placeholder {
 /* STYLING FOR MARKET PLACE */
 
 
-=======
 }
->>>>>>> im
