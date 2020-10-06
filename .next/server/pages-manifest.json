@@ -6,5 +6,8 @@
   "/auth/resetpassword": "pages/auth/resetpassword.js",
   "/products1/viewmyproducts": "pages/products1/viewmyproducts.js",
   "/auth/signup": "pages/auth/signup.js",
-  "/auth/login": "pages/auth/login.js"
+  "/auth/login": "pages/auth/login.js",
+
+  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js",
+  "/market": "pages/market.js"
 }
