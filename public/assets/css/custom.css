@@ -1121,7 +1121,7 @@ button {
   }
 
   .productCard {
-    border-radius: 3%;
+    border-radius: 10px;
   }
 
   
@@ -1177,15 +1177,10 @@ input::-webkit-input-placeholder {
 	margin-left: 0px;
 	font-weight: bold;
 	background-color: #f7f7f7;
-	padding-left: 90px;
+	padding-left: 0px;
 	padding-top:10px ;
-	padding-bottom:5px ;
-	margin-bottom: -5px;
-}
-.tabToggler{
-	margin-top: 60px;
-  margin-left: 1rem;
-  margin-right: 1rem;
+  padding-bottom:5px ;
+  margin-bottom: 5px;
 }
 
 /* STYLING FOR MARKET PLACE */
