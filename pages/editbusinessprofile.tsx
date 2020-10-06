@@ -6,7 +6,7 @@ import Prompt from "../components/Prompt";
 import { Store } from "../contextStore";
 import { useRouter } from "next/router";
 import moment from "moment";
-import { REGIONS, CATEGORY } from "../public/assets/js/customData"
+import { REGIONS, CATEGORY } from "../public/assets/js/customData";
 
 export default function Home() {
   // const [id, setId] = useState("");
@@ -17,7 +17,7 @@ export default function Home() {
   const [region, setRegion] = useState("wr");
   const [category, setCategory] = useState("agr");
   const [website, setWebsite] = useState("");
-  const [description, setDescription] = useState("")
+  const [description, setDescription] = useState("");
 
   // const [image, setImage] = useState("");
   const [email, setEmail] = useState("");
@@ -62,6 +62,16 @@ export default function Home() {
   };
 
   const submitData = async () => {
+    console.log({
+      name: name,
+      phone: phone,
+      website: website,
+      region: region,
+      location: location,
+      category: category,
+      description: description,
+      city: city,
+    });
     if (name.length <= 0 || !/^([a-zA-Z0-9 _-]+)$/.test(name)) {
       callPrompt(
         "Edit Profile",
@@ -74,29 +84,25 @@ export default function Home() {
 
     let phoneno = /^\d{10}$/;
     if (phone.length > 0) {
-      if (
-        !phone.match(phoneno) ||
-        phone.length > 10 ||
-        phone.length < 10
-      ) {
+      if (!phone.match(phoneno) || phone.length > 10 || phone.length < 10) {
         callPrompt("Edit Profile", "", "Close", "Invalid phone number");
         return;
       }
     }
 
     callPrompt("Edit Profile", "", "", "Please wait...");
+
     const response = await new Users().updateBusinessProfile({
-      name: name,
+      title: name,
       phone: phone,
       website: website,
       region: region,
       location: location,
       category: category,
       description: description,
-      city: city
-
+      city: city,
     });
-  console.log('updateprofile',response)
+    console.log("updateprofile", response);
     if (response.error) {
       callPrompt("Edit Profile", "", "Close", "An error occured");
     }
@@ -119,9 +125,9 @@ export default function Home() {
         return;
       }
     }
-  
+
     dispatch({
-      type: "UPDATE_USERNAME",
+      type: "UPDATE_ORGANIZATION_TITLE",
       payload: name,
     });
     dispatch({
@@ -143,14 +149,14 @@ export default function Home() {
   useEffect(() => {
     (async () => {
       const rs = await new Users().getBusinessProfile();
-      setName(rs.name);
+      setName(rs.title);
       setPhone(rs.phone);
       setCity(rs.city);
-      setCategory(rs.category ? rs.category : "agr")
+      setCategory(rs.category ? rs.category : "agr");
       setRegion(rs.region ? rs.region : "wr");
       setLocation(rs.location);
-      setWebsite(rs.website)
-      setDescription(rs.description)
+      setWebsite(rs.website);
+      setDescription(rs.description);
       setEmail(rs.user.email);
       if (rs.image) {
         setImage(rs.image);
@@ -159,6 +165,8 @@ export default function Home() {
       setIsReady(true);
     })();
   }, []);
+
+  useEffect(() => {}, [category]);
 
   const saveImage = async () => {
     const lStorage: any = JSON.parse(window.localStorage.getItem("cp-a"));
@@ -177,7 +185,7 @@ export default function Home() {
 
     try {
       const rs = await fetch(
-        "http://51.116.114.155:8080/accounts/image_upload/",
+        process.env.URL + "/accounts/self_bus_update/",
         requestOptions
       );
       return rs;
@@ -257,8 +265,7 @@ export default function Home() {
                           className="fe fe-edit-2 fa-lg"
                           style={{ fontSize: "25px" }}
                         />
-                      </button> 
-                     
+                      </button>
                     </a>
                   </div>
                 </div>
@@ -294,12 +301,18 @@ export default function Home() {
                     />
                   </div>
                   <div className="form-group">
-                    <label style={{ fontWeight: "bolder" }}>Category <span style={{ color: "red" }}>*</span></label>
+                    <label style={{ fontWeight: "bolder" }}>
+                      Category <span style={{ color: "red" }}>*</span>
+                    </label>
                     <select
                       className="form-control select2 form-rounded"
-                      onChange={(e) => setCategory(e.target.value)}
+                      onChange={(e) => {
+                        setCategory(e.target.value);
+                        console.log(category);
+                      }}
                       value={category}
                     >
+                      {/* {console.log("categories:",CATEGORY)} */}
                       {CATEGORY.map((r, i) => (
                         <option key={i} value={r[0]}>
                           {r[1]}
@@ -313,24 +326,25 @@ export default function Home() {
                       htmlFor="form-label"
                     >
                       Description
-                      </label>
+                    </label>
                     <div className="form-group">
                       <div className="input-group-date">
-                        <textarea style={{ resize: "none" }} className="form-control form-rounded " rows={4}
+                        <textarea
+                          style={{ resize: "none" }}
+                          className="form-control form-rounded "
+                          rows={4}
                           onChange={(e) => setDescription(e.target.value)}
-                          value={description}></textarea>
+                          value={description}
+                        ></textarea>
                       </div>
                     </div>
                   </div>
-
                 </div>
 
                 <div className="col-lg-1"></div>
                 <div className="col-lg-5 col-md-12">
                   <div className="form-group">
-                    <label style={{ fontWeight: "bolder" }}>
-                      Website
-                    </label>
+                    <label style={{ fontWeight: "bolder" }}>Website</label>
                     <input
                       type="text"
                       className="form-control form-rounded"
@@ -341,7 +355,9 @@ export default function Home() {
                   </div>
 
                   <div className="form-group">
-                    <label style={{ fontWeight: "bolder" }}>Phone Number <span style={{ color: "red" }}>*</span></label>
+                    <label style={{ fontWeight: "bolder" }}>
+                      Phone Number <span style={{ color: "red" }}>*</span>
+                    </label>
                     <input
                       type="number"
                       className="form-control form-rounded"
@@ -354,7 +370,9 @@ export default function Home() {
                   </div>
 
                   <div className="form-group">
-                    <label style={{ fontWeight: "bolder" }}>Region <span style={{ color: "red" }}>*</span></label>
+                    <label style={{ fontWeight: "bolder" }}>
+                      Region <span style={{ color: "red" }}>*</span>
+                    </label>
                     <select
                       className="form-control select2 form-rounded"
                       onChange={(e) => setRegion(e.target.value)}
@@ -370,7 +388,8 @@ export default function Home() {
                   <div className="form-group">
                     <label style={{ fontWeight: "bolder" }}>
                       Digital Address
-					  <span style={{ color: "red" }}> *</span></label>
+                      <span style={{ color: "red" }}>*</span>
+                    </label>
                     <input
                       type="text"
                       className="form-control form-rounded"
@@ -380,7 +399,9 @@ export default function Home() {
                     />
                   </div>
                   <div className="form-group">
-                    <label style={{ fontWeight: "bolder" }}>Town <span style={{ color: "red" }}>*</span></label>
+                    <label style={{ fontWeight: "bolder" }}>
+                      Town <span style={{ color: "red" }}>*</span>
+                    </label>
                     <input
                       type="text"
                       className="form-control form-rounded"
@@ -392,9 +413,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="row justify-content-center businessProfilebtn">
-               
-
-               <div>
+                <div>
                   <button
                     className="btn btn-primary btn-block businessProfilesave businessProfilebtn mb-1 mt-5"
                     // style={{
@@ -409,7 +428,7 @@ export default function Home() {
                     Save
                   </button>
                 </div>
-                
+
                 <div className="col-md-3">
                   <Link href="/businessprofile">
                     <button
@@ -424,14 +443,17 @@ export default function Home() {
                     >
                       Cancel
                     </button>
-
                   </Link>
                 </div>
-
-               </div>           
-                
-            
-              
+                <div className="col-md-3"></div>
+              </div>
+              <div
+                className="btn-list"
+                style={{ marginLeft: "23%", marginRight: "23%" }}
+              >
+                <div className="row"></div>
+              </div>
+              {/* </div> */}
             </div>
           </div>
         </div>

@@ -218,7 +218,7 @@ export default function Home() {
 
     try {
       const rs = await fetch(
-        "http://51.116.114.155:8080/accounts/image_upload/",
+        process.env.URL + "/accounts/image_upload/",
         requestOptions
       );
       return rs;

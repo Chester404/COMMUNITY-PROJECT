@@ -2,6 +2,12 @@
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
   "/_error": "pages/_error.js",
+<<<<<<< HEAD
   "/auth/account-settings": "pages/auth/account-settings.js",
   "/auth/login": "pages/auth/login.js"
+=======
+  "/memberlist": "pages/memberlist.js",
+  "/": "pages/index.js",
+  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js"
+>>>>>>> 3ac788b39b98a53683f121b08d6894321855fbc4
 }
