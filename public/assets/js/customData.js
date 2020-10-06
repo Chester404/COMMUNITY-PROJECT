@@ -14,6 +14,7 @@ export const REGIONS = [
   ["uw", "Upper West Region"],
   ["ot", "Oti Region"],
   ["wn", "Western-North Region"],
+  ["vr", "Volta Region"],
 ];
 
 export const CATEGORY = [
