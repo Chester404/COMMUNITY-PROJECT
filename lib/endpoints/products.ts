@@ -25,6 +25,22 @@ export class Products {
     });
   }
 
+  async getFilteredProducts(filters = {
+    owner__city: "", 
+    name:"",
+    category:"",
+    product_type:"",
+    min_price:0,
+    max_price:1000000,
+    search:""}
+    ) {
+    return await ufetch(
+      `/marketplace/products?owner__city=${filters.owner__city}&name=${filters.name}&product_type=${filters.product_type}&min_price=${filters.min_price}&max_price=${filters.max_price}&search=${filters.search}`,
+     {
+        method: "GET",
+    });
+  }
+
   async updateUserProduct(owner: number, formData: any) {
     return await ufetch(`/marketplace/update_product/${owner}`, {
       method: "PUT",

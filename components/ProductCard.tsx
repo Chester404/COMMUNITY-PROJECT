@@ -1,29 +1,31 @@
+import { Button, Card, CardDeck, CardGroup, Tab, Tabs } from "react-bootstrap";
+import Link from "next/link";
 const ProductCard = ({ product }) => {
   return (
     <div className="col-md-3" id="product-card-div">
-      <div className="card" id="product-card">
+      <div className="card" id="product-card" style={{borderRadius:"1em"}}>
         <button
           id="cart-button"
           className="btn btn-info"
           style={{
             width: "2em",
-            borderRadius: "2em",
+            borderRadius: "1em",
             zIndex: 3,
             marginBottom: "-3.8em",
             marginLeft: "80%",
             marginTop: "1em",
           }}
         >
-          <i className="fa fa-shopping-cart"></i>
+          <i className="fe fe-shopping-bag"></i>
         </button>
         <img
           src={product.image_1}
           id="product-image"
           className="card-img-top mx-auto"
           alt="..."
-          style={{ height: "10rem", objectFit: "fill", zIndex: 1 }}
+          style={{ height: "12.5rem", objectFit: "fill", zIndex: 1 }}
         />
-        <div className="card-body" id="product-card-body">
+        <div className="card-body justify-content-between" id="product-card-body">
           <div className="row" id="product-card__inner-row">
             <div
               className="col-md-10"
@@ -45,8 +47,8 @@ const ProductCard = ({ product }) => {
               className="col-md-2 d-flex align-items-center"
               id="product-card__quantity-div"
             >
-              <div className="row float-right" id="product-card__quantity-row">
-                <div className="qty mt-5 btn-group" id="product-card-qty">
+              <div className="row float-right" id="product-card__quantity-row" >
+                <div className="qty mt-5 btn-group" id="product-card-qty" style={{width:"5em"}}>
                   <span
                     id="product-card-qty-minus"
                     className="minus"
