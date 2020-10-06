@@ -6,7 +6,6 @@ import { useRouter } from "next/router";
 import Prompt from "../../components/Prompt";
 import MainLayout from "../../components/MainLayout";
 import { Store } from "../../contextStore";
-
 const Login = () => {
   const [authentication_property, setAuthenticationProperty] = useState("");
   const [password, setPassword] = useState("");
@@ -18,7 +17,6 @@ const Login = () => {
   const [togglepasswordeye, setTogglePasswordeye] = useState(false);
   const { dispatch } = useContext(Store);
   const router = useRouter();
-
   const userProfile = (userInfo) => {
     window.localStorage.setItem("user-profile", JSON.stringify(userInfo));
     dispatch({
@@ -26,9 +24,7 @@ const Login = () => {
       payload: userInfo,
     });
   };
-
   const handleClose = () => setShow(false);
-
   const callPrompt = (
     title: string,
     link: string,
@@ -41,7 +37,6 @@ const Login = () => {
     setLinkTo(link);
     setPromptBody(message);
   };
-
   const authenticate = async (e: FormEvent) => {
     e.preventDefault();
     let userInfo: any = {};
@@ -63,9 +58,7 @@ const Login = () => {
             userInfo = await new Users().getUserProfile();
           }
         }
-
         userProfile(userInfo);
-
         setShow(false);
         if (response.user.is_staff) {
           router.push("/userList");
@@ -104,7 +97,6 @@ const Login = () => {
       }
     }
   };
-
   return (
     <>
       <MainLayout>
@@ -118,7 +110,6 @@ const Login = () => {
         >
           <p>{prompt_body}</p>
         </Prompt>
-
         <div className="logincontent">
           <div className="loginborder">
             <h3>
@@ -140,18 +131,17 @@ const Login = () => {
                 onChange={(e) => setAuthenticationProperty(e.target.value)}
               />
             </div>
-
             <div className="form-group">
               <label htmlFor="InputPassword1" className="formlabel">
                 Password
               </label>
               <div
-                className="input-group hasiconborder"
+                className="input-group "
                 id="show_hide_password"
               >
                 <input
                   type={togglepasswordeye ? "text" : "password"}
-                  className="form-control hasicon"
+                  className="form-control form-rounded"
                   id="InputPassword1"
                   placeholder="Password must be at least 8 characters"
                   data-toggle="password"
@@ -170,7 +160,6 @@ const Login = () => {
                 </div>
               </div>
             </div>
-
             <div className="center">
               <button
                 type="submit"
@@ -203,5 +192,4 @@ const Login = () => {
     </>
   );
 };
-
 export default Login;

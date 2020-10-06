@@ -29,6 +29,21 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/auth/account-settings.js"
     ],
+    "/auth/login": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/auth/login.js"
+    ],
+    "/auth/resetpassword": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/auth/resetpassword.js"
+    ],
+    "/auth/signup": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/auth/signup.js"
+    ],
     "/products1/viewmyproducts": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",

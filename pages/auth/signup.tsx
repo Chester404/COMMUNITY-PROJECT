@@ -6,7 +6,6 @@ import Prompt from "../../components/Prompt";
 import Head from "next/head";
 import { Store } from "../../contextStore";
 import MainLayout from "../../components/MainLayout";
-
 const Signup = () => {
   const [authentication_property, setAuthenticationProperty] = useState("");
   const [password, setPassword] = useState("");
@@ -23,7 +22,6 @@ const Signup = () => {
   );
   const { dispatch } = useContext(Store);
   const handleClose = () => setShow(false);
-
   const callPrompt = (
     title: string,
     link: string,
@@ -36,7 +34,6 @@ const Signup = () => {
     setLinkTo(link);
     setPromptBody(message);
   };
-
   const register = async (e: FormEvent) => {
     e.preventDefault();
     if (
@@ -54,7 +51,6 @@ const Signup = () => {
       );
       return;
     }
-
     //Not an optimized way of coding. But as a temporal fix
     // Validate lowercase letters
     let lowerCaseLetters = /[a-z]/g;
@@ -67,7 +63,6 @@ const Signup = () => {
       );
       return;
     }
-
     // Validate capital letters
     let upperCaseLetters = /[A-Z]/g;
     if (!password.match(upperCaseLetters)) {
@@ -79,7 +74,6 @@ const Signup = () => {
       );
       return;
     }
-
     // Validate numbers
     let numbers = /[0-9]/g;
     if (!password.match(numbers)) {
@@ -91,7 +85,6 @@ const Signup = () => {
       );
       return;
     }
-
     // Validate length
     if (password.length < 8) {
       callPrompt(
@@ -102,7 +95,6 @@ const Signup = () => {
       );
       return;
     }
-
     if (password !== confirm_password) {
       callPrompt("Sign Up", "", "Close", "Password mismatch");
       return;
@@ -117,10 +109,8 @@ const Signup = () => {
           is_organization: is_organization,
         }
       );
-
       if (response.status === 200 || response.statusText === "Created") {
         // go to landing page
-
         callPrompt(
           "Sign Up",
           "/auth/confirmaccount",
@@ -156,7 +146,6 @@ const Signup = () => {
       }
     }
   };
-
   return (
     <>
       <MainLayout>
@@ -170,7 +159,6 @@ const Signup = () => {
         >
           <p>{prompt_body}</p>
         </Prompt>
-
         <div className="signupcontent">
           <div className="mb-5 center">
             <br />
@@ -188,7 +176,6 @@ const Signup = () => {
               </Link>
             </div>
           </div>
-
           <form onSubmit={register}>
             <div className="form-group">
               <label htmlFor="email" className="formlabel">
@@ -204,15 +191,14 @@ const Signup = () => {
                 onChange={(e) => setAuthenticationProperty(e.target.value)}
               />
             </div>
-
             <div className="form-group">
               <label htmlFor="InputPassword1" className="formlabel">
                 Password
               </label>
-              <div className="input-group hasiconborder">
+              <div className="input-group ">
                 <input
                   type={togglepasswordeye ? "text" : "password"}
-                  className="form-control hasicon"
+                  className="form-control form-rounded"
                   id="InputPassword1"
                   placeholder="Password must be at least 8 characters"
                   data-toggle="password"
@@ -223,7 +209,8 @@ const Signup = () => {
                   <a href="#">
                     <i
                       className={`${
-                        togglepasswordeye ? "fe fe-eye" : "fe fe-eye-off"
+						togglepasswordeye ? "fe fe-eye" 
+						: "fe fe-eye-off"
                       }`}
                       onClick={() => setTogglePasswordeye(!togglepasswordeye)}
                     />
@@ -231,15 +218,14 @@ const Signup = () => {
                 </div>
               </div>
             </div>
-
             <div className="form-group">
               <label htmlFor="InputPassword1" className="formlabel">
                 Confirm Password
               </label>
-              <div className="input-group hasiconborder">
+              <div className="input-group ">
                 <input
                   type={toggleconfirmpasswordeye ? "text" : "password"}
-                  className="form-control hasicon"
+                  className="form-control form-rounded"
                   id="InputPassword2"
                   placeholder="Re-Enter the same password as above"
                   data-toggle="password"
@@ -260,7 +246,6 @@ const Signup = () => {
                 </div>
               </div>
             </div>
-
             <div className="center">
               <input
                 type="radio"
@@ -286,7 +271,6 @@ const Signup = () => {
                 </label>
               </span>
             </div>
-
             <div className="center">
               <button
                 type="submit"
@@ -319,12 +303,10 @@ const Signup = () => {
             </div>
             <b></b>
           </form>
-
           <b></b>
         </div>
       </MainLayout>
     </>
   );
 };
-
 export default Signup;

@@ -58,7 +58,7 @@ modal-title {
   border: 1px solid grey;
 }
 .form-rounded:hover {
-  border-radius: 7px;
+  border-radius: 10px;
   border: 2px solid #3863fc;
 }
 .hasicon {
@@ -282,7 +282,7 @@ input[type="number"] {
   color: red;
 }
 .formlabel {
-  color: grey;
+  color: #3f3d56;
   font-weight: bold;
 }
 .savebtn {
@@ -666,10 +666,13 @@ a#editprofile_button {
 }
 .account-email-body .mail-pass-input {
   width: 17rem;
+  border-radius: 10px 0px 0px 10px;
+
 }
 
 .account-email-body .mail-pass-input1 {
   width: 19.5rem;
+
 }
 .account-email-body-buttons {
   justify-content: center;

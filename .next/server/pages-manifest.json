@@ -3,5 +3,8 @@
   "/_document": "pages/_document.js",
   "/_error": "pages/_error.js",
   "/auth/account-settings": "pages/auth/account-settings.js",
-  "/products1/viewmyproducts": "pages/products1/viewmyproducts.js"
+  "/auth/resetpassword": "pages/auth/resetpassword.js",
+  "/products1/viewmyproducts": "pages/products1/viewmyproducts.js",
+  "/auth/signup": "pages/auth/signup.js",
+  "/auth/login": "pages/auth/login.js"
 }
