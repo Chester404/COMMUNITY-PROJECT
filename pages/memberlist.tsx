@@ -104,16 +104,17 @@ export default function Home() {
         if (togglelist) rs = await new Users().getUnregisteredUsersProfile();
         else rs = await new Users().getOrganizationProfilesForAdmin();
       } else {
+        console.log("Wrong call");
         rs = await new Users().getProfiles();
       }
 
       // setRs(rs);
-      console.log("rs:", rs.slice(0, recordsPerPage));
+      console.log("rs:", rs);
       // let temp = rs.filter((uprofile: any) => {
       //   return uprofile.user.is_organization === togglelist;
       // // });
       // setTempList(rs);
-      setUserProfiles(rs.slice(0, recordsPerPage));
+      setUserProfiles(rs);
       // settotalRecords(rs.length);
     })();
   }, [togglelist]);

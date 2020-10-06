@@ -72,7 +72,7 @@ export default function Home() {
       description: description,
       city: city,
     });
-    if (name.length <= 0 || !/^([a-zA-Z0-9 _-]+)$/.test(name)) {
+    if ((name && name.length <= 0) || !/^([a-zA-Z0-9 _-]+)$/.test(name)) {
       callPrompt(
         "Edit Profile",
         "",
@@ -83,7 +83,7 @@ export default function Home() {
     }
 
     let phoneno = /^\d{10}$/;
-    if (phone.length > 0) {
+    if (phone && phone.length > 0) {
       if (!phone.match(phoneno) || phone.length > 10 || phone.length < 10) {
         callPrompt("Edit Profile", "", "Close", "Invalid phone number");
         return;
@@ -92,38 +92,49 @@ export default function Home() {
 
     callPrompt("Edit Profile", "", "", "Please wait...");
 
-    const response = await new Users().updateBusinessProfile({
-      title: name,
-      phone: phone,
-      website: website,
-      region: region,
-      location: location,
-      category: category,
-      description: description,
-      city: city,
-    });
-    console.log("updateprofile", response);
-    if (response.error) {
-      callPrompt("Edit Profile", "", "Close", "An error occured");
-    }
-
-    if (shouldUploadImage) {
+    if (!name || !category || !phone || !region || !location) {
       callPrompt(
-        "Edit Profile",
+        "Check details",
         "",
-        "",
-        "Profile updated. Uploading image ..."
+        "Close",
+        "Title, Category, Phone number, Region and Digital Address cannot be empty"
       );
-      const imgresponse: any = await saveImage();
-      if (imgresponse.error) {
+      return;
+    } else {
+      const response = await new Users().updateBusinessProfile({
+        title: name,
+        phone: phone,
+        website: website,
+        region: region,
+        location: location,
+        category: category,
+        description: description,
+        city: city,
+      });
+      console.log("updateprofile", response);
+      if (response.error) {
+        callPrompt("Edit Profile", "", "Close", "An error occured");
+      }
+
+      if (shouldUploadImage) {
         callPrompt(
           "Edit Profile",
           "",
-          "Close",
-          "An error occured. Failed to update profile picture"
+          "",
+          "Profile updated. Uploading image ..."
         );
-        return;
+        const imgresponse: any = await saveImage();
+        if (imgresponse.error) {
+          callPrompt(
+            "Edit Profile",
+            "",
+            "Close",
+            "An error occured. Failed to update profile picture"
+          );
+          return;
+        }
       }
+      //
     }
 
     dispatch({
