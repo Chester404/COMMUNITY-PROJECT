@@ -29,10 +29,17 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/market.js"
     ],
+<<<<<<< HEAD
     "/marketnew": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
       "static/chunks/pages/marketnew.js"
+=======
+    "/next/dist/pages/_error": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/next/dist/pages/_error.js"
+>>>>>>> efb9bf2940d720143e40aac5307265183607a232
     ]
   },
   "ampFirstPages": []

@@ -2,7 +2,7 @@ import MainLayout from "../components/MainLayout";
 import { Products } from "../lib/endpoints";
 import { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
-import ServiceCard from "../components/ServiceCard";
+// import ServiceCard from "../components/ServiceCard";
 
 const locationData = [
   "Airport Ridge",
@@ -495,11 +495,13 @@ export default function ProductsView() {
           
           <div className="row" id="product-row">
             {allproducts.map((product: any, index: number) => {
-              return product.product_type === "PR" ? (
-                <ProductCard key={index} product={product} />
-              ) : (
-                <ServiceCard key={index} service={product} />
-              );
+              return (<ProductCard key={index} product={product} />
+              // return product.product_type === "PR" ? (
+              //   <ProductCard key={index} product={product} />
+              // ) : (
+              //   <ServiceCard key={index} service={product} />
+              // );
+              )
             })}
           </div>
 

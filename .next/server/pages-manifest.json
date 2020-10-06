@@ -2,6 +2,10 @@
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
   "/_error": "pages/_error.js",
+<<<<<<< HEAD
   "/marketnew": "pages/marketnew.js",
+=======
+  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js",
+>>>>>>> efb9bf2940d720143e40aac5307265183607a232
   "/market": "pages/market.js"
 }
