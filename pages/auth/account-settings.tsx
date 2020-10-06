@@ -21,13 +21,10 @@ const Acount = () => {
 
   const [togglemailpasswordeye, setToggleMailPasswordeye] = useState(false);
   const [togglepasswordeye, setTogglePasswordeye] = useState(false);
-  const [togglenewpasswordeye, setToggleNewPasswordeye] = useState(
-    false
-  );
+  const [togglenewpasswordeye, setToggleNewPasswordeye] = useState(false);
   const [toggleconfirmpasswordeye, setToggleConfirmPasswordeye] = useState(
     false
   );
-
 
   const { dispatch } = useContext(Store);
   const auth_api = new Auth();
@@ -73,15 +70,25 @@ const Acount = () => {
       password: mailpassword,
     });
 
-    console.log("heya", response)
-    if(Array.isArray(response.email)) {
-      callPrompt("Change Email", "", "Close", "User with this email already exist");
+    console.log("heya", response);
+    if (Array.isArray(response.email)) {
+      callPrompt(
+        "Change Email",
+        "",
+        "Close",
+        "User with this email already exist"
+      );
       return;
     }
-  
+
     if (response.password) {
       // bad credentials
-      callPrompt("Change Email", "", "Close", "No active account found with the given credentials.");
+      callPrompt(
+        "Change Email",
+        "",
+        "Close",
+        "No active account found with the given credentials."
+      );
       return;
     }
 
@@ -244,7 +251,9 @@ const Acount = () => {
                     <span className="account-title">
                       <strong>Change Email</strong>
                     </span>
-                    <p className="account-para">Link your account to a new email address, click edit.</p>
+                    <p className="account-para">
+                      Link your account to a new email address, click edit.
+                    </p>
                   </div>
                   <div>
                   <span className="account-title edit-button">
@@ -254,6 +263,7 @@ const Acount = () => {
                 </Accordion.Toggle>
                 <Accordion.Collapse eventKey="email-toggle">
                   <Card.Body>
+
                     <div className="row form-group account-email-body">
                       <label className="pr-2 mt-2">
                         <strong>Email Address</strong>
@@ -272,22 +282,24 @@ const Acount = () => {
                         <strong>Password</strong>
                       </label>
                       <input
-                        type={ togglemailpasswordeye ? "text" : "password"}
+                        type={togglemailpasswordeye ? "text" : "password"}
                         id="account-input-password"
                         className="form-control form-rounded mail-pass-input"
                         placeholder="Confirm change with password"
                         value={mailpassword}
                         onChange={(e) => setMailPassword(e.target.value)}
-                      >
-
-                      </input>
+                      ></input>
                       <div className="input-group-addon">
                         <a href="#">
                           <i
                             className={`${
-                              togglemailpasswordeye ? "fe fe-eye" : "fe fe-eye-off"
+                              togglemailpasswordeye
+                                ? "fe fe-eye"
+                                : "fe fe-eye-off"
                             }`}
-                            onClick={() => setToggleMailPasswordeye(!togglemailpasswordeye)}
+                            onClick={() =>
+                              setToggleMailPasswordeye(!togglemailpasswordeye)
+                            }
                           />
                         </a>
                       </div>
@@ -326,7 +338,9 @@ const Acount = () => {
                   <span className="account-title">
                       <strong>Change Password</strong>
                     </span>
-                    <p className="account-para">Keep your account secured, dont share password.</p>
+                    <p className="account-para">
+                      Keep your account secured, dont share password.
+                    </p>
                   </div>
                   <div>
                   <span className="account-title edit-button">
@@ -349,15 +363,16 @@ const Acount = () => {
                         onChange={(e) => {
                           setPassword(e.target.value);
                         }}
-                      >
-                      </input>
+                      ></input>
                       <div className="input-group-addon">
                         <a href="#">
                           <i
                             className={`${
                               togglepasswordeye ? "fe fe-eye" : "fe fe-eye-off"
                             }`}
-                            onClick={() => setTogglePasswordeye(!togglepasswordeye)}
+                            onClick={() =>
+                              setTogglePasswordeye(!togglepasswordeye)
+                            }
                           />
                         </a>
                       </div>
@@ -368,7 +383,7 @@ const Acount = () => {
                       </label>
                       <input
                         id="newpassword"
-                        type={ togglenewpasswordeye ? "text" : "password"}
+                        type={togglenewpasswordeye ? "text" : "password"}
                         className="form-control form-rounded mail-pass-input"
                         placeholder="Password must be atleast 8 characters"
                         value={newpassword}
@@ -378,9 +393,13 @@ const Acount = () => {
                         <a href="#">
                           <i
                             className={`${
-                              togglenewpasswordeye ? "fe fe-eye" : "fe fe-eye-off"
+                              togglenewpasswordeye
+                                ? "fe fe-eye"
+                                : "fe fe-eye-off"
                             }`}
-                            onClick={() => setToggleNewPasswordeye(!togglenewpasswordeye)}
+                            onClick={() =>
+                              setToggleNewPasswordeye(!togglenewpasswordeye)
+                            }
                           />
                         </a>
                       </div>
@@ -391,7 +410,7 @@ const Acount = () => {
                       </label>
                       <input
                         id="confirmnewpassword"
-                        type={ toggleconfirmpasswordeye ? "text" : "password"}
+                        type={toggleconfirmpasswordeye ? "text" : "password"}
                         className="form-control form-rounded mail-pass-input"
                         placeholder="Re-enter the same password as above"
                         value={confirmnewpassword}
@@ -401,9 +420,15 @@ const Acount = () => {
                         <a href="#">
                           <i
                             className={`${
-                              toggleconfirmpasswordeye ? "fe fe-eye" : "fe fe-eye-off"
+                              toggleconfirmpasswordeye
+                                ? "fe fe-eye"
+                                : "fe fe-eye-off"
                             }`}
-                            onClick={() => setToggleConfirmPasswordeye(!toggleconfirmpasswordeye)}
+                            onClick={() =>
+                              setToggleConfirmPasswordeye(
+                                !toggleconfirmpasswordeye
+                              )
+                            }
                           />
                         </a>
                       </div>
