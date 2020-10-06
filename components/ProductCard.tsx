@@ -52,7 +52,8 @@ const ProductCard = ({ product }) => {
                   <span
                     id="product-card-qty-minus"
                     className="minus"
-                    style={{ fontSize: "1.5em", zIndex: 2 }}
+                    onClick={()=> {console.log('minus clicked')}}
+                    style={{ fontSize: "1.5em", zIndex: 2, marginTop: "3.5px", cursor:"pointer"}}
                   >
                     -
                   </span>
@@ -63,7 +64,7 @@ const ProductCard = ({ product }) => {
                     name="qty"
                     defaultValue="1"
                     style={{
-                      width: "4.2em",
+                      width: "4.5em",
                       textAlign: "center",
                       zIndex: 1,
                       marginLeft: "-15px",
@@ -73,7 +74,8 @@ const ProductCard = ({ product }) => {
                   <span
                     id="product-card-qty-plus"
                     className="plus"
-                    style={{ fontSize: "1em", zIndex: 2, marginTop: "6px" }}
+                    onClick={()=> {console.log('plus clicked')}}
+                    style={{ fontSize: "1em", zIndex: 2, marginTop: "10px", cursor:"pointer"}}
                   >
                     +
                   </span>
