@@ -113,7 +113,7 @@ export default function Home() {
       //   return uprofile.user.is_organization === togglelist;
       // // });
       // setTempList(rs);
-      setUserProfiles(rs.slice(0, recordsPerPage));
+      setUserProfiles(rs);
       // settotalRecords(rs.length);
     })();
   }, [togglelist]);
