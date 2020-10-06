@@ -786,7 +786,7 @@ h5.table-title-market {
 .mpage {
   background: #f7f7f7;
   font-size: 13px;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 .sidenav {
   height: 100%;
@@ -796,8 +796,7 @@ h5.table-title-market {
   top: 80px;
   left: 0;
   overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 20px;
+  transition: 0.1s;
   background: #818aa9;
 }
 .sidenavmenu {
@@ -810,17 +809,29 @@ h5.table-title-market {
   width: 325px;
   padding-left: 55px;
 }
+
+.hamburger{
+  position: absolute;
+  display: none;
+  top: 75px;
+  left: -20px;
+  background-color: transparent;
+  border: 0;
+  color: #818aa9;
+  font-size: 20px;
+}
+
 #list {
   padding-left: 60px;
   display: none;
   color: white;
 }
 #list li {
-  padding: 7px;
+  padding: 10px;
   color: white;
 }
 #list a :hover {
-  background: #3964fc;
+  background: #355BE1;
 }
 .sidenavmenu a {
   text-decoration: none;
@@ -834,13 +845,14 @@ h5.table-title-market {
 
 .sidenavmenu:hover {
   text-decoration: none;
-  background: #3964fc;
+  background: #355BE1;
 }
 .heading {
   position: relative;
   right: 31px;
   list-style: none;
   padding: 15px;
+  padding-top: 10px;
   color: white;
   width: 325px;
   padding-left: 55px;
@@ -852,10 +864,6 @@ h5.table-title-market {
   margin-right: 24px;
   color: white;
 }
-#i {
-  position: absolute;
-  left: 235px;
-}
 .mng {
   margin-left: 37px;
 }
@@ -863,47 +871,28 @@ h5.table-title-market {
   color: #f1f1f1;
 }
 #main {
-  transition: 0.5s;
+  position: relative;
+  transition: 0.1s;
   margin-left: 30px;
 }
-.sidenav .closebtn {
+.closebtn {
   position: absolute;
-  top: 37px;
-  left: 200px;
-  font-size: 36px;
+  top: 113.5px;
+  left: 237px;
   font-size: 20px;
   color: white;
   text-shadow: 2px 2px 4px #000000;
+  z-index: 10;
 }
-.open {
-  position: relative;
-  top: 20px;
-  left: -24px;
-  font-size: 20px;
-  color: white;
-  text-shadow: 2px 2px 4px #000000;
+
+.closebtn:hover{
+  color: #355BE1;
 }
-.add-user-btn {
-  height: 2.2rem;
-  width: 7rem;
-  font-family: "Open Sans", sans-serif !important;
+
+#closeicon{
+  display: none;
 }
-.gobtn {
-  background: #3964fc;
-}
-.userlist {
-  margin-top: 20px;
-}
-.selectusers {
-  background-color: transparent;
-  margin-left: 12px;
-}
-.seluser {
-  background: white;
-}
-.userlistpage {
-  /* margin-top: 8% !important; */
-}
+
 .openicon {
   position: absolute;
   left: 50px;
@@ -913,25 +902,106 @@ h5.table-title-market {
   margin-top: 10px;
   z-index: 10;
 }
-.requestbtn {
+ .openicon:hover{
+   color: #355BE1;
+ }
+
+.add-user-btn {
+  height: 2.2rem;
+  width: 7rem;
+  font-family: "Open Sans", sans-serif !important;
+  margin-right: 11px;
+}
+.gobtn {
+  background: #3964fc;
+}
+.userlist {
+  margin-top: 20px;
+}
+.selectusers {
+  margin-left: 12px;
+}
+
+#optionicon {
+  position: absolute;
+  left: 235px;
+  /* transform: rotate(0deg); */
+}
+
+.seluser {
+  background: white;
+}
+
+.requestbtn{
   border-radius: 10px;
 }
-.requestheader {
+
+.requestheader{
   text-align: center;
 }
-.checkbox-round {
-  width: 1em;
-  height: 1em;
-  background-color: white;
-  border-radius: 30%;
-  vertical-align: middle;
-  border: 1px solid black;
-  -webkit-appearance: none;
-  outline: none;
-  cursor: pointer;
-}
+
 .checkbox-round:checked {
   background-color: #3964fc;
+}
+
+.activatedUsers{
+  font-weight: bold;
+  padding-left: 20px;
+  font-size: 13px;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.activate-btn{
+  height: 2.2rem;
+  width: 7rem;
+  font-family: "Open Sans", sans-serif !important;
+  margin-right: 20px;
+  float: right;
+}
+.table-head{
+  justify-content: space-between;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+#sortlist{
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 100px;
+}
+
+#sortlist div:hover {
+  background-color: #ddd;
+  text-decoration: none;
+  color: black;
+}
+
+#sortlist div a:hover{
+  color: black;
+}
+
+@media screen and (max-width: 767px){
+  .sidenav{
+    display: none;
+  }
+
+  .hamburger{
+    display: block;
+  }
+
+  .openicon{
+    display: none;
+  }
+
+  .form-rounded{
+    width: 90px;
+    display: inline-flex;
+  }
 }
 
 /*styling for add/edit product (peter)*/

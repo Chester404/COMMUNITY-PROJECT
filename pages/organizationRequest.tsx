@@ -8,14 +8,6 @@ export default function organizationrequest() {
   return (
     <MainLayout>
       <AdminSidebar   handleList={()=>{}}/>
-      <div>
-        <i
-          className="fa fa-chevron-circle-right openicon mr-5"
-          id="openicon"
-          onClick={() => openNav()}
-          style={{ fontSize: "20px", cursor: "pointer" }}
-        />
-      </div>
       <div className="userlistpage" id="main">
         <div>
           <div className="page-header">
@@ -54,7 +46,7 @@ export default function organizationrequest() {
                   title="Select Users"
                   className="seluser"
                 >
-                  <Dropdown.Item href="#">Deactivate Users</Dropdown.Item>
+                  <Dropdown.Item href="#">Approve users</Dropdown.Item>
                 </DropdownButton>
               </div>
               <div>
@@ -321,8 +313,4 @@ export default function organizationrequest() {
     </MainLayout>
   );
 }
-function openNav() {
-  document.getElementById("mySidenav").style.width = "250px";
-  document.getElementById("main").style.marginLeft = "220px";
-  document.getElementById("openicon").style.display = "none";
-}
+
