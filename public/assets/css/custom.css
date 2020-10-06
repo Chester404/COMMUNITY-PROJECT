@@ -6,7 +6,7 @@
   font-weight: 600;
 }
 h1,
-h2,
+h2, 
 h3,
 strong,
 span {
@@ -642,6 +642,18 @@ a#editprofile_button {
 
 .card {
   box-shadow: none;
+}
+
+.account-title {
+  font-size: 1rem;
+}
+
+.edit-button:hover {
+  color: #355be1;
+}
+
+.account-para {
+  color: #818AA9;
 }
 .account-header {
   cursor: pointer;

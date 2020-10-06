@@ -241,15 +241,15 @@ const Acount = () => {
                   className="account-header"
                 >
                   <div className="mt-3 mb-1">
-                    <h4>
+                    <span className="account-title">
                       <strong>Change Email</strong>
-                    </h4>
+                    </span>
                     <p className="account-para">Link your account to a new email address, click edit.</p>
                   </div>
                   <div>
-                    <h4 id="account-edit-mail">
-                      <strong> Edit</strong>
-                    </h4>
+                  <span className="account-title edit-button">
+                      <strong>Edit</strong>
+                  </span>
                   </div>
                 </Accordion.Toggle>
                 <Accordion.Collapse eventKey="email-toggle">
@@ -306,7 +306,7 @@ const Acount = () => {
                       <p className="pl-5">
                         <strong>Note:</strong> Your email address is linked to
                         your account. <br />
-                        By changinging your email address, you can no longer log
+                        By changing your email address, you can no longer log
                         in with your old email
                       </p>
                     </div>
@@ -323,15 +323,15 @@ const Acount = () => {
                   className="account-header"
                 >
                   <div className="mt-3 mb-1">
-                    <h4>
+                  <span className="account-title">
                       <strong>Change Password</strong>
-                    </h4>
+                    </span>
                     <p className="account-para">Keep your account secured, dont share password.</p>
                   </div>
                   <div>
-                    <h4 id="account-edit-pass">
-                      <strong> Edit</strong>
-                    </h4>
+                  <span className="account-title edit-button">
+                      <strong>Edit</strong>
+                  </span>
                   </div>
                 </Accordion.Toggle>
                 <Accordion.Collapse eventKey="password-toggle">
