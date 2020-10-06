@@ -18,7 +18,7 @@ function marketnew() {
             {/* THE DDROPDOWN FOR FILERING STARTS FROM HERE */}
             <div className="row market-header-dropdowns">
               <Card.Body>
-                <div className="row justify-content-center">
+                <div className="row justify-content-between">
                   <div className="form-group mt-2">
                     <select className="form-control form-rounded filter-dropdown"></select>
                   </div>

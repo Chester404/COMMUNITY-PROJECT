@@ -1052,9 +1052,9 @@ button {
 }
 
 .filter-dropdown {
-  width: 13.4rem;
-  margin-right: 0.5rem;
-  margin-left: 0.5rem;
+  width: 14rem;
+  margin-left: 0.2rem;
+  margin-right: 0.2rem;
 }
 
 hr {
@@ -1099,7 +1099,8 @@ input::-webkit-input-placeholder {
 }
 .tabToggler{
 	margin-top: 60px;
-	margin-left: 3px;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 /* STYLING FOR MARKET PLACE */

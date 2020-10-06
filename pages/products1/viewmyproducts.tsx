@@ -18,161 +18,39 @@ function viewmyproducts() {
 
             {/* The list of product items*/}
             <CardDeck className=" mb-3">
-              <Card className="productCard">
-                <Card.Img variant="bottom" src="/assets/images/trials3.jpg" />
-                <Card.Body>
-                  <div>
-                    <Card.Title>Product Name</Card.Title>
-                    <Card.Text>
-                      <h5>GHS 300.00</h5>
-                    </Card.Text>
-                  </div>
-                </Card.Body>
-              </Card>
 
-              <Card className="productCard">
-                <Card.Img variant="top" src="/assets/images/trials.jpg" />
-                <Card.Body>
-                  <div>
-                    <Card.Title>Product Name</Card.Title>
-                    <Card.Text>
-                      <h5>GHS 300.00</h5>
-                    </Card.Text>
-                  </div>
-                </Card.Body>
-              </Card>
+              <div className="row">
+                <div className="col-md-3">
+                  <Card className="productCard">
+                    <Card.Img variant="bottom" src="/assets/images/trials3.jpg" />
+                    <Card.Body>
+                      <div>
+                        <Card.Title>Product Name</Card.Title>
+                        <Card.Text>
+                          <h5>GHS 300.00</h5>
+                        </Card.Text>
+                      </div>
+                    </Card.Body>
+                  </Card>
+                </div>
+                <div className="col-md-3">
+                  
+                </div>
+                <div className="col-md-3">
 
-              <Card className="productCard">
-                <Card.Img variant="top" src="/assets/images/trials3.jpg" />
-                <Card.Body>
-                  <div>
-                    <Card.Title>Product Name</Card.Title>
-                    <Card.Text>
-                      <h5>GHS 300.00</h5>
-                    </Card.Text>
-                  </div>
-                </Card.Body>
-              </Card>
+                </div>
+                <div className="col-md-3">
 
-              <Card className="productCard">
-                <Card.Img variant="top" src="/assets/images/trials.jpg" />
-                <Card.Body>
-                  <div>
-                    <Card.Title>Product Name</Card.Title>
-                    <Card.Text>
-                      <h5>GHS 300.00</h5>
-                    </Card.Text>
-                  </div>
-                </Card.Body>
-              </Card>
+                </div>
+              </div>
+
             </CardDeck>
 
-            <CardDeck className=" mb-3">
-              <Card className="productCard">
-                <Card.Img variant="bottom" src="/assets/images/trials3.jpg" />
-                <Card.Body>
-                  <div>
-                    <Card.Title>Product Name</Card.Title>
-                    <Card.Text>
-                      <h5>GHS 300.00</h5>
-                    </Card.Text>
-                  </div>
-                </Card.Body>
-              </Card>
-
-              <Card className="productCard">
-                <Card.Img variant="top" src="/assets/images/trials.jpg" />
-                <Card.Body>
-                  <div>
-                    <Card.Title>Product Name</Card.Title>
-                    <Card.Text>
-                      <h5>GHS 300.00</h5>
-                    </Card.Text>
-                  </div>
-                </Card.Body>
-              </Card>
-
-              <Card className="productCard">
-                <Card.Img variant="top" src="/assets/images/trials3.jpg" />
-                <Card.Body>
-                  <div>
-                    <Card.Title>Product Name</Card.Title>
-                    <Card.Text>
-                      <h5>GHS 300.00</h5>
-                    </Card.Text>
-                  </div>
-                </Card.Body>
-              </Card>
-
-              <Card className="productCard">
-                <Card.Img variant="top" src="/assets/images/trials.jpg" />
-                <Card.Body>
-                  <div>
-                    <Card.Title>Product Name</Card.Title>
-                    <Card.Text>
-                      <h5>GHS 300.00</h5>
-                    </Card.Text>
-                  </div>
-                </Card.Body>
-              </Card>
-            </CardDeck>
-
-            {/* The second items */}
-
-            <CardDeck className=" mb-3">
-              <Card className="productCard">
-                <Card.Img variant="top" src="/assets/images/trials3.jpg" />
-                <Card.Body>
-                  <div>
-                    <Card.Title>Product Name</Card.Title>
-                    <Card.Text>
-                      <h5>GHS 300.00</h5>
-                    </Card.Text>
-                  </div>
-                </Card.Body>
-              </Card>
-
-              <Card className="productCard">
-                <Card.Img variant="top" src="/assets/images/trials.jpg" />
-                <Card.Body>
-                  <div>
-                    <Card.Title>Product Name</Card.Title>
-                    <Card.Text>
-                      <h5>GHS 300.00</h5>
-                    </Card.Text>
-                  </div>
-                </Card.Body>
-              </Card>
-
-              <Card className="productCard">
-                <Card.Img variant="top" src="/assets/images/trials3.jpg" />
-                <Card.Body>
-                  <div>
-                    <Card.Title>Product Name</Card.Title>
-                    <Card.Text>
-                      <h5>GHS 300.00</h5>
-                    </Card.Text>
-                  </div>
-                </Card.Body>
-              </Card>
-
-              <Card className="productCard">
-                <Card.Img variant="top" src="/assets/images/trials.jpg" />
-                <Card.Body>
-                  <div>
-                    <Card.Title>Product Name</Card.Title>
-                    <Card.Text>
-                      <h5>GHS 300.00</h5>
-                    </Card.Text>
-                  </div>
-                </Card.Body>
-              </Card>
-            </CardDeck>
           </Tab>
           {/* The END of PRODUCTS */}
 
           {/* The Tab for SERVICES  */}
-          <Tab eventKey="profile" title="Services">
+          <Tab eventKey="services" title="Services">
             {/*  */}
 
             <div className="row">
@@ -192,7 +70,10 @@ function viewmyproducts() {
                   </Card>
                 </CardGroup>
               </div>
-              <div className="col-6 mt-1 mb-1"></div>
+
+              <div className="col-6 mt-1 mb-1">
+                
+              </div>
             </div>
 
           </Tab>
