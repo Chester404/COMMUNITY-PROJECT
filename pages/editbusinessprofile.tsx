@@ -264,7 +264,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="col-lg-12 col-xl-9 col-md-12 col-sm-12">
+            <div className="col-lg-9 col-xl-9 col-md-12 col-sm-12">
               {/* <div className="card-body editprofile_cardbody"> */}
               <div className="row">
                 <div className="col-lg-5 col-md-12">
@@ -334,7 +334,7 @@ export default function Home() {
                     <input
                       type="text"
                       className="form-control form-rounded"
-                      placeholder="“eg.www.yourwebsite.com”"
+                      placeholder="eg.www.yourwebsite.com"
                       value={website}
                       onChange={(e) => setWebsite(e.target.value)}
                     />
@@ -396,14 +396,14 @@ export default function Home() {
 
                <div>
                   <button
-                    className="btn btn-primary btn-block  mb-1 mt-5"
-                    style={{
-                      background: "#3964FC !important",
-                      width: "200px !important",
-                      color: "#ffffff !important",
-                      borderRadius: "10px !important",
-                      height: "36.5px !important",
-                    }}
+                    className="btn btn-primary btn-block businessProfilesave businessProfilebtn mb-1 mt-5"
+                    // style={{
+                    //   background: "#3964FC !important",
+                    //   width: "200px !important",
+                    //   color: "#ffffff !important",
+                    //   borderRadius: "10px !important",
+                    //   height: "36.5px !important",
+                    // }}
                     onClick={() => submitData()}
                   >
                     Save
@@ -413,14 +413,14 @@ export default function Home() {
                 <div className="col-md-3">
                   <Link href="/businessprofile">
                     <button
-                      className="btn btn-primary btn-block businessProfilebtn  mb-1 mt-5"
-                      style={{
-                        background: "#818AA9 !important",
-                        width: "200px !important",
-                        color: "#ffffff !important",
-                        borderRadius: "10px !important",
-                        height: "36.5px !important",
-                      }}
+                      className="btn btn-primary btn-block businessProfileCancel  businessProfilebtn mb-1 mt-5"
+                      // style={{
+                      //   background: "#818AA9 !important",
+                      //   width: "200px !important",
+                      //   color: "#ffffff !important",
+                      //   borderRadius: "10px !important",
+                      //   height: "36.5px !important",
+                      // }}
                     >
                       Cancel
                     </button>

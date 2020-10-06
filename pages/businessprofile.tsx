@@ -63,6 +63,8 @@ export default function Home() {
 												backgroundColor: "#3964fc",
 												color: "#FFF",
 												textAlign:"center",
+												paddingTop:"8px",
+												
 											}}
 										>
 											Edit Profile
