@@ -1,14 +1,10 @@
 import MainLayout from "../components/MainLayout";
-
-function forum() {
-    return (
-        <>
-        <MainLayout>
-            
-        </MainLayout>
-        </>
-    );
+function Forum() {
+  return (
+    <MainLayout title="Community Project" pageTitle="Forum Page">
+      {}
+    </MainLayout>
+  );
 }
 
-
-export default forum;
+export default Forum;

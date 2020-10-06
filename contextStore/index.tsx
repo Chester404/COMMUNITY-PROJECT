@@ -31,6 +31,10 @@ const reducer = (state, action) => {
       const temp = state.userProfile;
       temp.name = action.payload;
       return { ...state, userProfile: temp };
+    case "UPDATE_ORGANIZATION_TITLE":
+      const org_temp = state.userProfile;
+      org_temp.title = action.payload;
+      return { ...state, userProfile: org_temp };      
     case "SET_IMAGE":
       const temps = state.userProfile;
       temps.image = action.payload;

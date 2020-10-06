@@ -81,7 +81,7 @@ export default function Home() {
   const [order, setOrder] = useState(false);
   const [userProfile, setUserProfile] = useState();
   const [readyPopupData, setReadyPopupData] = useState(false);
-  const [togglelist, setTogglelist] = useState(false);
+  const [togglelist, setTogglelist] = useState(true);
   // const [rs, setRs] = useState([]);
   const [title, setTitle] = useState("Individuals");
   const { state } = useContext(Store);
@@ -99,26 +99,29 @@ export default function Home() {
   };
   useEffect(() => {
     (async () => {
-      let rs=null;
+      let rs = null;
       if (state.userProfile.name == undefined) {
-        rs=await new Users().getUnregisteredUsersProfile();
-      }else{
+        if (togglelist) rs = await new Users().getUnregisteredUsersProfile();
+        else rs = await new Users().getOrganizationProfilesForAdmin();
+      } else {
         rs = await new Users().getProfiles();
-        }
-      
+      }
+
       // setRs(rs);
-      console.log("rs:",rs);
-      let temp = rs.filter((uprofile: any) => {
-        return uprofile.is_organization === togglelist;
-      });
-      setTempList(temp);
-      setUserProfiles(temp.slice(0, recordsPerPage));
-      settotalRecords(temp.length);
+      console.log("rs:", rs.slice(0, recordsPerPage));
+      // let temp = rs.filter((uprofile: any) => {
+      //   return uprofile.user.is_organization === togglelist;
+      // // });
+      // setTempList(rs);
+      setUserProfiles(rs);
+      // settotalRecords(rs.length);
     })();
   }, [togglelist]);
+
   useEffect(() => {
     setUserProfile(JSON.parse(window.localStorage.getItem("user-profile")));
   }, []);
+
   const paginate = (page: number) => {
     const start = (page - 1) * recordsPerPage + 1;
     const end = start + recordsPerPage;
