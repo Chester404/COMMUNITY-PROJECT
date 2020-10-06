@@ -157,74 +157,22 @@ export default function userList() {
   };
 
   const activateDeactivate = async () => {
-    let temp_profile: any;
-    let iterateandactivate = async (temp, list_type) => {
-      // console.log("activate:",activate)
-      let active: any;
-
-      if (list === "individuals" || list === "organizations") {
-        active = false;
-      } else if (
-        list === "deactivated_users" ||
-        list === "deactivated_organizations"
-      ) {
-        active = true;
-      }
-      console.log({ list, active });
-      for (let i = 0; i < checkedUsers.length; i++) {
-        let rs = await new Users().activateDeactivate({
-          pk: checkedUsers[i],
-          active,
-        });
-
-        console.log("RS:", rs);
-
-        temp_profile = temp.map((uprofile) => {
-          console.log("id:", checkedUsers[i]);
-          if (uprofile.id === checkedUsers[i]) {
-            uprofile.user.is_active = !uprofile.user.is_active;
-          }
-          return uprofile;
-        });
-      }
-      if (list_type === "individuals") {
-        setTempprofile(temp_profile);
-        console.log("temp profile after act/deact:", temp_profile);
-      } else if (list_type === "organizations") {
-        setTemporgprofile(temp_profile);
-      }
-      setCheckuser(false);
-      handleList(list_type);
-      setCheckedUsers(checkedUsers.splice(0, checkedUsers.length));
-    };
-    // check view
-    switch (list) {
-      case "individuals":
-        temp_profile = tempprofile;
-        setActivate(false);
-        iterateandactivate(temp_profile, "individuals");
-        break;
-      case "organizations":
-        temp_profile = temporgprofile;
-        setActivate(false);
-        iterateandactivate(temp_profile, "organizations");
-        break;
-      case "deactivated_users":
-        temp_profile = tempprofile;
-        setActivate(true);
-        iterateandactivate(temp_profile, "individuals");
-        break;
-      case "deactivated_organizations":
-        temp_profile = temporgprofile;
-        setActivate(true);
-        iterateandactivate(temp_profile, "organizations");
-        break;
-      case "organizationalrequests":
-        temp_profile = temporgprofile;
-        break;
-      default:
-        break;
+    let active: any;
+    if (list === "individuals" || list === "organizations") {
+      active = false;
+    } else if (
+      list === "deactivated_users" ||
+      list === "deactivated_organizations"
+    ) {
+      active = true;
     }
+    for (let i = 0; i < checkedUsers.length; i++) {
+      let rs = await new Users().activateDeactivate({
+        pk: checkedUsers[i],
+        active,
+      });
+    }
+    handleList(list);
   };
 
   const handleList = (str) => {
@@ -234,23 +182,18 @@ export default function userList() {
     let temp: any;
     switch (str) {
       case "individuals":
-        console.log("TEMP_PROFILE:", tempprofile);
         temp = individuals(tempprofile).filter((uprofile: any) => {
           return uprofile.user.is_active === true;
         });
-
-        console.log("TEMP:",temp)
         setTitle("Activated Users");
 
         setUserProfiles(temp.slice(0, recordsPerPage));
         settotalRecords(temp.length);
         break;
       case "organizations":
-        
         temp = organizations(temporgprofile).filter((uprofile: any) => {
           return uprofile.user.is_active === true;
         });
-        console.log("TEMP:", temp);
         setTitle("Organizations List");
         setUserProfiles(temp.slice(0, recordsPerPage));
         settotalRecords(temp.length);
@@ -259,7 +202,6 @@ export default function userList() {
         temp = individuals(tempprofile).filter((uprofile: any) => {
           return uprofile.user.is_active === false;
         });
-        console.log("TEMP:", temp);
         setTitle("Deactivated Users");
         setUserProfiles(temp.slice(0, recordsPerPage));
         settotalRecords(temp.length);
@@ -268,7 +210,6 @@ export default function userList() {
         temp = organizations(temporgprofile).filter((uprofile: any) => {
           return uprofile.user.is_active === true;
         });
-        console.log("TEMP:", temp);
         setTitle("Organizational Requests");
         setUserProfiles(temp.slice(0, recordsPerPage));
         settotalRecords(temp.length);
@@ -277,7 +218,6 @@ export default function userList() {
         temp = organizations(temporgprofile).filter((uprofile: any) => {
           return uprofile.user.is_active === false;
         });
-        console.log("TEMP:", temp);
         setTitle("Deactivated Organizations");
         setUserProfiles(temp.slice(0, recordsPerPage));
         settotalRecords(temp.length);
@@ -440,19 +380,27 @@ export default function userList() {
                             className="form-check-input"
                             id={uprofile.id}
                             value={uprofile.name}
-                            // onClick={(e) => setCheckuser(true)}
                             onChange={(e) => {
-                              // e.target.checked === checkuser;
-                              uprofile.is_active = e.target.checked
-                              // setUserProfiles((prev)=>[...prev])
-                              const user_id = tempprofile.reduce((prev:any,acc:any)=>{
-                                // console.log("prev:",prev,acc)
-                                if(acc.user.id === uprofile.id){
-                                  acc.user.is_active = !e.target.checked
-                                }
-                                return acc
-                              },[])
-                              console.log(user_id)
+                              if (
+                                list === "individuals" ||
+                                list === "deactivated_users"
+                              ) {
+                                const temp = tempprofile.map((tmp, i) => {
+                                  if (tmp.user.id === uprofile.user.id) {
+                                    tmp.user.is_active = !e.target.checked;
+                                  }
+                                  return tmp;
+                                });
+                                setTempprofile(temp);
+                              } else {
+                                const temp = temporgprofile.map((tmp, i) => {
+                                  if (tmp.user.id === uprofile.user.id) {
+                                    tmp.user.is_active = !e.target.checked;
+                                  }
+                                  return tmp;
+                                });
+                                setTemporgprofile(temp);
+                              }
                               setCheckedUsers([
                                 ...checkedUsers,
                                 uprofile.user.id,
