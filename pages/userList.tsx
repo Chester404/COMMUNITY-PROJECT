@@ -458,13 +458,13 @@ export default function userList() {
                         <td>
                           <button
                             className="btn btn-success mr-2 requestbtn"
-                            onClick={deactivate_}
+                            // onClick={deactivate_}
                           >
                             Approve
                           </button>
                           <button
                             className="btn btn-danger mr-2 requestbtn"
-                            onClick={activate_}
+                            // onClick={activate_}
                           >
                             Disapprove
                           </button>

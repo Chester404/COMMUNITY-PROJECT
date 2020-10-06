@@ -185,7 +185,7 @@ export default function Home() {
 
     try {
       const rs = await fetch(
-        process.env.URL + "/accounts/image_upload/",
+        process.env.URL + "/accounts/self_bus_update/",
         requestOptions
       );
       return rs;
