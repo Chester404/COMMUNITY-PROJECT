@@ -2,7 +2,7 @@ import MainLayout from "../components/MainLayout";
 import { Products } from "../lib/endpoints";
 import { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
-import ServiceCard from "../components/ServiceCard";
+// import ServiceCard from "../components/ServiceCard";
 
 const locationData = [
   "Airport Ridge",
@@ -28,25 +28,25 @@ const locationData = [
 ];
 
 const categoryData = [
-  { key: "SP", name: "Sport Wears" },
-  { key: "EL", name: "Electronics" },
-  // {'key':'FTF', 'name': 'Fashion, Textiles and Fabrics'},
-  // {'key':'JGP', 'name':'Jewellery, Gifts and Parcels'},
-  // {'key':'SSF', 'name':'Shoes, Sandals and Footwears'},
-  // {'key':'AT', 'name':'Automobile and Transport'},
-  // {'key':'BOS', 'name':'Books and Office Supplies'},
-  // {'key':'LFD', 'name':'Lights, Furniture and Decor'},
-  // {'key':'BeL', 'name':'Beauty and Lifestyle'},
-  // {'key':'BaL', 'name':'Bags and Luggage'},
-  // {'key':'EGG', 'name':'Electronics, Gadgets and Garden Equipment'},
-  // {'key':'TBP', 'name':'Toiletries / Baby Products'},
-  // {'key':'PTC', 'name':'Phones, Tablets and Computers'},
-  // {'key':'GrP', 'name':'Groceries and Provisions'},
-  // {'key':'SE', 'name':'services'},
-  // {'key':'ITM', 'name':'Industrial Tools and Machinery'},
-  // {'key':'REP', 'name':'Real Estates and Properties'},
-  // {'key':'HeP', 'name':'Health and Pharmaceuticals'},
-  // {'key':'PlP','name':'Plastics and Rubbers'}
+  // { key: "SP", name: "Sport Wears" },
+  // { key: "EL", name: "Electronics" },
+  {'key':'FTF', 'name': 'Fashion, Textiles and Fabrics'},
+  {'key':'JGP', 'name':'Jewellery, Gifts and Parcels'},
+  {'key':'SSF', 'name':'Shoes, Sandals and Footwears'},
+  {'key':'AT', 'name':'Automobile and Transport'},
+  {'key':'BOS', 'name':'Books and Office Supplies'},
+  {'key':'LFD', 'name':'Lights, Furniture and Decor'},
+  {'key':'BeL', 'name':'Beauty and Lifestyle'},
+  {'key':'BaL', 'name':'Bags and Luggage'},
+  {'key':'EGG', 'name':'Electronics, Gadgets and Garden Equipment'},
+  {'key':'TBP', 'name':'Toiletries / Baby Products'},
+  {'key':'PTC', 'name':'Phones, Tablets and Computers'},
+  {'key':'GrP', 'name':'Groceries and Provisions'},
+  {'key':'SE', 'name':'services'},
+  {'key':'ITM', 'name':'Industrial Tools and Machinery'},
+  {'key':'REP', 'name':'Real Estates and Properties'},
+  {'key':'HeP', 'name':'Health and Pharmaceuticals'},
+  {'key':'PlP','name':'Plastics and Rubbers'}
 ];
 
 const maxPriceFilters = [
@@ -140,7 +140,15 @@ const Pagination = ({
 };
 export default function ProductsView() {
   const [allproducts, setAllProducts] = useState([]);
-  const [categoryFilterName, setCategoryFilterName] = useState("Category");
+  const [filters, setFilters] = useState({
+    owner__city: "", 
+    name:"",
+    category:"",
+    product_type:"",
+    min_price:0,
+    max_price:1000000,
+    search:""});
+  const [categoryFilterName, setCategoryFilterName] = useState("All");
   const [typeFilterName, setTypeFilterName] = useState("Type");
   const [locationFilterName, setLocationFilterName] = useState("Location");
   const [minPriceFilterName, setMinPriceFilterName] = useState("Minimum Price");
@@ -162,52 +170,50 @@ export default function ProductsView() {
     })();
   }, []);
 
-  const typeFilter = (type: string) => {
-    let products = altProductsList;
-    let rs: any[];
-    if (type == "ALL") {
-      setTempList(products);
-      setAllProducts(products.slice(0, recordsPerPage));
-    } else {
-      rs = products.filter((item) => item.product_type === type);
-      setTempList(rs);
-      setAllProducts(rs.slice(0, recordsPerPage));
-    }
-  };
-
-  const categoryFilter = (type: string) => {
-    let products = altProductsList;
-    let rs: any[];
-    rs = products.filter((item) => item.category === type);
+  const typeFilter = async (event: any) => {
+    console.log(event.target.value);
+    setTypeFilterName(event.target.value)
+    filters.product_type = event.target.value;
+    setFilters(filters)
+    const rs = await new Products().getFilteredProducts(filters);
     setTempList(rs);
-    setAllProducts(rs.slice(0, recordsPerPage));
+    setAllProducts(rs.slice(0, recordsPerPage));  
   };
 
-  const locationFilter = (type: string) => {
-    let rs = altProductsList;
-    if (type == "ALL") {
-      rs = allproducts;
-      setAllProducts(rs.slice(0, recordsPerPage));
-    } else {
-      rs = allproducts.filter((item) => item.product_type === type);
-      setAllProducts(rs.slice(0, recordsPerPage));
-    }
-  };
-
-  const minPriceFilter = (price: string) => {
-    let products = altProductsList;
-    let rs: any[];
-    rs = products.filter((item) => item.price >= parseFloat(price));
+  const categoryFilter = async (event: any) => {
+    setCategoryFilterName(event.target.value)
+    filters.category = event.target.value;
+    setFilters(filters)
+    const rs = await new Products().getFilteredProducts(filters);
     setTempList(rs);
-    setAllProducts(rs.slice(0, recordsPerPage));
+    setAllProducts(rs.slice(0, recordsPerPage));  
   };
 
-  const maxPriceFilter = (price: string) => {
-    let products = altProductsList;
-    let rs: any[];
-    rs = products.filter((item) => item.product_type <= parseFloat(price));
+  const locationFilter = async (event: any) => {
+    setLocationFilterName(event.target.value)
+    filters.owner__city = event.target.value;
+    setFilters(filters)
+    const rs = await new Products().getFilteredProducts(filters);
     setTempList(rs);
-    setAllProducts(rs.slice(0, recordsPerPage));
+    setAllProducts(rs.slice(0, recordsPerPage));  
+  };
+
+  const minPriceFilter = async (event: any) => {
+    setMinPriceFilterName(event.target.value)
+    filters.min_price = event.target.value;
+    setFilters(filters)
+    const rs = await new Products().getFilteredProducts(filters);
+    setTempList(rs);
+    setAllProducts(rs.slice(0, recordsPerPage));  
+  };
+
+  const maxPriceFilter = async (event: any) => {
+    setMaxPriceFilterName(event.target.value)
+    filters.max_price = event.target.value;
+    setFilters(filters)
+    const rs = await new Products().getFilteredProducts(filters);
+    setTempList(rs);
+    setAllProducts(rs.slice(0, recordsPerPage));  
   };
 
   const paginate = (page: number) => {
@@ -223,7 +229,7 @@ export default function ProductsView() {
       <MainLayout>
         <div>
           <div
-            className="container"
+            className="container mb-5"
             id="header__container"
             style={{ width: "100%" }}
           >
@@ -231,7 +237,6 @@ export default function ProductsView() {
               id="marketCarouselIndicators"
               className="carousel slide"
               data-ride="carousel"
-              style={{ padding: "20px" }}
             >
               <ol className="carousel-indicators" id="carousel-indicators">
                 <li
@@ -395,215 +400,107 @@ export default function ProductsView() {
                 </span>
               </a>
             </div>
-
             <div
-              className="row"
+              className="row justify-content-center mb-5"
               id="filtersrow"
-              style={{ margin: "0 auto", padding: "30px" }}
+              style={{ margin: "0 auto"}}
             >
               <div id="categoryfilter__div">
-                <div className="dropdown" id="categoryfilter">
-                  <button
-                    className="btn btn-light dropdown-toggle"
-                    type="button"
-                    id="categoryDropdownMenuButton"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                    style={{ width: "190px" }}
-                  >
-                    {categoryFilterName}
-                  </button>
-                  <div
-                    className="dropdown-menu"
-                    id="categoryDropdown__items"
-                    aria-labelledby="dropdownMenuButton"
-                  >
-                    {categoryData.map((category: any, index: number) => {
+
+              <div className="form-group mt-2">
+                    <select className="form-control form-rounded filter-dropdown" onChange={categoryFilter} value={categoryFilterName}>
+                      <option value="">Category</option>
+                      {categoryData.map((category: any, index: number) => {
                       return (
-                        <a
+                        <option
                           className="dropdown-item"
-                          href="#"
                           key={index}
-                          onClick={() => {
-                            setCategoryFilterName(category.name);
-                            categoryFilter(category.key);
-                          }}
+                          value={category.key}
                         >
                           {category.name}
-                        </a>
+                        </option>
                       );
                     })}
-                  </div>
-                </div>
+                    </select>
+              </div>
               </div>
               <div id="typefilterdiv">
-                <div className="dropdown" id="typefilter">
-                  <button
-                    className="btn btn-light dropdown-toggle"
-                    type="button"
-                    id="typeDropdownMenuButton"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                    style={{ width: "190px" }}
-                  >
-                    {typeFilterName}
-                  </button>
-                  <div
-                    className="dropdown-menu"
-                    id="typeDropdown__items"
-                    aria-labelledby="dropdownMenuButton"
-                  >
-                    <a
-                      className="dropdown-item"
-                      href="#"
-                      onClick={() => {
-                        setTypeFilterName("All");
-                        typeFilter("ALL");
-                      }}
-                    >
-                      All
-                    </a>
-                    <a
-                      className="dropdown-item"
-                      href="#"
-                      onClick={() => {
-                        setTypeFilterName("Products");
-                        typeFilter("PR");
-                      }}
-                    >
-                      Products
-                    </a>
-                    <a
-                      className="dropdown-item"
-                      href="#"
-                      onClick={() => {
-                        setTypeFilterName("Services");
-                        typeFilter("SE");
-                      }}
-                    >
-                      Services
-                    </a>
-                  </div>
+                  <div className="form-group mt-2">
+                      <select className="form-control form-rounded filter-dropdown" onChange={typeFilter} value={typeFilterName}>
+                        <option value="">Type</option>
+                        <option value="">All</option>
+                        <option value="PR">Products</option>
+                        <option value="SE">Services</option>
+                      </select>
                 </div>
               </div>
               <div id="locationfilter__div">
-                <div className="dropdown" id="locationfilter">
-                  <button
-                    className="btn btn-light dropdown-toggle"
-                    type="button"
-                    id="locationDropdownMenuButton"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                    style={{ width: "190px" }}
-                  >
-                    {locationFilterName}
-                  </button>
-                  <div
-                    className="dropdown-menu"
-                    id="locationdropdown__items"
-                    aria-labelledby="dropdownMenuButton"
-                  >
-                    {locationData.map((location: any, index: number) => {
+              <div className="form-group mt-2">
+                    <select className="form-control form-rounded filter-dropdown" onChange={locationFilter} value={locationFilterName}>
+                      <option value="">Location</option>
+                      {locationData.map((location: any, index: number) => {
                       return (
-                        <a
+                        <option
                           className="dropdown-item"
                           key={index}
-                          href="#"
-                          onClick={() => {
-                            setLocationFilterName(location);
-                          }}
+                          value={location}
                         >
                           {location}
-                        </a>
+                        </option>
                       );
                     })}
-                  </div>
-                </div>
+                    </select>
+              </div>
               </div>
               <div id="minpricefilter__div">
-                <div className="dropdown" id="minpricefilter">
-                  <button
-                    className="btn btn-light dropdown-toggle"
-                    type="button"
-                    id="minPriceDropdownMenuButton"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                    style={{ width: "190px" }}
-                  >
-                    {minPriceFilterName}
-                  </button>
-                  <div
-                    className="dropdown-menu"
-                    id="minpricedropdown__items"
-                    aria-labelledby="dropdownMenuButton"
-                  >
-                    {minPriceFilters.map((price: any, index: number) => {
+              <div className="form-group mt-2">
+                    <select className="form-control form-rounded filter-dropdown" onChange={minPriceFilter} value={minPriceFilterName}>
+                      <option value="">Minimum Price</option>
+                      {minPriceFilters.map((price: any, index: number) => {
                       return (
-                        <a
+                        <option
                           className="dropdown-item"
                           key={index}
-                          href="#"
-                          onClick={() => {
-                            setMinPriceFilterName(price.value);
-                            minPriceFilter(price.key);
-                          }}
+                          value={price.key}
                         >
                           {price.value}
-                        </a>
+                        </option>
                       );
                     })}
-                  </div>
-                </div>
+                    </select>
+              </div>
               </div>
               <div id="maxpricefilter__div">
-                <div className="dropdown" id="maxpricefilter">
-                  <button
-                    className="btn btn-light dropdown-toggle"
-                    type="button"
-                    id="maxPriceDropdownMenuButton"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                    style={{ width: "190px" }}
-                  >
-                    {maxPriceFilterName}
-                  </button>
-                  <div
-                    className="dropdown-menu"
-                    id="maxpricedropdown_items"
-                    aria-labelledby="dropdownMenuButton"
-                  >
-                    {maxPriceFilters.map((price: any, index: number) => {
+              <div className="form-group mt-2">
+                    <select className="form-control form-rounded filter-dropdown" onChange={maxPriceFilter} value={maxPriceFilterName}>
+                      <option value="">Maximum Price</option>
+                      {maxPriceFilters.map((price: any, index: number) => {
                       return (
-                        <a
+                        <option
                           className="dropdown-item"
                           key={index}
-                          href="#"
-                          onClick={() => {
-                            setMaxPriceFilterName(price.value);
-                            maxPriceFilter(price.key);
-                          }}
+                          value={price.key} 
                         >
                           {price.value}
-                        </a>
+                        </option>
                       );
                     })}
-                  </div>
-                </div>
+                    </select>
               </div>
             </div>
+            </div>
           </div>
+          <hr/>
+          
           <div className="row" id="product-row">
             {allproducts.map((product: any, index: number) => {
-              return product.product_type === "PR" ? (
-                <ProductCard key={index} product={product} />
-              ) : (
-                <ServiceCard key={index} service={product} />
-              );
+              return (<ProductCard key={index} product={product} />
+              // return product.product_type === "PR" ? (
+              //   <ProductCard key={index} product={product} />
+              // ) : (
+              //   <ServiceCard key={index} service={product} />
+              // );
+              )
             })}
           </div>
 

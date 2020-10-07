@@ -90,7 +90,7 @@ export default function userList() {
 
   const { state } = useContext(Store);
   const [list, setList] = useState("inital");
-  const [title, setTitle] = useState("All individual users");
+  const [title, setTitle] = useState("Activated Users");
 
   const getUserDetails = async (id) => {
     let rs = await new Users().getUserAccountDetails(id);
@@ -230,14 +230,7 @@ export default function userList() {
   return (
     <MainLayout>
       <AdminSidebar handleList={handleList} />
-      <div>
-        <i
-          className="fa fa-chevron-circle-right openicon mr-5"
-          id="openicon"
-          onClick={() => openNav()}
-          style={{ fontSize: "20px", cursor: "pointer" }}
-        />
-      </div>
+      
       <div id="main">
         <div className="page-header">
           <h1 className="page-title page-title-userlist" id="page-title">
@@ -249,7 +242,7 @@ export default function userList() {
               <i className="fe fe-search fa-lg" />
               <input
                 id="searchmember"
-                className="form-control form-rounded"
+                className="form-control form-rounded searchbox-width"
                 type="text"
                 placeholder="Search..."
                 onChange={searchLocation}
@@ -293,7 +286,9 @@ export default function userList() {
                     >
                       {list === "individuals" || list === "organizations" ? (
                         <>
-                          Deactivate <i className="fa fa-lock fa-lg ml-1" />
+                          <button className="btn btn-primary activate-btn">
+                              Deactivate
+                          </button>
                         </>
                       ) : list === "deactivated_users" ||
                         list === "deactivated_organizations" ? (
@@ -311,18 +306,19 @@ export default function userList() {
           <table className="table">
             <thead>
               <tr>
-                <th scope="col" className="text-muted">
+                {/* <th scope="col" className="text-muted">
                   <div className="form-check"></div>
-                </th>
+                </th> */}
 
-                <th scope="col" className="text-muted ml-5">
+                <th scope="col" className="text-muted">
+                <input type="checkbox" className=" mr-2 ml-3"></input>
                   <div className="dropdown">
                     <span id="toggle-sort">
                       <span className="ml-3">Name </span>
                       <i
                         className={`fa fa-sort-amount-${
                           order ? "asc" : "desc"
-                        }`}
+                        }`} onClick={() => showsort()}
                       ></i>
                     </span>
                     <div className="dropdown-content ml-8">
@@ -498,8 +494,9 @@ export default function userList() {
   );
 }
 
-function openNav() {
-  document.getElementById("mySidenav").style.width = "250px";
-  document.getElementById("main").style.marginLeft = "220px";
-  document.getElementById("openicon").style.display = "none";
+
+function showsort() {
+  var toggle = document.getElementById("sortlist");
+  toggle.style.display = toggle.style.display == "block" ? "none" : "block";
 }
+

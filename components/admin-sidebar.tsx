@@ -2,7 +2,19 @@ import Link from "next/link";
 const AdminSidebar = ({ handleList }) => {
   return (
     <div>
+        <div onClick={() => showCloseicon()}>
+        <i className="fa fa-chevron-circle-right openicon mr-5"
+                id="openicon"
+                onClick={() => openNav()}
+                style={{ fontSize: "20px", cursor: "pointer" }}
+              />
+      </div>
+      <a onClick={() => closeNav()}>
+          <i className="fa fa-chevron-circle-left closebtn" id="closeicon" />
+        </a>
+        
       <div id="mySidenav" className="sidenav">
+        
         <div className="heading">
           <a href="#dashboard">
             <li>
@@ -18,20 +30,12 @@ const AdminSidebar = ({ handleList }) => {
             </li>
           </a>
         </div>
-        <div>
-          {/* <i className="fa fa-chevron-circle-left closebtn" /> */}
-          <i
-            className="fa fa-chevron-circle-left closebtn"
-            onClick={() => closeNav()}
-            style={{ fontSize: "20px", cursor: "pointer" }}
-          />
-        </div>
 
         <div className="sidenavmenu">
           <a href="#analytics">
             <li>
               <i className="fe fe-activity mr-5"></i> Analytics
-              <i id="i" className="fe fe-chevron-right mt-1"></i>
+              <i id="optionicon" className="fe fe-chevron-right mt-1"></i>
             </li>
           </a>
         </div>
@@ -39,8 +43,8 @@ const AdminSidebar = ({ handleList }) => {
         <div className="sidenavmenu">
           <a href="#" onClick={() => hideshow()}>
             <li>
-              <i className="fe fe-users mr-5"></i>
-              Users<i id="i" className="fe fe-chevron-right mt-1"></i>
+              <i className="fe fe-user mr-5"></i>
+              Users<i id="optionicon" className="fe fe-chevron-right mt-1"></i>
             </li>
           </a>
         </div>
@@ -51,7 +55,7 @@ const AdminSidebar = ({ handleList }) => {
                 handleList("individuals");
               }}
             >
-              <li>Individual List</li>
+              <li>Individual Users</li>
             </a>
           </Link>
           <Link href="/userList">
@@ -60,7 +64,7 @@ const AdminSidebar = ({ handleList }) => {
                 handleList("organizations");
               }}
             >
-              <li>Organizational List</li>
+              <li>Organization Users</li>
             </a>
           </Link>
 
@@ -81,17 +85,7 @@ const AdminSidebar = ({ handleList }) => {
                 handleList("deactivated_users");
               }}
             >
-              <li>Deactivated Users</li>
-            </a>
-          </Link>
-          <Link href="/userList">
-            <a
-              onClick={() => {
-                // handleListView("inactive");
-                handleList("deactivated_organizations");
-              }}
-            >
-              <li>Deactivated Organizations</li>
+              <li>Deactivated Accounts</li>
             </a>
           </Link>
         </ul>
@@ -142,14 +136,27 @@ const AdminSidebar = ({ handleList }) => {
 
 export default AdminSidebar;
 
+
 function closeNav() {
   document.getElementById("mySidenav").style.width = "60px";
   document.getElementById("main").style.marginLeft = "30px";
   document.getElementById("list").style.display = "none";
   document.getElementById("openicon").style.display = "block";
+  document.getElementById("closeicon").style.display = "none";
+}
+
+function openNav() {
+  document.getElementById("mySidenav").style.width = "247px";
+  document.getElementById("main").style.marginLeft = "220px";
+  document.getElementById("openicon").style.display = "none";
 }
 
 function hideshow() {
   var toggle = document.getElementById("list");
+  toggle.style.display = toggle.style.display == "block" ? "none" : "block";
+}
+
+function showCloseicon() {
+  var toggle = document.getElementById("closeicon");
   toggle.style.display = toggle.style.display == "block" ? "none" : "block";
 }

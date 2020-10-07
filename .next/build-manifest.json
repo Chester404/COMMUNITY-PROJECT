@@ -25,6 +25,7 @@
       "static/chunks/pages/_error.js"
     ],
     "/auth/login": [
+<<<<<<< HEAD
       "static/chunks/main.js",
       "static/chunks/webpack.js",
       "static/chunks/pages/auth/login.js"
@@ -35,14 +36,23 @@
       "static/chunks/pages/auth/signup.js"
     ],
     "/businessprofile": [
+=======
+>>>>>>> im-bck
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/businessprofile.js"
+      "static/chunks/pages/auth/login.js"
     ],
+<<<<<<< HEAD
     "/next/dist/pages/_error": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
       "static/chunks/pages/next/dist/pages/_error.js"
+=======
+    "/businessprofile": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/businessprofile.js"
+>>>>>>> im-bck
     ]
   },
   "ampFirstPages": []

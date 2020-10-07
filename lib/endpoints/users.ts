@@ -11,11 +11,18 @@ export class Users {
   }
 
   async changeEmail(userData: any) {
+    try {
     //authentication_property: email or phone number for login
     return await ufetch("/auth/change-profile/", {
-      method: "PUT",
-      body: JSON.stringify(userData),
-    });
+        method: "PUT",
+        body: JSON.stringify(userData),
+    }).catch(e => {
+      return e;
+    })
+  } catch (e) {
+    return e;
+
+  }
   }
 
   async confirmaccount(integer_key: number) {
