@@ -404,6 +404,9 @@ a.btn.mobile-menubtn {
 a.btn.mobiletem-menubtn {
   display: none !important;
 }
+.mobilesignbtns {
+  display: none !important;
+}
 
 @media screen and (max-width: 600px) {
   .sticky-pin {
@@ -420,6 +423,9 @@ a.btn.mobiletem-menubtn {
     display: block !important;
   }
   a.btn.mobiletem-menubtn {
+    display: block !important;
+  }
+  .mobilesignbtns {
     display: block !important;
   }
   .landingpage_login_signup_btns {
@@ -452,6 +458,9 @@ a.btn.mobiletem-menubtn {
     display: block !important;
   }
   a.btn.mobiletem-menubtn {
+    display: block !important;
+  }
+  .mobilesignbtns {
     display: block !important;
   }
 }
