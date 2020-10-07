@@ -4,7 +4,6 @@
   "/_error": "pages/_error.js",
   "/next/dist/pages/_error": "pages/next/dist/pages/_error.js",
   "/businessprofile": "pages/businessprofile.js",
-  "/auth/resetpassword": "pages/auth/resetpassword.js",
-  "/": "pages/index.js",
-  "/market": "pages/market.js"
+  "/auth/login": "pages/auth/login.js",
+  "/auth/signup": "pages/auth/signup.js"
 }
