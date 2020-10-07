@@ -35,6 +35,7 @@ const Navbar = (props) => {
         type: "SET_USERINFO",
         payload: userprofile,
       });
+
       setUserImage(state.userProfile.image || "/images/Profile_Icon.png");
       state.userProfile.name || state.userProfile.title
         ? setUsername(state.userProfile.name || state.userProfile.title)
@@ -46,7 +47,11 @@ const Navbar = (props) => {
     } else {
       setIsLoggedIn(false);
     }
-
+    console.log(
+      "NAMR OR TITLE",
+      state.userProfile.name || state.userProfile.title
+    );
+    console.log("IAMGE", state.userProfile.image);
     if (
       router.pathname.includes("/login") ||
       router.pathname.includes("/signup") ||
