@@ -69,84 +69,12 @@ const Navbar = (props) => {
       }}
     >
       <div className="container">
-        <div className="d-flex justify-content-between">
+        <div className="d-flex">
           <a className="animated-arrow hor-toggle horizontal-navtoggle">
             <span />
           </a>
-          {!isLoggedIn ? (
-            // <div className="btn-group mt-2 mb-2">
-            //   <button
-            //     type="button"
-            //     className="btn btn-default menu-button"
-            //     data-toggle="dropdown"
-            //   >
-            //     <i className="fe fe-menu fa-lg" style={{ fontSize: "20px" }} />
-            //   </button>
-            //   <ul className="dropdown-menu" role="menu">
-            //     <li>
-            //       <Link href="/market">
-            //         <a
-            //           className="nav-link"
-            //           style={{
-            //             color: router.pathname == "/market" ? "" : "black",
-            //           }}
-            //         >
-            //           <span className="lay-outstyle mt-1">Market</span>
-            //         </a>
-            //       </Link>
-            //     </li>
-            //     <li>
-            //       <Link href="/jobs">
-            //         <a>Jobs</a>
-            //       </Link>
-            //     </li>
-            //     <li>
-            //       <Link href="/parnerships">
-            //         <a>Partnership</a>
-            //       </Link>
-            //     </li>
-            //     <li>
-            //       <Link href="/forum">
-            //         <a>Forum</a>
-            //       </Link>
-            //     </li>
 
-            //     <li>
-            //       <Link href="/blog">
-            //         <a
-            //           className="nav-link"
-            //           style={{
-            //             color: router.pathname == "/blog" ? "" : "black",
-            //           }}
-            //         >
-            //           <span className="lay-outstyle mt-1">Blog</span>
-            //         </a>
-            //       </Link>
-            //     </li>
-            //     <li>
-            //       <Link href="/memberlist">
-            //         <a
-            //           className="nav-link"
-            //           style={{
-            //             color: router.pathname == "/memberlist" ? "" : "black",
-            //           }}
-            //         >
-            //           <span className="lay-outstyle mt-1">Members</span>
-            //         </a>
-            //       </Link>
-            //     </li>
-            //   </ul>
-            // </div>
-            <Link href="/">
-              <a className="header-brand">
-                <img
-                  src="/assets/images/Logo.png"
-                  className="header-brand-img login-logo"
-                  alt="logo"
-                />
-              </a>
-            </Link>
-          ) : null}
+          {/* Logo */}
           <Link href="/">
             <a className="header-brand">
               <img
@@ -157,103 +85,149 @@ const Navbar = (props) => {
               />
             </a>
           </Link>
+
+          {/* Logo ends here */}
+
           {isLoggedIn ? (
             <>
-              <div>
-                <div className="btn-group mt-2 mb-2">
-                  <button
-                    type="button"
-                    className="btn btn-default menu-button"
-                    data-toggle="dropdown"
-                  >
-                    <i
-                      className="fe fe-menu fa-lg"
-                      style={{ fontSize: "20px" }}
-                    />
-                  </button>
-                  <ul className="dropdown-menu" role="menu">
-                    <li>
-                      <Link href="/market">
-                        <a
-                          className="nav-link"
-                          style={{
-                            color: router.pathname == "/market" ? "" : "black",
-                          }}
-                        >
-                          <span className="lay-outstyle mt-1">Market</span>
-                        </a>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/jobs">
-                        <a
-                          className="nav-link"
-                          style={{
-                            color: router.pathname == "/jobs" ? "" : "black",
-                          }}
-                        >
-                          <span className="lay-outstyle mt-1">Jobs</span>
-                        </a>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/partnerships">
-                        <a
-                          className="nav-link"
-                          style={{
-                            color:
-                              router.pathname == "/partnerships" ? "" : "black",
-                          }}
-                        >
-                          <span className="lay-outstyle mt-1">
-                            Partnerships
+              {/* Mobile Drowndown Menu (When logged in)*/}
+              <div className="mobilelogbtns">
+                <div className="container">
+                  <div className="d-flex">
+                    <div className="dropdown">
+                      <a className="nav-link" data-toggle="dropdown" href="#">
+                        <a className="btn btn-secondary mobile-menubtn btn-icon text-white mr-2">
+                          <span>
+                            <i className="fe fe-menu" />
                           </span>
                         </a>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/forum">
+                      </a>
+                      <div className="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                        <Link href="/market">
+                          <a
+                            className="nav-link"
+                            style={{
+                              color:
+                                router.pathname == "/market" ? "" : "black",
+                            }}
+                          >
+                            <span className="lay-outstyle mt-1">Market</span>
+                          </a>
+                        </Link>
+                        <Link href="/jobs">
+                          <a className="nav-link">Jobs</a>
+                        </Link>
+                        <Link href="/parnerships">
+                          <a className="nav-link">Partnership</a>
+                        </Link>
+                        <Link href="/forum">
+                          <a className="nav-link">Forum</a>
+                        </Link>
+                        <Link href="/blog">
+                          <a
+                            className="nav-link"
+                            style={{
+                              color: router.pathname == "/blog" ? "" : "black",
+                            }}
+                          >
+                            <span className="lay-outstyle mt-1">Blog</span>
+                          </a>
+                        </Link>
+                        <Link href="/memberlist">
+                          <a
+                            className="nav-link"
+                            style={{
+                              color:
+                                router.pathname == "/memberlist" ? "" : "black",
+                            }}
+                          >
+                            <span className="lay-outstyle mt-1">Members</span>
+                          </a>
+                        </Link>
+                      </div>
+                    </div>
+
+                    <div className="ml-auto header-right">
+                      <div className="dropdown header-profile">
                         <a
-                          className="nav-link"
-                          style={{
-                            color: router.pathname == "/forum" ? "" : "black",
-                          }}
+                          className="nav-link pr-0 leading-none d-flex pt-1"
+                          data-toggle="dropdown"
                         >
-                          <span className="lay-outstyle mt-1">Forum</span>
+                          <span
+                            className="avatar avatar-md brround cover-image"
+                            data-image-src="/images/blank_avatar.jpeg"
+                            style={{
+                              background: `url(${userimage}) center center`,
+                            }}
+                          ></span>
+                          <div className="ml-3">
+                            <span style={{ color: "#3f3d56", fontWeight: 700 }}>
+                              {username}
+                              <i className="fe fe-chevron-down ml-1" />
+                            </span>
+                          </div>
                         </a>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/blog">
-                        <a
-                          className="nav-link"
-                          style={{
-                            color: router.pathname == "/blog" ? "" : "black",
-                          }}
-                        >
-                          <span className="lay-outstyle mt-1">Blog</span>
-                        </a>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/memberlist">
-                        <a
-                          className="nav-link"
-                          style={{
-                            color:
-                              router.pathname == "/memberlist" ? "" : "black",
-                          }}
-                        >
-                          <span className="lay-outstyle mt-1">Members</span>
-                        </a>
-                      </Link>
-                    </li>
-                  </ul>
+                        <div className="dropdown-menu profiledrop dropdown-menu-right dropdown-menu-arrow">
+                          <Link
+                            href={
+                              isOrganization ? "/businessprofile" : "/profile"
+                            }
+                          >
+                            <a className="dropdown-item itemname">
+                              <i className="dropdown-icon fe fe-user" />
+                              View Profile
+                            </a>
+                          </Link>
+                          <Link href="/auth/account-settings">
+                            <a className="dropdown-item itemname">
+                              <i className="dropdown-icon fe fe-edit" />
+                              Account Setting
+                            </a>
+                          </Link>
+
+                          <a
+                            className="dropdown-item itemname"
+                            href="#"
+                            onClick={logout}
+                          >
+                            <i className="dropdown-icon fe fe-power" /> Log Out
+                          </a>
+                          <div className="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                            <Link
+                              href={
+                                isOrganization ? "/businessprofile" : "/profile"
+                              }
+                            >
+                              <a className="dropdown-item itemname">
+                                <i className="dropdown-icon fe fe-user" />
+                                View Profile
+                              </a>
+                            </Link>
+                            <a className="dropdown-item itemname" href="#">
+                              <i className="dropdown-icon fe fe-edit" />
+                              Account Setting
+                            </a>
+                            <a
+                              className="dropdown-item itemname"
+                              href="#"
+                              onClick={logout}
+                            >
+                              <i className="dropdown-icon fe fe-power" /> Log
+                              Out
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              {/* logo*/}
-              <div className="d-none dropdown d-md-flex header-settings ml-auto">
+              {/* Mobile Drowndown Menu (When logged in) ends here*/}
+
+              {/* Menu Bar (when logged in) */}
+              <div>
+                <div className="d-none d-md-flex">
                   <Link href="/market">
                     <a
                       className="nav-link"
@@ -264,241 +238,20 @@ const Navbar = (props) => {
                       <span className="lay-outstyle mt-1">Market</span>
                     </a>
                   </Link>
-                <Link href="/jobs">
-                  <a
-                    className="nav-link"
-                    style={{
-                      color: router.pathname == "/jobs" ? "" : "black",
-                    }}
-                  >
-                    <span className="lay-outstyle mt-1">Jobs</span>
-                  </a>
-                </Link>
-                {isLoggedIn ? (
-                  <Link href="/partnerships">
-                    <a
-                      className="nav-link"
-                      style={{
-                        color:
-                          router.pathname == "/partnerships" ? "" : "black",
-                      }}
-                    >
-                      <span className="lay-outstyle mt-1">Partnerships</span>
-                    </a>
-                  </Link>
-                ) : null}
-                <Link href="/forum">
-                  <a
-                    className="nav-link"
-                    style={{
-                      color: router.pathname == "/forum" ? "" : "black",
-                    }}
-                  >
-                    <span className="lay-outstyle mt-1">Forum</span>
-                  </a>
-                </Link>
-                <Link href="/blog">
-                  <a
-                    className="nav-link"
-                    style={{ color: router.pathname == "/blog" ? "" : "black" }}
-                  >
-                    <span className="lay-outstyle mt-1">Blog</span>
-                  </a>
-                </Link>
-                <Link href={`/${memberlistlink}`}>
-                  <a
-                    className="nav-link"
-                    style={{
-                      color: router.pathname == "/memberlist" ? "" : "black",
-                    }}
-                  >
-                    <span className="lay-outstyle mt-1">Members</span>
-                  </a>
-                </Link>
-              </div>
-              <div className="d-flex order-lg-2 ml-auto header-right">
-                {/*  <a href="#" className="nav-link icon full-screen-link">
-              <i className="fa fa-bell-o" />
-            </a> */}
-                {/*Navbar */}
-                <div className="dropdown header-profile">
-                  <a
-                    className="nav-link pr-0 leading-none d-flex pt-1"
-                    data-toggle="dropdown"
-                  >
-                    <span
-                      className="avatar avatar-md brround cover-image"
-                      data-image-src="/images/blank_avatar.jpeg"
-                      style={{
-                        background: `url(${userimage}) center center`,
-                      }}
-                    ></span>
-                    <div className="ml-3">
-                      <span style={{ color: "#3f3d56", fontWeight: 700 }}>
-                        {username}
-                        <i className="fe fe-chevron-down ml-1" />
-                      </span>
-                    </div>
-                  </a>
-                  <div className="dropdown-menu profiledrop dropdown-menu-right dropdown-menu-arrow">
-                    <Link
-                      href={isOrganization ? "/businessprofile" : "/profile"}
-                    >
-                      <a className="dropdown-item itemname">
-                        <i className="dropdown-icon fe fe-user" />
-                        View Profile
-                      </a>
-                    </Link>
-                    <Link href="/auth/account-settings">
-                      <a className="dropdown-item itemname">
-                        <i className="dropdown-icon fe fe-edit" />
-                        Account Setting
-                      </a>
-                    </Link>
-
-                    <a
-                      className="dropdown-item itemname"
-                      href="#"
-                      onClick={logout}
-                    >
-                      <i className="dropdown-icon fe fe-power" /> Log Out
-                    </a>
-                    <div className="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                      <Link
-                        href={isOrganization ? "/businessprofile" : "/profile"}
-                      >
-                        <a className="dropdown-item itemname">
-                          <i className="dropdown-icon fe fe-user" />
-                          View Profile
-                        </a>
-                      </Link>
-                      <a className="dropdown-item itemname" href="#">
-                        <i className="dropdown-icon fe fe-edit" />
-                        Account Setting
-                      </a>
-                      <a
-                        className="dropdown-item itemname"
-                        href="#"
-                        onClick={logout}
-                      >
-                        <i className="dropdown-icon fe fe-power" /> Log Out
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </>
-          ) : tempholder ? (
-            <>
-              <div className="navbar-list ml-0 mr-0 justify-content-between">
-                <div className="btn-group mt-2 mb-2">
-                  <button
-                    type="button"
-                    className="btn btn-default menu-button"
-                    data-toggle="dropdown"
-                  >
-                    <i
-                      className="fe fe-menu fa-lg"
-                      style={{ fontSize: "20px" }}
-                    />
-                  </button>
-                  <ul className="dropdown-menu" role="menu">
-                    <li>
-                      <Link href="/market">
-                        <a
-                          className="nav-link"
-                          style={{
-                            color: router.pathname == "/market" ? "" : "black",
-                          }}
-                        >
-                          <span className="lay-outstyle mt-1">Market</span>
-                        </a>
-                      </Link>
-                    </li>
-                    <li>
-                      <a href="#">Jobs</a>
-                    </li>
-                    <li>
-                      <a href="#">Partnership</a>
-                    </li>
-                    <li>
-                      <a href="#">Forum</a>
-                    </li>
-                    <li>
-                      <Link href="/blog">
-                        <a
-                          className="nav-link"
-                          style={{
-                            color: router.pathname == "/blog" ? "" : "black",
-                          }}
-                        >
-                          <span className="lay-outstyle mt-1">Blog</span>
-                        </a>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/memberlist">
-                        <a
-                          className="nav-link"
-                          style={{
-                            color:
-                              router.pathname == "/memberlist" ? "" : "black",
-                          }}
-                        >
-                          <span className="lay-outstyle mt-1">Members</span>
-                        </a>
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-
-                <div className="d-none dropdown d-md-flex">
-                  <Link href="/market">
-                    <a
-                      className="nav-link"
-                      style={{
-                        color: router.pathname == "/market" ? "" : "#3f3d56",
-                      }}
-                    >
-                      <span className="lay-outstyle mt-1">Market</span>
-                    </a>
-                  </Link>
                   <Link href="/jobs">
-                    <a
-                      className="nav-link"
-                      style={{
-                        color: router.pathname == "/jobs" ? "" : "#3f3d56",
-                      }}
-                    >
-                      <span className="lay-outstyle mt-1">Jobs</span>
-                    </a>
+                    <a className="nav-link">Jobs</a>
                   </Link>
-
-                  <Link href="/partnership">
-                    <a
-                      className="nav-link"
-                      style={{
-                        color: router.pathname == "/partnership" ? "" : "#3f3d56",
-                      }}
-                    >
-                      <span className="lay-outstyle mt-1">Partnership</span>
-                    </a>
+                  <Link href="/parnerships">
+                    <a className="nav-link">Partnership</a>
                   </Link>
                   <Link href="/forum">
-                    <a
-                      className="nav-link"
-                      style={{
-                        color: router.pathname == "/forum" ? "" : "#3f3d56",
-                      }}
-                    >
-                      <span className="lay-outstyle mt-1">Forum</span>
-                    </a>
+                    <a className="nav-link">Forum</a>
                   </Link>
                   <Link href="/blog">
                     <a
                       className="nav-link"
                       style={{
-                        color: router.pathname == "/blog" ? "" : "#3f3d56",
+                        color: router.pathname == "/blog" ? "" : "black",
                       }}
                     >
                       <span className="lay-outstyle mt-1">Blog</span>
@@ -509,37 +262,239 @@ const Navbar = (props) => {
                       className="nav-link"
                       style={{
                         color:
-                          router.pathname == "/memberlist" ? "" : "#3f3d56",
+                          router.pathname == "/partnerships" ? "" : "black",
                       }}
                     >
-                      <span className="lay-outstyle mt-1">Members</span>
+                      <span className="lay-outstyle mt-1">Partnerships</span>
                     </a>
                   </Link>
-                </div>
+                  <div
+                    className="d-flex order-lg-2 ml-auto header-right"
+                    style={{ paddingLeft: "230px" }}
+                  >
+                    <div className="dropdown header-profile">
+                      <a
+                        className="nav-link pr-0 leading-none d-flex pt-1"
+                        data-toggle="dropdown"
+                      >
+                        <span
+                          className="avatar avatar-md brround cover-image"
+                          data-image-src="/images/blank_avatar.jpeg"
+                          style={{
+                            background: `url(${userimage}) center center`,
+                          }}
+                        ></span>
+                        <div className="ml-3">
+                          <span style={{ color: "#3f3d56", fontWeight: 700 }}>
+                            {username}
+                            <i className="fe fe-chevron-down ml-1" />
+                          </span>
+                        </div>
+                      </a>
+                      <div className="dropdown-menu profiledrop dropdown-menu-right dropdown-menu-arrow">
+                        <Link
+                          href={
+                            isOrganization ? "/businessprofile" : "/profile"
+                          }
+                        >
+                          <a className="dropdown-item itemname">
+                            <i className="dropdown-icon fe fe-user" />
+                            View Profile
+                          </a>
+                        </Link>
+                        <Link href="/auth/account-settings">
+                          <a className="dropdown-item itemname">
+                            <i className="dropdown-icon fe fe-edit" />
+                            Account Setting
+                          </a>
+                        </Link>
 
-                <div className="landingpage_login_signup_btns mr-0">
-                  <Link href="/auth/login">
-                    <a
-                      className="landingpage_login_btn ml-6 mt-2"
-                      id="landingpage_login_btn"
-                    >
-                      Login
-                    </a>
-                  </Link>
-                  <Link href="/auth/signup">
-                    <a
-                      className="btn btn-primary landingpage_signup_btn  ml-5 mr-5"
-                      id="landingpage_signup_btn"
-                    >
-                      Signup
-                    </a>
-                  </Link>
+                        <a
+                          className="dropdown-item itemname"
+                          href="#"
+                          onClick={logout}
+                        >
+                          <i className="dropdown-icon fe fe-power" /> Log Out
+                        </a>
+                        <div className="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                          <Link
+                            href={
+                              isOrganization ? "/businessprofile" : "/profile"
+                            }
+                          >
+                            <a className="dropdown-item itemname">
+                              <i className="dropdown-icon fe fe-user" />
+                              View Profile
+                            </a>
+                          </Link>
+                          <a className="dropdown-item itemname" href="#">
+                            <i className="dropdown-icon fe fe-edit" />
+                            Account Setting
+                          </a>
+                          <a
+                            className="dropdown-item itemname"
+                            href="#"
+                            onClick={logout}
+                          >
+                            <i className="dropdown-icon fe fe-power" /> Log Out
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-
-                {/*your paste ends here*/}
               </div>
+              {/* Menu Bar (when logged in) ends here */}
             </>
-          ) : null}
+          ) : tempholder ? (
+            <>
+              {/* Mobile Drowndown Menu (Before log in)*/}
+              <div className="mobilesignbtns">
+                <div className="container">
+                  <div className="d-flex">
+                    <div className="dropdown">
+                      <a className="nav-link" data-toggle="dropdown" href="#">
+                        <a className="btn btn-secondary mobiletem-menubtn btn-icon text-white mr-2">
+                          <span>
+                            <i className="fe fe-menu" />
+                          </span>
+                        </a>
+                      </a>
+                      <div className="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                        <Link href="/market">
+                          <a
+                            className="nav-link"
+                            style={{
+                              color:
+                                router.pathname == "/market" ? "" : "black",
+                            }}
+                          >
+                            <span className="lay-outstyle mt-1">Market</span>
+                          </a>
+                        </Link>
+                        <Link href="/jobs">
+                          <a className="nav-link">Jobs</a>
+                        </Link>
+                        <Link href="/parnerships">
+                          <a className="nav-link">Partnership</a>
+                        </Link>
+                        <Link href="/forum">
+                          <a className="nav-link">Forum</a>
+                        </Link>
+                        <Link href="/blog">
+                          <a
+                            className="nav-link"
+                            style={{
+                              color: router.pathname == "/blog" ? "" : "black",
+                            }}
+                          >
+                            <span className="lay-outstyle mt-1">Blog</span>
+                          </a>
+                        </Link>
+                        <Link href="/memberlist">
+                          <a
+                            className="nav-link"
+                            style={{
+                              color:
+                                router.pathname == "/memberlist" ? "" : "black",
+                            }}
+                          >
+                            <span className="lay-outstyle mt-1">Members</span>
+                          </a>
+                        </Link>
+                      </div>
+                    </div>
+                    <div className="ml-auto header-right">
+                      <Link href="/auth/login">
+                        <a
+                          className="landingpage_login_btn ml-6"
+                          id="landingpage_login_btn"
+                        >
+                          Login
+                        </a>
+                      </Link>
+                      <Link href="/auth/signup">
+                        <a
+                          className="btn btn-primary landingpage_signup_btn ml-5 mr-5"
+                          id="landingpage_signup_btn"
+                        >
+                          Signup
+                        </a>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {/* Mobile Drowndown Menu (Before log in) ends here*/}
+
+              {/* Menu Bar (Before log in) */}
+              <div>
+                <div className="d-none d-md-flex">
+                  {/*  <Link href="/market">
+                    <a
+                      className="nav-link"
+                      style={{
+                        color: router.pathname == "/market" ? "black" : "",
+                      }}
+                    >
+                      <span className="lay-outstyle mt-1">Market</span>
+                    </a>
+                  </Link> */}
+                  <Link href="/market">
+                    <a className="nav-link">Market</a>
+                  </Link>
+                  <Link href="/jobs">
+                    <a className="nav-link">Jobs</a>
+                  </Link>
+                  <Link href="/parnerships">
+                    <a className="nav-link">Partnership</a>
+                  </Link>
+                  <Link href="/forum">
+                    <a className="nav-link">Forum</a>
+                  </Link>
+                  <Link href="/blog">
+                    <a className="nav-link">Blog</a>
+                  </Link>
+                  <Link href="/memberlist">
+                    <a className="nav-link">Members</a>
+                  </Link>
+                  <div
+                    className="d-flex order-lg-2 ml-auto header-right"
+                    style={{ paddingLeft: "230px" }}
+                  >
+                    <Link href="/auth/login">
+                      <a
+                        className="landingpage_login_btn ml-6"
+                        id="landingpage_login_btn"
+                      >
+                        Login
+                      </a>
+                    </Link>
+                    <Link href="/auth/signup">
+                      <a
+                        className="btn btn-primary landingpage_signup_btn ml-5 mr-5"
+                        id="landingpage_signup_btn"
+                      >
+                        Signup
+                      </a>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+              {/* Menu Bar (Before log in) ends here */}
+            </>
+          ) : (
+            <Link href="/">
+              <a className="header-brand">
+                <img
+                  src="/assets/images/Logo.png"
+                  className="header-brand-img login-logo"
+                  alt="logo"
+                  style={{ marginLeft: "-1em" }}
+                />
+              </a>
+            </Link>
+          )}
         </div>
       </div>
     </div>

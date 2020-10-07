@@ -1,4 +1,15 @@
-const loggedInPopup = ({ loggedIn, uprofile, isReady = false }) => {
+import { useRouter } from "next/router";
+const loggedInPopup = ({ loggedIn, uprofile, title, isReady = false }) => {
+  const router = useRouter();
+
+  // if (title === "Organizations")
+  //   router.push({
+  //     pathname: "/businessprofiledetails",
+  //     query: { pid: uprofile.user.id },
+  //   });
+
+  // console.log("UPROFILE:",uprofile)
+  console.log("TITLE:", title);
   const accessible = (loggedIn, uprofile) => {
     return (
       <div className="dropdown-menu">
@@ -85,7 +96,9 @@ const loggedInPopup = ({ loggedIn, uprofile, isReady = false }) => {
       uprofile,
       "Please signup for more information"
     );
-  } else if (uprofile.privacy_level === "me") {
+  }
+
+  if (uprofile.privacy_level === "me") {
     return notAccesible(loggedIn, uprofile, "This profile is set to private.");
   } else if (uprofile.privacy_level === "or") {
     if (loggedIn.user.is_organization === true) {
@@ -99,6 +112,12 @@ const loggedInPopup = ({ loggedIn, uprofile, isReady = false }) => {
     }
   } else if (uprofile.privacy_level === "orc") {
     return accessible(loggedIn, uprofile);
+  } else {
+    return notAccesible(
+      loggedIn,
+      uprofile,
+      "Please signup for more information"
+    );
   }
 };
 
