@@ -146,79 +146,6 @@ const Navbar = (props) => {
                         </Link>
                       </div>
                     </div>
-
-                    <div className="ml-auto header-right">
-                      <div className="dropdown header-profile">
-                        <a
-                          className="nav-link pr-0 leading-none d-flex pt-1"
-                          data-toggle="dropdown"
-                        >
-                          <span
-                            className="avatar avatar-md brround cover-image"
-                            data-image-src="/images/blank_avatar.jpeg"
-                            style={{
-                              background: `url(${userimage}) center center`,
-                            }}
-                          ></span>
-                          <div className="ml-3">
-                            <span style={{ color: "#3f3d56", fontWeight: 700 }}>
-                              {username}
-                              <i className="fe fe-chevron-down ml-1" />
-                            </span>
-                          </div>
-                        </a>
-                        <div className="dropdown-menu profiledrop dropdown-menu-right dropdown-menu-arrow">
-                          <Link
-                            href={
-                              isOrganization ? "/businessprofile" : "/profile"
-                            }
-                          >
-                            <a className="dropdown-item itemname">
-                              <i className="dropdown-icon fe fe-user" />
-                              View Profile
-                            </a>
-                          </Link>
-                          <Link href="/auth/account-settings">
-                            <a className="dropdown-item itemname">
-                              <i className="dropdown-icon fe fe-edit" />
-                              Account Setting
-                            </a>
-                          </Link>
-
-                          <a
-                            className="dropdown-item itemname"
-                            href="#"
-                            onClick={logout}
-                          >
-                            <i className="dropdown-icon fe fe-power" /> Log Out
-                          </a>
-                          <div className="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                            <Link
-                              href={
-                                isOrganization ? "/businessprofile" : "/profile"
-                              }
-                            >
-                              <a className="dropdown-item itemname">
-                                <i className="dropdown-icon fe fe-user" />
-                                View Profile
-                              </a>
-                            </Link>
-                            <a className="dropdown-item itemname" href="#">
-                              <i className="dropdown-icon fe fe-edit" />
-                              Account Setting
-                            </a>
-                            <a
-                              className="dropdown-item itemname"
-                              href="#"
-                              onClick={logout}
-                            >
-                              <i className="dropdown-icon fe fe-power" /> Log
-                              Out
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -228,6 +155,7 @@ const Navbar = (props) => {
               {/* Menu Bar (when logged in) */}
               <div>
                 <div className="d-none d-md-flex">
+                <div className="d-none dropdown d-md-flex header-settings ml-auto">
                   <Link href="/market">
                     <a
                       className="nav-link"
@@ -238,26 +166,18 @@ const Navbar = (props) => {
                       <span className="lay-outstyle mt-1">Market</span>
                     </a>
                   </Link>
-                  <Link href="/jobs">
-                    <a className="nav-link">Jobs</a>
-                  </Link>
-                  <Link href="/parnerships">
-                    <a className="nav-link">Partnership</a>
-                  </Link>
-                  <Link href="/forum">
-                    <a className="nav-link">Forum</a>
-                  </Link>
-                  <Link href="/blog">
-                    <a
-                      className="nav-link"
-                      style={{
-                        color: router.pathname == "/blog" ? "" : "black",
-                      }}
-                    >
-                      <span className="lay-outstyle mt-1">Blog</span>
-                    </a>
-                  </Link>
-                  <Link href="/memberlist">
+                <Link href="/jobs">
+                  <a
+                    className="nav-link"
+                    style={{
+                      color: router.pathname == "/jobs" ? "" : "black",
+                    }}
+                  >
+                    <span className="lay-outstyle mt-1">Jobs</span>
+                  </a>
+                </Link>
+                {isLoggedIn ? (
+                  <Link href="/partnerships">
                     <a
                       className="nav-link"
                       style={{
@@ -268,6 +188,36 @@ const Navbar = (props) => {
                       <span className="lay-outstyle mt-1">Partnerships</span>
                     </a>
                   </Link>
+                ) : null}
+                <Link href="/forum">
+                  <a
+                    className="nav-link"
+                    style={{
+                      color: router.pathname == "/forum" ? "" : "black",
+                    }}
+                  >
+                    <span className="lay-outstyle mt-1">Forum</span>
+                  </a>
+                </Link>
+                <Link href="/blog">
+                  <a
+                    className="nav-link"
+                    style={{ color: router.pathname == "/blog" ? "" : "black" }}
+                  >
+                    <span className="lay-outstyle mt-1">Blog</span>
+                  </a>
+                </Link>
+                <Link href={`/${memberlistlink}`}>
+                  <a
+                    className="nav-link"
+                    style={{
+                      color: router.pathname == "/memberlist" ? "" : "black",
+                    }}
+                  >
+                    <span className="lay-outstyle mt-1">Members</span>
+                  </a>
+                </Link>
+              </div>
                   <div
                     className="d-flex order-lg-2 ml-auto header-right"
                     style={{ paddingLeft: "230px" }}
