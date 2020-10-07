@@ -11,7 +11,11 @@ const ProductCard = ({ product }) => {
           <i className="fe fe-shopping-cart cart-icon"></i>
         </button>
         <img
-          src={product.image_1}
+          src={
+            product.image_1
+            ? product.image_1
+            : "/assets/images/product-card-default1.jpg"
+          }
           id="product-image"
           className="card-img-top mx-auto"
           alt="..."
