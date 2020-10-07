@@ -858,17 +858,6 @@ h5.table-title-market {
   padding-left: 55px;
 }
 
-.hamburger{
-  position: absolute;
-  display: none;
-  top: 75px;
-  left: -20px;
-  background-color: transparent;
-  border: 0;
-  color: #818aa9;
-  font-size: 20px;
-}
-
 #list {
   padding-left: 60px;
   display: none;
@@ -1042,22 +1031,14 @@ h5.table-title-market {
   color: black;
 }
 
-@media screen and (max-width: 767px){
-  .sidenav{
-    display: none;
+@media screen and (max-width: 768px){
+  #main{
+    margin-left: 60px !important;
   }
 
-  .hamburger{
-    display: block;
-  }
-
-  .openicon{
-    display: none;
-  }
-
-  .form-rounded{
-    width: 90px;
-    display: inline-flex;
+  .searchbox-width{
+    width: 7rem;
+    margin-left: 13px;
   }
 }
 

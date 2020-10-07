@@ -242,7 +242,7 @@ export default function userList() {
               <i className="fe fe-search fa-lg" />
               <input
                 id="searchmember"
-                className="form-control form-rounded"
+                className="form-control form-rounded searchbox-width"
                 type="text"
                 placeholder="Search..."
                 onChange={searchLocation}

@@ -24,25 +24,25 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
-    "/auth/login": [
+    "/auth/account-settings": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/auth/login.js"
-    ],
-    "/auth/signup": [
-      "static/chunks/main.js",
-      "static/chunks/webpack.js",
-      "static/chunks/pages/auth/signup.js"
-    ],
-    "/businessprofile": [
-      "static/chunks/main.js",
-      "static/chunks/webpack.js",
-      "static/chunks/pages/businessprofile.js"
+      "static/chunks/pages/auth/account-settings.js"
     ],
     "/market": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
       "static/chunks/pages/market.js"
+    ],
+    "/next/dist/pages/_error": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/next/dist/pages/_error.js"
+    ],
+    "/userList": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/userList.js"
     ]
   },
   "ampFirstPages": []
