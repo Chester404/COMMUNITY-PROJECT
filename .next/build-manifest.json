@@ -29,27 +29,10 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
-<<<<<<< HEAD
-    "/auth/account-settings": [
+    "/auth/signup": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/auth/account-settings.js"
-    ],
-    "/auth/login": [
-      "static/chunks/main.js",
-      "static/chunks/webpack.js",
-      "static/chunks/pages/auth/login.js"
-=======
-    "/memberlist": [
-      "static/chunks/main.js",
-      "static/chunks/webpack.js",
-      "static/chunks/pages/memberlist.js"
-    ],
-    "/next/dist/pages/_error": [
-      "static/chunks/main.js",
-      "static/chunks/webpack.js",
-      "static/chunks/pages/next/dist/pages/_error.js"
->>>>>>> 3ac788b39b98a53683f121b08d6894321855fbc4
+      "static/chunks/pages/auth/signup.js"
     ]
   },
   "ampFirstPages": []
