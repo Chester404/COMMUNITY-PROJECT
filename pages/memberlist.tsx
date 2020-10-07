@@ -4,12 +4,16 @@ import { Users } from "../lib/endpoints";
 import { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/router";
 import { Store } from "../contextStore";
+import { Console } from "console";
+import Link from "next/link";
 const disabled = {};
+
 interface IPaginateProps {
   callback(i: number): void;
   recordsPerpage: number;
   totalRecords: number;
 }
+
 const Pagination = ({
   callback,
   recordsPerpage,
@@ -73,6 +77,7 @@ const Pagination = ({
     </div>
   );
 };
+
 export default function Home() {
   const [userProfiles, setUserProfiles] = useState([]);
   const [tempList, setTempList] = useState([]);
@@ -82,12 +87,15 @@ export default function Home() {
   const [userProfile, setUserProfile] = useState();
   const [readyPopupData, setReadyPopupData] = useState(false);
   const [togglelist, setTogglelist] = useState(true);
+  const [torender, setTorender] = useState("");
+  const [dropdown, setDropdown] = useState("");
   // const [rs, setRs] = useState([]);
-  const [title, setTitle] = useState("Individuals");
+  const [title, setTitle] = useState("Organizations");
   const { state } = useContext(Store);
   const router = useRouter();
 
-  const getUserDetails = async (id) => {
+  const getUserDetails = async (id, uprofile) => {
+    console.log("inside details:");
     setReadyPopupData(false);
     let rs = await new Users().getUserAccountDetails(id);
     console.log("RES:", rs);
@@ -97,23 +105,31 @@ export default function Home() {
   const handleOpenIndividualOrganization = (id) => {
     router.push("/individualorganizationprofile");
   };
+
   useEffect(() => {
     (async () => {
       let rs = null;
       if (state.userProfile.name == undefined) {
-        if (togglelist) rs = await new Users().getUnregisteredUsersProfile();
-        else rs = await new Users().getOrganizationProfilesForAdmin();
+        if (togglelist)
+          rs = await new Users().getOrganizationProfilesForAdmin();
+        else rs = await new Users().getUnregisteredUsersProfile();
       } else {
+        console.log("Wrong call");
         rs = await new Users().getProfiles();
       }
+      if (rs.error) return;
 
       // setRs(rs);
-      console.log("rs:", rs.slice(0, recordsPerPage));
+      // console.log("rs:", rs.slice(0, recordsPerPage));
       // let temp = rs.filter((uprofile: any) => {
       //   return uprofile.user.is_organization === togglelist;
       // // });
-      // setTempList(rs);
-      setUserProfiles(rs);
+      setTempList(rs);
+      try {
+        setUserProfiles(rs.slice(0, recordsPerPage));
+      } catch (e) {
+        console.log("Error", e);
+      }
       // settotalRecords(rs.length);
     })();
   }, [togglelist]);
@@ -149,10 +165,14 @@ export default function Home() {
   const toggleIndividual = () => {
     setTogglelist(false);
     setTitle("Individuals");
+    setTorender("Individuals");
+    setDropdown("dropdown");
   };
   const toggleOrganization = () => {
     setTogglelist(true);
     setTitle("Organizations");
+    setTorender("Organizations");
+    setDropdown(null);
   };
   return (
     <>
@@ -278,8 +298,21 @@ export default function Home() {
                         <div className="dropdown ddmargin">
                           <a
                             className="nav-link"
-                            data-toggle="dropdown"
-                            onClick={() => getUserDetails(uprofile.id)}
+                            data-toggle={dropdown}
+                            onClick={(e) => {
+                              console.log("E:", e);
+                              if (title === "Individuals") {
+                                setTorender("Individuals");
+                                setDropdown("dropdown");
+                              } else if (title === "Organizations") {
+                                setTorender("Organizations");
+                                router.push({
+                                  pathname: "/businessprofiledetails",
+                                  query: { pid: uprofile.user.id },
+                                });
+                              }
+                              getUserDetails(uprofile.user.id, uprofile);
+                            }}
                           >
                             <span
                               className="avatar avatar-md brround cover-image"
@@ -295,13 +328,30 @@ export default function Home() {
                               className="brround ddimg"
                               alt=""
                             />
-                            <span className="ml-5 column-color" id="memberid">
-                              {uprofile.name}
-                            </span>
+                            {title === "Individuals" && uprofile.name === "" ? (
+                              <span className="ml-5 column-color" id="memberid">
+                                No name
+                              </span>
+                            ) : title === "Individuals" &&
+                              uprofile.name !== "" ? (
+                              <span className="ml-5 column-color" id="memberid">
+                                {uprofile.name}
+                              </span>
+                            ) : title === "Organizations" &&
+                              uprofile.title === null ? (
+                              <span className="ml-5 column-color" id="memberid">
+                                No title
+                              </span>
+                            ) : title === "Organizations" &&
+                              uprofile.title !== null ? (
+                              <span className="ml-5 column-color" id="memberid">
+                                {uprofile.title}
+                              </span>
+                            ) : null}
                           </a>
                           {
-                            /* display conditionally */
                             <UserProfilePopup
+                              title={torender}
                               loggedIn={userProfile}
                               uprofile={uprofile}
                               isReady={readyPopupData}
@@ -310,7 +360,19 @@ export default function Home() {
                         </div>{" "}
                       </td>
                       <td>
-                        <p className="mt-2">{uprofile.street_address}</p>
+                        {title === "Individuals" &&
+                        uprofile.street_address === "" ? (
+                          <p className="mt-2">No location</p>
+                        ) : title === "Individuals" &&
+                          uprofile.street_address !== "" ? (
+                          <p className="mt-2">{uprofile.street_address}</p>
+                        ) : title === "Organizations" &&
+                          uprofile.location === null ? (
+                          <p className="mt-2">No location</p>
+                        ) : title === "Organizations" &&
+                          uprofile.location !== null ? (
+                          <p className="mt-2">{uprofile.location}</p>
+                        ) : null}
                       </td>
                       {togglelist ? null : (
                         <>

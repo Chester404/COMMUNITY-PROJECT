@@ -97,13 +97,18 @@ export default function userList() {
   };
 
   const individuals = (rs) => {
-    return rs.filter((uprofile: any) => {
-      return (
-        uprofile.user.is_staff === false &&
-        uprofile.user.is_organization === false &&
-        uprofile.user.email !== state.userProfile.user.email
-      );
-    });
+    try {
+      return rs.filter((uprofile: any) => {
+        return (
+          uprofile.user.is_staff === false &&
+          uprofile.user.is_organization === false &&
+          uprofile.user.email !== state.userProfile.user.email
+        );
+      });
+    }catch (e) {
+        
+    }
+  
   };
 
   const organizations = (rs) => {
@@ -182,6 +187,7 @@ export default function userList() {
     let temp: any;
     switch (str) {
       case "individuals":
+        console.log("heye", individuals);
         temp = individuals(tempprofile).filter((uprofile: any) => {
           return uprofile.user.is_active === true;
         });

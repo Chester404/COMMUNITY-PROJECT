@@ -20,7 +20,7 @@ const verifyLogin = (
       return { verified: false, path: "" };
     }
     if (router.pathname === "/memberlist") {
-      return { verified: false, path: "" };
+      return { verified: true, path: "" };
     }
     if (router.pathname === "/") {
       return { verified: false, path: "" };

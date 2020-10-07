@@ -34,6 +34,17 @@ export default function Home() {
   const fileRef = useRef<HTMLInputElement>(null);
   const [shouldUploadImage, setShouldUpalodImage] = useState(false);
   const [isReady, setIsReady] = useState(false);
+  const [macChar, setMaxChar] = useState("");
+
+  function isValidUrl(string) {
+    try {
+      new URL(string);
+    } catch (_) {
+      return false;
+    }
+
+    return true;
+  }
 
   const triggerUpload = () => {
     fileRef.current!.click();
@@ -62,16 +73,6 @@ export default function Home() {
   };
 
   const submitData = async () => {
-    console.log({
-      name: name,
-      phone: phone,
-      website: website,
-      region: region,
-      location: location,
-      category: category,
-      description: description,
-      city: city,
-    });
     if ((name && name.length <= 0) || !/^([a-zA-Z0-9 _-]+)$/.test(name)) {
       callPrompt(
         "Edit Profile",
@@ -90,7 +91,15 @@ export default function Home() {
       }
     }
 
-    callPrompt("Edit Profile", "", "", "Please wait...");
+    if (!isValidUrl(website)) {
+      callPrompt(
+        "Edit Profile",
+        "",
+        "Close",
+        "Invalid URL. Example Format should be (http://domain.com)"
+      );
+      return;
+    }
 
     if (!name || !category || !phone || !region || !location) {
       callPrompt(
@@ -101,6 +110,7 @@ export default function Home() {
       );
       return;
     } else {
+      callPrompt("Edit Profile", "", "", "Please wait...");
       const response = await new Users().updateBusinessProfile({
         title: name,
         phone: phone,
@@ -147,8 +157,12 @@ export default function Home() {
     });
 
     let lStorage: any = window.localStorage.getItem("cp-a");
+    let upr: any = JSON.parse(window.localStorage.getItem("user-profile"));
     lStorage = JSON.parse(lStorage);
     if (lStorage) {
+      upr.title = name;
+      upr.image = userImage;
+      window.localStorage.setItem("user-profile", JSON.stringify(upr));
       lStorage.username = name;
       lStorage.image = userImage;
       window.localStorage.setItem("cp-a", JSON.stringify(lStorage));
@@ -337,6 +351,14 @@ export default function Home() {
                       htmlFor="form-label"
                     >
                       Description
+                      {description.length > 99 ? (
+                        <span style={{ fontSize: "0.7rem", color: "red" }}>
+                          Maximum allowed charactes is 100. The rest will be
+                          truncated
+                        </span>
+                      ) : (
+                        ""
+                      )}
                     </label>
                     <div className="form-group">
                       <div className="input-group-date">
@@ -344,7 +366,9 @@ export default function Home() {
                           style={{ resize: "none" }}
                           className="form-control form-rounded "
                           rows={4}
-                          onChange={(e) => setDescription(e.target.value)}
+                          onChange={(e) => {
+                            setDescription(e.target.value);
+                          }}
                           value={description}
                         ></textarea>
                       </div>
@@ -456,9 +480,8 @@ export default function Home() {
                     </button>
                   </Link>
                 </div>
-                
               </div>
-              
+
               {/* </div> */}
             </div>
           </div>
