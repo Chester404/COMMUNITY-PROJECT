@@ -14,6 +14,11 @@
     "static/development/_ssgManifest.js"
   ],
   "pages": {
+    "/": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/index.js"
+    ],
     "/_app": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
@@ -24,15 +29,25 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
+    "/auth/resetpassword": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/auth/resetpassword.js"
+    ],
     "/businessprofile": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
       "static/chunks/pages/businessprofile.js"
     ],
-    "/editbusinessprofile": [
+    "/market": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/editbusinessprofile.js"
+      "static/chunks/pages/market.js"
+    ],
+    "/next/dist/pages/_error": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/next/dist/pages/_error.js"
     ]
   },
   "ampFirstPages": []

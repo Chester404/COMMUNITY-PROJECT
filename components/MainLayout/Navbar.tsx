@@ -74,37 +74,27 @@ const Navbar = (props) => {
       }}
     >
       <div className="container">
-        <div className="d-flex justify-content-between">
-          <div className="animated-arrow hor-toggle horizontal-navtoggle">
-            <Link href="/">
-              <a className="header-brand">
-                <img
-                  src="/assets/images/Logo.png"
-                  className="header-brand-img main-logo"
-                  alt="logo"
-                  style={{ marginLeft: "-1em", marginTop: "43px" }}
-                />
-              </a>
-            </Link>
-            {!tempholder ? (
-              <>
-                <Link href="/">
-                  <a className="header-brand">
-                    <img
-                      src="/assets/images/Logo.png"
-                      className="header-brand-img login-logo ml-1"
-                      alt="logo"
-                      style={{ marginLeft: "-1em" }}
-                    />
-                  </a>
-                </Link>
-              </>
-            ) : null}
-          </div>
+        <div className="d-flex">
+          <a className="animated-arrow hor-toggle horizontal-navtoggle">
+            <span />
+          </a>
+
+          {/* Logo */}
+          <Link href="/">
+            <a className="header-brand">
+              <img
+                src="/assets/images/Logo.png"
+                className="header-brand-img main-logo"
+                alt="logo"
+                style={{ marginLeft: "-1em" }}
+              />
+            </a>
+          </Link>
+          {/* Logo ends here */}
 
           {isLoggedIn ? (
             <>
-              {/* logo*/}
+              {/* Mobile Drowndown Menu (When logged in)*/}
               <div className="dropdown">
                 <a className="nav-link" data-toggle="dropdown" href="#">
                   <a className="btn btn-secondary mobile-menubtn btn-icon text-white mr-2">
@@ -155,8 +145,11 @@ const Navbar = (props) => {
                   </Link>
                 </div>
               </div>
-              <div className="ml-5">
-                <div className="d-none dropdown d-md-flex header-settings ml-auto">
+              {/* Mobile Drowndown Menu (When logged in) ends here*/}
+
+              {/* Menu Bar (when logged in) */}
+              <div>
+                <div className="d-none d-md-flex">
                   <Link href="/market">
                     <a
                       className="nav-link"
@@ -168,37 +161,13 @@ const Navbar = (props) => {
                     </a>
                   </Link>
                   <Link href="/jobs">
-                    <a
-                      className="nav-link"
-                      style={{
-                        color: router.pathname == "/jobs" ? "" : "black",
-                      }}
-                    >
-                      <span className="lay-outstyle mt-1">Jobs</span>
-                    </a>
+                    <a className="nav-link">Jobs</a>
                   </Link>
-                  {isLoggedIn ? (
-                    <Link href="/partnerships">
-                      <a
-                        className="nav-link"
-                        style={{
-                          color:
-                            router.pathname == "/partnerships" ? "" : "black",
-                        }}
-                      >
-                        <span className="lay-outstyle mt-1">Partnerships</span>
-                      </a>
-                    </Link>
-                  ) : null}
+                  <Link href="/parnerships">
+                    <a className="nav-link">Partnership</a>
+                  </Link>
                   <Link href="/forum">
-                    <a
-                      className="nav-link"
-                      style={{
-                        color: router.pathname == "/forum" ? "" : "black",
-                      }}
-                    >
-                      <span className="lay-outstyle mt-1">Forum</span>
-                    </a>
+                    <a className="nav-link">Forum</a>
                   </Link>
                   <Link href="/blog">
                     <a
@@ -210,7 +179,7 @@ const Navbar = (props) => {
                       <span className="lay-outstyle mt-1">Blog</span>
                     </a>
                   </Link>
-                  <Link href={`/${memberlistlink}`}>
+                  <Link href="/memberlist">
                     <a
                       className="nav-link"
                       style={{
@@ -220,55 +189,30 @@ const Navbar = (props) => {
                       <span className="lay-outstyle mt-1">Members</span>
                     </a>
                   </Link>
-                </div>
-                <div className="d-flex order-lg-2 ml-auto header-right">
-                  {/*  <a href="#" className="nav-link icon full-screen-link">
-              <i className="fa fa-bell-o" />
-            </a> */}
-                  {/*Navbar */}
-                  <div className="dropdown header-profile">
-                    <a
-                      className="nav-link pr-0 leading-none d-flex pt-1"
-                      data-toggle="dropdown"
-                    >
-                      <span
-                        className="avatar avatar-md brround cover-image"
-                        data-image-src="/images/blank_avatar.jpeg"
-                        style={{
-                          background: `url(${userimage}) center center`,
-                        }}
-                      ></span>
-                      <div className="ml-3">
-                        <span style={{ color: "#3f3d56", fontWeight: 700 }}>
-                          {username}
-                          <i className="fe fe-chevron-down ml-1" />
-                        </span>
-                      </div>
-                    </a>
-                    <div className="dropdown-menu profiledrop dropdown-menu-right dropdown-menu-arrow">
-                      <Link
-                        href={isOrganization ? "/businessprofile" : "/profile"}
-                      >
-                        <a className="dropdown-item itemname">
-                          <i className="dropdown-icon fe fe-user" />
-                          View Profile
-                        </a>
-                      </Link>
-                      <Link href="/auth/account-settings">
-                        <a className="dropdown-item itemname">
-                          <i className="dropdown-icon fe fe-edit" />
-                          Account Setting
-                        </a>
-                      </Link>
-
+                  <div
+                    className="d-flex order-lg-2 ml-auto header-right"
+                    style={{ paddingLeft: "230px" }}
+                  >
+                    <div className="dropdown header-profile">
                       <a
-                        className="dropdown-item itemname"
-                        href="#"
-                        onClick={logout}
+                        className="nav-link pr-0 leading-none d-flex pt-1"
+                        data-toggle="dropdown"
                       >
-                        <i className="dropdown-icon fe fe-power" /> Log Out
+                        <span
+                          className="avatar avatar-md brround cover-image"
+                          data-image-src="/images/blank_avatar.jpeg"
+                          style={{
+                            background: `url(${userimage}) center center`,
+                          }}
+                        ></span>
+                        <div className="ml-3">
+                          <span style={{ color: "#3f3d56", fontWeight: 700 }}>
+                            {username}
+                            <i className="fe fe-chevron-down ml-1" />
+                          </span>
+                        </div>
                       </a>
-                      <div className="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                      <div className="dropdown-menu profiledrop dropdown-menu-right dropdown-menu-arrow">
                         <Link
                           href={
                             isOrganization ? "/businessprofile" : "/profile"
@@ -279,10 +223,13 @@ const Navbar = (props) => {
                             View Profile
                           </a>
                         </Link>
-                        <a className="dropdown-item itemname" href="#">
-                          <i className="dropdown-icon fe fe-edit" />
-                          Account Setting
-                        </a>
+                        <Link href="/auth/account-settings">
+                          <a className="dropdown-item itemname">
+                            <i className="dropdown-icon fe fe-edit" />
+                            Account Setting
+                          </a>
+                        </Link>
+
                         <a
                           className="dropdown-item itemname"
                           href="#"
@@ -290,14 +237,39 @@ const Navbar = (props) => {
                         >
                           <i className="dropdown-icon fe fe-power" /> Log Out
                         </a>
+                        <div className="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                          <Link
+                            href={
+                              isOrganization ? "/businessprofile" : "/profile"
+                            }
+                          >
+                            <a className="dropdown-item itemname">
+                              <i className="dropdown-icon fe fe-user" />
+                              View Profile
+                            </a>
+                          </Link>
+                          <a className="dropdown-item itemname" href="#">
+                            <i className="dropdown-icon fe fe-edit" />
+                            Account Setting
+                          </a>
+                          <a
+                            className="dropdown-item itemname"
+                            href="#"
+                            onClick={logout}
+                          >
+                            <i className="dropdown-icon fe fe-power" /> Log Out
+                          </a>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
+              {/* Menu Bar (when logged in) ends here */}
             </>
           ) : tempholder ? (
             <>
+              {/* Mobile Drowndown Menu (Before log in)*/}
               <div className="dropdown">
                 <a className="nav-link" data-toggle="dropdown" href="#">
                   <a className="btn btn-secondary mobiletem-menubtn btn-icon text-white mr-2">
@@ -367,73 +339,63 @@ const Navbar = (props) => {
                   </div>
                 </div>
               </div>
-              <div className="navbar-list ml-5 mr-0 justify-content-between">
-                <div className="d-none dropdown d-md-flex">
-                  <Link href="/market">
+              {/* Mobile Drowndown Menu (Before log in) ends here*/}
+
+              {/* Menu Bar (Before log in) */}
+              <div>
+                <div className="d-none d-md-flex">
+                  {/*  <Link href="/market">
                     <a
                       className="nav-link"
                       style={{
-                        color: router.pathname == "/market" ? "" : "#3f3d56",
+                        color: router.pathname == "/market" ? "black" : "",
                       }}
                     >
                       <span className="lay-outstyle mt-1">Market</span>
                     </a>
+                  </Link> */}
+                  <Link href="/market">
+                    <a className="nav-link">Market</a>
                   </Link>
-                  <a className="nav-link">
-                    <span className="lay-outstyle mt-1">Jobs</span>
-                  </a>
-
-                  <a className="nav-link">
-                    <span className="lay-outstyle mt-1">Partnership</span>
-                  </a>
-                  <a className="nav-link">
-                    <span className="lay-outstyle mt-1">Forum</span>
-                  </a>
+                  <Link href="/jobs">
+                    <a className="nav-link">Jobs</a>
+                  </Link>
+                  <Link href="/parnerships">
+                    <a className="nav-link">Partnership</a>
+                  </Link>
+                  <Link href="/forum">
+                    <a className="nav-link">Forum</a>
+                  </Link>
                   <Link href="/blog">
-                    <a
-                      className="nav-link"
-                      style={{
-                        color: router.pathname == "/blog" ? "" : "#3f3d56",
-                      }}
-                    >
-                      <span className="lay-outstyle mt-1">Blog</span>
-                    </a>
+                    <a className="nav-link">Blog</a>
                   </Link>
                   <Link href="/memberlist">
-                    <a
-                      className="nav-link"
-                      style={{
-                        color:
-                          router.pathname == "/memberlist" ? "" : "#3f3d56",
-                      }}
-                    >
-                      <span className="lay-outstyle mt-1">Members</span>
-                    </a>
+                    <a className="nav-link">Members</a>
                   </Link>
+                  <div
+                    className="d-flex order-lg-2 ml-auto header-right"
+                    style={{ paddingLeft: "230px" }}
+                  >
+                    <Link href="/auth/login">
+                      <a
+                        className="landingpage_login_btn ml-6"
+                        id="landingpage_login_btn"
+                      >
+                        Login
+                      </a>
+                    </Link>
+                    <Link href="/auth/signup">
+                      <a
+                        className="btn btn-primary landingpage_signup_btn ml-5 mr-5"
+                        id="landingpage_signup_btn"
+                      >
+                        Signup
+                      </a>
+                    </Link>
+                  </div>
                 </div>
-
-                <div className="landingpage_login_signup_btns mr-0">
-                  <Link href="/auth/login">
-                    <a
-                      className="landingpage_login_btn ml-6"
-                      id="landingpage_login_btn"
-                    >
-                      Login
-                    </a>
-                  </Link>
-                  <Link href="/auth/signup">
-                    <a
-                      className="btn btn-primary landingpage_signup_btn ml-5 mr-5"
-                      id="landingpage_signup_btn"
-                      style={{ marginTop: "43px" }}
-                    >
-                      Signup
-                    </a>
-                  </Link>
-                </div>
-
-                {/*your paste ends here*/}
               </div>
+              {/* Menu Bar (Before log in) ends here */}
             </>
           ) : null}
         </div>
