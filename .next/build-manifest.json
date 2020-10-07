@@ -24,6 +24,11 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
+    "/businessprofile": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/businessprofile.js"
+    ],
     "/market": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",

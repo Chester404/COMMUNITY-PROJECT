@@ -254,16 +254,16 @@ const Navbar = (props) => {
 
               {/* logo*/}
               <div className="d-none dropdown d-md-flex header-settings ml-auto">
-                <Link href="/market">
-                  <a
-                    className="nav-link"
-                    style={{
-                      color: router.pathname == "/market" ? "" : "black",
-                    }}
-                  >
-                    <span className="lay-outstyle mt-1">Market</span>
-                  </a>
-                </Link>
+                  <Link href="/market">
+                    <a
+                      className="nav-link"
+                      style={{
+                        color: router.pathname == "/market" ? "" : "black",
+                      }}
+                    >
+                      <span className="lay-outstyle mt-1">Market</span>
+                    </a>
+                  </Link>
                 <Link href="/jobs">
                   <a
                     className="nav-link"
