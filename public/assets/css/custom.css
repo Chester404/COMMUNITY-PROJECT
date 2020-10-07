@@ -777,7 +777,18 @@ h5.table-title-market {
   
 }
 
+.businessProfilebtn{
+  margin: 0px;
+}
+
   @media screen and (max-width: 800px){
+    .savebtn{
+      margin: auto;
+    }
+    .cancelbtn{
+      justify-content: center;
+      margin: auto;
+    }
     .businessProfilebtn{
       margin: auto;
     }

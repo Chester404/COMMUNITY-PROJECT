@@ -15,7 +15,7 @@ export default function Home() {
   const [city, setCity] = useState("");
   const [phone, setPhone] = useState("");
   const [region, setRegion] = useState("wr");
-  const [category, setCategory] = useState("agr");
+  const [category, setCategory] = useState("AB&M");
   const [website, setWebsite] = useState("");
   const [description, setDescription] = useState("");
 
@@ -163,7 +163,7 @@ export default function Home() {
       setName(rs.title);
       setPhone(rs.phone);
       setCity(rs.city);
-      setCategory(rs.category ? rs.category : "agr");
+      setCategory(rs.category ? rs.category : "AB&M");
       setRegion(rs.region ? rs.region : "wr");
       setLocation(rs.location);
       setWebsite(rs.website);
@@ -359,7 +359,7 @@ export default function Home() {
                     <input
                       type="text"
                       className="form-control form-rounded"
-                      placeholder="eg.www.yourwebsite.com"
+                      placeholder="eg. http://yourwebsite.com"
                       value={website}
                       onChange={(e) => setWebsite(e.target.value)}
                     />
@@ -456,14 +456,9 @@ export default function Home() {
                     </button>
                   </Link>
                 </div>
-                <div className="col-md-3"></div>
+                
               </div>
-              <div
-                className="btn-list"
-                style={{ marginLeft: "23%", marginRight: "23%" }}
-              >
-                <div className="row"></div>
-              </div>
+              
               {/* </div> */}
             </div>
           </div>
