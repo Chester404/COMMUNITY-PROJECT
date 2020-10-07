@@ -5,6 +5,7 @@ import { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/router";
 import { Store } from "../contextStore";
 import { Console } from "console";
+import Link from "next/link";
 const disabled = {};
 
 interface IPaginateProps {
@@ -86,12 +87,15 @@ export default function Home() {
   const [userProfile, setUserProfile] = useState();
   const [readyPopupData, setReadyPopupData] = useState(false);
   const [togglelist, setTogglelist] = useState(true);
+  const [torender, setTorender] = useState("");
+  const [dropdown, setDropdown] = useState("");
   // const [rs, setRs] = useState([]);
   const [title, setTitle] = useState("Organizations");
   const { state } = useContext(Store);
   const router = useRouter();
 
-  const getUserDetails = async (id) => {
+  const getUserDetails = async (id, uprofile) => {
+    console.log("inside details:");
     setReadyPopupData(false);
     let rs = await new Users().getUserAccountDetails(id);
     console.log("RES:", rs);
@@ -160,10 +164,14 @@ export default function Home() {
   const toggleIndividual = () => {
     setTogglelist(false);
     setTitle("Individuals");
+    setTorender("Individuals");
+    setDropdown("dropdown");
   };
   const toggleOrganization = () => {
     setTogglelist(true);
     setTitle("Organizations");
+    setTorender("Organizations");
+    setDropdown(null);
   };
   return (
     <>
@@ -283,15 +291,27 @@ export default function Home() {
               </thead>
               <tbody>
                 {userProfiles.map((uprofile: any, index: number) => {
-                  console.log("uprof:",uprofile)
                   return (
                     <tr key={index}>
                       <td>
                         <div className="dropdown ddmargin">
                           <a
                             className="nav-link"
-                            data-toggle="dropdown"
-                            onClick={() => getUserDetails(uprofile.user.id)}
+                            data-toggle={dropdown}
+                            onClick={(e) => {
+                              console.log("E:", e);
+                              if (title === "Individuals") {
+                                setTorender("Individuals");
+                                setDropdown("dropdown");
+                              } else if (title === "Organizations") {
+                                setTorender("Organizations");
+                                router.push({
+                                  pathname: "/businessprofiledetails",
+                                  query: { pid: uprofile.user.id },
+                                });
+                              }
+                              getUserDetails(uprofile.user.id, uprofile);
+                            }}
                           >
                             <span
                               className="avatar avatar-md brround cover-image"
@@ -307,9 +327,7 @@ export default function Home() {
                               className="brround ddimg"
                               alt=""
                             />
-                            {console.log("title:", title)}
-                            {title === "Individuals" &&
-                            uprofile.name === "" ? (
+                            {title === "Individuals" && uprofile.name === "" ? (
                               <span className="ml-5 column-color" id="memberid">
                                 No name
                               </span>
@@ -331,8 +349,8 @@ export default function Home() {
                             ) : null}
                           </a>
                           {
-                            /* display conditionally */
                             <UserProfilePopup
+                              title={torender}
                               loggedIn={userProfile}
                               uprofile={uprofile}
                               isReady={readyPopupData}
