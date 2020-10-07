@@ -75,7 +75,7 @@ export default function Home() {
                   <a
                     /* type="submit" */
                     className="btn btn-primary btn-block"
-                    id="editprofile_button"
+                    id="editprofile_button/"
                     /* onClick={() => (window.location.pathname = "/editprofile")} */
                   >
                     Edit Information

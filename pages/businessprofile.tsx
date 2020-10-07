@@ -57,7 +57,7 @@ export default function Home() {
                     onClick={() =>
                       (window.location.pathname = "/editbusinessprofile")
                     }
-                    className="btn btn-primary btn-block mt-1"
+                    className="btn btn-primary btn-block pt-2 editbtn"
                     style={{
                       borderRadius: "10px",
                       width: "200px",

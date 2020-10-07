@@ -329,22 +329,22 @@ export default function Home() {
                               alt=""
                             />
                             {title === "Individuals" && uprofile.name === "" ? (
-                              <span className="ml-5 column-color" id="memberid">
+                              <span className="ml-5 bolder-text" id="memberid">
                                 No name
                               </span>
                             ) : title === "Individuals" &&
                               uprofile.name !== "" ? (
-                              <span className="ml-5 column-color" id="memberid">
+                              <span className="ml-5 bolder-text " id="memberid">
                                 {uprofile.name}
                               </span>
                             ) : title === "Organizations" &&
                               uprofile.title === null ? (
-                              <span className="ml-5 column-color" id="memberid">
+                              <span className="ml-5 bolder-text" id="memberid">
                                 No title
                               </span>
                             ) : title === "Organizations" &&
                               uprofile.title !== null ? (
-                              <span className="ml-5 column-color" id="memberid">
+                              <span className="ml-5 bolder-text" id="memberid">
                                 {uprofile.title}
                               </span>
                             ) : null}
@@ -362,16 +362,16 @@ export default function Home() {
                       <td>
                         {title === "Individuals" &&
                         uprofile.street_address === "" ? (
-                          <p className="mt-2">No location</p>
+                          <p className="mt-3">No location</p>
                         ) : title === "Individuals" &&
                           uprofile.street_address !== "" ? (
-                          <p className="mt-2">{uprofile.street_address}</p>
+                          <p className="mt-3">{uprofile.street_address}</p>
                         ) : title === "Organizations" &&
-                          uprofile.location === null ? (
-                          <p className="mt-2">No location</p>
+                          uprofile.city === null ? (
+                          <p className="mt-3">No location</p>
                         ) : title === "Organizations" &&
-                          uprofile.location !== null ? (
-                          <p className="mt-2">{uprofile.location}</p>
+                        uprofile.city !== null ? (
+                          <p className="mt-3">{uprofile.city}</p>
                         ) : null}
                       </td>
                       {togglelist ? null : (

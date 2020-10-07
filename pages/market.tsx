@@ -87,7 +87,7 @@ const Pagination = ({
 
   return (
     <div className="col-md-12">
-      <div className="pagination ml-auto" style={{ float: "right" }}>
+      <div className="pagination ml-auto mb-5" style={{ float: "right" }}>
         <a
           href="#"
           onClick={() => {
@@ -156,7 +156,7 @@ export default function ProductsView() {
   const [altProductsList, setAltProductsList] = useState([]);
   const [tempList, setTempList] = useState([]);
   const [totalRecords, settotalRecords] = useState(0);
-  const [recordsPerPage] = useState(15);
+  const [recordsPerPage] = useState(16);
 
   useEffect(() => {
     (async () => {
@@ -229,7 +229,7 @@ export default function ProductsView() {
       <MainLayout>
         <div>
           <div
-            className="container mb-5"
+            className=" mb-5"
             id="header__container"
             style={{ width: "100%" }}
           >
@@ -285,7 +285,7 @@ export default function ProductsView() {
                     >
                       One Stop Online Market
                     </h6>
-                    <p style={{ width: "350px" }}>
+                    <p className="slider-text">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                       sed do eiusmod tempor incididunt ut labore et dolore magna
                       aliqua. Ut enim ad minim veniam, quis nostrud exercitation
@@ -322,7 +322,7 @@ export default function ProductsView() {
                     >
                       One Stop Online Market
                     </h6>
-                    <p style={{ width: "350px" }}>
+                    <p className="slider-text">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                       sed do eiusmod tempor incididunt ut labore et dolore magna
                       aliqua. Ut enim ad minim veniam, quis nostrud exercitation
@@ -358,7 +358,7 @@ export default function ProductsView() {
                     >
                       One Stop Online Market
                     </h6>
-                    <p style={{ width: "350px" }}>
+                    <p className="slider-text">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                       sed do eiusmod tempor incididunt ut labore et dolore magna
                       aliqua. Ut enim ad minim veniam, quis nostrud exercitation
@@ -367,38 +367,6 @@ export default function ProductsView() {
                   </div>
                 </div>
               </div>
-              <a
-                id="carousel-control-prev"
-                className="carousel-control-prev"
-                href="#carouselExampleIndicators"
-                role="button"
-                data-slide="prev"
-              >
-                <span
-                  className="carousel-control-prev-icon"
-                  id="carousel-control-prev-icon"
-                  aria-hidden="true"
-                ></span>
-                <span id="prev" className="sr-only">
-                  Previous
-                </span>
-              </a>
-              <a
-                id="carousel-control-next"
-                className="carousel-control-next"
-                href="#carouselExampleIndicators"
-                role="button"
-                data-slide="next"
-              >
-                <span
-                  id="carousel-control-next-icon"
-                  className="carousel-control-next-icon"
-                  aria-hidden="true"
-                ></span>
-                <span id="next" className="sr-only">
-                  Next
-                </span>
-              </a>
             </div>
             <div
               className="row justify-content-center mb-5"
@@ -490,7 +458,7 @@ export default function ProductsView() {
             </div>
             </div>
           </div>
-          <hr/>
+          <hr style={{width: "100%", border: "0.5px solid #c0c4d4 "}}/>
           
           <div className="row" id="product-row">
             {allproducts.map((product: any, index: number) => {
@@ -507,7 +475,7 @@ export default function ProductsView() {
           <div
             className="row"
             id="paginate-row"
-            style={{ margin: "10px", background: "#ffffff" }}
+            style={{ margin: "10px",}}
           >
             <Pagination
               callback={paginate}

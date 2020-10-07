@@ -44,7 +44,7 @@ const MainLayout = ({
     if (!rs.verified) {
       router.push("/");
     } else if (router.pathname === "/") {
-      router.push("/blog");
+      router.push("/");
     }
   }, []);
   return (

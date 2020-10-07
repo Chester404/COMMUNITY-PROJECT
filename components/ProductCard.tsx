@@ -3,21 +3,21 @@ import Link from "next/link";
 const ProductCard = ({ product }) => {
   return (
     <div className="col-md-3" id="product-card-div">
-      <div className="card" id="product-card" style={{borderRadius:"1em"}}>
+      <div className="card" id="product-card">
         <button
           id="cart-button"
           className="btn btn-info card-shopping"
         >
           <i className="fe fe-shopping-cart cart-icon"></i>
         </button>
-        <img
+        <img 
           src={
             product.image_1
             ? product.image_1
             : "/assets/images/product-card-default1.jpg"
           }
           id="product-image"
-          className="card-img-top mx-auto"
+          className="card-img-top mx-auto card-image"
           alt="..."
           style={{ height: "12.5rem", objectFit: "fill", zIndex: 1 }}
         />
@@ -48,6 +48,9 @@ const ProductCard = ({ product }) => {
         </div>
       </div>
     </div>
+
+
+    
   );
 };
 

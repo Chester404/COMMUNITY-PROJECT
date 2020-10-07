@@ -117,7 +117,7 @@ const Navbar = (props) => {
                         <Link href="/jobs">
                           <a className="nav-link">Jobs</a>
                         </Link>
-                        <Link href="/parnerships">
+                        <Link href="/partnerships">
                           <a className="nav-link">Partnership</a>
                         </Link>
                         <Link href="/forum">
@@ -155,7 +155,7 @@ const Navbar = (props) => {
               {/* Menu Bar (when logged in) */}
               <div>
                 <div className="d-none d-md-flex">
-                <div className="d-none dropdown d-md-flex header-settings ml-auto">
+                  <div className="d-none dropdown d-md-flex header-settings ml-auto">
                   <Link href="/market">
                     <a
                       className="nav-link"
@@ -220,7 +220,7 @@ const Navbar = (props) => {
               </div>
                   <div
                     className="d-flex order-lg-2 ml-auto header-right"
-                    style={{ paddingLeft: "230px" }}
+                    style={{ paddingLeft: "100px" }}
                   >
                     <div className="dropdown header-profile">
                       <a
@@ -325,7 +325,7 @@ const Navbar = (props) => {
                         <Link href="/jobs">
                           <a className="nav-link">Jobs</a>
                         </Link>
-                        <Link href="/parnerships">
+                        <Link href="/partnerships">
                           <a className="nav-link">Partnership</a>
                         </Link>
                         <Link href="/forum">
@@ -396,7 +396,7 @@ const Navbar = (props) => {
                   <Link href="/jobs">
                     <a className="nav-link">Jobs</a>
                   </Link>
-                  <Link href="/parnerships">
+                  <Link href="/partnerships">
                     <a className="nav-link">Partnership</a>
                   </Link>
                   <Link href="/forum">

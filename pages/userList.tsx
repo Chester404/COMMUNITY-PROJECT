@@ -106,7 +106,7 @@ export default function userList() {
         );
       });
     }catch (e) {
-        
+
     }
   
   };
@@ -316,7 +316,7 @@ export default function userList() {
                   <div className="form-check"></div>
                 </th> */}
 
-                <th scope="col" className="text-muted">
+                <th scope="col" className="text- ">
                 <input type="checkbox" className=" mr-2 ml-3"></input>
                   <div className="dropdown">
                     <span id="toggle-sort">

@@ -51,7 +51,7 @@ modal-title {
   color: #000;
 }
 .lay-outstyle {
-  font-weight: 600;
+  font-weight: normal;
 }
 .form-rounded {
   border-radius: 10px;
@@ -199,6 +199,10 @@ h5.table-title {
 }
 .column-color {
   font-weight: 800;
+}
+
+.bolder-text {
+  font-weight: bold;
 }
 .dropdown:hover .dropdown-content {
   display: block;
@@ -682,7 +686,11 @@ a#editprofile_button {
 /* Account Settings */
 
 .card {
-  box-shadow: none;
+ border-radius: 10px;
+ margin-bottom: 40px;
+}
+.card-image{
+  border-radius: 10px 10px 0 0;
 }
 
 .account-title {
@@ -831,6 +839,9 @@ h5.table-title-market {
   border-radius: 10px !important;
   height: 36.5px !important;
 }
+.editbtn{
+  height: 36.5px;
+}
 .businessProfilesave:hover {
   background: #355be1 !important;
   color: #ffffff !important;
@@ -845,6 +856,11 @@ h5.table-title-market {
 .businessProfileCancel:hover {
   background: #c0c4d4 !important;
   color: #ffffff !important;
+}
+
+.slider-text {
+  text-align: left;
+  width: 50%;
 }
 
 @media screen and (max-width: 800px) {
@@ -1087,8 +1103,14 @@ h5.table-title-market {
   }
 
   .searchbox-width{
-    width: 7rem;
+    width: 8.5rem;
     margin-left: 13px;
+  }
+  .add-user-btn {
+    height: 2.2rem;
+    width: 8.5rem;
+    font-family: "Open Sans", sans-serif !important;
+    /* margin-left: 15px; */
   }
 }
 
@@ -1266,7 +1288,7 @@ a.btn.mobiletem-menubtn {
 }
 
 .filter-dropdown {
-  width: 14rem;
+  width: 14.3rem;
   margin-left: 0.2rem;
   margin-right: 0.2rem;
 }
