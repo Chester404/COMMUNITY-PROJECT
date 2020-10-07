@@ -237,7 +237,6 @@ export default function ProductsView() {
               id="marketCarouselIndicators"
               className="carousel slide"
               data-ride="carousel"
-              style={{ padding: "20px" }}
             >
               <ol className="carousel-indicators" id="carousel-indicators">
                 <li
@@ -402,7 +401,7 @@ export default function ProductsView() {
               </a>
             </div>
             <div
-              className="row justify-content-between mb-5"
+              className="row justify-content-center mb-5"
               id="filtersrow"
               style={{ margin: "0 auto"}}
             >

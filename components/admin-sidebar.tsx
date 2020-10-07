@@ -2,9 +2,6 @@ import Link from "next/link";
 const AdminSidebar = ({ handleList }) => {
   return (
     <div>
-      <button className="hamburger" id="hamburger">
-            <i className="fa fa-bars"></i>
-        </button>
         <div onClick={() => showCloseicon()}>
         <i className="fa fa-chevron-circle-right openicon mr-5"
                 id="openicon"

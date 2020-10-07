@@ -1,14 +1,10 @@
 import MainLayout from "../components/MainLayout";
-
-function jobs() {
-    return (
-        <>
-        <MainLayout>
-            
-        </MainLayout>
-        </>
-    );
+function Jobs() {
+  return (
+    <MainLayout title="Community Project" pageTitle="Jobs Page">
+      {}
+    </MainLayout>
+  );
 }
 
-
-export default jobs;
+export default Jobs;

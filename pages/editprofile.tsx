@@ -218,7 +218,7 @@ export default function Home() {
 
     try {
       const rs = await fetch(
-        "http://51.116.114.155:8080/accounts/image_upload/",
+        process.env.URL + "/accounts/image_upload/",
         requestOptions
       );
       return rs;
@@ -455,8 +455,8 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className="row">
-                <div className="col-md-3"></div>
+              <div className="row justify-content-center businessProfilebtn">
+                {/* <div className="col-md-3"></div> */}
                 <div className="col-md-3">
                   <button
                     className="btn btn-primary savebtn btn-block mb-1 mt-5"
@@ -472,11 +472,12 @@ export default function Home() {
                     </button>
                   </Link>
                 </div>
-                <div className="col-md-3"></div>
+                {/* <div className="col-md-3"></div> */}
               </div>
-              <div className="btn-list profilemargin">
+              {/* <div className="btn-list profilemargin">
                 <div className="row"></div>
-              </div>
+              </div> */}
+
               {/* </div> */}
             </div>
           </div>

@@ -9,7 +9,7 @@ export class Users {
       body: query_params,
     });
   }
-  
+
   async changeEmail(userData: any) {
     try {
     //authentication_property: email or phone number for login
@@ -24,8 +24,6 @@ export class Users {
 
   }
   }
-
-
 
   async confirmaccount(integer_key: number) {
     const rs = await axios.post(process.env.URL + "/auth/keyinput/", {
@@ -67,11 +65,23 @@ export class Users {
     });
   }
 
-  
-
   async getProfilesForAdmin() {
     //accounts/signed_in_user
     return ufetch("/accounts/profile-list", {
+      method: "GET",
+    });
+  }
+
+  async getIndividualProfilesForAdmin() {
+    //accounts/signed_in_user
+    return ufetch("/accounts/profile-list", {
+      method: "GET",
+    });
+  }
+
+  async getOrganizationProfilesForAdmin() {
+    //accounts/signed_in_user
+    return ufetch("/accounts/general_bus_list/", {
       method: "GET",
     });
   }
@@ -83,6 +93,8 @@ export class Users {
       body: data,
     });
   }
+
+  // 0721573809
 
   async getUserAccountDetails(id: number) {
     return ufetch(`/accounts/${id}`, {
@@ -119,6 +131,7 @@ export class Users {
   }
 
   async updateBusinessProfile(userData: any) {
+    console.log("inside update business profile");
     return await ufetch("/accounts/self_bus_update/ ", {
       method: "PUT",
       body: JSON.stringify(userData),
@@ -130,7 +143,8 @@ export class Users {
     return await ufetch(`/auth/activate_deactivate/${body.pk}/`, {
       method: "PUT",
       // body: JSON.stringify(body.is_active),
-      body: JSON.stringify({ is_activated: body.activate }),
+      // body.active
+      body: JSON.stringify({ is_active: body.active }),
     });
   }
 }

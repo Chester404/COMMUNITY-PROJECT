@@ -770,13 +770,61 @@ h5.table-title-market {
 
 .landingpage_login_signup_btns {
   display: flex;
-  margin-top: 0.5rem;
+  margin-top: 0.4rem;
 }
 
 .navbar-list {
   display: flex;
+  width:100%;
   margin-left: 10rem;
   margin-right: 10rem;
+}
+.businessProfilesave{
+  background: #3964FC !important;
+  width: 200px !important;
+  color: #ffffff !important;
+  border-radius: 10px !important;
+  height: 36.5px !important;
+}
+.businessProfilesave:hover{
+  background:#355be1 !important;
+  color: #ffffff !important;
+ }
+ .businessProfileCancel{
+  background: #818AA9 !important;
+  width: 200px !important;
+  color: #ffffff !important;
+  border-radius: 10px !important;
+  height: 36.5px !important;
+}
+.businessProfileCancel:hover{
+  background: #c0c4d4 !important;
+  color: #ffffff !important;
+  
+}
+
+.businessProfilebtn{
+  margin: 0px;
+}
+
+  @media screen and (max-width: 800px){
+    .savebtn{
+      margin: auto;
+    }
+    .cancelbtn{
+      justify-content: center;
+      margin: auto;
+    }
+    .businessProfilebtn{
+      margin: auto;
+    }
+  .businessProfilebtn{
+   justify-content: center;
+   margin: auto;
+  }
+  .userpic{
+    width: 200px;
+  }
 }
 
 /*chester (landingpage) styling ends here*/
@@ -808,17 +856,6 @@ h5.table-title-market {
   text-decoration: none;
   width: 325px;
   padding-left: 55px;
-}
-
-.hamburger{
-  position: absolute;
-  display: none;
-  top: 75px;
-  left: -20px;
-  background-color: transparent;
-  border: 0;
-  color: #818aa9;
-  font-size: 20px;
 }
 
 #list {
@@ -932,7 +969,16 @@ h5.table-title-market {
   background: white;
 }
 
-.requestbtn{
+.openicon {
+  position: absolute;
+  left: 50px;
+  font-size: 20px;
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
+  margin-top: 10px;
+  z-index: 10;
+}
+.requestbtn {
   border-radius: 10px;
 }
 
@@ -985,22 +1031,14 @@ h5.table-title-market {
   color: black;
 }
 
-@media screen and (max-width: 767px){
-  .sidenav{
-    display: none;
+@media screen and (max-width: 768px){
+  #main{
+    margin-left: 60px !important;
   }
 
-  .hamburger{
-    display: block;
-  }
-
-  .openicon{
-    display: none;
-  }
-
-  .form-rounded{
-    width: 90px;
-    display: inline-flex;
+  .searchbox-width{
+    width: 7rem;
+    margin-left: 13px;
   }
 }
 
@@ -1120,6 +1158,26 @@ button {
   background-color: #C0C4D4;
   }
 
+  .card-shopping {
+    width: 1.5rem;
+    height: 2.3rem;
+    border-radius: 2rem;
+    z-index: 3;
+    margin-bottom: -3.8rem;
+    margin-left: 80%;
+    margin-top: 0.5rem;
+    background-color: #e8ebf1;
+    border: none;
+  }
+
+  .cart-icon {
+    font-weight: 3000;
+  }
+
+  .card-shopping:hover {
+    background-color: #3964fc;
+  }
+
   .productCard {
     border-radius: 10px;
   }
@@ -1186,3 +1244,4 @@ input::-webkit-input-placeholder {
 /* STYLING FOR MARKET PLACE */
 
 
+}
