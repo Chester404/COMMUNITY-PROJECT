@@ -5,7 +5,7 @@ const ServiceCard = ({ service }) => {
 
   return (
     <div className="col-md-6" id="service-card__div">
-      <div className="card" id="service-card">
+      <div className="card" id="service-card" style={{borderRadius:"1em"}}>
         <div className="card-body" id="service-card-body">
           <div className="row" id="service-card-body__row">
             <div
@@ -31,13 +31,13 @@ const ServiceCard = ({ service }) => {
                 className="btn btn-info"
                 style={{
                   width: "2em",
-                  borderRadius: "3em",
+                  borderRadius: "1em",
                   marginTop: "-37em",
                   zIndex: -1,
                   marginLeft: "80%",
                 }}
               >
-                <i className="fa fa-shopping-cart"></i>
+                <i className="fe fe-shopping-bag"></i>
               </button>
             </div>
             <div
