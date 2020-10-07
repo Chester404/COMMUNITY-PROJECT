@@ -69,74 +69,11 @@ const Navbar = (props) => {
       }}
     >
       <div className="container">
-        <div className="d-flex justify-content-between">
+        <div className="d-flex">
           <a className="animated-arrow hor-toggle horizontal-navtoggle">
             <span />
           </a>
           {!isLoggedIn ? (
-            // <div className="btn-group mt-2 mb-2">
-            //   <button
-            //     type="button"
-            //     className="btn btn-default menu-button"
-            //     data-toggle="dropdown"
-            //   >
-            //     <i className="fe fe-menu fa-lg" style={{ fontSize: "20px" }} />
-            //   </button>
-            //   <ul className="dropdown-menu" role="menu">
-            //     <li>
-            //       <Link href="/market">
-            //         <a
-            //           className="nav-link"
-            //           style={{
-            //             color: router.pathname == "/market" ? "" : "black",
-            //           }}
-            //         >
-            //           <span className="lay-outstyle mt-1">Market</span>
-            //         </a>
-            //       </Link>
-            //     </li>
-            //     <li>
-            //       <Link href="/jobs">
-            //         <a>Jobs</a>
-            //       </Link>
-            //     </li>
-            //     <li>
-            //       <Link href="/parnerships">
-            //         <a>Partnership</a>
-            //       </Link>
-            //     </li>
-            //     <li>
-            //       <Link href="/forum">
-            //         <a>Forum</a>
-            //       </Link>
-            //     </li>
-
-            //     <li>
-            //       <Link href="/blog">
-            //         <a
-            //           className="nav-link"
-            //           style={{
-            //             color: router.pathname == "/blog" ? "" : "black",
-            //           }}
-            //         >
-            //           <span className="lay-outstyle mt-1">Blog</span>
-            //         </a>
-            //       </Link>
-            //     </li>
-            //     <li>
-            //       <Link href="/memberlist">
-            //         <a
-            //           className="nav-link"
-            //           style={{
-            //             color: router.pathname == "/memberlist" ? "" : "black",
-            //           }}
-            //         >
-            //           <span className="lay-outstyle mt-1">Members</span>
-            //         </a>
-            //       </Link>
-            //     </li>
-            //   </ul>
-            // </div>
             <Link href="/">
               <a className="header-brand">
                 <img
@@ -390,7 +327,7 @@ const Navbar = (props) => {
             </>
           ) : tempholder ? (
             <>
-              <div className="navbar-list ml-0 mr-0 justify-content-between">
+              <div className="navbar-list">
                 <div className="btn-group mt-2 mb-2">
                   <button
                     type="button"
@@ -452,7 +389,7 @@ const Navbar = (props) => {
                   </ul>
                 </div>
 
-                <div className="d-none dropdown d-md-flex">
+                {/*  <div className="d-none dropdown d-md-flex">
                   <Link href="/market">
                     <a
                       className="nav-link"
@@ -495,8 +432,8 @@ const Navbar = (props) => {
                     </a>
                   </Link>
                 </div>
-
-                <div className="landingpage_login_signup_btns mr-0">
+ */}
+                <div className="landingpage_login_signup_btns">
                   <Link href="/auth/login">
                     <a
                       className="landingpage_login_btn ml-6 mt-2"

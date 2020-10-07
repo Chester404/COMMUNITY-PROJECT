@@ -5,11 +5,13 @@ import { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/router";
 import { Store } from "../contextStore";
 const disabled = {};
+
 interface IPaginateProps {
   callback(i: number): void;
   recordsPerpage: number;
   totalRecords: number;
 }
+
 const Pagination = ({
   callback,
   recordsPerpage,
@@ -73,6 +75,7 @@ const Pagination = ({
     </div>
   );
 };
+
 export default function Home() {
   const [userProfiles, setUserProfiles] = useState([]);
   const [tempList, setTempList] = useState([]);
@@ -83,7 +86,7 @@ export default function Home() {
   const [readyPopupData, setReadyPopupData] = useState(false);
   const [togglelist, setTogglelist] = useState(true);
   // const [rs, setRs] = useState([]);
-  const [title, setTitle] = useState("Individuals");
+  const [title, setTitle] = useState("Organizations");
   const { state } = useContext(Store);
   const router = useRouter();
 
@@ -97,23 +100,30 @@ export default function Home() {
   const handleOpenIndividualOrganization = (id) => {
     router.push("/individualorganizationprofile");
   };
+
   useEffect(() => {
     (async () => {
       let rs = null;
       if (state.userProfile.name == undefined) {
-        if (togglelist) rs = await new Users().getUnregisteredUsersProfile();
-        else rs = await new Users().getOrganizationProfilesForAdmin();
+        if (togglelist)
+          rs = await new Users().getOrganizationProfilesForAdmin();
+        else rs = await new Users().getUnregisteredUsersProfile();
       } else {
         rs = await new Users().getProfiles();
       }
+      if (rs.error) return;
 
       // setRs(rs);
-      console.log("rs:", rs.slice(0, recordsPerPage));
+      // console.log("rs:", rs.slice(0, recordsPerPage));
       // let temp = rs.filter((uprofile: any) => {
       //   return uprofile.user.is_organization === togglelist;
       // // });
-      // setTempList(rs);
-      setUserProfiles(rs);
+      setTempList(rs);
+      try {
+        setUserProfiles(rs.slice(0, recordsPerPage));
+      } catch (e) {
+        console.log("Error", e);
+      }
       // settotalRecords(rs.length);
     })();
   }, [togglelist]);
