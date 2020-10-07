@@ -1166,16 +1166,25 @@ button {
     margin-bottom: -3.8rem;
     margin-left: 80%;
     margin-top: 0.5rem;
-    background-color: #e8ebf1;
+    background-color: #3964fc;
     border: none;
   }
 
-  .cart-icon {
-    font-weight: 3000;
+  .cart-quantity {
+    width: 5rem;
   }
 
   .card-shopping:hover {
-    background-color: #3964fc;
+    background-color: #355BE1;
+  }
+
+  .market-product-name {
+    font-size: 0.9rem;
+    font-weight: bold;
+    width: 100%;
+    white-space: nowrap;  
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .productCard {
