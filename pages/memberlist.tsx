@@ -4,6 +4,7 @@ import { Users } from "../lib/endpoints";
 import { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/router";
 import { Store } from "../contextStore";
+import { Console } from "console";
 const disabled = {};
 
 interface IPaginateProps {
@@ -282,6 +283,7 @@ export default function Home() {
               </thead>
               <tbody>
                 {userProfiles.map((uprofile: any, index: number) => {
+                  console.log("uprof:",uprofile)
                   return (
                     <tr key={index}>
                       <td>
@@ -289,7 +291,7 @@ export default function Home() {
                           <a
                             className="nav-link"
                             data-toggle="dropdown"
-                            onClick={() => getUserDetails(uprofile.id)}
+                            onClick={() => getUserDetails(uprofile.user.id)}
                           >
                             <span
                               className="avatar avatar-md brround cover-image"
@@ -305,9 +307,28 @@ export default function Home() {
                               className="brround ddimg"
                               alt=""
                             />
-                            <span className="ml-5 column-color" id="memberid">
-                              {uprofile.name}
-                            </span>
+                            {console.log("title:", title)}
+                            {title === "Individuals" &&
+                            uprofile.name === "" ? (
+                              <span className="ml-5 column-color" id="memberid">
+                                No name
+                              </span>
+                            ) : title === "Individuals" &&
+                              uprofile.name !== "" ? (
+                              <span className="ml-5 column-color" id="memberid">
+                                {uprofile.name}
+                              </span>
+                            ) : title === "Organizations" &&
+                              uprofile.title === null ? (
+                              <span className="ml-5 column-color" id="memberid">
+                                No title
+                              </span>
+                            ) : title === "Organizations" &&
+                              uprofile.title !== null ? (
+                              <span className="ml-5 column-color" id="memberid">
+                                {uprofile.title}
+                              </span>
+                            ) : null}
                           </a>
                           {
                             /* display conditionally */
@@ -320,7 +341,19 @@ export default function Home() {
                         </div>{" "}
                       </td>
                       <td>
-                        <p className="mt-2">{uprofile.street_address}</p>
+                        {title === "Individuals" &&
+                        uprofile.street_address === "" ? (
+                          <p className="mt-2">No location</p>
+                        ) : title === "Individuals" &&
+                          uprofile.street_address !== "" ? (
+                          <p className="mt-2">{uprofile.street_address}</p>
+                        ) : title === "Organizations" &&
+                          uprofile.location === null ? (
+                          <p className="mt-2">No location</p>
+                        ) : title === "Organizations" &&
+                          uprofile.location !== null ? (
+                          <p className="mt-2">{uprofile.location}</p>
+                        ) : null}
                       </td>
                       {togglelist ? null : (
                         <>
