@@ -812,6 +812,7 @@ h5.table-title-market {
   color: #ffffff !important;
 }
 
+<<<<<<< HEAD
 @media screen and (max-width: 800px) {
   .businessProfilebtn {
     margin: auto;
@@ -819,6 +820,26 @@ h5.table-title-market {
   .businessProfilebtn {
     justify-content: center;
     margin: auto;
+=======
+.businessProfilebtn{
+  margin: 0px;
+}
+
+  @media screen and (max-width: 800px){
+    .savebtn{
+      margin: auto;
+    }
+    .cancelbtn{
+      justify-content: center;
+      margin: auto;
+    }
+    .businessProfilebtn{
+      margin: auto;
+    }
+  .businessProfilebtn{
+   justify-content: center;
+   margin: auto;
+>>>>>>> im
   }
   .userpic {
     width: 200px;

@@ -95,7 +95,7 @@ export default function Home() {
                       </label>
                       <input
                         type="text"
-                        className="form-control form-rounded"
+                        className="form-control form-rounded"                        
                         defaultValue={
                           profileData?.user
                             ? profileData.user.email
