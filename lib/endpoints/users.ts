@@ -90,7 +90,7 @@ export class Users {
   // 0721573809
 
   async getUserAccountDetails(id: number) {
-    return ufetch(`/accounts/${id}`, {
+    return ufetch(`/accounts/general_bus_detail/${id}`, {
       method: "GET",
     });
   }
