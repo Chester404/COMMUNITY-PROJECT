@@ -2,7 +2,6 @@
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
   "/_error": "pages/_error.js",
-  "/market": "pages/market.js",
-  "/userList": "pages/userList.js",
-  "/auth/account-settings": "pages/auth/account-settings.js"
+  "/products/viewmyproducts": "pages/products/viewmyproducts.js",
+  "/products/add": "pages/products/add.js"
 }

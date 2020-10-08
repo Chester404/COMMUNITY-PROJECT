@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { Products } from "../../../lib/endpoints";
 import Prompt from "../../../components/Prompt";
 import { useRouter } from "next/router";
-import getConfig from "next/config";
+import getConfig from 'next/config';
 
 const PRODUCT_TYPE = [
   ["PR", "product"],
@@ -31,11 +31,11 @@ const CATEGORY = [
   ["PlP", "Plastics and Rubbers"],
 ];
 
-export default function Home({ productData }) {
+export default function Home({productData}) {
   const [show, setShow] = useState(false);
-  // const [image_1, setImage1] = useState(productData.image_1);
-  // const [image_2, setImage2] = useState(productData.image_2);
-  // const [image_3, setImage3] = useState(productData.image_3);
+  const [image_1, setImage1] = useState(productData.image_1);
+  const [image_2, setImage2] = useState(productData.image_2);
+  const [image_3, setImage3] = useState(productData.image_3);
   const [name, setName] = useState(productData.name);
   const [product_type, setProductType] = useState(productData.product_type);
   const [category, setCategory] = useState(productData.category);
@@ -53,10 +53,10 @@ export default function Home({ productData }) {
   const [statusColor, setStatusColor] = useState("blue");
   const [file, setFile] = useState([]);
   const [fileName, setFilename] = useState("Upload Image");
-  const [fileArray, setFileArray] = useState([
-    "https://ecex.s3.eu-west-2.amazonaws.com/img.JPG",
-  ]);
+  const [fileArray, setFileArray] = useState([ "https://ecex.s3.eu-west-2.amazonaws.com/img.JPG",]);
   const [fileObj, setFileObj] = useState([]);
+
+  
 
   const callPrompt = (
     title: string,
@@ -75,7 +75,7 @@ export default function Home({ productData }) {
 
   const handleClose = () => {
     if (doneUpdate) {
-      router.push("/products/");
+      router.push("/market/");
     }
     setShow(false);
   };
@@ -113,24 +113,24 @@ export default function Home({ productData }) {
     });
   };
 
-  useEffect(() => {
-    const arr = [];
-    if (productData.image_1 !== null) {
-      arr.push(productData.image_1);
+  useEffect(()=>{
+    const arr = []
+    if (productData.image_1 !== null){
+      arr.push(productData.image_1)
     }
-    if (!productData.image_2 !== null) {
-      arr.push(productData.image_2);
+    if (!productData.image_2 !== null){
+      arr.push(productData.image_2)
     }
-    if (!productData.image_3 !== null) {
-      arr.push(productData.image_3);
+    if (!productData.image_3 !== null){
+      arr.push(productData.image_3)
     }
-    setFileArray(arr);
+    setFileArray(arr)    
   }, []);
 
   const submitData = async (e) => {
     e.preventDefault();
 
-    console.log(fileObj[0]);
+    // console.log(fileObj[0]);
     const formdata = new FormData();
     formdata.append("name", name);
     formdata.append("price", price.toString());
@@ -141,27 +141,26 @@ export default function Home({ productData }) {
       formdata.append("image_" + (index + 1), f, f.name);
     });
 
-    const rs: any = await new Products().updateUserProduct(
-      productData.id,
-      formdata
-    );
+    const rs: any = await new Products().updateUserProduct(productData.id, formdata);
     console.log("Response", rs);
     if (rs.status == 401) {
       callPrompt(
         "Add Product",
         "",
         "Close",
-        "You're not authorized to add product, Please login with organizational account"
+        "You're not authorized to edit this product, Make sure you own this product!"
       ),
         console.log("Not authorized to add product: ", rs);
       // router.push("/auth/login/");
     } else if (rs.status == 400) {
       callPrompt("Add Product", "", "Close", "Sorry, An error occurred");
-    } else {
+    } else if(rs.status == 200){
       callPrompt("Add Product", "", "Close", "Product Updated Successfully");
-      // router.push("/products/");
+      router.push("/market/");
     }
-  };
+    return;
+  }
+
 
   return (
     <MainLayout title={"Edit Product/Service"}>
@@ -191,25 +190,29 @@ export default function Home({ productData }) {
                 }}
               >
                 <div style={{ border: "6px dashed #818aa9" }}>
-                  <div
-                    className="row"
-                    style={{ marginLeft: 340, marginRight: 340 }}
-                  >
-                    {fileArray.map((image) => (
-                      <div id="img-gallery" className="col">
-                        <img
-                          key={fileArray.indexOf(fileArray[image])}
-                          src={image}
-                          alt={name}
-                          width={80}
-                          height={100}
-                          style={{ borderRadius: "4px", margin: "35px" }}
-                          className="rounded mx-auto d-block"
-                          onClick={handleDelete}
-                        />
-                      </div>
-                    ))}
-                  </div>
+                  <div className="row" style={{marginLeft: 340, marginRight: 340}}>
+                    
+
+                 {(fileArray).map((image, i) => (
+                   <div key={i} id="img-gallery" className="col">
+                   <img
+                   key={fileArray.indexOf(fileArray[image])}
+                   src={
+                     image
+                   }
+                  //  alt={name}
+                   width={80}
+                   height={100}
+                   style={{ borderRadius: "4px", margin: "35px" }}
+                   className="rounded mx-auto d-block"
+                   onClick={handleDelete}
+                 /> 
+                 </div>             
+
+                 ))}
+                 
+                 </div>
+                  
 
                   <input
                     type="file"
@@ -313,8 +316,8 @@ export default function Home({ productData }) {
                       className="form-control form-rounded"
                       placeholder="Add discount"
                       value={discount}
-                      onChange={(e: any) => setDiscount(e.target.value)}
-                      onBlur={(e: any) => {
+                      onChange={(e) => setDiscount(e.target.value)}
+                      onBlur={(e) => {
                         e.preventDefault();
                         setPrice(price - (e.target.value / 100) * price);
                       }}
@@ -381,20 +384,18 @@ export default function Home({ productData }) {
   );
 }
 
-const { publicRuntimeConfig } = getConfig();
+const { publicRuntimeConfig } = getConfig()
 
 export async function getServerSideProps(context) {
-  const { id } = context.query;
+  const { id } = context.query
   // const API_URL = process.env.URL;
   // const res = await fetch(`${publicRuntimeConfig.API_URL}/marketplace/products/${id}`)
-  const res = await fetch(
-    `http://51.116.114.155:8080/marketplace/products/${id}/`
-  );
-  const data: any = await res.json();
-  console.log(id);
+  const res = await fetch(`http://51.116.114.155:8080/marketplace/products/${id}/`)
+  const data = await res.json()
+  console.log(id)
   return {
     props: {
-      productData: data,
-    },
-  };
-}
+      productData: data
+    }
+  }
+} 

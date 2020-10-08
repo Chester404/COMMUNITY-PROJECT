@@ -54,6 +54,7 @@ modal-title {
   font-weight: bold !important;
 }
 
+
 .switch-left {
   margin-left: 100px;
 }
@@ -241,6 +242,8 @@ input[type="number"] {
 #mobile-logo {
   display: none;
 }
+
+
 
 @media screen and (max-width: 600px) {
   #sidebar-desktop {
@@ -774,6 +777,8 @@ a#editprofile_button {
     padding-left: 0px !important;
   }
 }
+
+
 @media screen and (max-width: 599px) {
   .account-email-body-buttons .pass-buttons {
     margin-left: 0px !important;

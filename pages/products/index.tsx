@@ -319,14 +319,13 @@ export default function ProductsView() {
           {/* Products row mapping of products*/}
           <div className="row">
             {products.map(product => (
-              <div key={product.id} className="card col" style={{width: 18}}>
+              <div className="card col" style={{width: 18}}>
               <img className="card-img-top" src="..." alt="Card image cap"/>
               <div className="card-body">
                 <h5 className="card-title">{product.name}</h5>
                 <p className="card-text">{product.description}</p>
                 <p className="card-text">{product.price}</p>
-                <p className="card-text"><img src={product.image_1}/></p>
-                <Link href="/products/[id]" as={`/products/${product.id}`}>
+                <Link href="/products/[id]" as={`/products/${product.owner.id}`}>
                   <a className="btn btn-primary">View Details</a>
                 </Link>
                 

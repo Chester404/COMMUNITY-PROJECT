@@ -24,20 +24,15 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
-    "/auth/account-settings": [
+    "/products/add": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/auth/account-settings.js"
+      "static/chunks/pages/products/add.js"
     ],
-    "/market": [
+    "/products/viewmyproducts": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/market.js"
-    ],
-    "/userList": [
-      "static/chunks/main.js",
-      "static/chunks/webpack.js",
-      "static/chunks/pages/userList.js"
+      "static/chunks/pages/products/viewmyproducts.js"
     ]
   },
   "ampFirstPages": []

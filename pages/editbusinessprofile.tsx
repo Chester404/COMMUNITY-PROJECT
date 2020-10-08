@@ -435,7 +435,7 @@ export default function Home() {
                   </div>
                   <div className="form-group">
                     <label style={{ fontWeight: "bolder" }}>
-                      Town <span style={{ color: "red" }}>*</span>
+                      Town 
                     </label>
                     <input
                       type="text"

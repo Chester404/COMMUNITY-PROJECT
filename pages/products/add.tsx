@@ -3,6 +3,7 @@ import { useState, useRef } from "react";
 import Prompt from "../../components/Prompt";
 import { useRouter } from "next/router";
 import { Products } from "../../lib/endpoints";
+import { Store } from "../../contextStore";
 import { loadGetInitialProps } from "next/dist/next-server/lib/utils";
 
 const PRODUCT_TYPE = [
@@ -30,6 +31,7 @@ const CATEGORY = [
   ["HeP", "Health and Pharmaceuticals"],
   ["PlP", "Plastics and Rubbers"],
 ];
+
 
 export default function addProduct() {
   const [name, setName] = useState("");
@@ -102,15 +104,20 @@ export default function addProduct() {
     }
   };
 
-  const handleDelete = () => {
-    fileArray.forEach((img, i) => {
-      setFileArray(fileArray.splice(i, 1));
-    });
+  const handleDelete = (i) => {
+    // fileArray.forEach((i) => {
+      
+      let _splice = fileArray.splice(i, 1)
+      fileArray.splice(0, fileArray.length)
+      setFileArray([...fileArray, ..._splice])
+    // });
+    console.log(fileArray)
   };
 
   const submitData = async (e) => {
     e.preventDefault();
 
+    // console.log(fileObj[0]);
     const formdata = new FormData();
     formdata.append("name", name);
     formdata.append("price", price.toString());
@@ -122,7 +129,7 @@ export default function addProduct() {
     });
 
     const rs: any = await new Products().createProduct(formdata);
-    console.log(rs);
+    console.log("Response", rs);
     if (rs.status == 401) {
       callPrompt(
         "Add Product",
@@ -131,12 +138,12 @@ export default function addProduct() {
         "You're not authorized to add product, Please login with organizational account"
       ),
         console.log("Not authorized to add product: ", rs);
-      // router.push("/auth/login/");
+      router.push("/auth/login/");
     } else if (rs.status == 400) {
       callPrompt("Add Product", "", "Close", "Sorry, An error occurred");
-    } else {
+    } else if(rs.status == 200) {
       callPrompt("Add Product", "", "Close", "Product Added Successfully");
-      // router.push("/products/");
+      router.push("/market/");
     }
 
     return;
@@ -174,12 +181,11 @@ export default function addProduct() {
                     className="row"
                     style={{ marginLeft: 340, marginRight: 340 }}
                   >
-                    {fileArray.map((image) => (
-                      <div id="img-gallery" className="col">
+                    {fileArray.map((image, i) => (
+                      <div key={i} id="img-gallery" className="col">
                         <img
                           key={fileArray.indexOf(fileArray[image])}
                           src={image}
-                          alt={name}
                           width={80}
                           height={100}
                           style={{ borderRadius: "4px", margin: "35px" }}
