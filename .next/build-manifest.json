@@ -34,10 +34,10 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/market.js"
     ],
-    "/next/dist/pages/_error": [
+    "/userList": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/next/dist/pages/_error.js"
+      "static/chunks/pages/userList.js"
     ]
   },
   "ampFirstPages": []

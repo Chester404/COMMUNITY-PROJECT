@@ -3,6 +3,6 @@
   "/_document": "pages/_document.js",
   "/_error": "pages/_error.js",
   "/market": "pages/market.js",
-  "/auth/account-settings": "pages/auth/account-settings.js",
-  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js"
+  "/userList": "pages/userList.js",
+  "/auth/account-settings": "pages/auth/account-settings.js"
 }

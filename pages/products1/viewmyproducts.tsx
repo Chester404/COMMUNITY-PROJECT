@@ -7,6 +7,7 @@ function viewmyproducts() {
 	return (
     <>
       <MainLayout>
+        
         <p className=" myproducts-header container-fluid">
           My Products & Services{" "}
         </p>

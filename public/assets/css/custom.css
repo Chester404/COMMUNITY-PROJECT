@@ -790,11 +790,6 @@ a#editprofile_button {
   }
 }
 
-@media screen and (max-width: 800px){
-  .account-email-body .mail-pass-input1 {
-  width:85%;
-}
-
 @media screen and (max-width: 599px) {
   .account-para {
     display: none;
