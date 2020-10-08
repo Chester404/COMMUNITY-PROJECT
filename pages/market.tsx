@@ -286,10 +286,9 @@ export default function ProductsView() {
                       One Stop Online Market
                     </h6>
                     <p className="slider-text">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequat
+                      The Market Circle is your one-stop place for products and services
+                      of all types. We offer you a variety of products and services across
+                      sectors; from hospitality to finance.
                     </p>
                   </div>
                 </div>
@@ -323,10 +322,7 @@ export default function ProductsView() {
                       One Stop Online Market
                     </h6>
                     <p className="slider-text">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequat
+                       Find gift shops, construction services, and many more at our marketplace section.
                     </p>
                   </div>
                 </div>
@@ -359,10 +355,7 @@ export default function ProductsView() {
                       One Stop Online Market
                     </h6>
                     <p className="slider-text">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequat
+                       Feel free to browse and order the products or services of your choice, and with no stress at all.  
                     </p>
                   </div>
                 </div>

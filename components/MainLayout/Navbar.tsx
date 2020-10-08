@@ -220,7 +220,7 @@ const Navbar = (props) => {
               </div>
                   <div
                     className="d-flex order-lg-2 ml-auto header-right"
-                    style={{ paddingLeft: "100px" }}
+                    style={{ paddingLeft: "200px" }}
                   >
                     <div className="dropdown header-profile">
                       <a
@@ -410,7 +410,7 @@ const Navbar = (props) => {
                   </Link>
                   <div
                     className="d-flex order-lg-2 ml-auto header-right"
-                    style={{ paddingLeft: "230px" }}
+                    style={{ paddingLeft: "200px" }}
                   >
                     <Link href="/auth/login">
                       <a

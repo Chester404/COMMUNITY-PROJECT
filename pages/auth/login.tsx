@@ -120,13 +120,13 @@ const Login = () => {
           <form className="needs-validation" noValidate onSubmit={authenticate}>
             <div className="form-group">
               <label htmlFor="InputEmail" className="formlabel">
-                Email / Phone Number
+                Email
               </label>
               <input
                 type="email"
                 className="form-control form-rounded"
                 id="InputEmail"
-                placeholder="Please enter a valid email or phone number"
+                placeholder="Please enter a valid email"
                 value={authentication_property}
                 onChange={(e) => setAuthenticationProperty(e.target.value)}
               />

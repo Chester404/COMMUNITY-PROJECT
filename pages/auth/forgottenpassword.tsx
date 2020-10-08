@@ -80,13 +80,13 @@ const verifypassword = async (e) =>{
 
             <div className="form-group">
               <label htmlFor="inputFindAccount" className="formlabel">
-                Email / Phone Number
+                Email
               </label>
               <input
                 type="email"
                 className="form-control form-rounded"
                 id="InputFindEmail"
-                placeholder="Please enter a valid email or phone number"
+                placeholder="Please enter a valid email"
                 // value=""
                 onChange={(e) => setAuthenticationProperty(e.target.value)}
               />
