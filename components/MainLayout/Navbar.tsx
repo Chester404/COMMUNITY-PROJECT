@@ -220,7 +220,7 @@ const Navbar = (props) => {
               </div>
                   <div
                     className="d-flex order-lg-2 ml-auto header-right"
-                    style={{ paddingLeft: "200px" }}
+                    style={{ paddingLeft: "150px" }}
                   >
                     <div className="dropdown header-profile">
                       <a
@@ -234,11 +234,15 @@ const Navbar = (props) => {
                             background: `url(${userimage}) center center`,
                           }}
                         ></span>
-                        <div className="ml-3">
-                          <span style={{ color: "#3f3d56", fontWeight: 700 }}>
-                            {username}
-                            <i className="fe fe-chevron-down ml-1" />
-                          </span>
+                        <div className="ml-3 row ">
+                          <div className="username-ellipsis">
+                            <span style={{ color: "#3f3d56", fontWeight: 700 }}>
+                              {username}
+                              
+                            </span>
+                          </div>
+                            <span><i className="fe fe-chevron-down ml-1" /></span>
+                    
                         </div>
                       </a>
                       <div className="dropdown-menu profiledrop dropdown-menu-right dropdown-menu-arrow">
@@ -410,7 +414,7 @@ const Navbar = (props) => {
                   </Link>
                   <div
                     className="d-flex order-lg-2 ml-auto header-right"
-                    style={{ paddingLeft: "200px" }}
+                    style={{ paddingLeft: "150px" }}
                   >
                     <Link href="/auth/login">
                       <a

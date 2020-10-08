@@ -17,9 +17,9 @@ const ProductCard = ({ product }) => {
             : "/assets/images/product-card-default1.jpg"
           }
           id="product-image"
-          className="card-img-top mx-auto card-image"
+          className="card-img-top mx-auto  card-image"
           alt="..."
-          style={{ height: "12.5rem", objectFit: "fill", zIndex: 1 }}
+          
         />
         <div className="card-body" id="product-card-body">
           <div className="row  "

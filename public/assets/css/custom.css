@@ -696,6 +696,9 @@ a#editprofile_button {
 }
 .card-image{
   border-radius: 10px 10px 0 0;
+  object-fit: cover;
+  height: 18rem;
+  width: 100%;
 }
 
 .account-title {
@@ -1278,6 +1281,13 @@ a.btn.mobiletem-menubtn {
     font-size: 0.9rem;
     font-weight: bold;
     width: 100%;
+    white-space: nowrap;  
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .username-ellipsis {
+    width: 70%;
     white-space: nowrap;  
     overflow: hidden;
     text-overflow: ellipsis;
