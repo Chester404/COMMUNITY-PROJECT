@@ -14,11 +14,6 @@
     "static/development/_ssgManifest.js"
   ],
   "pages": {
-    "/": [
-      "static/chunks/main.js",
-      "static/chunks/webpack.js",
-      "static/chunks/pages/index.js"
-    ],
     "/_app": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
@@ -29,30 +24,15 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
-    "/market": [
+    "/memberlist": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/market.js"
+      "static/chunks/pages/memberlist.js"
     ],
-    "/next/dist/pages/_error": [
+    "/userList": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/next/dist/pages/_error.js"
-    ],
-    "/products/[id]": [
-      "static/chunks/main.js",
-      "static/chunks/webpack.js",
-      "static/chunks/pages/products/[id].js"
-    ],
-    "/products/viewmyproducts": [
-      "static/chunks/main.js",
-      "static/chunks/webpack.js",
-      "static/chunks/pages/products/viewmyproducts.js"
-    ],
-    "/products1/editproducts": [
-      "static/chunks/main.js",
-      "static/chunks/webpack.js",
-      "static/chunks/pages/products1/editproducts.js"
+      "static/chunks/pages/userList.js"
     ]
   },
   "ampFirstPages": []

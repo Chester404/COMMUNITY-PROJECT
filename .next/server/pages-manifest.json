@@ -2,10 +2,6 @@
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
   "/_error": "pages/_error.js",
-  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js",
-  "/products/[id]": "pages/products/[id].js",
-  "/products/viewmyproducts": "pages/products/viewmyproducts.js",
-  "/market": "pages/market.js",
-  "/products1/editproducts": "pages/products1/editproducts.js",
-  "/": "pages/index.js"
+  "/userList": "pages/userList.js",
+  "/memberlist": "pages/memberlist.js"
 }
