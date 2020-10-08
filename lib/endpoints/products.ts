@@ -1,5 +1,6 @@
 import ufetch, { refreshToken } from "../ufetch";
 
+
 export class Products {
   async uplaodImage(formData: any) {
     return await ufetch("/accounts/image_upload/", {
@@ -78,7 +79,7 @@ export class Products {
     }
   ) {
     return await ufetch(
-      `/marketplace/products?owner__city=${filters.owner__city}&name=${filters.name}&product_type=${filters.product_type}&category=${filters.category}&min_price=${filters.min_price}&max_price=${filters.max_price}&search=${filters.search}`,
+      `/marketplace/products/?owner__city=${filters.owner__city}&name=${filters.name}&product_type=${filters.product_type}&category=${filters.category}&min_price=${filters.min_price}&max_price=${filters.max_price}&search=${filters.search}`,
       {
         method: "GET",
       }

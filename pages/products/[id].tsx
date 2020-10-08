@@ -67,7 +67,7 @@ export default function ProductPage({productData}) {
     return (
       <MainLayout title={productData.name}>
         <div className="page-header">
-          <h1 className="page-title">My Products & Services</h1>
+          <h1 className="page-title">My Products & Services1</h1>
         </div>
         <div className="row mb-6">
           <div className="col mt-2 full-image ">

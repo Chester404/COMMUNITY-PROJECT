@@ -26,8 +26,8 @@ function viewmyproducts() {
             {productItems.map((productItem: any, index: number) => {
               return <div key={index} className="col-md-3 ">
                  <Link href="/products/[id]" as={`/products/${productItem.id}`} style={{ cursor: "pointer" }} >
-                    <Card>
-                      <Card.Img variant="top" src={
+                    <Card className="mb-5">
+                      <Card.Img className="card-image" variant="top" src={
                            productItem.image_1
                            ? productItem.image_1
                            : "/assets/images/product-card-default1.jpg"
@@ -36,7 +36,7 @@ function viewmyproducts() {
                         <Card.Title>
                           <a className="market-product-name">{productItem.name}</a>
                         </Card.Title>
-                        <Card.Text>
+                        <Card.Text className="product-description">
                           {productItem.description}
                         </Card.Text>
                       </Card.Body>

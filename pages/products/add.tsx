@@ -1,10 +1,11 @@
 import MainLayout from "../../components/MainLayout";
-import { useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import Prompt from "../../components/Prompt";
 import { useRouter } from "next/router";
 import { Products } from "../../lib/endpoints";
 import { Store } from "../../contextStore";
 import { loadGetInitialProps } from "next/dist/next-server/lib/utils";
+import Link from "next/link";
 
 const PRODUCT_TYPE = [
   ["PR", "product"],
@@ -328,17 +329,19 @@ export default function addProduct() {
                       Add
                     </button>
 
-                    <button
-                      type="submit"
-                      className="btn btn-primary cancelproduct-buttons btn-block mb-1 mt-3"
-                      style={{
-                        width: "253px",
-                        marginLeft: "20px",
-                        float: "right",
-                      }}
-                    >
-                      Cancel
-                    </button>
+                    <Link href="/market">
+                      <button
+                        type="submit"
+                        className="btn btn-primary cancelproduct-buttons btn-block mb-1 mt-3"
+                        style={{
+                          width: "253px",
+                          marginLeft: "20px",
+                          float: "right",
+                        }}
+                      >
+                        Cancel
+                      </button>
+                    </Link>
                   </div>
 
                   {/* <div className="row col-md-12 justify-content-center"> */}
