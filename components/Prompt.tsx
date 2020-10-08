@@ -10,7 +10,7 @@ const Prompt = (props: any) => {
   return (
     <div
       id="myModal"
-      className="modal overlay"
+      className="modal"
       style={{ display: closeBox ? "block" : "", zIndex: 9999 }}
     >
       <div
@@ -44,16 +44,20 @@ const Prompt = (props: any) => {
             <a className="btn btn-primary">{props.linkText}</a>
           </Link>
         ) : (
-          <a
-            href="#"
-            onClick={() => {
-              props.handleClose();
-              // setCloseBox(false);
-            }}
-            style={{ fontSize: 15 }}
-          >
-            {props.linkText.length > 0 ? props.linkText : ""}
-          </a>
+          <div className="prompt">
+            <a
+              // href="#"
+              type="button"
+              className="btn btn-primary prompt_btn"
+              onClick={() => {
+                props.handleClose();
+                // setCloseBox(false);
+              }}
+              style={{ fontSize: 15 }}
+            >
+              {props.linkText.length > 0 ? props.linkText : ""}
+            </a>
+          </div>
         )}
       </div>
     </div>

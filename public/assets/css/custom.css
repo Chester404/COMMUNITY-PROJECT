@@ -1367,3 +1367,11 @@ input::-webkit-input-placeholder {
 
 /* STYLING FOR MARKET PLACE */
 
+.prompt_btn {
+  justify-content: center;
+  /* width: px; */
+  height: 35px;
+  font-weight: bold;
+  color: white;
+}
+
