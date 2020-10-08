@@ -316,8 +316,8 @@ export default function Home({productData}) {
                       className="form-control form-rounded"
                       placeholder="Add discount"
                       value={discount}
-                      onChange={(e) => setDiscount(e.target.value)}
-                      onBlur={(e) => {
+                      onChange={(e:any) => setDiscount(e.target.value)}
+                      onBlur={(e:any) => {
                         e.preventDefault();
                         setPrice(price - (e.target.value / 100) * price);
                       }}
