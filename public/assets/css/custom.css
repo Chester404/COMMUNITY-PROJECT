@@ -3,7 +3,7 @@
 @import url("../iconfonts/feather/feather.css");
 
 .lay-outstyle {
-  font-weight: 600;
+  font-weight: 700;
 }
 h1,
 h2, 
@@ -51,7 +51,11 @@ modal-title {
   color: #000;
 }
 .lay-outstyle {
-  font-weight: normal;
+  font-weight: bold !important;
+}
+
+.switch-left {
+  margin-left: 100px;
 }
 .form-rounded {
   border-radius: 10px;
@@ -784,6 +788,11 @@ a#editprofile_button {
   .account-email-body-buttons .pass-modal-popup-button {
     margin-left: 0.5rem !important;
   }
+}
+
+@media screen and (max-width: 800px){
+  .account-email-body .mail-pass-input1 {
+  width:85%;
 }
 
 @media screen and (max-width: 599px) {

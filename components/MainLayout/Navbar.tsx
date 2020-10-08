@@ -327,13 +327,13 @@ const Navbar = (props) => {
                           </a>
                         </Link>
                         <Link href="/jobs">
-                          <a className="nav-link">Jobs</a>
+                          <a className="nav-link lay-outstyle">Jobs</a>
                         </Link>
                         <Link href="/partnerships">
-                          <a className="nav-link">Partnership</a>
+                          <a className="nav-link lay-outstyle">Partnership</a>
                         </Link>
                         <Link href="/forum">
-                          <a className="nav-link">Forum</a>
+                          <a className="nav-link lay-outstyle">Forum</a>
                         </Link>
                         <Link href="/blog">
                           <a
@@ -383,7 +383,7 @@ const Navbar = (props) => {
 
               {/* Menu Bar (Before log in) */}
               <div>
-                <div className="d-none d-md-flex">
+                <div className="d-none d-md-flex switch-left">
                   {/*  <Link href="/market">
                     <a
                       className="nav-link"
@@ -395,22 +395,22 @@ const Navbar = (props) => {
                     </a>
                   </Link> */}
                   <Link href="/market">
-                    <a className="nav-link">Market</a>
+                    <a className="nav-link lay-outstyle">Market</a>
                   </Link>
                   <Link href="/jobs">
-                    <a className="nav-link">Jobs</a>
+                    <a className="nav-link lay-outstyle">Jobs</a>
                   </Link>
                   <Link href="/partnerships">
-                    <a className="nav-link">Partnership</a>
+                    <a className="nav-link lay-outstyle">Partnership</a>
                   </Link>
                   <Link href="/forum">
-                    <a className="nav-link">Forum</a>
+                    <a className="nav-link lay-outstyle">Forum</a>
                   </Link>
                   <Link href="/blog">
-                    <a className="nav-link">Blog</a>
+                    <a className="nav-link lay-outstyle">Blog</a>
                   </Link>
                   <Link href="/memberlist">
-                    <a className="nav-link">Members</a>
+                    <a className="nav-link lay-outstyle">Members</a>
                   </Link>
                   <div
                     className="d-flex order-lg-2 ml-auto header-right"
@@ -426,7 +426,7 @@ const Navbar = (props) => {
                     </Link>
                     <Link href="/auth/signup">
                       <a
-                        className="btn btn-primary landingpage_signup_btn ml-5 mr-5"
+                        className="btn btn-primary landingpage_signup_btn mt-1 ml-5"
                         id="landingpage_signup_btn"
                       >
                         Signup
