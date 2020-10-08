@@ -130,7 +130,7 @@ export default function Home() {
       } catch (e) {
         console.log("Error", e);
       }
-      // settotalRecords(rs.length);
+      settotalRecords(rs.length);
     })();
   }, [togglelist]);
 
@@ -147,9 +147,9 @@ export default function Home() {
   };
   const searchLocation = (e: any) => {
     const ts = tempList.filter((p) => {
-      return p.street_address
+      return p.city ? p.city
         .toLocaleLowerCase()
-        .includes(e.target.value.toLocaleLowerCase());
+        .includes(e.target.value.toLocaleLowerCase()): null;
     });
     setUserProfiles(ts);
   };
