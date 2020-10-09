@@ -253,7 +253,6 @@ const Signup = () => {
                 name="account_type"
                 defaultValue="organization"
                 onChange={() => setIsOrganization(true)} 
-                checked
               />
               <label htmlFor="organization" className="radio_spc ml-2">
                 Organization
