@@ -1003,7 +1003,7 @@ h5.table-title-market {
   margin-left: 30px;
 }
 .closebtn {
-  position: absolute;
+  position: fixed;
   top: 113.5px;
   left: 237px;
   font-size: 20px;
@@ -1021,7 +1021,7 @@ h5.table-title-market {
 }
 
 .openicon {
-  position: absolute;
+  position: fixed;
   left: 50px;
   font-size: 20px;
   color: white;
@@ -1057,16 +1057,6 @@ h5.table-title-market {
 
 .seluser {
   background: white;
-}
-
-.openicon {
-  position: absolute;
-  left: 50px;
-  font-size: 20px;
-  color: white;
-  text-shadow: 2px 2px 4px #000000;
-  margin-top: 10px;
-  z-index: 10;
 }
 .requestbtn {
   border-radius: 10px;

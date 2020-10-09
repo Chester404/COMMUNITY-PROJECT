@@ -88,6 +88,16 @@ const AdminSidebar = ({ handleList }) => {
               <li>Deactivated Accounts</li>
             </a>
           </Link>
+          <Link href="/userList">
+            <a
+              onClick={() => {
+                // handleListView("inactive");
+                handleList("deactivated_organizations");
+              }}
+            >
+              <li>Deactivated organizations</li>
+            </a>
+          </Link>
         </ul>
 
         <div className="sidenavmenu">

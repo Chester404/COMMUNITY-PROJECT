@@ -318,12 +318,12 @@ export default function addProduct() {
                   </div>
 
                   <div
-                    className="row form-group justify-content-between d-flex"
+                    className="col-md-12 form-group justify-content-between d-flex"
                     style={{ paddingTop: "15px" }}
                   >
                     <button
                       type="submit"
-                      className="btn btn-primary  addproduct-buttons btn-block ml-2 mt-3 col-md-5"
+                      className="btn btn-primary  addproduct-buttons btn-block mr-2 mt-3 col-md-6"
                     // style={{ width: "50px"}}
                     >
                       Add
@@ -332,7 +332,7 @@ export default function addProduct() {
                     <Link href="/market">
                       <button
                         type="submit"
-                        className="btn btn-primary cancelproduct-buttons btn-block mt-3 mr-1 col-md-5"
+                        className="btn btn-primary cancelproduct-buttons btn-block mr-2 mt-3  col-md-6"
                         //  style={{
                         //   width: "50px",
                         // //   marginLeft: "20px",

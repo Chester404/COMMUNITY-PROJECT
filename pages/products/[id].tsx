@@ -67,8 +67,9 @@ export default function ProductPage({productData}) {
     return (
       <MainLayout title={productData.name}>
         <div className="page-header">
-          <h1 className="page-title">My Products & Services1</h1>
+          <h1 className="page-title">My Products & Services</h1>
         </div>
+
         <div className="row mb-6">
           <div className="col mt-2 full-image ">
             <a
@@ -95,7 +96,7 @@ export default function ProductPage({productData}) {
                   href={
                     productData.image_2
                       ? productData.image_2
-                      : null
+                      : "/assets/images/product-card-default1.jpg"
                   }
                 >
                   <img
@@ -103,7 +104,7 @@ export default function ProductPage({productData}) {
                     src={
                       productData.image_2
                         ? productData.image_2
-                        : null
+                        : "/assets/images/product-card-default1.jpg"
                     }
                     alt={productData.name}
                   />
@@ -115,7 +116,7 @@ export default function ProductPage({productData}) {
                   href={
                     productData.image_3
                       ? productData.image_3
-                      : null
+                      : "/assets/images/product-card-default1.jpg"
                   }
                 >
                   <img
@@ -123,7 +124,7 @@ export default function ProductPage({productData}) {
                     src={
                       productData.image_3
                         ? productData.image_3
-                        : null
+                        : "/assets/images/product-card-default1.jpg"
                     }
                     alt={productData.name}
                   />

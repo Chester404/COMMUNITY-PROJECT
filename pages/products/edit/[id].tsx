@@ -237,7 +237,7 @@ export default function Home({productData}) {
 
               <div className="row justify-content-between">
                 {/*from here*/}
-                <div className="col-6">
+                <div className="col-md-6">
                   {/* <div className="col"> */}
                   <div className="form-group">
                     <label className="bolder">
@@ -306,7 +306,7 @@ export default function Home({productData}) {
                   {/* </div>      */}
                 </div>
 
-                <div className="col-6">
+                <div className="col-md-6">
                   <div className="form-group">
                     <label htmlFor="quantity" className="bolder">
                       Discount
@@ -335,25 +335,25 @@ export default function Home({productData}) {
                   </div>
 
                   <div
-                    className="col-12 form-group"
+                    className="col-md-12 d-flex justify-content-between form-group"
                     style={{ paddingTop: "15px" }}
                   >
                     <button
                       type="submit"
-                      className="btn btn-primary  addproduct-buttons btn-block mb-1 mt-3"
-                      style={{ width: "253px", float: "left" }}
+                      className="btn btn-primary  addproduct-buttons btn-block col-md-6 mr-2  mb-1 mt-3"
+                      // style={{ width: "253px", float: "left" }}
                     >
                       Update
                     </button>
 
                     <button
                       type="submit"
-                      className="btn btn-primary cancelproduct-buttons btn-block mb-1 mt-3"
-                      style={{
-                        width: "253px",
-                        marginLeft: "20px",
-                        float: "right",
-                      }}
+                      className="btn btn-primary cancelproduct-buttons btn-block col-md-6 mr-2 mb-1 mt-3"
+                      // style={{
+                      //   width: "253px",
+                      //   marginLeft: "20px",
+                      //   float: "right",
+                      // }}
                     >
                       Cancel
                     </button>

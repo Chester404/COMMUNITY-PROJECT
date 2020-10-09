@@ -105,9 +105,10 @@ function viewmyproducts() {
   return (
     <>
       <MainLayout>
-        <p className=" myproducts-header container-fluid">
-          My Products & Services{" "}
-        </p>
+        <div className="page-header">
+            <h1 className="page-title">My Products & Services</h1>
+        </div>
+       
 
         <CardDeck className=" mb-3 mt-5 org-products">
           <div className="row">
@@ -125,13 +126,13 @@ function viewmyproducts() {
                           <a className="market-product-name">{productItem.name}</a>
                         </Card.Title>
                         <Card.Text className="product-description">
-                          {productItem.description}
+                          GHS {productItem.price}
                         </Card.Text>
                       </Card.Body>
                     </Card>
                 </Link>
               </div>;
-            }) : ''}
+            }) : 'NO PRODUCTS'}
           </div>
 
           <div

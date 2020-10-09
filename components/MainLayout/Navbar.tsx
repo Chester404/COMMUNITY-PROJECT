@@ -169,17 +169,23 @@ const Navbar = (props) => {
 
 
 
-                
+                  {isOrganization ? 
                   <DropdownButton id="dropdown-basic-button" className="marketlabel" title="Market">
                   <Link href="/products/add"><a className="nav-link"><Dropdown.Item href="#/action-1">Add products</Dropdown.Item></a></Link>
                   <Link href="/products/viewmyproducts"><a className="nav-link"><Dropdown.Item href="#/action-2">View all products</Dropdown.Item></a></Link>
                   </DropdownButton>
-
-                  {/* <Link href="/market">
+                  
+                  :
+                    <Link href="/market">
                     <a className="nav-link">
-                      <span className="lay-outstyle mt-1">Market11</span>
+                      <span className="lay-outstyle mt-1">Market</span>
                     </a>
-                  </Link> */}
+                  </Link>
+                  
+                }
+                  
+
+                  
 
                 <Link href="/jobs">
                   <a

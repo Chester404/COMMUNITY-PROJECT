@@ -321,7 +321,7 @@ export default function Home() {
                     />
                   </div>
                   <div className="form-group">
-                    <label style={{ color: "grey", fontWeight: "bold" }}>
+                    <label style={{ fontWeight: "bold" }}>
                       Email Address
                     </label>
                     <input

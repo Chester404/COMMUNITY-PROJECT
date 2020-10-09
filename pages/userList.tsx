@@ -87,6 +87,7 @@ export default function userList() {
   const [activate, setActivate] = useState(false);
   const [orglist, setOrglist] = useState([]);
   const [temporgprofile, setTemporgprofile] = useState([]);
+  const [approverender, setApproverender] = useState<any>();
 
   const { state } = useContext(Store);
   const [list, setList] = useState("inital");
@@ -105,10 +106,7 @@ export default function userList() {
           uprofile.user.email !== state.userProfile.user.email
         );
       });
-    }catch (e) {
-
-    }
-  
+    } catch (e) {}
   };
 
   const organizations = (rs) => {
@@ -144,10 +142,22 @@ export default function userList() {
   };
 
   const searchLocation = (e: any) => {
+    console.log("E:", e);
     const ts = tempList.filter((p) => {
-      return p.street_address
-        .toLocaleLowerCase()
-        .includes(e.target.value.toLocaleLowerCase());
+      return (
+        p.name
+          .toLocaleLowerCase()
+          .includes(e.target.value.toLocaleLowerCase()) ||
+        p.user.email
+          .toLocaleLowerCase()
+          .includes(e.target.value.toLocaleLowerCase()) ||
+        p.user.phone_number
+          .toLocaleLowerCase()
+          .includes(e.target.value.toLocaleLowerCase()) ||
+        p.street_address
+          .toLocaleLowerCase()
+          .includes(e.target.value.toLocaleLowerCase())
+      );
     });
     setUserProfiles(ts);
   };
@@ -160,6 +170,36 @@ export default function userList() {
     const sorted = [...userProfiles];
     setUserProfiles([...sorted].reverse());
   };
+
+  const approve = async (id) => {
+    // const temp = tempprofile.map((tmp, i) => {
+    //   if (tmp.user.id === id) {
+    //     tmp.user.is_active = true;
+    //   }
+    //   return tmp;
+    // });
+    // setTempprofile(temp);
+    let rs = await new Users().activateDeactivate({
+      pk: id,
+      active: true,
+    });
+
+    console.log("RS:", rs);
+    // setApproverender(true);
+    // setCheckedUsers([...checkedUsers, uprofile.user.id]);
+  };
+
+  const disapprove = async (id) => {
+    let rs = await new Users().activateDeactivate({
+      pk: id,
+      active: true,
+    });
+
+    console.log("RS:", rs);
+    // setApproverender(true);
+  };
+
+  // useEffect(() => {}, [approverender]);
 
   const activateDeactivate = async () => {
     let active: any;
@@ -236,7 +276,7 @@ export default function userList() {
   return (
     <MainLayout>
       <AdminSidebar handleList={handleList} />
-      
+
       <div id="main">
         <div className="page-header">
           <h1 className="page-title page-title-userlist" id="page-title">
@@ -293,7 +333,7 @@ export default function userList() {
                       {list === "individuals" || list === "organizations" ? (
                         <>
                           <button className="btn btn-primary activate-btn">
-                              Deactivate
+                            Deactivate
                           </button>
                         </>
                       ) : list === "deactivated_users" ||
@@ -312,19 +352,22 @@ export default function userList() {
           <table className="table">
             <thead>
               <tr>
-                {/* <th scope="col" className="text-muted">
+                <th scope="col" className="text-muted">
                   <div className="form-check"></div>
-                </th> */}
+                </th>
 
-                <th scope="col" className="text- ">
-                <input type="checkbox" className=" mr-2 ml-3"></input>
+                <th scope="col" className="text-muted ml-5">
+                  {/* <input type="checkbox" className=" mr-2 ml-3"></input> */}
                   <div className="dropdown">
                     <span id="toggle-sort">
-                      <span className="ml-3">Name </span>
+                      <span className="" style={{ marginLeft: 77 }}>
+                        Name{" "}
+                      </span>
                       <i
                         className={`fa fa-sort-amount-${
                           order ? "asc" : "desc"
-                        }`} onClick={() => showsort()}
+                        }`}
+                        onClick={() => showsort()}
                       ></i>
                     </span>
                     <div className="dropdown-content ml-8">
@@ -362,7 +405,7 @@ export default function userList() {
 
                 {list === "organizationalrequests" ? (
                   <>
-                    <th scope="col" className="text-muted">
+                    <th scope="col" align="center" className="text-muted">
                       Requests
                     </th>
                   </>
@@ -371,12 +414,15 @@ export default function userList() {
             </thead>
             <tbody>
               {userProfiles.map((uprofile: any, index: number) => {
+                // setApproverender(prev => prev = uprofile.user.isactive);
+                // console.log("UPROFILE:", uprofile);
                 return (
                   <tr key={index}>
                     <td scope="col" className="text-muted">
                       <div className="form-check">
                         {list !== "inital" ? (
                           <input
+                            style={{ marginTop: 17 }}
                             type="checkbox"
                             name="check_user"
                             className="form-check-input"
@@ -397,7 +443,7 @@ export default function userList() {
                               } else {
                                 const temp = temporgprofile.map((tmp, i) => {
                                   if (tmp.user.id === uprofile.user.id) {
-                                    tmp.user.is_active = !e.target.checked;
+                                    tmp.user.is_active = e.target.checked;
                                   }
                                   return tmp;
                                 });
@@ -416,8 +462,8 @@ export default function userList() {
                       <div className="dropdown ddmargin">
                         <a
                           className="nav-link"
-                          data-toggle="dropdown"
-                          onClick={() => getUserDetails(uprofile.id)}
+                          // data-toggle="dropdown"
+                          // onClick={() => getUserDetails(uprofile.id)}
                         >
                           <span
                             className="avatar avatar-md brround cover-image"
@@ -433,8 +479,16 @@ export default function userList() {
                             className="brround ddimg"
                             alt=""
                           />
-                          <span className="ml-5 column-color" id="memberid">
-                            {uprofile.name}
+                          <span
+                            className="ml-5 column-color"
+                            id="memberid"
+                            style={{ marginLeft: 23 }}
+                          >
+                            {uprofile.name && uprofile.name !== null
+                              ? uprofile.name
+                              : uprofile.title && uprofile.title !== ""
+                              ? uprofile.title
+                              : "No name"}
                           </span>
                         </a>
                       </div>{" "}
@@ -449,27 +503,68 @@ export default function userList() {
                     ) : null}
 
                     <td>
-                      <p className="mt-2">{uprofile.phone_number}</p>
+                      <p className="mt-2">
+                        {uprofile.phone_number && uprofile.phone_number !== ""
+                          ? uprofile.phone_number
+                          : uprofile.user.phone_number &&
+                            uprofile.user.phone_number !== ""
+                          ? uprofile.user.phone_number
+                          : "No phone number"}
+                      </p>
                     </td>
                     <td>
-                      <p className="mt-2">{uprofile.street_address}</p>
+                      <p className="mt-2">
+                        {uprofile.street_address &&
+                        uprofile.street_address !== ""
+                          ? uprofile.street_address
+                          : uprofile.city && uprofile.city !== ""
+                          ? uprofile.city
+                          : "No town specified"}
+                      </p>
                     </td>
 
                     {list === "organizationalrequests" ? (
                       <>
                         <td>
-                          <button
-                            className="btn btn-success mr-2 requestbtn"
-                            // onClick={deactivate_}
-                          >
-                            Approve
-                          </button>
-                          <button
-                            className="btn btn-danger mr-2 requestbtn"
-                            // onClick={activate_}
-                          >
-                            Disapprove
-                          </button>
+                          <>
+                            {" "}
+                            <button
+                              style={{ marginTop: 7 }}
+                              disabled={uprofile.user.is_active}
+                              className="btn btn-success mr-2 requestbtn"
+                              onClick={() => {
+                                approve(uprofile.user.id);
+                                const temp = temporgprofile.map((tmp, i) => {
+                                  if (tmp.user.id === uprofile.user.id) {
+                                    tmp.user.is_active = !uprofile.user
+                                      .is_active;
+                                  }
+                                  return tmp;
+                                });
+                                setTemporgprofile(temp);
+                              }}
+                            >
+                              Approve
+                            </button>
+                            <button
+                              style={{ marginTop: 7 }}
+                              disabled={!uprofile.user.is_active}
+                              className="btn btn-danger mr-2 requestbtn"
+                              onClick={() => {
+                                disapprove(uprofile.user.id);
+                                const temp = temporgprofile.map((tmp, i) => {
+                                  if (tmp.user.id === uprofile.user.id) {
+                                    tmp.user.is_active = !uprofile.user
+                                      .is_active;
+                                  }
+                                  return tmp;
+                                });
+                                setTemporgprofile(temp);
+                              }}
+                            >
+                              Disapprove
+                            </button>{" "}
+                          </>
                         </td>
                       </>
                     ) : null}
@@ -500,9 +595,7 @@ export default function userList() {
   );
 }
 
-
 function showsort() {
   var toggle = document.getElementById("sortlist");
   toggle.style.display = toggle.style.display == "block" ? "none" : "block";
 }
-
