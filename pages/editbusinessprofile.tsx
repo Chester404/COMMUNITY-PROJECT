@@ -17,7 +17,7 @@ export default function Home() {
   const [region, setRegion] = useState("wr");
   const [category, setCategory] = useState("AB&M");
   const [website, setWebsite] = useState("");
-  const [description, setDescription] = useState("");
+  const [description, setDescription] = useState("ghfgh");
 
   // const [image, setImage] = useState("");
   const [email, setEmail] = useState("");
@@ -174,20 +174,27 @@ export default function Home() {
   useEffect(() => {
     (async () => {
       const rs = await new Users().getBusinessProfile();
-      setName(rs.title);
-      setPhone(rs.phone);
-      setCity(rs.city);
-      setCategory(rs.category ? rs.category : "AB&M");
-      setRegion(rs.region ? rs.region : "wr");
-      setLocation(rs.location);
-      setWebsite(rs.website);
-      setDescription(rs.description);
-      setEmail(rs.user.email);
-      if (rs.image) {
-        setImage(rs.image);
+      try{
+        setName(rs.title);
+        setPhone(rs.phone);
+        setCity(rs.city);
+        setCategory(rs.category ? rs.category : "AB&M");
+        setRegion(rs.region ? rs.region : "wr");
+        setLocation(rs.location);
+        setWebsite(rs.website);
+        setDescription(rs.description);
+        setEmail( (rs.user.email !== undefined ) ? rs.user.email: '' );
+        if (rs.image) {
+          setImage(rs.image);
+        }
+        console.log("BusinessData", rs);
+        setIsReady(true);
+      }catch(e){
+        
       }
-      console.log("BusinessData", rs);
-      setIsReady(true);
+      
+
+
     })();
   }, []);
 
@@ -351,14 +358,14 @@ export default function Home() {
                       htmlFor="form-label"
                     >
                       Description
-                      {description.length > 99 ? (
+                      {/* {description.split("h") > 99 ? (
                         <span style={{ fontSize: "0.7rem", color: "red" }}>
                           Maximum allowed charactes is 100. The rest will be
                           truncated
                         </span>
                       ) : (
                         ""
-                      )}
+                      )} */}
                     </label>
                     <div className="form-group">
                       <div className="input-group-date">

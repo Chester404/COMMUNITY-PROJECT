@@ -1141,7 +1141,7 @@ h5.table-title-market {
 /*styling for add/edit product (peter)*/
 .addproduct-buttons {
   background: #3964fc !important;
-  width: 240px !important;
+  /* width: 20px !important; */
   color: #ffffff !important;
   border-radius: 10px !important;
   height: 36.5px !important;
@@ -1149,7 +1149,7 @@ h5.table-title-market {
 }
 .cancelproduct-buttons {
   background: #818aa9 !important;
-  width: 240px !important;
+  /* width: 20px !important; */
   color: #ffffff !important;
   border-radius: 10px !important;
   height: 36.5px !important;
@@ -1300,7 +1300,7 @@ a.btn.mobiletem-menubtn {
   }
 
   .username-ellipsis {
-    width: 140px;
+    width: 116px;
     white-space: nowrap;  
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1386,3 +1386,25 @@ input::-webkit-input-placeholder {
   color: white !important;
 }
 
+.dropdown-toggle{
+  background: inherit;
+  color: black;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.dropdown-toggle:hover{
+  background: inherit;
+  color: black;
+}
+#dropdown-basic-button{
+  background: white;
+  color: black;
+}
+.marketlabel{
+  margin-top: 8px;
+}
+div.dropdown-menu.show{
+  margin-top: 5px;
+  max-width: 20px;
+}

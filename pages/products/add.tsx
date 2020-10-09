@@ -220,7 +220,7 @@ export default function addProduct() {
 
               <div className="row justify-content-between">
                 {/*from here*/}
-                <div className="col-6">
+                <div className="col-md-6">
                   {/* <div className="col"> */}
                   <div className="form-group">
                     <label className="bolder">
@@ -289,7 +289,7 @@ export default function addProduct() {
                   {/* </div>      */}
                 </div>
 
-                <div className="col-6">
+                <div className="col-md-6">
                   <div className="form-group">
                     <label htmlFor="quantity" className="bolder">
                       Discount
@@ -318,13 +318,13 @@ export default function addProduct() {
                   </div>
 
                   <div
-                    className="col-12 form-group"
+                    className="row form-group justify-content-between d-flex"
                     style={{ paddingTop: "15px" }}
                   >
                     <button
                       type="submit"
-                      className="btn btn-primary  addproduct-buttons btn-block mb-1 mt-3"
-                      style={{ width: "253px", float: "left" }}
+                      className="btn btn-primary  addproduct-buttons btn-block ml-2 mt-3 col-md-5"
+                    // style={{ width: "50px"}}
                     >
                       Add
                     </button>
@@ -332,12 +332,12 @@ export default function addProduct() {
                     <Link href="/market">
                       <button
                         type="submit"
-                        className="btn btn-primary cancelproduct-buttons btn-block mb-1 mt-3"
-                        style={{
-                          width: "253px",
-                          marginLeft: "20px",
-                          float: "right",
-                        }}
+                        className="btn btn-primary cancelproduct-buttons btn-block mt-3 mr-1 col-md-5"
+                        //  style={{
+                        //   width: "50px",
+                        // //   marginLeft: "20px",
+                        // //   float: "right",
+                        //  }}
                       >
                         Cancel
                       </button>

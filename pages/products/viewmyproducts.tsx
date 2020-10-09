@@ -9,7 +9,7 @@ function viewmyproducts() {
   useEffect(() => {
     (async()=>{
       const rs = await new Products().getUserProduct();
-      
+      console.log(rs);
       setProductItems(rs)
     })()
   }, []);
@@ -23,7 +23,7 @@ function viewmyproducts() {
 
         <CardDeck className=" mb-3 mt-5 org-products">
           <div className="row">
-            {productItems.map((productItem: any, index: number) => {
+            {(productItems.length > 0)?  productItems.map((productItem: any, index: number) => {
               return <div key={index} className="col-md-3 ">
                  <Link href="/products/[id]" as={`/products/${productItem.id}`} style={{ cursor: "pointer" }} >
                     <Card className="mb-5">
@@ -43,7 +43,7 @@ function viewmyproducts() {
                     </Card>
                 </Link>
               </div>;
-            })}
+            }) : ''}
           </div>
         </CardDeck>
       </MainLayout>

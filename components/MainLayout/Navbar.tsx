@@ -1,8 +1,10 @@
 import Link from "next/link";
-import { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/router";
 
 import { Store } from "../../contextStore";
+import { Dropdown, DropdownButton } from "react-bootstrap";
+
 const navFontSize = {
   fontSize: "18px",
 };
@@ -103,6 +105,9 @@ const Navbar = (props) => {
                         </a>
                       </a>
                       <div className="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                      <Link href="/">
+                          <a className="nav-link lay-outstyle">Home</a>
+                        </Link>
                         <Link href="/market">
                           <a
                             className="nav-link"
@@ -115,13 +120,13 @@ const Navbar = (props) => {
                           </a>
                         </Link>
                         <Link href="/jobs">
-                          <a className="nav-link">Jobs</a>
+                          <a className="nav-link lay-outstyle">Jobs</a>
                         </Link>
                         <Link href="/partnerships">
-                          <a className="nav-link">Partnership</a>
+                          <a className="nav-link lay-outstyle">Partnership</a>
                         </Link>
                         <Link href="/forum">
-                          <a className="nav-link">Forum</a>
+                          <a className="nav-link lay-outstyle">Forum</a>
                         </Link>
                         <Link href="/blog">
                           <a
@@ -144,6 +149,11 @@ const Navbar = (props) => {
                             <span className="lay-outstyle mt-1">Members</span>
                           </a>
                         </Link>
+                        <Link href="/">
+                          <a 
+                          onClick={logout}
+                          className="nav-link lay-outstyle">Log out</a>
+                        </Link>
                       </div>
                     </div>
                   </div>
@@ -156,16 +166,21 @@ const Navbar = (props) => {
               <div>
                 <div className="d-none d-md-flex">
                   <div className="d-none dropdown d-md-flex header-settings ml-auto">
-                  <Link href="/market">
-                    <a
-                      className="nav-link"
-                      style={{
-                        color: router.pathname == "/market" ? "" : "black",
-                      }}
-                    >
-                      <span className="lay-outstyle mt-1">Market</span>
+
+
+
+                
+                  <DropdownButton id="dropdown-basic-button" className="marketlabel" title="Market">
+                  <Link href="/products/add"><a className="nav-link"><Dropdown.Item href="#/action-1">Add products</Dropdown.Item></a></Link>
+                  <Link href="/products/viewmyproducts"><a className="nav-link"><Dropdown.Item href="#/action-2">View all products</Dropdown.Item></a></Link>
+                  </DropdownButton>
+
+                  {/* <Link href="/market">
+                    <a className="nav-link">
+                      <span className="lay-outstyle mt-1">Market11</span>
                     </a>
-                  </Link>
+                  </Link> */}
+
                 <Link href="/jobs">
                   <a
                     className="nav-link"
@@ -238,11 +253,9 @@ const Navbar = (props) => {
                           <div className="username-ellipsis">
                             <span style={{ color: "#3f3d56", fontWeight: 700 }}>
                               {username}
-                              
                             </span>
                           </div>
                             <span><i className="fe fe-chevron-down ml-1" /></span>
-                    
                         </div>
                       </a>
                       <div className="dropdown-menu profiledrop dropdown-menu-right dropdown-menu-arrow">
@@ -358,7 +371,7 @@ const Navbar = (props) => {
                         </Link>
                       </div>
                     </div>
-                    <div className="ml-auto header-right">
+                    <div className=" header-right mr-6 mt-2">
                       <Link href="/auth/login">
                         <a
                           className="landingpage_login_btn ml-6"
