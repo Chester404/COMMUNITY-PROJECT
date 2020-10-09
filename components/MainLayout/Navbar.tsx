@@ -44,7 +44,7 @@ const Navbar = (props) => {
       setIsLoggedIn(true);
       setIsOrganization(lStorage.user.is_organization);
 
-      if (lStorage.user.is_staff) setMemberListLink("/memberlist");
+      if (lStorage.user.is_staff) setMemberListLink("");
     } else {
       setIsLoggedIn(false);
     }

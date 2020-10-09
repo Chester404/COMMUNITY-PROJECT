@@ -17,7 +17,7 @@ export default function Home() {
   const [region, setRegion] = useState("wr");
   const [category, setCategory] = useState("AB&M");
   const [website, setWebsite] = useState("");
-  const [description, setDescription] = useState("ghfgh");
+  const [description, setDescription] = useState("");
 
   // const [image, setImage] = useState("");
   const [email, setEmail] = useState("");

@@ -192,7 +192,7 @@ export default function userList() {
   const disapprove = async (id) => {
     let rs = await new Users().activateDeactivate({
       pk: id,
-      active: true,
+      active: false,
     });
 
     console.log("RS:", rs);
